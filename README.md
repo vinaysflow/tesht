@@ -1,10 +1,11 @@
 # Pramana Protocol
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
 **Portable AI Agent Identity Infrastructure**
 
 W3C DIDs + Verifiable Credentials · Scoped Authorization · Instant Revocation
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 81%](https://img.shields.io/badge/python-81%25-blue)](https://github.com/vinaysflow/pramana-protocol)
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://aurviaglobal-pramana-demo.hf.space/demo)
 
@@ -187,8 +188,8 @@ pramana-protocol/
 
 ## License
 
-[MIT](LICENSE)
+Pramana Protocol is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for full terms.
 
------
+Commercial licenses are available for organizations that wish to use Pramana Protocol in proprietary products without AGPL-3.0 obligations. Contact [vinay@aurviaglobal.com](mailto:vinay@aurviaglobal.com) for commercial licensing inquiries.
 
-Built by [Vinay Tripathi](https://github.com/vinaysflow) · [The Trust Stack](https://vintrip.substack.com) · vinay@aurviaglobal.com
+See [NOTICE](NOTICE) for authorship, copyright, and licensing history.

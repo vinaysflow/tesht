@@ -15,7 +15,7 @@
     "dist",
     "README.md"
   ],
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "keywords": ["ai-agents", "did", "verifiable-credentials", "zero-trust", "identity", "spiffe", "w3c"],
   "repository": {
     "type": "git",

@@ -5,7 +5,7 @@ Give your AI agent a verifiable identity in 3 lines of code. W3C DIDs + Verifiab
 ## Install
 
 ```bash
-pip install pramana-sdk
+pip install aurvia-pramana
 ```
 
 ## Quickstart

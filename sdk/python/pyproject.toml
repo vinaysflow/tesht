@@ -1,6 +1,6 @@
 [project]
-name = "pramana-sdk"
-version = "0.2.0"
+name = "aurvia-pramana"
+version = "0.3.0"
 description = "Zero-Trust AI Agent Identity — W3C DIDs, Verifiable Credentials, and AP2 Commerce for autonomous agents"
 readme = "README.md"
 license = { text = "AGPL-3.0-only" }

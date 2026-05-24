@@ -13,7 +13,7 @@ from typing import Any, Optional
 
 import jwt as pyjwt
 
-from pramana.credentials import create_presentation, verify_vc
+from pramana.credentials import create_presentation, create_blended_presentation, verify_vc
 from pramana.identity import AgentIdentity
 
 # ---------------------------------------------------------------------------
@@ -64,6 +64,7 @@ class PramanaAgentContext:
 
         # Extract credential types from VC-JWTs without signature verification
         cred_types: list[str] = []
+        has_delegation = False
         for vc_jwt in self.credentials:
             try:
                 payload = pyjwt.decode(vc_jwt, options={"verify_signature": False})
@@ -73,6 +74,8 @@ class PramanaAgentContext:
                 specific = types[1] if len(types) > 1 else types[0] if types else None
                 if specific and specific not in cred_types:
                     cred_types.append(specific)
+                if specific == "DelegationCredential":
+                    has_delegation = True
             except Exception:
                 continue
 
@@ -82,12 +85,20 @@ class PramanaAgentContext:
         else:
             cred_summary = f"{count} verifiable credential{'s' if count != 1 else ''}"
 
-        return (
+        base = (
             f"You have a verifiable digital identity (DID: {did}). "
             f"When interacting with other agents or services, you can present "
             f"your credentials to prove your identity and capabilities. "
             f"You hold {cred_summary}."
         )
+        if has_delegation:
+            base += (
+                " You hold a delegation credential that lets you act on behalf of a human "
+                "delegator. When calling MCP servers that require blended identity, use "
+                "get_blended_auth_headers() to bundle your delegation with the delegator's "
+                "identity into a single Verifiable Presentation."
+            )
+        return base
 
     def get_auth_headers(self, audience: str) -> dict[str, str]:
         """
@@ -103,6 +114,36 @@ class PramanaAgentContext:
         vp_jwt = create_presentation(
             holder=self.identity,
             credentials=self.credentials,
+            audience=audience,
+        )
+        return {"Authorization": f"Bearer {vp_jwt}"}
+
+    def get_blended_auth_headers(
+        self,
+        audience: str,
+        delegation_jwt: str,
+        delegator_identity_jwt: Optional[str] = None,
+    ) -> dict[str, str]:
+        """
+        Return an Authorization header containing a Blended Identity VP.
+
+        Bundles the delegation credential, optionally the delegator's identity
+        credential, and any additional credentials held by the agent into a
+        single VP-JWT of type ``BlendedIdentityPresentation``.
+
+        Args:
+            audience:               Target MCP server's DID.
+            delegation_jwt:         A DelegationCredential VC-JWT.
+            delegator_identity_jwt: Optional identity credential of the human delegator.
+
+        Returns:
+            {"Authorization": "Bearer <blended-VP-JWT>"}
+        """
+        vp_jwt = create_blended_presentation(
+            agent=self.identity,
+            delegation_jwt=delegation_jwt,
+            delegator_identity_jwt=delegator_identity_jwt,
+            additional_credentials=self.credentials if self.credentials else None,
             audience=audience,
         )
         return {"Authorization": f"Bearer {vp_jwt}"}

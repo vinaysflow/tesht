@@ -74,5 +74,65 @@ services:
       - /app/.next
     command: npm run dev
 
+  mock-mcp-server:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile.mock
+    container_name: pramana-mock-mcp
+    ports:
+      - "9100:9100"
+
+  sqlite-mcp-server:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile.sqlite-mcp
+    container_name: pramana-sqlite-mcp
+    ports:
+      - "9102:9102"
+
+  pramana-gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: pramana-gateway
+    ports:
+      - "5052:5052"
+    depends_on:
+      mock-mcp-server:
+        condition: service_started
+      sqlite-mcp-server:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./gateway/config.yaml:/app/gateway/config.yaml
+    environment:
+      GATEWAY_CONFIG: /app/gateway/config.yaml
+      PYTHONPATH: /app/sdk/python:/app
+      DATABASE_URL: postgresql://${POSTGRES_USER:-pramana}:${POSTGRES_PASSWORD:-pramana_dev_password}@postgres:5432/${POSTGRES_DB:-pramana}
+
+  mock-oidc-provider:
+    build:
+      context: .
+      dockerfile: idp_bridge/Dockerfile.mock-oidc
+    container_name: pramana-mock-oidc
+    ports:
+      - "9200:9200"
+
+  pramana-idp-bridge:
+    build:
+      context: .
+      dockerfile: idp_bridge/Dockerfile
+    container_name: pramana-idp-bridge
+    ports:
+      - "5053:5053"
+    depends_on:
+      - mock-oidc-provider
+    volumes:
+      - ./idp_bridge/config.yaml:/app/idp_bridge/config.yaml
+    environment:
+      IDP_BRIDGE_CONFIG: /app/idp_bridge/config.yaml
+      PYTHONPATH: /app/sdk/python:/app
+
 volumes:
   postgres_data:

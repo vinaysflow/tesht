@@ -187,9 +187,9 @@ from pramana.identity import AgentIdentity
 from pramana.commerce import issue_intent_mandate, issue_cart_mandate, verify_mandate
 buyer = AgentIdentity.create('buyer', method='key')
 pa = AgentIdentity.create('payment-agent', method='key')
-intent = issue_intent_mandate(buyer, pa.did, max_amount=5000, currency='USD', ttl_seconds=3600)
-cart = issue_cart_mandate(buyer, pa.did, intent, cart={'total':{'value':99,'currency':'USD'}}, ttl_seconds=300)
-r = verify_mandate(cart)
+intent_jwt = issue_intent_mandate(buyer, pa.did, {'max_amount':5000,'currency':'USD'}, ttl_seconds=3600)
+cart_jwt = issue_cart_mandate(buyer, pa.did, {'total':{'value':99,'currency':'USD'}}, intent_mandate_jwt=intent_jwt, ttl_seconds=300)
+r = verify_mandate(cart_jwt)
 assert r.verified, r.reason
 "
 
@@ -227,9 +227,9 @@ from pramana.identity import AgentIdentity
 from pramana.commerce import issue_intent_mandate, issue_cart_mandate
 b = AgentIdentity.create('buyer2', method='key')
 p = AgentIdentity.create('pa2', method='key')
-intent = issue_intent_mandate(b, p.did, max_amount=5000, currency='USD', ttl_seconds=3600)
+intent_jwt = issue_intent_mandate(b, p.did, {'max_amount':5000,'currency':'USD'}, ttl_seconds=3600)
 try:
-    issue_cart_mandate(b, p.did, intent, cart={'total':{'value':100,'currency':'EUR'}}, ttl_seconds=300)
+    issue_cart_mandate(b, p.did, {'total':{'value':100,'currency':'EUR'}}, intent_mandate_jwt=intent_jwt, ttl_seconds=300)
     assert False, 'Should have raised ValueError'
 except ValueError as e:
     assert 'currency' in str(e).lower(), str(e)

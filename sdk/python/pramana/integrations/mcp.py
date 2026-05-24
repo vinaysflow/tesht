@@ -45,6 +45,18 @@ class MCPAuthConfig:
     required_actions: list[str] = field(default_factory=list)
     """If require_delegation is True, each action must be in the effective scope."""
 
+    resolver: Optional[Callable[[str], dict[str, Any]]] = None
+    """Optional DID resolver for non-did:key issuers (e.g. did:web enterprise IdPs)."""
+
+    status_checker: Optional[Callable[[str, int], bool]] = None
+    """Optional revocation status checker callback."""
+
+    require_delegator_identity: bool = False
+    """If True, a credential whose subject matches the root delegator DID must be present."""
+
+    delegator_credential_types: list[str] = field(default_factory=list)
+    """If non-empty, the delegator identity credential type must be one of these."""
+
 
 # ---------------------------------------------------------------------------
 # Result
@@ -61,6 +73,11 @@ class MCPAuthResult:
     delegation: Optional[DelegationResult] = None
     scopes: list[str] = field(default_factory=list)
     reason: Optional[str] = None
+    delegator_did: Optional[str] = None
+    delegator_claims: dict[str, Any] = field(default_factory=dict)
+    delegator_credential_type: Optional[str] = None
+    effective_scope: dict[str, Any] = field(default_factory=dict)
+    blended: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -131,6 +148,8 @@ class PramanaMCPAuth:
         vp_result: PresentationResult = verify_presentation(
             vp_jwt,
             expected_audience=self.config.identity.did,
+            resolver=self.config.resolver,
+            status_checker=self.config.status_checker,
         )
         if not vp_result.verified:
             return MCPAuthResult(
@@ -203,6 +222,8 @@ class PramanaMCPAuth:
                 del_result = verify_delegation_chain(
                     delegation_jwt,
                     required_action=action,
+                    resolver=self.config.resolver,
+                    status_checker=self.config.status_checker,
                 )
                 if not del_result.verified:
                     return MCPAuthResult(
@@ -214,7 +235,11 @@ class PramanaMCPAuth:
                 delegation_result = del_result
 
             if delegation_result is None:
-                delegation_result = verify_delegation_chain(delegation_jwt)
+                delegation_result = verify_delegation_chain(
+                    delegation_jwt,
+                    resolver=self.config.resolver,
+                    status_checker=self.config.status_checker,
+                )
                 if not delegation_result.verified:
                     return MCPAuthResult(
                         authenticated=False,
@@ -222,6 +247,54 @@ class PramanaMCPAuth:
                         credentials=credential_results,
                         reason=f"Delegation chain invalid: {delegation_result.reason}",
                     )
+
+        # ── Step 6b: delegator identity classification ────────────────
+        delegator_did: Optional[str] = None
+        delegator_claims: dict[str, Any] = {}
+        delegator_credential_type: Optional[str] = None
+        effective_scope: dict[str, Any] = {}
+        blended = False
+
+        if delegation_result and delegation_result.chain:
+            root_delegator_did = delegation_result.chain[0]["delegator"]
+            effective_scope = delegation_result.effective_scope
+
+            # Find a VC whose subject is the root delegator
+            for cr in credential_results:
+                if cr.subject_did == root_delegator_did and cr.credential_type != "DelegationCredential":
+                    delegator_did = root_delegator_did
+                    delegator_claims = cr.claims
+                    delegator_credential_type = cr.credential_type
+                    blended = True
+                    break
+
+            # Policy: require_delegator_identity
+            if self.config.require_delegator_identity and delegator_did is None:
+                return MCPAuthResult(
+                    authenticated=False,
+                    agent_did=agent_did,
+                    credentials=credential_results,
+                    reason=(
+                        f"Delegator identity required but no credential found "
+                        f"for delegator DID {root_delegator_did}"
+                    ),
+                )
+
+            # Policy: delegator_credential_types filter
+            if (
+                self.config.delegator_credential_types
+                and delegator_credential_type is not None
+                and delegator_credential_type not in self.config.delegator_credential_types
+            ):
+                return MCPAuthResult(
+                    authenticated=False,
+                    agent_did=agent_did,
+                    credentials=credential_results,
+                    reason=(
+                        f"Delegator credential type '{delegator_credential_type}' "
+                        f"not in allowed list: {self.config.delegator_credential_types}"
+                    ),
+                )
 
         # ── Step 7: extract agent_name from first VC claims ───────────
         agent_name: Optional[str] = None
@@ -235,6 +308,11 @@ class PramanaMCPAuth:
             credentials=credential_results,
             delegation=delegation_result,
             scopes=scopes,
+            delegator_did=delegator_did,
+            delegator_claims=delegator_claims,
+            delegator_credential_type=delegator_credential_type,
+            effective_scope=effective_scope,
+            blended=blended,
         )
 
 

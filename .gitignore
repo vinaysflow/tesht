@@ -62,3 +62,42 @@ gtm-agent/
 *.tar.gz
 *.zip
 sdk/dist/
+
+# ── W01 cleanup (2026-05-23) ────────────────────────────────────────────────
+
+# Explicit Python cache patterns (already covered by *.py[cod], but listed
+# explicitly so they appear by name in tooling that scans .gitignore)
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.ruff_cache/
+
+# Build artifacts not already covered
+.eggs/
+*.egg
+
+# Node patterns not already covered
+.pnp/
+.pnp.js
+
+# Runtime outputs from Pramana scripts
+pramana_audit_export.csv
+*.audit_export.csv
+reports/
+
+# Additional env file patterns
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Additional OS artifacts
+.AppleDouble
+.LSOverride
+ehthumbs.db
+
+# Logs and coverage (beyond *.log already present)
+logs/
+.coverage.*
+coverage.xml

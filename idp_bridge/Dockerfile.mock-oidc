@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn[standard] \
+    pyjwt \
+    cryptography
+
+COPY idp_bridge /app/idp_bridge
+
+ENV PYTHONPATH=/app
+
+EXPOSE 9200
+
+CMD ["python", "-m", "uvicorn", "idp_bridge.mock_oidc_provider:app", "--host", "0.0.0.0", "--port", "9200"]

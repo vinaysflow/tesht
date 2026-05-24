@@ -1,0 +1,85 @@
+providers:
+  mock_idp:
+    name: "Mock IdP (Demo)"
+    issuer: "https://mock-idp.pramana.local"
+    jwks_uri: "http://localhost:9200/.well-known/jwks.json"
+    audience: "pramana"
+    claim_mapping:
+      name: "name"
+      email: "email"
+      organization: "org"
+      department: "department"
+      role: "role"
+    default_credential_type: "OrganizationalRoleCredential"
+    allowed_algorithms:
+      - "RS256"
+
+  # ── Real Auth0 / Okta Dev Tenant ────────────────────────────────────────────
+  # Works with Auth0 OR Okta dev tenants. Set env vars before starting IdP bridge:
+  #
+  #   Auth0:
+  #     OKTA_ISSUER=https://dev-XXXXXXX.us.auth0.com
+  #     OKTA_CLIENT_ID=your_auth0_client_id
+  #     OKTA_AUDIENCE=your_auth0_client_id   (same as client_id for Auth0)
+  #
+  #   Okta:
+  #     OKTA_ISSUER=https://dev-XXXXXXX.okta.com/oauth2/default
+  #     OKTA_CLIENT_ID=your_okta_client_id
+  #     OKTA_AUDIENCE=your_okta_client_id
+  #
+  # JWKS URIs:
+  #   Auth0:  https://{domain}/.well-known/jwks.json
+  #   Okta:   https://{domain}/oauth2/default/v1/keys
+  #
+  # Obtain a real token:
+  #   python scripts/get_okta_token.py --save /tmp/token.txt
+  #
+  # Then run the demo with:
+  #   python scripts/demo_mega.py --okta-token /tmp/token.txt
+  acme_okta:
+    name: "Acme Corp (Auth0/Okta Dev)"
+    issuer: "${OKTA_ISSUER:-https://dev-placeholder.us.auth0.com}"
+    # Auth0 JWKS: https://{domain}/.well-known/jwks.json
+    # Okta JWKS:  https://{domain}/oauth2/default/v1/keys
+    # Set OKTA_JWKS_URI explicitly, or it defaults to Auth0 format.
+    # Auth0: https://{domain}/.well-known/jwks.json (default)
+    # Okta:  set OKTA_JWKS_URI=https://dev-xxx.okta.com/oauth2/default/v1/keys
+    jwks_uri: "${OKTA_JWKS_URI:-https://dev-placeholder.us.auth0.com/.well-known/jwks.json}"
+    audience: "${OKTA_AUDIENCE:-your_client_id}"
+    claim_mapping:
+      name: "name"
+      email: "email"
+      organization: "org_name"
+      department: "department"
+      role: "job_title"
+    default_credential_type: "OrganizationalRoleCredential"
+    allowed_algorithms:
+      - "RS256"
+
+  google_workspace:
+    name: "Google Workspace"
+    issuer: "https://accounts.google.com"
+    jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
+    audience: "pramana"
+    claim_mapping:
+      name: "name"
+      email: "email"
+      organization: "hd"
+    default_credential_type: "OrganizationalRoleCredential"
+    allowed_algorithms:
+      - "RS256"
+
+  microsoft_entra:
+    name: "Microsoft Entra ID"
+    issuer: "https://login.microsoftonline.com/common/v2.0"
+    jwks_uri: "https://login.microsoftonline.com/common/discovery/v2.0/keys"
+    audience: "pramana"
+    claim_mapping:
+      name: "name"
+      email: "preferred_username"
+      organization: "tid"
+      role: "jobTitle"
+      department: "department"
+    default_credential_type: "OrganizationalRoleCredential"
+    allowed_algorithms:
+      - "RS256"

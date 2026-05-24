@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-pramana-dark text-slate-100 font-mono;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-pramana-dark; }
+::-webkit-scrollbar-thumb { @apply bg-pramana-border rounded-full; }
+
+/* Animated gradient border for the run button */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-border {
+  background: linear-gradient(90deg, #0D9488, #6366F1, #0D9488);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}

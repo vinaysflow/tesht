@@ -1,0 +1,43 @@
+gateway:
+  host: "0.0.0.0"
+  port: 5052
+
+auth:
+  require_delegation: true
+  require_delegator_identity: true
+
+trust:
+  allow_threshold: 75
+  step_up_threshold: 50
+  cache_ttl_seconds: 30
+
+upstream_servers:
+  mock_database:
+    url: "http://localhost:9100/mcp"
+    auth_type: "api_key"
+    credential: "secret-db-key-agent-never-sees"
+    credential_header: "X-API-Key"
+    tool_scope_mapping:
+      query_database: "read_data"
+      insert_record: "write_data"
+      delete_record: "admin"
+
+  mock_email:
+    url: "http://localhost:9101/mcp"
+    auth_type: "bearer_token"
+    credential: "secret-email-token-agent-never-sees"
+    credential_header: "Authorization"
+    tool_scope_mapping:
+      send_email: "send_email"
+      read_inbox: "read_email"
+
+  sqlite_database:
+    url: "http://localhost:9102/mcp"
+    auth_type: "api_key"
+    credential: "sqlite-db-key-agent-never-sees"
+    credential_header: "X-API-Key"
+    tool_scope_mapping:
+      query_database: "read_data"
+      insert_record: "write_data"
+      list_tables: "read_data"
+      delete_record: "admin"

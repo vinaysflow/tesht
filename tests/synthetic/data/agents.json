@@ -1,0 +1,3884 @@
+{
+  "generated_at": "2026-03-16T20:12:05Z",
+  "agents": [
+    {
+      "name": "acme-corp-root-ca",
+      "role": "root-issuer",
+      "did": "did:key:z6MkkQDxQi7WBMhTQ2ANpGydG3EgCRgz3ohaDMmMCBjF3JuH",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkQDxQi7WBMhTQ2ANpGydG3EgCRgz3ohaDMmMCBjF3JuH",
+        "method": "key",
+        "name": "acme-corp-root-ca",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB7ZTIJ4BukbCjqBAQ2sMAcYp5Ah/PgieG5jR0XVh9p2\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-issuer",
+      "role": "issuer",
+      "did": "did:key:z6MkjdxpQ16dBmseqRADh9ncqYSVRTSc2P8YSuxCc14q9P4v",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjdxpQ16dBmseqRADh9ncqYSVRTSc2P8YSuxCc14q9P4v",
+        "method": "key",
+        "name": "acme-corp-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOO/SCvwRFyeFC3A0wK3wlmw38tZexlXl/MdDmDPa8zc\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-dept-a-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkiB11kwxBmzmt2A3F27phCn4xgPKaB1sw76dJvCxKp9fq",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiB11kwxBmzmt2A3F27phCn4xgPKaB1sw76dJvCxKp9fq",
+        "method": "key",
+        "name": "acme-corp-dept-a-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFp7gPqcDGulazf+LfLAtwP9kqozZWXP/Zg8qfxXhtWi\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-dept-b-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkuEqAnNsoxB2effvAGf6gpBz59SxqZJoknSfqVaUfHpgC",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkuEqAnNsoxB2effvAGf6gpBz59SxqZJoknSfqVaUfHpgC",
+        "method": "key",
+        "name": "acme-corp-dept-b-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICs06CBtBZLb8x0cB38DV+MT99x9DQsVjy1bawo7HMU1\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-orchestrator-1",
+      "role": "orchestrator",
+      "did": "did:key:z6Mkh56AwWQ9vBHCPACoAiLKun2pQcbQjsyGJAUnUWWqUMtL",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkh56AwWQ9vBHCPACoAiLKun2pQcbQjsyGJAUnUWWqUMtL",
+        "method": "key",
+        "name": "acme-corp-orchestrator-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAKiNwjmFbkWTyJldbA+yiAwjmUBJzzkmHIx/ubSregB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-orchestrator-2",
+      "role": "orchestrator",
+      "did": "did:key:z6MkvEyg572gZXDqKMCWh9gCS2zvQrHofzBBaJk8cDdXRPzD",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvEyg572gZXDqKMCWh9gCS2zvQrHofzBBaJk8cDdXRPzD",
+        "method": "key",
+        "name": "acme-corp-orchestrator-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBx8wKCTY41nN+Zg9DT4Tv/7RVRNcCiMInf4zL7nneu4\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-worker-1",
+      "role": "worker",
+      "did": "did:key:z6MkmmXqC7WvXKDNKDcpCdq4mTmuTEGT9AZz5P6S48o7fQMm",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmmXqC7WvXKDNKDcpCdq4mTmuTEGT9AZz5P6S48o7fQMm",
+        "method": "key",
+        "name": "acme-corp-worker-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJ+cAbehBV4fAZ6NkriQrj99bKL4IfaWeknkmvX+oxvB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-worker-2",
+      "role": "worker",
+      "did": "did:key:z6MkwZv63Yz53EALj8QrsBrneCSC9cu44ADfbVaLcckzMXxd",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwZv63Yz53EALj8QrsBrneCSC9cu44ADfbVaLcckzMXxd",
+        "method": "key",
+        "name": "acme-corp-worker-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKSKmWRWPDSDFAUQdADB2RVx6Xwb/ueeBGR8ofH9FdLD\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-worker-3",
+      "role": "worker",
+      "did": "did:key:z6MkjPN7iAjN39bajs9cPqYMopehF91AefFQrwh6FrsxU5Hv",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjPN7iAjN39bajs9cPqYMopehF91AefFQrwh6FrsxU5Hv",
+        "method": "key",
+        "name": "acme-corp-worker-3",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBv/x74MZhzDAqi5jG6W6RP7VZsVc1CMhX1WAFRNHoj7\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "acme-corp-worker-4",
+      "role": "worker",
+      "did": "did:key:z6MkfmhWJWLMZVSq2wzgRwJsukRUKAsZZkBGeMi1ykr1ivYc",
+      "tags": [
+        "commerce",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfmhWJWLMZVSq2wzgRwJsukRUKAsZZkBGeMi1ykr1ivYc",
+        "method": "key",
+        "name": "acme-corp-worker-4",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINu7YqgqMXBhrumtVTq0oRciEyV/f0lLi6QIjIP3HkDf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-root-ca",
+      "role": "root-issuer",
+      "did": "did:key:z6MkvFwKqeu5c8BSGbNC684uWrGHwuEdgT55EG1N5Ein9TUY",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvFwKqeu5c8BSGbNC684uWrGHwuEdgT55EG1N5Ein9TUY",
+        "method": "key",
+        "name": "globalbank-root-ca",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIO1biOEanZW1NLQrsuIO36Po4/T2LLozs73hu428xizH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-issuer",
+      "role": "issuer",
+      "did": "did:key:z6MknBCxYzJrcwpXwRUtqwcyZ3fvHvvdYf4RPAqkP9fmkLK2",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknBCxYzJrcwpXwRUtqwcyZ3fvHvvdYf4RPAqkP9fmkLK2",
+        "method": "key",
+        "name": "globalbank-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPqfVo1J2h1bbBgHaKGJPZJgfvpy7XP5dca2V5Cn4DTq\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-dept-a-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkimFJ3pwamwcej7urHmVSZGSWvqDMiF5JwaXxxtTfWY3e",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkimFJ3pwamwcej7urHmVSZGSWvqDMiF5JwaXxxtTfWY3e",
+        "method": "key",
+        "name": "globalbank-dept-a-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICCS/kImJjyiwkmzG5FdFMw6tvuIw5+/r/1gSfDyBspR\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-dept-b-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkvGL8YgPLdXscmwVQsHdWCFhDsjQHLuqDjVEtXVCWuyoE",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvGL8YgPLdXscmwVQsHdWCFhDsjQHLuqDjVEtXVCWuyoE",
+        "method": "key",
+        "name": "globalbank-dept-b-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPx6mqkBcknUb4EVzoZtPRtJuGtaAucG+ixu1OKbHBzy\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-orchestrator-1",
+      "role": "orchestrator",
+      "did": "did:key:z6MksenDRUJjUD5VEyKSwJ8oTssa1hRnZw4XrGpFnqgk1L8G",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksenDRUJjUD5VEyKSwJ8oTssa1hRnZw4XrGpFnqgk1L8G",
+        "method": "key",
+        "name": "globalbank-orchestrator-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICZYie+N8Lo8Q3IjN014NzbG9yMcpD5+eV8qIL1W/URu\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-orchestrator-2",
+      "role": "orchestrator",
+      "did": "did:key:z6MkhGpU3J94HBknMPijrH6eF1Hs6j95TKujqQn7zM5um5ow",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhGpU3J94HBknMPijrH6eF1Hs6j95TKujqQn7zM5um5ow",
+        "method": "key",
+        "name": "globalbank-orchestrator-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL/rP2yiSsIxFfvbn5b9WkZu1zJ1Hp5hSC+O6cFeb4uS\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-worker-1",
+      "role": "worker",
+      "did": "did:key:z6MkvXgPDuaqwZ8NNK946asoNurPXnvrGZHrTv6dkwsAVZpm",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvXgPDuaqwZ8NNK946asoNurPXnvrGZHrTv6dkwsAVZpm",
+        "method": "key",
+        "name": "globalbank-worker-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDnyK8BVie4nCEqGZb2kTju6kSGqTCWeA5ruTmZxQXgL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-worker-2",
+      "role": "worker",
+      "did": "did:key:z6Mkm74ADjdSkdRGm91ZtoKmqagfNyUS5yPKi8Pw7QFSDFR6",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkm74ADjdSkdRGm91ZtoKmqagfNyUS5yPKi8Pw7QFSDFR6",
+        "method": "key",
+        "name": "globalbank-worker-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFvR7ercuGZswanMHBOSOCuqIM31KqslL2f2/pySVZG7\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-worker-3",
+      "role": "worker",
+      "did": "did:key:z6Mkwam5gMnz9Yceh67QTTN8NqyaUUpHNJHEQ1M6E4Yd5ukx",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkwam5gMnz9Yceh67QTTN8NqyaUUpHNJHEQ1M6E4Yd5ukx",
+        "method": "key",
+        "name": "globalbank-worker-3",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAN0qWF7H9PePOobA43v0pnKFe63U0rTNn/wFo138mXC\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "globalbank-worker-4",
+      "role": "worker",
+      "did": "did:key:z6MkfBPZvnVRVLCVqPq59xGFb4W4Y3frKgtKCxDoWTH3Zk3q",
+      "tags": [
+        "payments",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfBPZvnVRVLCVqPq59xGFb4W4Y3frKgtKCxDoWTH3Zk3q",
+        "method": "key",
+        "name": "globalbank-worker-4",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOF29pHpojkN56/5BnWRbQpLPAlz61codVw4AvSkfDXF\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-root-ca",
+      "role": "root-issuer",
+      "did": "did:key:z6Mkua88YPSPLF4cjrkva3fkUWSp8pxRXQtxVCAkQZkN4fZm",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkua88YPSPLF4cjrkva3fkUWSp8pxRXQtxVCAkQZkN4fZm",
+        "method": "key",
+        "name": "healthplus-root-ca",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBtNp4FEX2+IkhAyI/Wbh2kNDQEeF3hlgX7TvSm8ffvq\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-issuer",
+      "role": "issuer",
+      "did": "did:key:z6MksVRmvQ5ynCtLMsSfBmKWKg99joU4cWzfhuuuhUht3ZZW",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksVRmvQ5ynCtLMsSfBmKWKg99joU4cWzfhuuuhUht3ZZW",
+        "method": "key",
+        "name": "healthplus-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFJTTcV0Xal360q5n3HqqzL37xf9/EE6OJM4/xKiZFyj\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-dept-a-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkvQsMahGYmXk4R7YGLbZj4LnisNBfDuPikkgLmQRgwyjU",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvQsMahGYmXk4R7YGLbZj4LnisNBfDuPikkgLmQRgwyjU",
+        "method": "key",
+        "name": "healthplus-dept-a-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMo35xmCOEfkH2ytwGRdnuD3sThhGRkgqCr6iWwEDc3j\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-dept-b-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkhyY6UkA83hVsReTs85nG1kzbxmMUTub7Fuz46eQkqtaA",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhyY6UkA83hVsReTs85nG1kzbxmMUTub7Fuz46eQkqtaA",
+        "method": "key",
+        "name": "healthplus-dept-b-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINpvAd8M3xZBV27ABWD+ugmv9MAtUhvPnAYd1ZmL43gi\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-orchestrator-1",
+      "role": "orchestrator",
+      "did": "did:key:z6Mkmbsuk7b2uEEozU7jHHdZQaBCtj4kZq1LiDXNVwyCemAs",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkmbsuk7b2uEEozU7jHHdZQaBCtj4kZq1LiDXNVwyCemAs",
+        "method": "key",
+        "name": "healthplus-orchestrator-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINDoiliOJrGTkEcAOrTfXJLZBVeRMJKNolI+GO8RxhVL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-orchestrator-2",
+      "role": "orchestrator",
+      "did": "did:key:z6MkfKvrcXQxZYYmpiGcq8rqXQsNft6eXbXydK9ZVsVDtKtn",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfKvrcXQxZYYmpiGcq8rqXQsNft6eXbXydK9ZVsVDtKtn",
+        "method": "key",
+        "name": "healthplus-orchestrator-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGQudbzv4tStg236KObqQkDTtwniZmHL5MffizIbl5s3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-worker-1",
+      "role": "worker",
+      "did": "did:key:z6MkovUjcH8CyzKpJXh8EX3PespD7Xb4caH3grzGbkcrRKCi",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkovUjcH8CyzKpJXh8EX3PespD7Xb4caH3grzGbkcrRKCi",
+        "method": "key",
+        "name": "healthplus-worker-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB5ebQiTqzOVjjxvm8LcdFPJvAL00pzI+EPWdDCeDoFZ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-worker-2",
+      "role": "worker",
+      "did": "did:key:z6MkjaYzZiyxsBC5cpRy7Gc7aYMRq8jbAprNT9z8dwrqAmLA",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjaYzZiyxsBC5cpRy7Gc7aYMRq8jbAprNT9z8dwrqAmLA",
+        "method": "key",
+        "name": "healthplus-worker-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJFFHY8oeThH37drbPdrCCK7Qk2P1LqVhb8O4h1fEVbn\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-worker-3",
+      "role": "worker",
+      "did": "did:key:z6MkshsYedUqvisAGCLqbixFbf6brzdT2oDTUSi5BQsd6uUx",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkshsYedUqvisAGCLqbixFbf6brzdT2oDTUSi5BQsd6uUx",
+        "method": "key",
+        "name": "healthplus-worker-3",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIK7CHV8nSqeBipHMqGxhDsaYHrNwpRLlcyYBU7d+q58W\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "healthplus-worker-4",
+      "role": "worker",
+      "did": "did:key:z6Mkj8t29GyqpnzGkUYbdBCeFcQ34AeWdZofSjUH2q2YmESn",
+      "tags": [
+        "hipaa",
+        "ehr"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkj8t29GyqpnzGkUYbdBCeFcQ34AeWdZofSjUH2q2YmESn",
+        "method": "key",
+        "name": "healthplus-worker-4",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAeStq1xQR30c/+BnSkCVG0ydGwRbJGuxiPi15MtJ8Fh\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-root-ca",
+      "role": "root-issuer",
+      "did": "did:key:z6Mkt4n7Hjr1QgNgz6bUn4EMMUBpwNoh5dcw3UHTtgYZxY95",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkt4n7Hjr1QgNgz6bUn4EMMUBpwNoh5dcw3UHTtgYZxY95",
+        "method": "key",
+        "name": "govtrust-root-ca",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBobIkDHSus6WBN7KNlmHfVSjXJ3022VduBLL97WlLwM\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-issuer",
+      "role": "issuer",
+      "did": "did:key:z6Mkj913BULiw7zg8uP3k1vdUeLaBcAWVfdceHvrssnVekDs",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkj913BULiw7zg8uP3k1vdUeLaBcAWVfdceHvrssnVekDs",
+        "method": "key",
+        "name": "govtrust-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFBnb4UQudIbCjpKQLFHvE8En5mfXSA0BjkZ9aQqsy3W\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-dept-a-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkrMbJxCXm7zxbwDF9FTobMjEfosdMZbuDiwcdENJuSzLr",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrMbJxCXm7zxbwDF9FTobMjEfosdMZbuDiwcdENJuSzLr",
+        "method": "key",
+        "name": "govtrust-dept-a-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHmJJBYC1akl71k428soM4Iy9BdVwIt1ulkUOl1VQPFD\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-dept-b-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkqWSLCD97J6H8EQ6JYYZck4YBQ9DyXMGmNbTnFccSTqSa",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqWSLCD97J6H8EQ6JYYZck4YBQ9DyXMGmNbTnFccSTqSa",
+        "method": "key",
+        "name": "govtrust-dept-b-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIC9aEw0BaCqV1Kzf56r68DQ5h582wttH9HfsY3vSXi6V\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-orchestrator-1",
+      "role": "orchestrator",
+      "did": "did:key:z6MkwTB6MyZ5x5y2VPFB5hRKuGdUUcSRex4uH2FkCbddbCFx",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwTB6MyZ5x5y2VPFB5hRKuGdUUcSRex4uH2FkCbddbCFx",
+        "method": "key",
+        "name": "govtrust-orchestrator-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILI0miHAjf7qqi48a6/EM4kRRSJCAzDNjvX4OEudVwo+\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-orchestrator-2",
+      "role": "orchestrator",
+      "did": "did:key:z6MknUKFyXhPPevAp4UdCxGBzpqfZ7Bc7FnuxrbyXNTz88FZ",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknUKFyXhPPevAp4UdCxGBzpqfZ7Bc7FnuxrbyXNTz88FZ",
+        "method": "key",
+        "name": "govtrust-orchestrator-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOHaNiyyQg6D/PeG6vvVfCNcQ91vZ3Dhahf/6T9Pq8I1\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-worker-1",
+      "role": "worker",
+      "did": "did:key:z6MkhnsKToKhopuVgVGjWspLUhzKhVBo24EehVUBqxKYPMLs",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhnsKToKhopuVgVGjWspLUhzKhVBo24EehVUBqxKYPMLs",
+        "method": "key",
+        "name": "govtrust-worker-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKOy6vR3EUMW4AcUO02aHf53YpTxTwyXUiNZ9KBJKPwH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-worker-2",
+      "role": "worker",
+      "did": "did:key:z6MkiT99KkVdz9oQB9mkKUUCZSer96BFjqaMkufyQFQU4R7R",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiT99KkVdz9oQB9mkKUUCZSer96BFjqaMkufyQFQU4R7R",
+        "method": "key",
+        "name": "govtrust-worker-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGeybHqEqOTjjwJiojwQzVm5eYUqTWAC0aRH/PKhIxAI\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-worker-3",
+      "role": "worker",
+      "did": "did:key:z6Mkfy2Dem958UWPTGBtxsUBEZEUsUxsMg6iukvUag1PTt51",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkfy2Dem958UWPTGBtxsUBEZEUsUxsMg6iukvUag1PTt51",
+        "method": "key",
+        "name": "govtrust-worker-3",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKVohM35uXh+Np/GfdIAA6Oz85nLvooCFleebGpWpQgG\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "govtrust-worker-4",
+      "role": "worker",
+      "did": "did:key:z6MkfzhqV5Y6S2eD17XNSjPtEMV9XaUEpaPepVDbgc3QsmCH",
+      "tags": [
+        "identity",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfzhqV5Y6S2eD17XNSjPtEMV9XaUEpaPepVDbgc3QsmCH",
+        "method": "key",
+        "name": "govtrust-worker-4",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICJ8CFAH+aD1tX022A1U52BUAmAO1tTJJaTCmi/Nrs1L\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-root-ca",
+      "role": "root-issuer",
+      "did": "did:key:z6MktRVGvnocDsEbn4RfRLG9vxXu5jHWHVsfUKQbn6HYQoHG",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktRVGvnocDsEbn4RfRLG9vxXu5jHWHVsfUKQbn6HYQoHG",
+        "method": "key",
+        "name": "techventures-root-ca",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMrW/LtQ/EBmxUjw/CftsO7NSVXZ6iyIJGn8fMGtP/vL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-issuer",
+      "role": "issuer",
+      "did": "did:key:z6MkpFXszqhfc8CTpkjVPNT42r2WT7mSLCRHFds78gXsmuoB",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpFXszqhfc8CTpkjVPNT42r2WT7mSLCRHFds78gXsmuoB",
+        "method": "key",
+        "name": "techventures-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIN8CVGFvN1q7bMFYmRIfkA+7QKibS4AYGAxbU5e8/aNk\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-dept-a-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6Mkma3DgoSGardbYFwfd1PFCv5m6q4mhcMpVjiktnNqzEpY",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkma3DgoSGardbYFwfd1PFCv5m6q4mhcMpVjiktnNqzEpY",
+        "method": "key",
+        "name": "techventures-dept-a-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEID0RY7c6TVHjDqv7MOdh8rWnauUZoAB6w+RDgm3BfPCD\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-dept-b-issuer",
+      "role": "sub-issuer",
+      "did": "did:key:z6MkwBzw7HeSs5XRzUn7Kg99hAjjJFpxfwPTQeU9VjLfWisC",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwBzw7HeSs5XRzUn7Kg99hAjjJFpxfwPTQeU9VjLfWisC",
+        "method": "key",
+        "name": "techventures-dept-b-issuer",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGbyuz32ShhrwAI2hE3uX7kUohnb9MXZSDsftqKrNV/d\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-orchestrator-1",
+      "role": "orchestrator",
+      "did": "did:key:z6MkvxtEYD8qJA5o4w1yNL9eD4GiQT8jvtUVEVDKhrtUMseh",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvxtEYD8qJA5o4w1yNL9eD4GiQT8jvtUVEVDKhrtUMseh",
+        "method": "key",
+        "name": "techventures-orchestrator-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFa2BsNCKjEOPhOR0c/cDNio7HB8R8RBUJuiISETr/92\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-orchestrator-2",
+      "role": "orchestrator",
+      "did": "did:key:z6MkjQmuSeJV93awTgBNpgUemecVnp4BSsao4aVep1N3KeH2",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjQmuSeJV93awTgBNpgUemecVnp4BSsao4aVep1N3KeH2",
+        "method": "key",
+        "name": "techventures-orchestrator-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILr0Onxd+/dTcoDY+WJpqnp8v5ate7h0TRS7wWRrDYdd\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-worker-1",
+      "role": "worker",
+      "did": "did:key:z6Mkq4MUrzMBymmduEnrRsAHBuSydfBx6o5Xq62StGKprXyR",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkq4MUrzMBymmduEnrRsAHBuSydfBx6o5Xq62StGKprXyR",
+        "method": "key",
+        "name": "techventures-worker-1",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDRD/krEO2QBkZ+sLbafdRjR8VVku2JsDt/IQ3T6XgPH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-worker-2",
+      "role": "worker",
+      "did": "did:key:z6MkhVrUKzer1rK5GooTtKPomLdchiUEGMN9oqjGTgY9ataZ",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhVrUKzer1rK5GooTtKPomLdchiUEGMN9oqjGTgY9ataZ",
+        "method": "key",
+        "name": "techventures-worker-2",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGAAKQ6m+fHshsroCFW4k4E7yBtNFbV4FrfMW8vtvGqm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-worker-3",
+      "role": "worker",
+      "did": "did:key:z6MksL5QPcEsjveRFvaLfFsGDBkWshbmLgaxvwNqA68aWEWw",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksL5QPcEsjveRFvaLfFsGDBkWshbmLgaxvwNqA68aWEWw",
+        "method": "key",
+        "name": "techventures-worker-3",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIN1SV58BkR5Ch1KiU5MkUlKm4BsL5Yck6C2vpYVRQLv3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "techventures-worker-4",
+      "role": "worker",
+      "did": "did:key:z6MkrugFx27v6KZASxM2a4oFvDKKktkEE8bp6DXRajFkLeXu",
+      "tags": [
+        "ai",
+        "saas"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrugFx27v6KZASxM2a4oFvDKKktkEE8bp6DXRajFkLeXu",
+        "method": "key",
+        "name": "techventures-worker-4",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICJUooO2EfLH9b75gdYBNpX+PEI6P/H+5Je7sYKAyDzc\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "amazon-agent",
+      "role": "merchant",
+      "did": "did:key:z6MkiMs2EfCMzBmCkr84ov2ndhR31PW1A2cvdW6shVpfMTNX",
+      "tags": [
+        "retail",
+        "marketplace"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiMs2EfCMzBmCkr84ov2ndhR31PW1A2cvdW6shVpfMTNX",
+        "method": "key",
+        "name": "amazon-agent",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAafqGsG0/MOlgh4vcIakQgMo29cSq4iFv3zpKBpXQiS\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "shopify-store-001",
+      "role": "merchant",
+      "did": "did:key:z6MkphW3VxsaXqYeoZKN4L7t9BiBHxmjpPz9K8dW5yMZGCkN",
+      "tags": [
+        "retail"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkphW3VxsaXqYeoZKN4L7t9BiBHxmjpPz9K8dW5yMZGCkN",
+        "method": "key",
+        "name": "shopify-store-001",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKlPHw01c7ViTV02kxx6yh9WNdOy92eqe8ljTe1NtE6N\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "uber-eats-agent",
+      "role": "merchant",
+      "did": "did:key:z6MknUE8VBM1muq6yVv8NtSwwbmWn8k3UkMjqWyryAT2fsDP",
+      "tags": [
+        "food",
+        "delivery"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknUE8VBM1muq6yVv8NtSwwbmWn8k3UkMjqWyryAT2fsDP",
+        "method": "key",
+        "name": "uber-eats-agent",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICDSO6Hp1rU2XO/DtI8iRO4LTrFFARu/0DecyXzSq1DK\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "netflix-billing",
+      "role": "merchant",
+      "did": "did:key:z6MktWXFk2WGtYXhVHwUj31E3Do7zLhzKfkdEYsA6fP3dbBV",
+      "tags": [
+        "subscription",
+        "media"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktWXFk2WGtYXhVHwUj31E3Do7zLhzKfkdEYsA6fP3dbBV",
+        "method": "key",
+        "name": "netflix-billing",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIMh5CRZgbEYUF4VRkVJkPaipa5JfYv1gQw4L7xt6DZr\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "airbnb-agent",
+      "role": "merchant",
+      "did": "did:key:z6Mkp3sSJTiuR2FBtms57vtfm1xpiMRbhwtn2CSvnnxJ8CNX",
+      "tags": [
+        "travel",
+        "hospitality"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkp3sSJTiuR2FBtms57vtfm1xpiMRbhwtn2CSvnnxJ8CNX",
+        "method": "key",
+        "name": "airbnb-agent",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKN+//KEHx8c1ClDFQOWm8TSTxLKWgEmnk0I0YbdrBJl\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-001",
+      "role": "buyer",
+      "did": "did:key:z6MktW3d1kT9DQ9UknP5EdR1WXzacadv94eP9umynsXnVcPc",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktW3d1kT9DQ9UknP5EdR1WXzacadv94eP9umynsXnVcPc",
+        "method": "key",
+        "name": "buyer-agent-001",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOatUoYGO69eC9DAPy3HC+zaFI5CrtQ3bm/+1ffhgG9z\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-002",
+      "role": "buyer",
+      "did": "did:key:z6MkqTG5NdS1cPo8dyQdgzueKADGt5EDUeryJLyNqZxAbjmu",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqTG5NdS1cPo8dyQdgzueKADGt5EDUeryJLyNqZxAbjmu",
+        "method": "key",
+        "name": "buyer-agent-002",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB9DavVYf8gSZkb6xrZbSPO4YdSid/DRXP0pY4j5nERJ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-003",
+      "role": "buyer",
+      "did": "did:key:z6MkqH1Zw8h2rfAsMgXnYiT58BHH3Uqg1EPq49f9UjfYEiao",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqH1Zw8h2rfAsMgXnYiT58BHH3Uqg1EPq49f9UjfYEiao",
+        "method": "key",
+        "name": "buyer-agent-003",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHJZRXtalzkskZORmKTT4o2mxdZfrTN0O7e4V0McJd47\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-004",
+      "role": "buyer",
+      "did": "did:key:z6MksQAjy8d2aaHeETnxy8iKryTuDk9VwLmudZqRdHLWXpoM",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksQAjy8d2aaHeETnxy8iKryTuDk9VwLmudZqRdHLWXpoM",
+        "method": "key",
+        "name": "buyer-agent-004",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEII9pV5RER5vB5OCggecGynVXGHxvG8nWGGxPapQHZ4NS\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-005",
+      "role": "buyer",
+      "did": "did:key:z6MkurReZpxaXUUbRfXWfwC3XN2JFL7c2EXzjMroKkijcTNv",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkurReZpxaXUUbRfXWfwC3XN2JFL7c2EXzjMroKkijcTNv",
+        "method": "key",
+        "name": "buyer-agent-005",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFyqFl1MupHd/KCDUhbsKuSCn5P7Qej6t3LPEsJT2+sg\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-006",
+      "role": "buyer",
+      "did": "did:key:z6MkinSaKd9dYmdgqMNpbJ97VHUYoTskXnMHhNBUqSZNQ5xc",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkinSaKd9dYmdgqMNpbJ97VHUYoTskXnMHhNBUqSZNQ5xc",
+        "method": "key",
+        "name": "buyer-agent-006",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIWsmKUci49mR3uq9YilUkOmFqXwcC49plyEssXMWikT\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-007",
+      "role": "buyer",
+      "did": "did:key:z6Mkg1o46kYRAHYKDBJverhxzJa4Dna6sh3x3fi6bhTwatkE",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkg1o46kYRAHYKDBJverhxzJa4Dna6sh3x3fi6bhTwatkE",
+        "method": "key",
+        "name": "buyer-agent-007",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIhu+oD5XzIwJcI1MnJMrI9BkINKmHMK4QWhWZzBXvrP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-008",
+      "role": "buyer",
+      "did": "did:key:z6Mkh1ZVPotBVpyhZRHaWdDLKNrdxvY2hjAGVnCZqxA3d2XS",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkh1ZVPotBVpyhZRHaWdDLKNrdxvY2hjAGVnCZqxA3d2XS",
+        "method": "key",
+        "name": "buyer-agent-008",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICoDSXYGvjx5jH8SMOncM/d+rOjOxNzONpyE+Qb/DBHk\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-009",
+      "role": "buyer",
+      "did": "did:key:z6Mkig4Gw4Sfq85ycxRRm6FHGLrEtXYZPioXKtS2dxNwJnzR",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkig4Gw4Sfq85ycxRRm6FHGLrEtXYZPioXKtS2dxNwJnzR",
+        "method": "key",
+        "name": "buyer-agent-009",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILQaUeXm6r/1B+zWo/38Qpobd4C4u6RnlJbXmW8ZqkYV\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-010",
+      "role": "buyer",
+      "did": "did:key:z6MkpcwcbhgbPfnJTNbXVeFEAbLffBRSfbQcZDEGG1omPjAp",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpcwcbhgbPfnJTNbXVeFEAbLffBRSfbQcZDEGG1omPjAp",
+        "method": "key",
+        "name": "buyer-agent-010",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKSOjNZJ2JbBXp8p5nwZwUnbRYSUfLmh7GNsvTR2y70U\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-011",
+      "role": "buyer",
+      "did": "did:key:z6Mkkei1HQtGvFz9ZnyB83YEimtcA9442qXzihbdR7qLzUoi",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkkei1HQtGvFz9ZnyB83YEimtcA9442qXzihbdR7qLzUoi",
+        "method": "key",
+        "name": "buyer-agent-011",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIK5EBCgF5NxoPuybBJoNpF9cxlZK5br/GkJBuQLa9BRh\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-012",
+      "role": "buyer",
+      "did": "did:key:z6Mkik8wQ3j8mJJEW8cJcZ1anvydb14vLtt6AQGQYwAebUSb",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkik8wQ3j8mJJEW8cJcZ1anvydb14vLtt6AQGQYwAebUSb",
+        "method": "key",
+        "name": "buyer-agent-012",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIP0hfs6cKDxzt9LtZvHnGUGXXbotNTht3I8459ofCirH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-013",
+      "role": "buyer",
+      "did": "did:key:z6MksNYTR1zxKUQf4bZm8xcYPNZyWyYKgKLn6LAVKSeBxwix",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksNYTR1zxKUQf4bZm8xcYPNZyWyYKgKLn6LAVKSeBxwix",
+        "method": "key",
+        "name": "buyer-agent-013",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIH41loVLFRTJlGzUU7LdSPrgOV1sYagRbCtI4f3zO+xm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-014",
+      "role": "buyer",
+      "did": "did:key:z6MkscCEVJt5eNnr7PoEgFiHKpoxjnD3D8Kas5g4L8MxWz6t",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkscCEVJt5eNnr7PoEgFiHKpoxjnD3D8Kas5g4L8MxWz6t",
+        "method": "key",
+        "name": "buyer-agent-014",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEkdAUrLOkWpNN4KzYW3Is2a9hUj2R77bTR3u6zQyvJ0\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-015",
+      "role": "buyer",
+      "did": "did:key:z6Mkmj2C9R4ypz63dMFbFY56Sopq1tBn4wdSu1btJBYtYD26",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkmj2C9R4ypz63dMFbFY56Sopq1tBn4wdSu1btJBYtYD26",
+        "method": "key",
+        "name": "buyer-agent-015",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEo6jQXBAwN4pf15TnkhIaFq3RSsBEp6OE6J4rOSv9oB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-016",
+      "role": "buyer",
+      "did": "did:key:z6MkwEeQ853juidok2ABs2gAnFyumyefbhJTmtqeUdYMwcNg",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwEeQ853juidok2ABs2gAnFyumyefbhJTmtqeUdYMwcNg",
+        "method": "key",
+        "name": "buyer-agent-016",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEfus0ZTicBxZ5WctI4643U6ojAd8tqR3qIQFQIzbh10\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-017",
+      "role": "buyer",
+      "did": "did:key:z6MksTb87ZDsivcnKZUYCJL1Sink7FS1MnN9jv2v3335C8Hd",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksTb87ZDsivcnKZUYCJL1Sink7FS1MnN9jv2v3335C8Hd",
+        "method": "key",
+        "name": "buyer-agent-017",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHzlvBVpG9zEOPHmDt/vQ9QUXWKvtlSxdgq/h4SilMwl\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-018",
+      "role": "buyer",
+      "did": "did:key:z6MkjvkEe3U1MCr18uq63JZ2JwPHa4NtsCEHEpuZg2PxDxvW",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjvkEe3U1MCr18uq63JZ2JwPHa4NtsCEHEpuZg2PxDxvW",
+        "method": "key",
+        "name": "buyer-agent-018",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDhss7yPzOoLAi6bD6ibCvNrjZJUEtUV10bqzQQVnvPm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-019",
+      "role": "buyer",
+      "did": "did:key:z6Mkt87ZxaDJecDNsreMGU1ZMWBtTxVum99TvPQFNq74UByM",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkt87ZxaDJecDNsreMGU1ZMWBtTxVum99TvPQFNq74UByM",
+        "method": "key",
+        "name": "buyer-agent-019",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL5J7oSfc016+K8LmzL59W2TYjqz4qefyn7+wUUcYltg\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "buyer-agent-020",
+      "role": "buyer",
+      "did": "did:key:z6MkvB71bJSX41SAscxbRJqtDgBAEEdm3bxfsTjDaFtXvnio",
+      "tags": [
+        "consumer"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvB71bJSX41SAscxbRJqtDgBAEEdm3bxfsTjDaFtXvnio",
+        "method": "key",
+        "name": "buyer-agent-020",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDpQxsiMXfNVzdABEm5HwVGnPyPDnV/2RmeKHeKst9c/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-01",
+      "role": "payment",
+      "did": "did:key:z6MkvobayVaoygMroMBxVaXR5MLPax82g168w2QsMdZ247Km",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvobayVaoygMroMBxVaXR5MLPax82g168w2QsMdZ247Km",
+        "method": "key",
+        "name": "payment-processor-01",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIsYjsya8JMyKoDL9OxhkojC8O88ks558DPDFs95tVl3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-02",
+      "role": "payment",
+      "did": "did:key:z6Mknc2VogEwSoWtjebCrRXkBG2dbHSfvzDiqJvYwqpUg6HT",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mknc2VogEwSoWtjebCrRXkBG2dbHSfvzDiqJvYwqpUg6HT",
+        "method": "key",
+        "name": "payment-processor-02",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMadG3Zp9yMYU2+3txd7VEsbD07vINGFfeeAglfFPGLx\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-03",
+      "role": "payment",
+      "did": "did:key:z6MkhARN3TiP37vJ2MPB5wKfK4zS7Kdg6RkFVGphqx9vAnoz",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhARN3TiP37vJ2MPB5wKfK4zS7Kdg6RkFVGphqx9vAnoz",
+        "method": "key",
+        "name": "payment-processor-03",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINIWjY/9mXhYtlkiu0DhMryWzse+O332E4WSFKYS2lrh\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-04",
+      "role": "payment",
+      "did": "did:key:z6MkguHpahM31j6Yoh3AiEVxT3KDdDLZXLYvaCVNyyht79w1",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkguHpahM31j6Yoh3AiEVxT3KDdDLZXLYvaCVNyyht79w1",
+        "method": "key",
+        "name": "payment-processor-04",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDAtCsELUJWe2WfH6ioa3UplWo0AQPq319Mf7aUlX9yf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-05",
+      "role": "payment",
+      "did": "did:key:z6MkfVieUUSSaxs6eTjpLufrVDziyqivA65APohT3BjHeDQb",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfVieUUSSaxs6eTjpLufrVDziyqivA65APohT3BjHeDQb",
+        "method": "key",
+        "name": "payment-processor-05",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINkjFMn63MQPlj6f/KLkDhNexx2OXhtiCZDRT/h50eOj\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-06",
+      "role": "payment",
+      "did": "did:key:z6MkesjZWC1HMzvmt9megmrs6mf2cRE4Q1KKXTaznkoGmvtn",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkesjZWC1HMzvmt9megmrs6mf2cRE4Q1KKXTaznkoGmvtn",
+        "method": "key",
+        "name": "payment-processor-06",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIajTBesonbFd9VxbInUlO2tyCX/nmk056VTp8adMSXP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-07",
+      "role": "payment",
+      "did": "did:key:z6MksEEdEvmGUoEbTc6QGrMA6abAUK4Y9UtGppJNCcCVXDZw",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksEEdEvmGUoEbTc6QGrMA6abAUK4Y9UtGppJNCcCVXDZw",
+        "method": "key",
+        "name": "payment-processor-07",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOdNOkuSCVupNwWK7pBa53D/uXwLZ6s1Qio1t6wrOLvB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-08",
+      "role": "payment",
+      "did": "did:key:z6MkvHzciZNetRGZttfA1c2NPUtBPyA6hAVB2jX7FYh71BV8",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvHzciZNetRGZttfA1c2NPUtBPyA6hAVB2jX7FYh71BV8",
+        "method": "key",
+        "name": "payment-processor-08",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEII289u94ul/RztdlXe39Qskb5LcVEHJPsIYDrfrQ/5Ex\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-09",
+      "role": "payment",
+      "did": "did:key:z6MksZc5sAwXEMXg4fDsUfEUMTmqEZqrn96ocwvYLHxvMbNw",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksZc5sAwXEMXg4fDsUfEUMTmqEZqrn96ocwvYLHxvMbNw",
+        "method": "key",
+        "name": "payment-processor-09",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJ843B7bJ8LfBPOo3jvo4+VuKabWaWtCj58N/z33IEh6\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "payment-processor-10",
+      "role": "payment",
+      "did": "did:key:z6MkrH2YGRLtEhQdfxbxSTgEBcQCUv8dqWqmNYVVfA3EHnnr",
+      "tags": [
+        "payments",
+        "finance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrH2YGRLtEhQdfxbxSTgEBcQCUv8dqWqmNYVVfA3EHnnr",
+        "method": "key",
+        "name": "payment-processor-10",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIE9LCMatshHf9kQSAlsNCCXGxfQ13TOzDDjKjOZCWTeU\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-01",
+      "role": "recommendation",
+      "did": "did:key:z6Mki7wjnJZmL8P7BihB9G8bjBApEUEg11FQgbMsAdBF9uF8",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mki7wjnJZmL8P7BihB9G8bjBApEUEg11FQgbMsAdBF9uF8",
+        "method": "key",
+        "name": "rec-engine-01",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAUcgdQ0WwCcy1NZBu9RroSQ8y1ZkNsXT0cYCnwJCfcC\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-02",
+      "role": "recommendation",
+      "did": "did:key:z6MktttJcKCMs5rUoUtVtQ7QCpHAN9ePMfviwyDD33nZVFDC",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktttJcKCMs5rUoUtVtQ7QCpHAN9ePMfviwyDD33nZVFDC",
+        "method": "key",
+        "name": "rec-engine-02",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIT89sc+glrJpJNnPxWUcqiNFLM14QIX68WVoldf4dtw\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-03",
+      "role": "recommendation",
+      "did": "did:key:z6MknC18DW8eEhjLa3MQEjdmub8gnKH61QLaPWkAF8Rink1A",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknC18DW8eEhjLa3MQEjdmub8gnKH61QLaPWkAF8Rink1A",
+        "method": "key",
+        "name": "rec-engine-03",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMEW7YYrJIiPgV0PWtVaAvE+Pp9HdJ45gCDBSPUS7ni4\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-04",
+      "role": "recommendation",
+      "did": "did:key:z6MkmDBZovrrn2ZhkncEBt1ALhoETh2c7Y9ENoyAj6yoQfwX",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmDBZovrrn2ZhkncEBt1ALhoETh2c7Y9ENoyAj6yoQfwX",
+        "method": "key",
+        "name": "rec-engine-04",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBVUqy3aH61jif/LEufJtVeVLYnN/In5yIUUhjOuYp6p\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-05",
+      "role": "recommendation",
+      "did": "did:key:z6MkoXLirh9mwjjGdqiqYuE11eH7J8inma838DvVtkBCzmPh",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoXLirh9mwjjGdqiqYuE11eH7J8inma838DvVtkBCzmPh",
+        "method": "key",
+        "name": "rec-engine-05",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJDj+njjkAH/3TXulszgRr/bDenidRlZ5863cFdSL4ZA\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-06",
+      "role": "recommendation",
+      "did": "did:key:z6MkonZo2S76jZtxjurPdEp8TnymNYmEejTVzLJJokjmKw8Y",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkonZo2S76jZtxjurPdEp8TnymNYmEejTVzLJJokjmKw8Y",
+        "method": "key",
+        "name": "rec-engine-06",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINmrB2L0NHRSpEiaxn2HgFliJ2OJ+vq4vo0dCAjNTWbt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-07",
+      "role": "recommendation",
+      "did": "did:key:z6MkqKAVTpGQbJjQweNJbE2DXu2EYBPm4j4NJYEa17vPdSXo",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqKAVTpGQbJjQweNJbE2DXu2EYBPm4j4NJYEa17vPdSXo",
+        "method": "key",
+        "name": "rec-engine-07",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINdpjrO1KyKCI6zO0KRpx//ypgRZqdhHNKAVyYG2q+Vh\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-08",
+      "role": "recommendation",
+      "did": "did:key:z6MkkLXr9DLkYvMGA46BMrzs8zARDfjFU7MpkyQyFhCTLMgr",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkLXr9DLkYvMGA46BMrzs8zARDfjFU7MpkyQyFhCTLMgr",
+        "method": "key",
+        "name": "rec-engine-08",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJMgzWf2GwhZv4A5eatb9IdZYZnzpsH1qINO6T4nJfwZ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-09",
+      "role": "recommendation",
+      "did": "did:key:z6Mkr8FisVYokPiALcpA6WFPvvv5V8zbe5coXapp3tHF9NSh",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkr8FisVYokPiALcpA6WFPvvv5V8zbe5coXapp3tHF9NSh",
+        "method": "key",
+        "name": "rec-engine-09",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGU1WS1hXx4WKE4rmC/pG4gRTqQYy73kMIatTI9RMBum\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-10",
+      "role": "recommendation",
+      "did": "did:key:z6Mkmhkc1FoHpsCurZkGRTfQJdLbGR4BRsBphsytfMsdkHPw",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkmhkc1FoHpsCurZkGRTfQJdLbGR4BRsBphsytfMsdkHPw",
+        "method": "key",
+        "name": "rec-engine-10",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDfPX3Lcl9kZYXCrR+M19Bpb6HxihG+B/EBYZXVDquAt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-11",
+      "role": "recommendation",
+      "did": "did:key:z6MkpTRUsGi9R6XRhdfofFQyfwT56R41ckoLTXGHNU5AoAB2",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpTRUsGi9R6XRhdfofFQyfwT56R41ckoLTXGHNU5AoAB2",
+        "method": "key",
+        "name": "rec-engine-11",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJUKTCH4B+RaDh+rABmH9IZKhVkOtHTViXdY06qM98U9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-12",
+      "role": "recommendation",
+      "did": "did:key:z6MkoEsHXpKWumdasiuBgQpnjcsuxKEX8yHwJ55Txmfvh7vz",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoEsHXpKWumdasiuBgQpnjcsuxKEX8yHwJ55Txmfvh7vz",
+        "method": "key",
+        "name": "rec-engine-12",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBkWb3GzR0TN7XgE2iBxaVBxsII+yYVZCBhqqe86XkaC\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-13",
+      "role": "recommendation",
+      "did": "did:key:z6Mku3PC4r8P5hpA8ccTwHQH2ySyssWUiLfvnpm2x5Jrqmy5",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mku3PC4r8P5hpA8ccTwHQH2ySyssWUiLfvnpm2x5Jrqmy5",
+        "method": "key",
+        "name": "rec-engine-13",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOjEqrMIHpxnz5hOTu6yYHdqponr4rHd9XiDpR89bYvd\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-14",
+      "role": "recommendation",
+      "did": "did:key:z6MkkQDnfwNGKPcLwnv7y3oXm2pn8FVnk4TY8SZbFwCaiLjs",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkQDnfwNGKPcLwnv7y3oXm2pn8FVnk4TY8SZbFwCaiLjs",
+        "method": "key",
+        "name": "rec-engine-14",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIA3IYlAgXpZT+Wyf9N7YqxfdAD9tfpll5ljjkfegihJ/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "rec-engine-15",
+      "role": "recommendation",
+      "did": "did:key:z6Mkm4WV3LMa3WRSBCEJMFQQipYDH1RcGpQGYeQTBbNDTKuF",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkm4WV3LMa3WRSBCEJMFQQipYDH1RcGpQGYeQTBbNDTKuF",
+        "method": "key",
+        "name": "rec-engine-15",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINcQOvSUiXR+Vu96GgtjCetYsRkx6+im4mUykOVxyg/N\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "legal-review-agent",
+      "role": "legal",
+      "did": "did:key:z6MkoiVT68gwT7Dd4AoRzGXhGchM2bfuUUJqQ4fb3grsA4oV",
+      "tags": [
+        "legal",
+        "compliance"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoiVT68gwT7Dd4AoRzGXhGchM2bfuUUJqQ4fb3grsA4oV",
+        "method": "key",
+        "name": "legal-review-agent",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIooaYe3mRA/DmIdNFHro5JUR30UZykRLd2qjkZOlhjL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "medical-diagnosis-ai",
+      "role": "medical",
+      "did": "did:key:z6Mkhy4tEq9VAYFsuQbZR3kG7qaexsY7unhwhLZoHgHngMCA",
+      "tags": [
+        "healthcare",
+        "hipaa"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkhy4tEq9VAYFsuQbZR3kG7qaexsY7unhwhLZoHgHngMCA",
+        "method": "key",
+        "name": "medical-diagnosis-ai",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKcsM4RBMrteT0qPK+Lv1yuU1bS+ySlk0iSQTZOeSs52\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "financial-advisor-bot",
+      "role": "financial",
+      "did": "did:key:z6MkfExgj8pXd6BQaWGVZm4nsBhgWcd89po1UNZRWTTzEXk6",
+      "tags": [
+        "finance",
+        "kyc"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfExgj8pXd6BQaWGVZm4nsBhgWcd89po1UNZRWTTzEXk6",
+        "method": "key",
+        "name": "financial-advisor-bot",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBOj337uaS7cw2LQRMNXgk3C91uBvhs00Pa6dU0PZBiL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "code-review-agent",
+      "role": "engineering",
+      "did": "did:key:z6MkpKKgHnUvGcmoMZn7Tsae6gsRspJJcabErG5aAjujkRuT",
+      "tags": [
+        "software",
+        "security"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpKKgHnUvGcmoMZn7Tsae6gsRspJJcabErG5aAjujkRuT",
+        "method": "key",
+        "name": "code-review-agent",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIM8qfs/O8rnQcUf1eFdpmjcFfzb4kEiDe2N2LV9CnaX5\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "content-moderation-ai",
+      "role": "moderation",
+      "did": "did:key:z6MkuULpLBBofJAHWbeYFam6HF2pbfyFbTduge1jVSgVZ8cL",
+      "tags": [
+        "content",
+        "trust"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkuULpLBBofJAHWbeYFam6HF2pbfyFbTduge1jVSgVZ8cL",
+        "method": "key",
+        "name": "content-moderation-ai",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIF8ZX6vDMx2xyTSghF8q4LuL1S4wpOmbS8ivYMQSh5X9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-001",
+      "role": "assistant",
+      "did": "did:key:z6Mkpcb8tcdNBFXJUurtMXQERYZBUGF9SGcxdhNxfKHntPSH",
+      "tags": [
+        "ml",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkpcb8tcdNBFXJUurtMXQERYZBUGF9SGcxdhNxfKHntPSH",
+        "method": "key",
+        "name": "service-agent-001",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL1QM5qsroMGygEJmBrU+D6sMe4Zy1KuAH9Eks4d0pU0\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-002",
+      "role": "auditor",
+      "did": "did:key:z6MksRrxJfSF348Xjt8n4MU3fueQjdVenRCFGwVsN9qsmwJo",
+      "tags": [
+        "ai",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksRrxJfSF348Xjt8n4MU3fueQjdVenRCFGwVsN9qsmwJo",
+        "method": "key",
+        "name": "service-agent-002",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGHRRNhXremrUPQLiAANVKLlA02MVl84Fj9e9p8HU9ZL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-003",
+      "role": "worker",
+      "did": "did:key:z6MknkBNumjuFPWzb7vfYhSGwPwv63GE1MxT1qTuiEdSbBpR",
+      "tags": [
+        "data",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknkBNumjuFPWzb7vfYhSGwPwv63GE1MxT1qTuiEdSbBpR",
+        "method": "key",
+        "name": "service-agent-003",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHLbbwp0nWJehml+rFEQC7wGZAq4GBrSOdOgzI2mI15j\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-004",
+      "role": "auditor",
+      "did": "did:key:z6Mkj3Zekis6wvoyLSu3oFWNBKYiQEou6xbeoy8E4NHNTJB2",
+      "tags": [
+        "data",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkj3Zekis6wvoyLSu3oFWNBKYiQEou6xbeoy8E4NHNTJB2",
+        "method": "key",
+        "name": "service-agent-004",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKDGX0P3t4lyFl46z2Vjrs4nyQmDEoTRY7z7W93fJODd\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-005",
+      "role": "analyst",
+      "did": "did:key:z6MkviCNfr8KA8v8HoTWzDACjCbUdkgJ23ouWaHC79WKUfDk",
+      "tags": [
+        "ml",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkviCNfr8KA8v8HoTWzDACjCbUdkgJ23ouWaHC79WKUfDk",
+        "method": "key",
+        "name": "service-agent-005",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICZeedYKWm+36npkYyUQO5kc1S8uEju3k5kC8HHvFufa\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-006",
+      "role": "worker",
+      "did": "did:key:z6Mkt5StzBx7ZiSWDfEKPfA6uXsWfZHeiXirCJYht2YjenU7",
+      "tags": [
+        "ml",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkt5StzBx7ZiSWDfEKPfA6uXsWfZHeiXirCJYht2YjenU7",
+        "method": "key",
+        "name": "service-agent-006",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIO2P16fSN7+/TRtQi5sFIBLn8IuDTozby29fBiLB1Fv9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-007",
+      "role": "analyst",
+      "did": "did:key:z6MkhKzeDbmc96A3S3Xbg1cRLGngz5abbNywYucpUpGVWax6",
+      "tags": [
+        "nlp",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhKzeDbmc96A3S3Xbg1cRLGngz5abbNywYucpUpGVWax6",
+        "method": "key",
+        "name": "service-agent-007",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKrjn3Br1azQZKZJ1kBiRhjjF/pZJmcarCbJmz2PLBUn\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-008",
+      "role": "analyst",
+      "did": "did:key:z6Mkr91tHgGKTKqZPNbMicg3JoYoxeHvgxycQ4U5uzcPk6i5",
+      "tags": [
+        "nlp",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkr91tHgGKTKqZPNbMicg3JoYoxeHvgxycQ4U5uzcPk6i5",
+        "method": "key",
+        "name": "service-agent-008",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDcKpBK6wFxJ6ECMgFEUA3G0DgelY4EvWMpNaYUaWm9k\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-009",
+      "role": "analyst",
+      "did": "did:key:z6Mkspverku7Xw5FaUGDt9ahyTZaqCvqMmZnvRJUH4bRNu1y",
+      "tags": [
+        "ai",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkspverku7Xw5FaUGDt9ahyTZaqCvqMmZnvRJUH4bRNu1y",
+        "method": "key",
+        "name": "service-agent-009",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAIH7VFLlJVdWK+7gYoM85LfIdP0IgwH1pBUoc2VMEfX\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-010",
+      "role": "analyst",
+      "did": "did:key:z6Mksz6DKTiZfPqb3EQDJWZVYgVcMD4JFy73YTSVVbBJLmaL",
+      "tags": [
+        "ml",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mksz6DKTiZfPqb3EQDJWZVYgVcMD4JFy73YTSVVbBJLmaL",
+        "method": "key",
+        "name": "service-agent-010",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBsYXbpYRaVFjv6Acvf5plQnr3nGA3gNRoIA6TauMVmr\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-011",
+      "role": "worker",
+      "did": "did:key:z6Mksw7L3Ee8peYaqp4MbMAez6dMnx63Y6Q1AacaAqortMTT",
+      "tags": [
+        "ai",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mksw7L3Ee8peYaqp4MbMAez6dMnx63Y6Q1AacaAqortMTT",
+        "method": "key",
+        "name": "service-agent-011",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAJ5H/kdGGCasLFt1r1SIdcp1AehmwU9RQTq4bw3Hdx3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-012",
+      "role": "analyst",
+      "did": "did:key:z6MkotfXDDXKxABUhioVsEFPESpQPrLrC9XVuqS8f3oApj6G",
+      "tags": [
+        "nlp",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkotfXDDXKxABUhioVsEFPESpQPrLrC9XVuqS8f3oApj6G",
+        "method": "key",
+        "name": "service-agent-012",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEcmD0mGYd0HU4w/4YXoAGnd0fuAXF+jWlxT0Loc2vlQ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-013",
+      "role": "worker",
+      "did": "did:key:z6Mkvf3p7DfzYZMhR6wKk5984A4GsFrD2nzj3xdqRisUtWjA",
+      "tags": [
+        "data",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkvf3p7DfzYZMhR6wKk5984A4GsFrD2nzj3xdqRisUtWjA",
+        "method": "key",
+        "name": "service-agent-013",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILHM1Ff1HlTYSaGv18dGFLAvHoHl+OGr892G91H4wBuc\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-014",
+      "role": "analyst",
+      "did": "did:key:z6MknPGhWFAEoT6R5Ft79W224xkpHpfQbmtFq7DAnZRP56Lk",
+      "tags": [
+        "ai",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknPGhWFAEoT6R5Ft79W224xkpHpfQbmtFq7DAnZRP56Lk",
+        "method": "key",
+        "name": "service-agent-014",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBA3SD5xwEf5rijBiGtTNN0aN3RiYpLzPnnTQjchQ1/s\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-015",
+      "role": "worker",
+      "did": "did:key:z6MkgHq6YXAynD1YpojCo29tvvDDGneyNQhDxruSSdsDLSkk",
+      "tags": [
+        "analytics",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgHq6YXAynD1YpojCo29tvvDDGneyNQhDxruSSdsDLSkk",
+        "method": "key",
+        "name": "service-agent-015",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKkkzq0ZHNtEUNeelSppOhirrKQXUpaVh52/zqi6f9eo\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-016",
+      "role": "analyst",
+      "did": "did:key:z6MkhBgWtXEP9LbNyxMwKw2mrtA9fBW3ZbAVPtAcnC2obVrP",
+      "tags": [
+        "data",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhBgWtXEP9LbNyxMwKw2mrtA9fBW3ZbAVPtAcnC2obVrP",
+        "method": "key",
+        "name": "service-agent-016",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPaHtRNjCFIjlGoYiJby14sfkGnyNPPRv0vMaAZ3fjFy\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-017",
+      "role": "analyst",
+      "did": "did:key:z6Mks1tbLhRfG47ycgeC3CpjNy2UP6kEAw2kcDHg1HCnWs3E",
+      "tags": [
+        "analytics",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mks1tbLhRfG47ycgeC3CpjNy2UP6kEAw2kcDHg1HCnWs3E",
+        "method": "key",
+        "name": "service-agent-017",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGgwkqlgI6dK3osi90rVQnEuLN/qCNKIgF2st+mDv52d\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-018",
+      "role": "worker",
+      "did": "did:key:z6Mkp97o9A6zArr23NFxerSAkFRqHqzgqKx3kChQMNfhH4hs",
+      "tags": [
+        "nlp",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkp97o9A6zArr23NFxerSAkFRqHqzgqKx3kChQMNfhH4hs",
+        "method": "key",
+        "name": "service-agent-018",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJcs0+vLDS1FDpmMeIPptAR+2pa6+pCneBtqDcQW36SN\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-019",
+      "role": "assistant",
+      "did": "did:key:z6MkgsS3XaQSi7k9PzeWb3X2Lp8hXGChV5gSpv3dPkeez5SJ",
+      "tags": [
+        "nlp",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgsS3XaQSi7k9PzeWb3X2Lp8hXGChV5gSpv3dPkeez5SJ",
+        "method": "key",
+        "name": "service-agent-019",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHW279BxigwDSL1RiqajGugUbqPnCTxPoPfSLiRpfwLB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-020",
+      "role": "analyst",
+      "did": "did:key:z6MksCvrAGK72a6dhs1AJuHaa8K78UYFNgWREqDJZmN8QWug",
+      "tags": [
+        "analytics",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksCvrAGK72a6dhs1AJuHaa8K78UYFNgWREqDJZmN8QWug",
+        "method": "key",
+        "name": "service-agent-020",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIF1dKh0f4pEEYTtyr9722Eml8Uoe7sPfml04PRuobM43\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-021",
+      "role": "auditor",
+      "did": "did:key:z6MkvhtSUezvnR2jccquokqEJrYjYKQkk6quPsuxe9F38Foa",
+      "tags": [
+        "data",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvhtSUezvnR2jccquokqEJrYjYKQkk6quPsuxe9F38Foa",
+        "method": "key",
+        "name": "service-agent-021",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJffmBUkF9u7ylXHHjxOBt0024lvMf/gOyKMFmjgvKYH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-022",
+      "role": "auditor",
+      "did": "did:key:z6MkjcE8iAs7524ZGaiwcbjcwz5s3y2Xx93BN4uiwXFQzGxt",
+      "tags": [
+        "analytics",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjcE8iAs7524ZGaiwcbjcwz5s3y2Xx93BN4uiwXFQzGxt",
+        "method": "key",
+        "name": "service-agent-022",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIH4GbUTwm/xr//1Kcs5qn7dKIwAiM3S6NZxDINh1hVgk\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-023",
+      "role": "assistant",
+      "did": "did:key:z6MknmWBXUEa9MtA46RbwTeYKHs64tuE1oDpXoczcvtmEcr4",
+      "tags": [
+        "analytics",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknmWBXUEa9MtA46RbwTeYKHs64tuE1oDpXoczcvtmEcr4",
+        "method": "key",
+        "name": "service-agent-023",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHVgwNImziHwMT9NLafD6882LwgSM8roujFguKVlKnAl\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-024",
+      "role": "analyst",
+      "did": "did:key:z6MkwUEiJTM5VRkKojninTYpULYKonf3qcKJAfGKdJvVAdfx",
+      "tags": [
+        "nlp",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwUEiJTM5VRkKojninTYpULYKonf3qcKJAfGKdJvVAdfx",
+        "method": "key",
+        "name": "service-agent-024",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDR7I5RLeuF0jVPsbBxBSJ2yzk3zHP3Au8G7i76K7vKO\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-025",
+      "role": "assistant",
+      "did": "did:key:z6MkmSnLMgQTquoDAHqmzsrooknRp8yVxyhk6ZCJap9Xp8Ty",
+      "tags": [
+        "analytics",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmSnLMgQTquoDAHqmzsrooknRp8yVxyhk6ZCJap9Xp8Ty",
+        "method": "key",
+        "name": "service-agent-025",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILj2MW66WTUK6GofJOCdIVft0GtmV5/Auph798oFqdxX\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-026",
+      "role": "assistant",
+      "did": "did:key:z6MkogfyasCX56jBWjsd9bGSn4Wybdj5BDS6e79cE2PgWoYi",
+      "tags": [
+        "data",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkogfyasCX56jBWjsd9bGSn4Wybdj5BDS6e79cE2PgWoYi",
+        "method": "key",
+        "name": "service-agent-026",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPDb+uhsL7IKUVr57Ms3BbU4YFoN7pFPllzcPm3IpcMR\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-027",
+      "role": "auditor",
+      "did": "did:key:z6MkheHxwNpFbk8SnHauC9DaktFQBQtXhPZ17GuUyYda1PC1",
+      "tags": [
+        "analytics",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkheHxwNpFbk8SnHauC9DaktFQBQtXhPZ17GuUyYda1PC1",
+        "method": "key",
+        "name": "service-agent-027",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOAeOSv8fqGy+YqZyrQH2HyYo/AkbUZITqsiFtGaKVff\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-028",
+      "role": "auditor",
+      "did": "did:key:z6MkfUkh4mqVVBxtvFynAG44MEu4TECsLMha3t16R3BHFB1u",
+      "tags": [
+        "ai",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfUkh4mqVVBxtvFynAG44MEu4TECsLMha3t16R3BHFB1u",
+        "method": "key",
+        "name": "service-agent-028",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKL08iYladVEwziAnzM70zNQ+XskIBYQsXtgzyt8BGIi\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-029",
+      "role": "analyst",
+      "did": "did:key:z6MkmmwGdP6h1cDo4hu1MntE5YBFfMBNAyAJT3PsX4FvA3ae",
+      "tags": [
+        "ai",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmmwGdP6h1cDo4hu1MntE5YBFfMBNAyAJT3PsX4FvA3ae",
+        "method": "key",
+        "name": "service-agent-029",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIM2ZYwXCsEL2vTLtGSyQYQ8SjoGDmaFcFNOv3opHQwTf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-030",
+      "role": "analyst",
+      "did": "did:key:z6Mkh2wBFzkgBySwa9XBrr6DgsufegFEK2B9bDikMy7UyC98",
+      "tags": [
+        "ml",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkh2wBFzkgBySwa9XBrr6DgsufegFEK2B9bDikMy7UyC98",
+        "method": "key",
+        "name": "service-agent-030",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOVLCk2kTgG3vvcQRPQfAE9xG/qD1WhDOmEDMxVRM9Dw\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-031",
+      "role": "auditor",
+      "did": "did:key:z6MkpeyrpRCXVaYqLJK17sQ1ErtDUPkMcVG5nj4Jt889L6pa",
+      "tags": [
+        "ai",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpeyrpRCXVaYqLJK17sQ1ErtDUPkMcVG5nj4Jt889L6pa",
+        "method": "key",
+        "name": "service-agent-031",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIA/FGooBi/glcB/Xw34YyeCU9B2mum71RNeJTtDO2pqV\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-032",
+      "role": "auditor",
+      "did": "did:key:z6Mkjy4BWM8AeUY1q9TxEBduVEutwDLL57H8vfvbroqrwtio",
+      "tags": [
+        "data",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkjy4BWM8AeUY1q9TxEBduVEutwDLL57H8vfvbroqrwtio",
+        "method": "key",
+        "name": "service-agent-032",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHX/+Bhiky5AKDvFHh4Jd0vYMzpbvP8bdKvrj3n+r+vx\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-033",
+      "role": "assistant",
+      "did": "did:key:z6MkqAvKGQrbahECxSzpztpZZyDaCcA715U9ojF5yMQ52XBq",
+      "tags": [
+        "data",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqAvKGQrbahECxSzpztpZZyDaCcA715U9ojF5yMQ52XBq",
+        "method": "key",
+        "name": "service-agent-033",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGFV5m+Lo6Y81xQBd3BGMmmgJbuAMuJRifqfqwvz9luL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-034",
+      "role": "assistant",
+      "did": "did:key:z6MkovW7K9tQPGrJC445FLJFRXxsc164Z98vBEHr33MsfJuA",
+      "tags": [
+        "data",
+        "analytics"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkovW7K9tQPGrJC445FLJFRXxsc164Z98vBEHr33MsfJuA",
+        "method": "key",
+        "name": "service-agent-034",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDbgT2CS+9+Bci7paTe40r5E+I0zbG4fr3qGLxpINFCc\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-035",
+      "role": "auditor",
+      "did": "did:key:z6MkepbjwJSTREBrYFXYh6jABDASYLAh9KMv9TR6jwMZr9Fk",
+      "tags": [
+        "ml",
+        "ai"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkepbjwJSTREBrYFXYh6jABDASYLAh9KMv9TR6jwMZr9Fk",
+        "method": "key",
+        "name": "service-agent-035",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINOfSeLlpXIxZrGtfZvH4IIDBw69l3+ZLDaGAc+Ih+S7\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-036",
+      "role": "worker",
+      "did": "did:key:z6MkoveXriW8oScbbbWrdMdKBjsB4iF8arArGH2SHEcuS9VL",
+      "tags": [
+        "data",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoveXriW8oScbbbWrdMdKBjsB4iF8arArGH2SHEcuS9VL",
+        "method": "key",
+        "name": "service-agent-036",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJVpPFzjMZSkvEB68XqwGURStG+X/f49X7vBLew7navF\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-037",
+      "role": "auditor",
+      "did": "did:key:z6MkfapBRRmw1cMzVv8riHMkqTkDBCMQos5c6rzE4D1A5QVN",
+      "tags": [
+        "analytics",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfapBRRmw1cMzVv8riHMkqTkDBCMQos5c6rzE4D1A5QVN",
+        "method": "key",
+        "name": "service-agent-037",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINrGI2tMKtO3TMOl77iTUS7VkckQ3pdke9PI/zWdB5L+\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-038",
+      "role": "worker",
+      "did": "did:key:z6MknFFszHSTzaaxjHsaudwZjgMg6xmUutZ2oRG3jKNvF4rs",
+      "tags": [
+        "analytics",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknFFszHSTzaaxjHsaudwZjgMg6xmUutZ2oRG3jKNvF4rs",
+        "method": "key",
+        "name": "service-agent-038",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBzBmBxeXy8r3ajReYX7SeYO0hcRyiMDFTYNJ9Q1DvXs\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-039",
+      "role": "worker",
+      "did": "did:key:z6Mko4JTvUPz4mRcDsG7iGj1pSSdC7CepkYDCaXDPLx2hJCn",
+      "tags": [
+        "data",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mko4JTvUPz4mRcDsG7iGj1pSSdC7CepkYDCaXDPLx2hJCn",
+        "method": "key",
+        "name": "service-agent-039",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEUrWhGoYYpQhgUdove4c4fiOv2I9YOoKbQ/CIcFu6zU\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-040",
+      "role": "assistant",
+      "did": "did:key:z6MkefAi6U1PWFVzs2cWTkqhrM1cgSKZVZbswK6KDWfEZmUU",
+      "tags": [
+        "analytics",
+        "nlp"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkefAi6U1PWFVzs2cWTkqhrM1cgSKZVZbswK6KDWfEZmUU",
+        "method": "key",
+        "name": "service-agent-040",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICHt2++OK+OndcBqexDhlr6bcrMd+9s0fdOSZJUm1UIv\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-041",
+      "role": "assistant",
+      "did": "did:key:z6MkidG2mMvciru38u2auPdcNo1jCVZyPrheUsRr716RKR4o",
+      "tags": [
+        "analytics",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkidG2mMvciru38u2auPdcNo1jCVZyPrheUsRr716RKR4o",
+        "method": "key",
+        "name": "service-agent-041",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICC8DNdnKvrktiiVSvsJ5NDIuCf6hnGVn2NcU/YzaWnZ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-042",
+      "role": "assistant",
+      "did": "did:key:z6MkhqroAPGTqDt4dC5yp7kAGqp67V7B4s2M3Z7tGrrzvSek",
+      "tags": [
+        "ml",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhqroAPGTqDt4dC5yp7kAGqp67V7B4s2M3Z7tGrrzvSek",
+        "method": "key",
+        "name": "service-agent-042",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMDoYBCCL7FvhHUAhUMuzlYiY2ZUH7g3acGP+XUt9oyb\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-043",
+      "role": "assistant",
+      "did": "did:key:z6MkhJeE2tZqRFU3DB5pY85JhYnsuXUyQaZe7m3swN2Wfd27",
+      "tags": [
+        "nlp",
+        "ml"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhJeE2tZqRFU3DB5pY85JhYnsuXUyQaZe7m3swN2Wfd27",
+        "method": "key",
+        "name": "service-agent-043",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKEFslVRwGPAKdkfDhvWHHxqw2PBr1RJ2xH+g8RvKjRy\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-044",
+      "role": "analyst",
+      "did": "did:key:z6MknekQu6bKLuDrryEKbUNZBUhunTuU476YqGeHhhDDYZC2",
+      "tags": [
+        "analytics",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknekQu6bKLuDrryEKbUNZBUhunTuU476YqGeHhhDDYZC2",
+        "method": "key",
+        "name": "service-agent-044",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIORErFmYlz0U6WAQjGXUFJo2t4ear0yA6ARI/JzSkQof\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "service-agent-045",
+      "role": "auditor",
+      "did": "did:key:z6MkhEm7bKL6f8tzRNrPcVv4a7ZBoWsRgYEcaqUHBCkM2Nen",
+      "tags": [
+        "nlp",
+        "data"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhEm7bKL6f8tzRNrPcVv4a7ZBoWsRgYEcaqUHBCkM2Nen",
+        "method": "key",
+        "name": "service-agent-045",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPlwpEHcei77RPMZbJAJMvDDz/DmcLI8J+8nj+GnhJD8\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-001",
+      "role": "edge",
+      "did": "did:key:z6Mkt971vTxFNeAZY5nSs45bfQTDwJ16FVw7Ya7ge5s4d858",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkt971vTxFNeAZY5nSs45bfQTDwJ16FVw7Ya7ge5s4d858",
+        "method": "key",
+        "name": "edge-agent-001",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINXzE42kruJS4MzpwtaMDwmAsbHnrBdjyGhUwJO8WsDe\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-002",
+      "role": "edge",
+      "did": "did:key:z6Mkgro1XSPqws9mozT224pr7qwVvVaPAEwcLNZ82tHWeyhj",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkgro1XSPqws9mozT224pr7qwVvVaPAEwcLNZ82tHWeyhj",
+        "method": "key",
+        "name": "edge-agent-002",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJNNc9T1pd+OyljnNyv48gE+sB7cOQ1x4stCyRmTBrQc\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-003",
+      "role": "edge",
+      "did": "did:key:z6MkrwuYBa5W1o5RU3wtxHuhgbBjHKEGTVLL5RmVxVUD7hnL",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrwuYBa5W1o5RU3wtxHuhgbBjHKEGTVLL5RmVxVUD7hnL",
+        "method": "key",
+        "name": "edge-agent-003",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB+e4X9kBdx9HQUy268FIYypa6BxeLBKBUSN1THdpzjA\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-004",
+      "role": "edge",
+      "did": "did:key:z6Mksa16ETqt6cFNwQcUi36hVtg3XU4h9LpB7C6bB31SqMQh",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mksa16ETqt6cFNwQcUi36hVtg3XU4h9LpB7C6bB31SqMQh",
+        "method": "key",
+        "name": "edge-agent-004",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL2PKE5NJypTzDgYFmGuXmeJcUvY6h809UPDLxV8kweP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-005",
+      "role": "edge",
+      "did": "did:key:z6MkrcU57C1KP2RcJW2xWGaQrecNyTrUUmqt9bYNESgZZuwX",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrcU57C1KP2RcJW2xWGaQrecNyTrUUmqt9bYNESgZZuwX",
+        "method": "key",
+        "name": "edge-agent-005",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJ65cYm5n8i4tujX/jNbRBlQJxcrD9e8RZqgh2b9lHWH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-006",
+      "role": "edge",
+      "did": "did:key:z6MkfLEsbk22aXc9twJMbuqNUyMSYG58DNjSe6DLLtPChSHP",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfLEsbk22aXc9twJMbuqNUyMSYG58DNjSe6DLLtPChSHP",
+        "method": "key",
+        "name": "edge-agent-006",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJkmMIP6UZQCQJPtTEHGWUD5hPWj/wnQDSRnll6mEOx/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-007",
+      "role": "edge",
+      "did": "did:key:z6MkjpqA2pwj49PJGN2fFntkZZFhZRh8PiUuyiry5xs1Zhva",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjpqA2pwj49PJGN2fFntkZZFhZRh8PiUuyiry5xs1Zhva",
+        "method": "key",
+        "name": "edge-agent-007",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBQgY1n1LVTUug4fmdZnkbhpM5Bhi34Aix7CktiJ5zVM\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-008",
+      "role": "edge",
+      "did": "did:key:z6Mks6ppCoUjvHsbv3FKiPJAUSBQM595mpk6pyzhNS7G9fte",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mks6ppCoUjvHsbv3FKiPJAUSBQM595mpk6pyzhNS7G9fte",
+        "method": "key",
+        "name": "edge-agent-008",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEqMwwYWLn4kM1Xrrw3njFiJiHuxcURlotbhO21yKziX\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-009",
+      "role": "edge",
+      "did": "did:key:z6MkuiWS9kMmL5WwYc5jdANxKzCmbSDdLikeBpR5FzkdqafJ",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkuiWS9kMmL5WwYc5jdANxKzCmbSDdLikeBpR5FzkdqafJ",
+        "method": "key",
+        "name": "edge-agent-009",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFXkN3iPmnGcCzRuu4L4fezEPfUL+cH1OlJj1rs15ZE/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-010",
+      "role": "edge",
+      "did": "did:key:z6MkvGnprTczBiivmCZX4PCyTbGFGCG9wxqcN4U5KvNd692Y",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvGnprTczBiivmCZX4PCyTbGFGCG9wxqcN4U5KvNd692Y",
+        "method": "key",
+        "name": "edge-agent-010",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBEfQNNcXfomR4E9k37V/kc4mlU0dJVg5OM3JFW8PEE5\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-011",
+      "role": "edge",
+      "did": "did:key:z6Mkfnsosf4cskaa6tRXghhxGufLpHesoWEGZYN9TNsAVJ47",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkfnsosf4cskaa6tRXghhxGufLpHesoWEGZYN9TNsAVJ47",
+        "method": "key",
+        "name": "edge-agent-011",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINTUy5TETYurHOO9GrfILLVByqb4Mg6y5h6dPDsrZ0YH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-012",
+      "role": "edge",
+      "did": "did:key:z6Mkur48C93t5fMpAKTFki3SLZPrBMECZQ6tSSif7gzQYNDV",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkur48C93t5fMpAKTFki3SLZPrBMECZQ6tSSif7gzQYNDV",
+        "method": "key",
+        "name": "edge-agent-012",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILnXOkPrSj/MJt+8cc9h6UYdoyXDEWlWweEBHd45mqdE\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-013",
+      "role": "edge",
+      "did": "did:key:z6MksQ6ALwPsbcSyUPEySj27CNirbR7h5DEWAGGfgKRNKSWF",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MksQ6ALwPsbcSyUPEySj27CNirbR7h5DEWAGGfgKRNKSWF",
+        "method": "key",
+        "name": "edge-agent-013",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGqQQDigEzIUUcbiZC7xB4RRHsfeyRcJPPeyL+s8I6pC\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-014",
+      "role": "edge",
+      "did": "did:key:z6MkqFsVbrutN9ENf4s2tBPjYREZKtG3nAhq5jXRu2R2RbTC",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqFsVbrutN9ENf4s2tBPjYREZKtG3nAhq5jXRu2R2RbTC",
+        "method": "key",
+        "name": "edge-agent-014",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBFWhuj0DA4T9xwb2g6TfOLlNzSHWivnQXXjn7Vk3T44\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-015",
+      "role": "edge",
+      "did": "did:key:z6MkqqZiTuVmiX4VaoFoRoNw1gyUVdPjgMs6hj2kzMuhrSCr",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqqZiTuVmiX4VaoFoRoNw1gyUVdPjgMs6hj2kzMuhrSCr",
+        "method": "key",
+        "name": "edge-agent-015",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAhBm2Om6eAmdTbzyQ8L8asNIOjh8G9ym81HeYzqZVj7\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-016",
+      "role": "edge",
+      "did": "did:key:z6MkoTkT8BZBiXWiR8dk4SNzEwn2Y1kfq3vq4ixgLHijvu74",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoTkT8BZBiXWiR8dk4SNzEwn2Y1kfq3vq4ixgLHijvu74",
+        "method": "key",
+        "name": "edge-agent-016",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJh1xNWUK02kwiVwsDBjd+jyXVaY+ec+0oMILYKPnouH\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-017",
+      "role": "edge",
+      "did": "did:key:z6MkrGC4HdTVem8Ntv6tMn5BgUHA9oU5DS8aMs2uHfhHh37v",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrGC4HdTVem8Ntv6tMn5BgUHA9oU5DS8aMs2uHfhHh37v",
+        "method": "key",
+        "name": "edge-agent-017",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFVF637wlH92oScyzS+23/2BwCKZz8UeR263qQaj/WoF\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-018",
+      "role": "edge",
+      "did": "did:key:z6MkqUP3RYohjHcZ6tknbcH63GmWDN1DeooVdEp3VBtohe4L",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqUP3RYohjHcZ6tknbcH63GmWDN1DeooVdEp3VBtohe4L",
+        "method": "key",
+        "name": "edge-agent-018",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGg37TF/4EBBmF9nDHoexJ18X6CMqGFShjAPPf7DcKTG\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-019",
+      "role": "edge",
+      "did": "did:key:z6MkfpwvopHpcsucGkcpv5RguGSRgtZKBXqQRPsQ5B1KHv5x",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfpwvopHpcsucGkcpv5RguGSRgtZKBXqQRPsQ5B1KHv5x",
+        "method": "key",
+        "name": "edge-agent-019",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPTXGbOhzUtc9JFN0l+jWsGSK8+9Ulb6xE1OBUuCUsf3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-020",
+      "role": "edge",
+      "did": "did:key:z6MkoAsT7nbKHaYZgcYZFYSmgWVH7v4a9ES1u15dZ4MmNHfA",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoAsT7nbKHaYZgcYZFYSmgWVH7v4a9ES1u15dZ4MmNHfA",
+        "method": "key",
+        "name": "edge-agent-020",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBJaX6a5evKN1dndjSxh9X8txpjGijuYKTspZOrSJ7nv\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-021",
+      "role": "edge",
+      "did": "did:key:z6MkkzosxYgeyuZSHNxKw8rcnDCvtqLiHD8VBF51bU6gnkva",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkzosxYgeyuZSHNxKw8rcnDCvtqLiHD8VBF51bU6gnkva",
+        "method": "key",
+        "name": "edge-agent-021",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBX1tfYZow+mqJMhgi6MuE7RApm8QJOTOtShwRL+5QTj\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-022",
+      "role": "edge",
+      "did": "did:key:z6Mkiyn21QWrAwbsywHGweDVm4Ja9vFP9KoqkBX47ocqdZwK",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkiyn21QWrAwbsywHGweDVm4Ja9vFP9KoqkBX47ocqdZwK",
+        "method": "key",
+        "name": "edge-agent-022",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIToLFWHn3j/MAI5QO1Ka+ssayhuwAZYNHnI4QUCe2kt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-023",
+      "role": "edge",
+      "did": "did:key:z6MkrC9YL6AQrKW9NhH1xZdDRvg4XNcnmfsXKKz1zhE7aWmq",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrC9YL6AQrKW9NhH1xZdDRvg4XNcnmfsXKKz1zhE7aWmq",
+        "method": "key",
+        "name": "edge-agent-023",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICgPiEspBGZro7CuaSjQ1z59Cl2vNoN6g8USO8MGXMQU\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-024",
+      "role": "edge",
+      "did": "did:key:z6Mkk22FMHmxNufwMaifTKeoa4DtNooghVD8FLDgrUJvfNNF",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkk22FMHmxNufwMaifTKeoa4DtNooghVD8FLDgrUJvfNNF",
+        "method": "key",
+        "name": "edge-agent-024",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIh+UgQjNl64tq5ceh4hYF6kWMFWYWcH+0cDRU3t7ekd\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-025",
+      "role": "edge",
+      "did": "did:key:z6MkkgcF3TvnARrMKfRK5LxKxJea1CtfSeyLCaeoAhrCc5bJ",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkgcF3TvnARrMKfRK5LxKxJea1CtfSeyLCaeoAhrCc5bJ",
+        "method": "key",
+        "name": "edge-agent-025",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGQFPIFHaSA4mNZy0nx1HzGbx4s48r7WL7mfPHXGDNSf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-026",
+      "role": "edge",
+      "did": "did:key:z6MkjvEPgyrfjrKTHoFLBGs3qzBRLPZ5Yu8K29bVaNuxKSYt",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjvEPgyrfjrKTHoFLBGs3qzBRLPZ5Yu8K29bVaNuxKSYt",
+        "method": "key",
+        "name": "edge-agent-026",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHjh9t59/SV/Q2Ziine0dOLm/gntt4M1N9opbY81FmzP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-027",
+      "role": "edge",
+      "did": "did:key:z6MkiJp9kZ1JeXtLmVcV48VC2bEgwCzJQoo3kUf34bioNt5w",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiJp9kZ1JeXtLmVcV48VC2bEgwCzJQoo3kUf34bioNt5w",
+        "method": "key",
+        "name": "edge-agent-027",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB89A1bmlwbsz+U0cugStnHARogZj4aigAVg3ySdNtbB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-028",
+      "role": "edge",
+      "did": "did:key:z6MkvLwj5i6i237HDJ2ue5H2bYJHRDti3eqdN286cWswxo3R",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvLwj5i6i237HDJ2ue5H2bYJHRDti3eqdN286cWswxo3R",
+        "method": "key",
+        "name": "edge-agent-028",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKAJRxe5FpU2SC6GPTC6Qqi10kMONR6uEY5xHxS4BQ+W\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-029",
+      "role": "edge",
+      "did": "did:key:z6MktqCx6Hcq2N3vfzgtW3w8oJbMxgaWWFQyQJT3WEp2T6DX",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktqCx6Hcq2N3vfzgtW3w8oJbMxgaWWFQyQJT3WEp2T6DX",
+        "method": "key",
+        "name": "edge-agent-029",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBbi9Hlu/yu+kP82SxmWj9UskE+LhoxUGnAFORXk/4eV\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-030",
+      "role": "edge",
+      "did": "did:key:z6Mkk8Lba4uE8BLRrVFK3Fu3YE1yAjCHJY77zNMHMewKbicc",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkk8Lba4uE8BLRrVFK3Fu3YE1yAjCHJY77zNMHMewKbicc",
+        "method": "key",
+        "name": "edge-agent-030",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIG6Pvx0mH3jq6FAxEz+ADjGXdhEUS+KPyqV9cuc5lUMP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-031",
+      "role": "edge",
+      "did": "did:key:z6MkhCacfobyg7LQRX9oDpaqWp3WnUuyQN1cqPRRU1HFnhJ1",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhCacfobyg7LQRX9oDpaqWp3WnUuyQN1cqPRRU1HFnhJ1",
+        "method": "key",
+        "name": "edge-agent-031",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINeYAapuSaMan9UBB7IsV7+AefmQlIufTkMhE2g0RRjC\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-032",
+      "role": "edge",
+      "did": "did:key:z6MkjgnTjA9xspRYHvYzMMxfxdJc65V6UuBeSmnr5AZ5SF7J",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjgnTjA9xspRYHvYzMMxfxdJc65V6UuBeSmnr5AZ5SF7J",
+        "method": "key",
+        "name": "edge-agent-032",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPvln7MgeEpn2zVxwvBKxH99FoolNm4mu76YtAtOgMMy\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-033",
+      "role": "edge",
+      "did": "did:key:z6Mkq9bbCvdxKjJsVrv73tWtA8rcYhaM72sJacN9PaDf64aT",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkq9bbCvdxKjJsVrv73tWtA8rcYhaM72sJacN9PaDf64aT",
+        "method": "key",
+        "name": "edge-agent-033",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGv8IRv3TF4ffE4J7oYxTaJuhrvR2c1Ete4mUtH8VYwZ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-034",
+      "role": "edge",
+      "did": "did:key:z6Mkg65wZ1ds9DkgAKsgdmm23KPB3hUiouoEyrJk3gaYjQ8i",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkg65wZ1ds9DkgAKsgdmm23KPB3hUiouoEyrJk3gaYjQ8i",
+        "method": "key",
+        "name": "edge-agent-034",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGOVlsRHrZV2nR5G6ddhYGcWkYTDAtQAwJZ4ZXDDUTGs\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-035",
+      "role": "edge",
+      "did": "did:key:z6MkkKmvLv52jD1o4QzMZDGf8Q3F6EBtAkcEtXsHS7GXeeHn",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkKmvLv52jD1o4QzMZDGf8Q3F6EBtAkcEtXsHS7GXeeHn",
+        "method": "key",
+        "name": "edge-agent-035",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAgOctojDiIzJ9KwainksWTK3nhTF6eV+bKw6tdwQFcm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-036",
+      "role": "edge",
+      "did": "did:key:z6MkiQUeSfUqcR3jbqBvc2EGgio3mzTJLuijvjpQHCjW3c7A",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiQUeSfUqcR3jbqBvc2EGgio3mzTJLuijvjpQHCjW3c7A",
+        "method": "key",
+        "name": "edge-agent-036",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICwri+VCvuj0Im6fO9hm3fh8Z2kdDSsWk+tILyZCiCnE\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-037",
+      "role": "edge",
+      "did": "did:key:z6MkwK8Dvba2CDV1EVcpBwoSFrDvNVkBdPmohLT3J8554SLR",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwK8Dvba2CDV1EVcpBwoSFrDvNVkBdPmohLT3J8554SLR",
+        "method": "key",
+        "name": "edge-agent-037",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMxgqj3x7ezsfpRch0t/ncDPjWCZgmiICKz0tMJMUmAo\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-038",
+      "role": "edge",
+      "did": "did:key:z6MknW6ECg1TLVCLE6aigUVhSr3PzMw8bjhJFfYyQHcjXzxn",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknW6ECg1TLVCLE6aigUVhSr3PzMw8bjhJFfYyQHcjXzxn",
+        "method": "key",
+        "name": "edge-agent-038",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIwyzc/JhLGaedvisoqLLUad4vuzjnVK0lMWzef0wjp2\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-039",
+      "role": "edge",
+      "did": "did:key:z6Mkjgox4S31s5BW3vcwRtnrGNq825515LAKsPjzATpz9jHz",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkjgox4S31s5BW3vcwRtnrGNq825515LAKsPjzATpz9jHz",
+        "method": "key",
+        "name": "edge-agent-039",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIM17iwQeEifkFqIywhgpnUUZGevVM6sz7H6oVMdYZH4\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-040",
+      "role": "edge",
+      "did": "did:key:z6MknPDvfoydEvGJfopiWVyd8sToWZYUayhaQbyeWiavgNhS",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknPDvfoydEvGJfopiWVyd8sToWZYUayhaQbyeWiavgNhS",
+        "method": "key",
+        "name": "edge-agent-040",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKOqDMyplGrTbxDa5alr3hhlKqq2rmnxFU3MeKclJU5/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-041",
+      "role": "edge",
+      "did": "did:key:z6MkpKR7NfwwdD7MbxBTDvARU2wsP8D7QWKkLw6pV93AphN4",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpKR7NfwwdD7MbxBTDvARU2wsP8D7QWKkLw6pV93AphN4",
+        "method": "key",
+        "name": "edge-agent-041",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOVeeIJk8PuflA9WSUrbeZOddbxEe97z3lW1ZBSbeQC9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-042",
+      "role": "edge",
+      "did": "did:key:z6Mkrf6nC8hCWE6crsxCgtrkrgQeUNvvVGT7oP2nopES1SsR",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkrf6nC8hCWE6crsxCgtrkrgQeUNvvVGT7oP2nopES1SsR",
+        "method": "key",
+        "name": "edge-agent-042",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICOI5J3m4ye6lWttKHl7yTuFEk//R8CYdFGT0KVBN25V\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-043",
+      "role": "edge",
+      "did": "did:key:z6MknhxuFb12G2Q8moAJmMmrqTjkcAnyDgWzoA6drP3PsfnN",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknhxuFb12G2Q8moAJmMmrqTjkcAnyDgWzoA6drP3PsfnN",
+        "method": "key",
+        "name": "edge-agent-043",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILOmE8AA27MoFIxbthl/HyPObuKb5Eoa+D3ivtpO0OQp\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-044",
+      "role": "edge",
+      "did": "did:key:z6MkjHY3y8eNzM5CxA67hTGaBy8XoKvZUZbLSiXL574C6P9E",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjHY3y8eNzM5CxA67hTGaBy8XoKvZUZbLSiXL574C6P9E",
+        "method": "key",
+        "name": "edge-agent-044",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL2JWU8KglnZYit2GibLtlYRmGos1t5yka+nZl0HS2m7\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-045",
+      "role": "edge",
+      "did": "did:key:z6Mkv5SQRhjufs34UbBVpXXoE3ynh8f9Yqr9Cb9JhJBZXVRA",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkv5SQRhjufs34UbBVpXXoE3ynh8f9Yqr9Cb9JhJBZXVRA",
+        "method": "key",
+        "name": "edge-agent-045",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIL9EXJ4PRxRSK/fNTbPo5uOg6kL8Sm1R8SLyzzG1txPJ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-046",
+      "role": "edge",
+      "did": "did:key:z6MkhgZDtcrmyAxiUPAAnTJhkiFMhm3aZSbsaPNPzPqFVXDT",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhgZDtcrmyAxiUPAAnTJhkiFMhm3aZSbsaPNPzPqFVXDT",
+        "method": "key",
+        "name": "edge-agent-046",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICZAWXOJC++OR8txI6tqLSdMTMFZcQOtoVn8+CIkaJXJ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-047",
+      "role": "edge",
+      "did": "did:key:z6MkioxNjwDsJMjxhU2J3vFwZmL5UxbgTA8TdEs2z5kuBGAg",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkioxNjwDsJMjxhU2J3vFwZmL5UxbgTA8TdEs2z5kuBGAg",
+        "method": "key",
+        "name": "edge-agent-047",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIF7LTaVc9YNBWszNxtlNQTXSymN5/NCE3ctqgbbjf/F+\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-048",
+      "role": "edge",
+      "did": "did:key:z6MkgaE653cCPzo72BJJ9rqnfL15o1wTDKoW3zq7Da8y16y8",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgaE653cCPzo72BJJ9rqnfL15o1wTDKoW3zq7Da8y16y8",
+        "method": "key",
+        "name": "edge-agent-048",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILmbpurb8LG+lYIvjEC/VuDogDwxU20+gVg3zdYncPGn\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-049",
+      "role": "edge",
+      "did": "did:key:z6MkehTVBprSbvydUnm6m7BNXVjgtwghNGjBakKJ4Th4QbeU",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkehTVBprSbvydUnm6m7BNXVjgtwghNGjBakKJ4Th4QbeU",
+        "method": "key",
+        "name": "edge-agent-049",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINM1s6jZZvjZgehXfkl0+OTEhA8gMcNnjXl1euQw5rWX\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "edge-agent-050",
+      "role": "edge",
+      "did": "did:key:z6MktqWvihZL7rKpgE9HAuPBZ7wa9vYSpLoHQLVRY1NaKnwg",
+      "tags": [
+        "adversarial"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktqWvihZL7rKpgE9HAuPBZ7wa9vYSpLoHQLVRY1NaKnwg",
+        "method": "key",
+        "name": "edge-agent-050",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKtGIy15JvqYbOEXLplNVdcJpndjQ9NSp1M64nRuyWdt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-001",
+      "role": "swarm",
+      "did": "did:key:z6MkkGpKCZKd614vWE1rLkZVBh3p8H1VnbYriai6HJVRM5Ls",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkGpKCZKd614vWE1rLkZVBh3p8H1VnbYriai6HJVRM5Ls",
+        "method": "key",
+        "name": "swarm-agent-001",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPOt9ECUqvpVG7b8EvTDEigbG8MTYS9qJizFkGOSLZFT\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-002",
+      "role": "swarm",
+      "did": "did:key:z6Mkn1EiBEYCxfsB9HPtg941cc7Ss3euAsvEu2Yb2tc4i8xQ",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkn1EiBEYCxfsB9HPtg941cc7Ss3euAsvEu2Yb2tc4i8xQ",
+        "method": "key",
+        "name": "swarm-agent-002",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIC6cahVpnW3D0lHsSn3VcgCP0J0J1SkOdPG5ER6qTv76\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-003",
+      "role": "swarm",
+      "did": "did:key:z6MkezHgvXxwLt8Br7KkfoXfmSpPTWPsv4Q9h95YKd6aikr9",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkezHgvXxwLt8Br7KkfoXfmSpPTWPsv4Q9h95YKd6aikr9",
+        "method": "key",
+        "name": "swarm-agent-003",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIM3zSpnfZ7m7aXojaM2ot290BrPE1L+EdRvWrISax9bi\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-004",
+      "role": "swarm",
+      "did": "did:key:z6MkryVJ9QMZfWBJtcZmij4RfJjVcuKaF43HaUguRbDKBRe6",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkryVJ9QMZfWBJtcZmij4RfJjVcuKaF43HaUguRbDKBRe6",
+        "method": "key",
+        "name": "swarm-agent-004",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICpo8h70c0wgvw61K7YcByW3rbHOEC7TDpG14IhGwoew\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-005",
+      "role": "swarm",
+      "did": "did:key:z6MkpojtMPCMGnYCbZ74ugbZzFpUQMDqaVwcRMcK6BwhDoSB",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpojtMPCMGnYCbZ74ugbZzFpUQMDqaVwcRMcK6BwhDoSB",
+        "method": "key",
+        "name": "swarm-agent-005",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIhPMtl/2wAfqPkGi/iKyCnA3abKqDhdUXnm3q/Qackm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-006",
+      "role": "swarm",
+      "did": "did:key:z6MkwHdDqT9aSwTfjjSL56EaHQVLWM9xJtmTQAxKaaXQurTu",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkwHdDqT9aSwTfjjSL56EaHQVLWM9xJtmTQAxKaaXQurTu",
+        "method": "key",
+        "name": "swarm-agent-006",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINOjCf58PYh0+Tbrx+b+1ZV5INqvOWuMGDRPTgs8iwMB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-007",
+      "role": "swarm",
+      "did": "did:key:z6Mkk8gZ4pA2Vqw2xBbNxrocZJDww9VKLRekSsv5FCoAZ1C1",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkk8gZ4pA2Vqw2xBbNxrocZJDww9VKLRekSsv5FCoAZ1C1",
+        "method": "key",
+        "name": "swarm-agent-007",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIF+6qd5Z8d0+nVywUx8/pgOYV2OHSm45tzOW7oHBzE9Y\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-008",
+      "role": "swarm",
+      "did": "did:key:z6MkrsW91qGAPnYarD98fvxXadn6Y9xWY4RbPrAmAgiesYeH",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrsW91qGAPnYarD98fvxXadn6Y9xWY4RbPrAmAgiesYeH",
+        "method": "key",
+        "name": "swarm-agent-008",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIDfcC/LZ5GCBDWCmFznfHp0VvnldmvoIVqRN3tgBajpm\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-009",
+      "role": "swarm",
+      "did": "did:key:z6MkqF7Nn1CZHMsJ1QUajLYQuEGXmPurNEihUmEZtvLAceJY",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqF7Nn1CZHMsJ1QUajLYQuEGXmPurNEihUmEZtvLAceJY",
+        "method": "key",
+        "name": "swarm-agent-009",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINzwCY2fWBDVEztLQrntHYoHv4DUXB2GNKB84qvzT+YG\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-010",
+      "role": "swarm",
+      "did": "did:key:z6MknJMhmeQZr5gkN9GVRa2trqEKdx2cBnogg48i34exvLC2",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknJMhmeQZr5gkN9GVRa2trqEKdx2cBnogg48i34exvLC2",
+        "method": "key",
+        "name": "swarm-agent-010",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEID0QKqsbTMTAjn9feHzhqPelCi1J4KM6/E1Y1TyhE4PF\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-011",
+      "role": "swarm",
+      "did": "did:key:z6Mki5NSGmDhReuXVPeT8nU7zASuNd7vjAEuZnwjepiHZrqm",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mki5NSGmDhReuXVPeT8nU7zASuNd7vjAEuZnwjepiHZrqm",
+        "method": "key",
+        "name": "swarm-agent-011",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJasyPmUoe2QMUoHZBGjCbNgm+go3wNwJ5fNTXJ8vEko\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-012",
+      "role": "swarm",
+      "did": "did:key:z6MkvvfaGBgS2ahSbumeenFp6F9NeCd7R7jmqWnTQEABTBF5",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvvfaGBgS2ahSbumeenFp6F9NeCd7R7jmqWnTQEABTBF5",
+        "method": "key",
+        "name": "swarm-agent-012",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIB9A/+0VehEQEwPbPSX98wau7zudM3FMr/zWk4bgzIiw\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-013",
+      "role": "swarm",
+      "did": "did:key:z6MkpXNGPkQ4Mpj4fQFxdpefnFRKasmUVQ9CYUYWrfwk85DB",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpXNGPkQ4Mpj4fQFxdpefnFRKasmUVQ9CYUYWrfwk85DB",
+        "method": "key",
+        "name": "swarm-agent-013",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJl2ygax9UD9r76Kx4s+R0vBW1kU7WMi/ndpwei8gEF+\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-014",
+      "role": "swarm",
+      "did": "did:key:z6MktzuW8WDH3eeNinbzz3RoCqCVj6zepNULFbdihTfXDjcC",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MktzuW8WDH3eeNinbzz3RoCqCVj6zepNULFbdihTfXDjcC",
+        "method": "key",
+        "name": "swarm-agent-014",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBRh/M5ZN+NHiqTpr5m/fRAh4mLCfucf8IeOuI9g6CQ9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-015",
+      "role": "swarm",
+      "did": "did:key:z6Mku1DYpEsrWSFW5Q5sUtTWWVRKMmRRcz5aGNty2z4pAvbr",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mku1DYpEsrWSFW5Q5sUtTWWVRKMmRRcz5aGNty2z4pAvbr",
+        "method": "key",
+        "name": "swarm-agent-015",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPtzE/yJEIctXZbjs6ZR6gkV2FseaMwBYaA9pDLpHhHA\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-016",
+      "role": "swarm",
+      "did": "did:key:z6Mkv7bBLeZL3ep16KQBVq9oASpVJJJJaQQseK7baFwNoebt",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkv7bBLeZL3ep16KQBVq9oASpVJJJJaQQseK7baFwNoebt",
+        "method": "key",
+        "name": "swarm-agent-016",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILcqxe6JRH/q8guoZBzvrKJYXhENUxoPrG+es9V4+kjk\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-017",
+      "role": "swarm",
+      "did": "did:key:z6Mkk44Cymciw13MSkx73XeY1zict4uCY8eiFcBDvynuYtto",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkk44Cymciw13MSkx73XeY1zict4uCY8eiFcBDvynuYtto",
+        "method": "key",
+        "name": "swarm-agent-017",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJ8W+Spuaau+XTXZQW5QdE6T+fDm2u3/ytsJb97gDrmb\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-018",
+      "role": "swarm",
+      "did": "did:key:z6MkgbS7L7hA62VCM558EEviVZyNbCJZQPzPr2CsVEgn5wVY",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgbS7L7hA62VCM558EEviVZyNbCJZQPzPr2CsVEgn5wVY",
+        "method": "key",
+        "name": "swarm-agent-018",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJ+7LcekLWqkb6O6KyEIQTEwvyX3KRPxs9LAXhUgb4Yt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-019",
+      "role": "swarm",
+      "did": "did:key:z6MkgYm9SFBkRToxXT5Cm2XSTjwjnbfUekbFmQRyxCvsnoTB",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgYm9SFBkRToxXT5Cm2XSTjwjnbfUekbFmQRyxCvsnoTB",
+        "method": "key",
+        "name": "swarm-agent-019",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJVR7Xjeb0mdXS+x8qqGy1GwXroqekZfbiuWgXKqaqxi\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-020",
+      "role": "swarm",
+      "did": "did:key:z6MkvNpwjJBnR6ptKqhbkcAkGcc7PvftQ86NoP6VdHfueWbk",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvNpwjJBnR6ptKqhbkcAkGcc7PvftQ86NoP6VdHfueWbk",
+        "method": "key",
+        "name": "swarm-agent-020",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHysVMq14944joc7g9JsDPSHnOUZ+6IyrTAmZoV51W8G\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-021",
+      "role": "swarm",
+      "did": "did:key:z6Mkn1NYoWwQ5yVH4aZmzBg1yk8aB17LkfhNfZkz2r8yPZG8",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mkn1NYoWwQ5yVH4aZmzBg1yk8aB17LkfhNfZkz2r8yPZG8",
+        "method": "key",
+        "name": "swarm-agent-021",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMdv0FXYddWRSCcSHX2Det1yDroOIJe9Wt/3fzEb1t3u\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-022",
+      "role": "swarm",
+      "did": "did:key:z6MkiVofy9yrK4i16pSUQCegi69qxrAqVBnd1iDn8BFGHdtQ",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkiVofy9yrK4i16pSUQCegi69qxrAqVBnd1iDn8BFGHdtQ",
+        "method": "key",
+        "name": "swarm-agent-022",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIgG3igkvmN89cMkYZGEx3RIOrHPMWkC8zFY4eHQifYP\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-023",
+      "role": "swarm",
+      "did": "did:key:z6Mku6V1m9ZsoUMUhmmLsG7SKE7X323HpwwBqXM3kWUU87w7",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mku6V1m9ZsoUMUhmmLsG7SKE7X323HpwwBqXM3kWUU87w7",
+        "method": "key",
+        "name": "swarm-agent-023",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOamOIUPP373KK0WZ7cRu5D4b8rtToy/mhVihN9o+y6P\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-024",
+      "role": "swarm",
+      "did": "did:key:z6Mks3FewSCEExN8ehFurzuap7Q3tHJx5zYiEtWVECBYA9Pn",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mks3FewSCEExN8ehFurzuap7Q3tHJx5zYiEtWVECBYA9Pn",
+        "method": "key",
+        "name": "swarm-agent-024",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBOREA1Q9NViyETYlANiVk8gcsMM342kxFHE9hqVgGCB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-025",
+      "role": "swarm",
+      "did": "did:key:z6MkvLMWNFUPx9wPvX2GC1XDbKioTWPPHGLivrBSjepSKM5E",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkvLMWNFUPx9wPvX2GC1XDbKioTWPPHGLivrBSjepSKM5E",
+        "method": "key",
+        "name": "swarm-agent-025",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIEwzK/m9svVxkY1rfoCCsVTDSDBMm0Lh1s3sO8+JtxrG\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-026",
+      "role": "swarm",
+      "did": "did:key:z6MkjdqLKovvdt3VWQAhiCfmReGn4T158EzVtj5FYx6FT1Nt",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjdqLKovvdt3VWQAhiCfmReGn4T158EzVtj5FYx6FT1Nt",
+        "method": "key",
+        "name": "swarm-agent-026",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGXWqvya5sKs7Zk81p+MYWTg6tchcKTK9a5vk0HakF/6\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-027",
+      "role": "swarm",
+      "did": "did:key:z6Mktu5zMAMgyobsYpKmtdNTGGp4EmnCLbH44mZn158DP9tV",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mktu5zMAMgyobsYpKmtdNTGGp4EmnCLbH44mZn158DP9tV",
+        "method": "key",
+        "name": "swarm-agent-027",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINohy8dXlWTLC6wSBqL/baXeh61TY0nfJDpqAXMpQ5Q/\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-028",
+      "role": "swarm",
+      "did": "did:key:z6MkmGDEXw6i5RwfyKVhHgCdpPBSe1LzRdLxwvcQmrvV86gs",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmGDEXw6i5RwfyKVhHgCdpPBSe1LzRdLxwvcQmrvV86gs",
+        "method": "key",
+        "name": "swarm-agent-028",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAfmALaBTy//k09chZznjUsQ3avEUkOm1Haffsc1azBf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-029",
+      "role": "swarm",
+      "did": "did:key:z6MkhXHNN6Mp2m9RX4XXFdVwtDYEcnPdnLLpETqJtVbgc5eB",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkhXHNN6Mp2m9RX4XXFdVwtDYEcnPdnLLpETqJtVbgc5eB",
+        "method": "key",
+        "name": "swarm-agent-029",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIJu41hMpfaCYFewIfXP/YEKPL/3jUN3Le5pN2shEnrRI\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-030",
+      "role": "swarm",
+      "did": "did:key:z6MkkzSzGGhmhYobeKerjD5e1aUHJ489Fv4aE6toCrsr4hgm",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkkzSzGGhmhYobeKerjD5e1aUHJ489Fv4aE6toCrsr4hgm",
+        "method": "key",
+        "name": "swarm-agent-030",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHK+6NwoeYCmOBW8ErUqBiM5/kykKMMGA7QOq5SpzUb9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-031",
+      "role": "swarm",
+      "did": "did:key:z6Mksi4fZkEQ1anpSu3CgzGMZ86j7sPXGhbF6uVfzdx74yrZ",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6Mksi4fZkEQ1anpSu3CgzGMZ86j7sPXGhbF6uVfzdx74yrZ",
+        "method": "key",
+        "name": "swarm-agent-031",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIIKbwoDdH9Vg9azNJW8NBp/QvecHHI7XaLuJyMcDrSHL\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-032",
+      "role": "swarm",
+      "did": "did:key:z6MknQVa6DgT453DTZZJpD4oPTwTL2bP9FRbk66hWxyhrdqq",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MknQVa6DgT453DTZZJpD4oPTwTL2bP9FRbk66hWxyhrdqq",
+        "method": "key",
+        "name": "swarm-agent-032",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOecv4R5rw2/JNsuUXBC/qTXnriEMc8vpSJ1o8GHYvxO\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-033",
+      "role": "swarm",
+      "did": "did:key:z6MkgQndb3TVhr32DiuMj2WbAHTBAAjwDWU7vtkueqjfL1Ai",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgQndb3TVhr32DiuMj2WbAHTBAAjwDWU7vtkueqjfL1Ai",
+        "method": "key",
+        "name": "swarm-agent-033",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILxSDn7KJ5y9lLb4jhuHWlElX6Nk48Ort+YrjJ45pLxu\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-034",
+      "role": "swarm",
+      "did": "did:key:z6MkubDRQS59o8VyYMKht2aceiGmQae9zfbtk2w9cAjCh8mZ",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkubDRQS59o8VyYMKht2aceiGmQae9zfbtk2w9cAjCh8mZ",
+        "method": "key",
+        "name": "swarm-agent-034",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKvTbQSYiIYtrVHzzGSw8vOf7sqoPnZH044IYCXJvy7G\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-035",
+      "role": "swarm",
+      "did": "did:key:z6MkqhPjdT13F3HjAdMJR5oyQhuRJrJnXNkc5joqv9X5JuL8",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkqhPjdT13F3HjAdMJR5oyQhuRJrJnXNkc5joqv9X5JuL8",
+        "method": "key",
+        "name": "swarm-agent-035",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIFnm75TqvOetnLxhv1VKc45yzdF+whxBS/r31S/Gj2Kh\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-036",
+      "role": "swarm",
+      "did": "did:key:z6MkuDP9ghKynyeognpRjUprLqijdQfEtyYSqrfaCvSKYP2e",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkuDP9ghKynyeognpRjUprLqijdQfEtyYSqrfaCvSKYP2e",
+        "method": "key",
+        "name": "swarm-agent-036",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHjkqT6R0I3h3zP/bZAfEF0mRmnqtcL7J79z4YiQoaHb\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-037",
+      "role": "swarm",
+      "did": "did:key:z6MkpyhmurdfR23UJFzSdg6g6Rt9NDHF8g92aAmBZ1Gs6m5T",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpyhmurdfR23UJFzSdg6g6Rt9NDHF8g92aAmBZ1Gs6m5T",
+        "method": "key",
+        "name": "swarm-agent-037",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIE6WoLF/LSd/Di0qn1mvTBAxRrpYgG6h/MVQYdZDD2W3\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-038",
+      "role": "swarm",
+      "did": "did:key:z6MkfF4q87SLVu4ZMe4hWwCyJsYnNxYKvy1p76QWin5n2msu",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkfF4q87SLVu4ZMe4hWwCyJsYnNxYKvy1p76QWin5n2msu",
+        "method": "key",
+        "name": "swarm-agent-038",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKXct2KL+2JG8I61vAVqd1aUHW/wPS0IyL1PMWt3IdDs\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-039",
+      "role": "swarm",
+      "did": "did:key:z6MkktVd28PqmAf5vemHgSvS89yHRPqz5eKrgwboCaxzsKFr",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkktVd28PqmAf5vemHgSvS89yHRPqz5eKrgwboCaxzsKFr",
+        "method": "key",
+        "name": "swarm-agent-039",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILo0uHE2LgFe89uWl4ILCaAl2sb+6l/99ptbDEymMWER\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-040",
+      "role": "swarm",
+      "did": "did:key:z6MkjXVCvi8u9f5ELGTqZPqdMMTeiYxmAMsYdicxUyHevBST",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjXVCvi8u9f5ELGTqZPqdMMTeiYxmAMsYdicxUyHevBST",
+        "method": "key",
+        "name": "swarm-agent-040",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIA2Xs3VbCDHuopIbVVAX0x9MDu4wmESAlYxKZbXaUy5H\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-041",
+      "role": "swarm",
+      "did": "did:key:z6MkoW5vV2RKtMi7PaLavd9euMKuehLEhP1uSFqozf2jvNgp",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoW5vV2RKtMi7PaLavd9euMKuehLEhP1uSFqozf2jvNgp",
+        "method": "key",
+        "name": "swarm-agent-041",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIBxscL84sZBSql3eFFfshbz7FU9VIn9oz32c1/jxUZab\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-042",
+      "role": "swarm",
+      "did": "did:key:z6MkpPWxPHrhcpeFPGg9DDv7a81iiKS7Zsp2HFkcLNfY5vJn",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkpPWxPHrhcpeFPGg9DDv7a81iiKS7Zsp2HFkcLNfY5vJn",
+        "method": "key",
+        "name": "swarm-agent-042",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIP7pNllCXGjnerWxlt295CKUgjicr2ZpGjXeUDeg+pnu\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-043",
+      "role": "swarm",
+      "did": "did:key:z6MkrxK6SoDL3nThcHGdPRssNJAAoET6MfkRCTqfB4PFsMQ2",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkrxK6SoDL3nThcHGdPRssNJAAoET6MfkRCTqfB4PFsMQ2",
+        "method": "key",
+        "name": "swarm-agent-043",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOz8i5TyfTqGCmKcIzZj9/sKc2vKZHLksgr9OB9aUpIV\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-044",
+      "role": "swarm",
+      "did": "did:key:z6MkjgZH3GmDjU4o8ndBzcnz12argbjNBrEbJ6XGAHmdi32u",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkjgZH3GmDjU4o8ndBzcnz12argbjNBrEbJ6XGAHmdi32u",
+        "method": "key",
+        "name": "swarm-agent-044",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIOu46ixwe5OICFulWo7ocotnUiFRRPlHEyoo8hW12po9\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-045",
+      "role": "swarm",
+      "did": "did:key:z6MkroXDg8M7bzonkb6bWToXcBMm35HSnNF9seEjhAFHgSMT",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkroXDg8M7bzonkb6bWToXcBMm35HSnNF9seEjhAFHgSMT",
+        "method": "key",
+        "name": "swarm-agent-045",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGCC4PKDS91ilaCu2ET6r4JQsIvxpVYR/XOFYqbdpbZt\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-046",
+      "role": "swarm",
+      "did": "did:key:z6MkgfEUxb1EywULdMettPZi9rZaPYEk6t5J8NvACneSd6vj",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkgfEUxb1EywULdMettPZi9rZaPYEk6t5J8NvACneSd6vj",
+        "method": "key",
+        "name": "swarm-agent-046",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILf6ikOhfWOk62Kx8qlCljO0NOHil1EZ77kUrfIDA7uf\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-047",
+      "role": "swarm",
+      "did": "did:key:z6MkeaWP3731wwFrbacQ5iVnDxigGn8qGKd9nxmFamHnzCak",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkeaWP3731wwFrbacQ5iVnDxigGn8qGKd9nxmFamHnzCak",
+        "method": "key",
+        "name": "swarm-agent-047",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICkDIQKiD8CaFKJa+AmTc41Ct1OUHHaQ3tDYAtTn8IFZ\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-048",
+      "role": "swarm",
+      "did": "did:key:z6MkoKZ56vNch4QFCUpXSo4XshqdQqe9NFgJpyYBYYUiesb8",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkoKZ56vNch4QFCUpXSo4XshqdQqe9NFgJpyYBYYUiesb8",
+        "method": "key",
+        "name": "swarm-agent-048",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEINc9L5KSfSqgwvWvtFbxLAEzxvT7pNM0qkNsiCuqOquG\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-049",
+      "role": "swarm",
+      "did": "did:key:z6MkuegF6z22Da2CvhusYYsbhyvVwvqTVoaG8AbX3pNM8NpQ",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkuegF6z22Da2CvhusYYsbhyvVwvqTVoaG8AbX3pNM8NpQ",
+        "method": "key",
+        "name": "swarm-agent-049",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIGKmidiXeGZntguMzWtyg6O2GyM8xyas5iY93gPhdeoB\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    },
+    {
+      "name": "swarm-agent-050",
+      "role": "swarm",
+      "did": "did:key:z6MkmdRym3BkbicUSQX7zhT6d3H2peDNfECKWAFVcDF6bzFq",
+      "tags": [
+        "delegation"
+      ],
+      "identity_dict": {
+        "did": "did:key:z6MkmdRym3BkbicUSQX7zhT6d3H2peDNfECKWAFVcDF6bzFq",
+        "method": "key",
+        "name": "swarm-agent-050",
+        "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEILwV1XcHNWJWgK6nH+oWz1V2/soLiKBjb0OlbB40pfAy\n-----END PRIVATE KEY-----\n",
+        "domain": null
+      }
+    }
+  ]
+}

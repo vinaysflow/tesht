@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-03-16T20:12:05Z",
+  "agents": 250,
+  "credentials": 255,
+  "chains": 37,
+  "mandates": 100,
+  "scenarios": 170,
+  "scenarios_by_category": {
+    "happy": 154,
+    "failure": 5,
+    "edge": 3,
+    "security": 5,
+    "cross-org": 2,
+    "scale": 1
+  }
+}

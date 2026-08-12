@@ -118,6 +118,10 @@ If this were deployed at enterprise scale, these are the metrics that matter:
 
 ## Quick Start
 
+### Session authorization runtime (handoff → decide → revoke)
+
+See [`docs/guides/SESSION_QUICKSTART.md`](docs/guides/SESSION_QUICKSTART.md) for the Stripe-like Session API.
+
 ### Live Demo (60 seconds)
 
 1. Open [the demo](https://aurviaglobal-pramana-demo.hf.space/demo)

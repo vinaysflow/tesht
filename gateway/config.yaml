@@ -1,3 +1,11 @@
+# Production profile:
+#   Set PRAMANA_ENV=production (or GATEWAY_ENV=production) to flip safe defaults:
+#     - auth.fail_closed          -> true  (status-list errors revoke)
+#     - Postgres audit            -> required (startup fails without DATABASE_URL)
+#     - trust.cold_path_enabled   -> true
+#   Values explicitly set below always win over the profile default.
+#   Runtime env vars still take final precedence: GATEWAY_FAIL_CLOSED,
+#   GATEWAY_REQUIRE_PG_AUDIT.
 gateway:
   host: "0.0.0.0"
   port: 5052
@@ -5,11 +13,17 @@ gateway:
 auth:
   require_delegation: true
   require_delegator_identity: true
+  # Left unset so the environment profile governs it: dev -> fail-open (resilient
+  # demos), production (PRAMANA_ENV=production) -> fail-closed. Uncomment to pin
+  # explicitly, or override at runtime with GATEWAY_FAIL_CLOSED=0/1. When closed,
+  # status-list fetch errors treat the credential as revoked after a bounded retry.
+  # fail_closed: false
 
 trust:
   allow_threshold: 75
   step_up_threshold: 50
   cache_ttl_seconds: 30
+  cold_path_enabled: true
 
 upstream_servers:
   mock_database:

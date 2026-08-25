@@ -10,6 +10,7 @@
 //   useTrustScore — POST /v1/trust/score
 //   useAuditLog   — GET  /v1/audit
 //   useMandate    — POST /v1/commerce/mandates/{intent,cart,verify}
+//   useSession    — Session runtime: create / decide / step_up / revoke
 //
 // Provider:
 //   PramanaProvider  — context root; accepts apiUrl + authToken props
@@ -58,6 +59,11 @@ export {
   type MandateVerifyRequest,
   type MandateVerifyResponse,
 } from "./useMandate.js";
+export {
+  useSession,
+  type SessionRecord,
+  type DecisionRecord,
+} from "./useSession.js";
 
 // Re-export core SDK types that consumers will need
 export type {

@@ -56,32 +56,55 @@ _EMPTY_TRUST = TrustEvaluation(
 )
 
 
-def _make_status_checker() -> Callable[[str, int], bool]:
+def _env_truthy(name: str) -> Optional[bool]:
+    raw = os.environ.get(name)
+    if raw is None or raw.strip() == "":
+        return None
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _make_status_checker(*, fail_closed: bool = False) -> Callable[[str, int], bool]:
     """Return a status_checker that fetches a BitstringStatusList from the
     given URL and checks whether the credential at *index* is revoked.
 
-    Fails-open (returns False / not-revoked) on any network or parse error
-    so that transient bridge unavailability does not block legitimate agents.
-    Production deployments should flip this to fail-closed.
+    Default is fail-open (returns False / not-revoked) on network/parse errors
+    so demos stay resilient. Set ``auth.fail_closed: true`` in config.yaml or
+    ``GATEWAY_FAIL_CLOSED=1`` for production (treat errors as revoked).
     """
     import httpx as _httpx
 
+    env_override = _env_truthy("GATEWAY_FAIL_CLOSED")
+    closed = fail_closed if env_override is None else env_override
+
+    # Bounded retry so a single transient network blip does not falsely revoke
+    # a valid credential (important once fail_closed is the production default).
+    _attempts = 2
+    _backoff_seconds = 0.15
+
     def checker(status_list_url: str, index: int) -> bool:
-        try:
-            r = _httpx.get(status_list_url, timeout=2.0)
-            r.raise_for_status()
-            data = r.json()
-            bits_b64 = data.get("bitstring", "")
-            padded = bits_b64 + "=" * ((4 - len(bits_b64) % 4) % 4)
-            bits = base64.urlsafe_b64decode(padded)
-            byte_i = index // 8
-            bit_i = index % 8
-            if byte_i >= len(bits):
-                return False
-            return bool(bits[byte_i] & (1 << bit_i))
-        except Exception as exc:
-            _logger.debug("status_checker error for %s index %d: %s", status_list_url, index, exc)
-            return False  # fail-open
+        last_exc: Optional[Exception] = None
+        for attempt in range(_attempts):
+            try:
+                r = _httpx.get(status_list_url, timeout=2.0)
+                r.raise_for_status()
+                data = r.json()
+                bits_b64 = data.get("bitstring", "")
+                padded = bits_b64 + "=" * ((4 - len(bits_b64) % 4) % 4)
+                bits = base64.urlsafe_b64decode(padded)
+                byte_i = index // 8
+                bit_i = index % 8
+                if byte_i >= len(bits):
+                    return bool(closed)  # unknown index: fail-closed => revoked
+                return bool(bits[byte_i] & (1 << bit_i))
+            except Exception as exc:
+                last_exc = exc
+                if attempt + 1 < _attempts:
+                    time.sleep(_backoff_seconds)
+        _logger.warning(
+            "status_checker failed after %d attempts for %s index %d (fail_closed=%s): %s",
+            _attempts, status_list_url, index, closed, last_exc,
+        )
+        return bool(closed)  # fail-closed => treat as revoked
 
     return checker
 
@@ -96,12 +119,29 @@ async def lifespan(application: FastAPI):
     config = load_config(config_path)
 
     application.state.config = config
-    application.state.auth = GatewayAuth(config, status_checker=_make_status_checker())
+    fail_closed = config.auth.fail_closed
+    env_fc = _env_truthy("GATEWAY_FAIL_CLOSED")
+    if env_fc is not None:
+        fail_closed = env_fc
+
+    # Production requires durable Postgres audit unless env explicitly overrides.
+    require_pg_env = _env_truthy("GATEWAY_REQUIRE_PG_AUDIT")
+    require_pg = config.production if require_pg_env is None else require_pg_env
+
+    _logger.info(
+        "Gateway profile: production=%s fail_closed=%s require_pg_audit=%s cold_path=%s",
+        config.production, fail_closed, require_pg, config.trust.cold_path_enabled,
+    )
+    application.state.auth = GatewayAuth(
+        config, status_checker=_make_status_checker(fail_closed=fail_closed)
+    )
     application.state.trust = GatewayTrustEvaluator(config.trust)
     application.state.scope = ScopeChecker(config.upstream_servers)
     application.state.proxy = MCPProxy(config.upstream_servers)
 
-    # Use PersistentAuditWriter when DATABASE_URL is set, else in-memory writer.
+    # Prefer PersistentAuditWriter when DATABASE_URL is set (production default).
+    # In production (or GATEWAY_REQUIRE_PG_AUDIT=1) startup fails instead of
+    # silently falling back to the in-memory writer.
     database_url = os.environ.get("DATABASE_URL")
     if database_url:
         try:
@@ -109,9 +149,18 @@ async def lifespan(application: FastAPI):
             application.state.audit = PersistentAuditWriter(database_url)
             _logger.info("Gateway audit: PostgreSQL mode (url=%s)", database_url[:30] + "…")
         except Exception as exc:
+            if require_pg:
+                raise RuntimeError(
+                    f"GATEWAY_REQUIRE_PG_AUDIT=1 but PersistentAuditWriter failed: {exc}"
+                ) from exc
             _logger.warning("PersistentAuditWriter init failed (%s) — falling back to in-memory", exc)
             application.state.audit = GatewayAuditWriter()
     else:
+        if require_pg:
+            raise RuntimeError(
+                "Durable audit required (PRAMANA_ENV=production or "
+                "GATEWAY_REQUIRE_PG_AUDIT=1) but DATABASE_URL is not set"
+            )
         application.state.audit = GatewayAuditWriter()
         _logger.info("Gateway audit: in-memory mode (set DATABASE_URL for PostgreSQL persistence)")
 
@@ -122,6 +171,9 @@ async def lifespan(application: FastAPI):
     yield
 
     await application.state.proxy.close()
+    trust_mod = getattr(application.state, "trust", None)
+    if trust_mod is not None and hasattr(trust_mod, "close"):
+        trust_mod.close()
 
 
 app = FastAPI(
@@ -507,6 +559,8 @@ async def audit_verify(request: Request):
     if hasattr(audit_mod, "verify_chain"):
         result = audit_mod.verify_chain()
         result["in_memory_count"] = len(audit_mod._events)
+        # Surface any PG write failures so silent write loss is observable.
+        result["write_failures"] = getattr(audit_mod, "_write_failures", 0)
         return result
     # In-memory GatewayAuditWriter — no chain, but still useful info
     events = audit_mod.get_recent_events(10000)

@@ -2,6 +2,31 @@
 
 This guide covers deploying Pramana Protocol to [Fly.io](https://fly.io) with a managed PostgreSQL database.
 
+## Production profile (`PRAMANA_ENV=production`)
+
+Pramana ships with demo-safe defaults so the local demo "just works". For any real deployment set a single switch to flip every component to production-safe behavior:
+
+```bash
+# Backend and gateway both honor this. (The backend also accepts ENV=production.)
+PRAMANA_ENV=production
+DATABASE_URL=postgresql://...   # required in production
+```
+
+What `PRAMANA_ENV=production` changes:
+
+| Area | Development default | Production default | Runtime override |
+|------|---------------------|--------------------|------------------|
+| Gateway status-list errors | fail-open (not revoked) | fail-closed (revoked) after bounded retry | `GATEWAY_FAIL_CLOSED=0/1` |
+| Gateway audit | in-memory fallback allowed | Postgres required; startup fails without `DATABASE_URL` | `GATEWAY_REQUIRE_PG_AUDIT=0/1` |
+| Cold-path trust refresh | best-effort | authenticated (`BACKEND_API_KEY`) + retried, bounded worker pool | — |
+| Session decide, no scored credential | allow | step-up (fail-safe) | — |
+
+Related env vars:
+- `BACKEND_URL` / `PRAMANA_BACKEND_URL` + `BACKEND_API_KEY` — let the gateway cold-path call the backend trust API authenticated.
+- Explicit values in `gateway/config.yaml` always win over the profile default; runtime env vars (`GATEWAY_FAIL_CLOSED`, `GATEWAY_REQUIRE_PG_AUDIT`) win over both.
+
+Known limitation (documented, not yet closed): the gateway trust cache is per-process. It is thread-safe within a single process and durably persists cold-path scores to Postgres, but is **not** shared across multiple replicas. For multi-replica HA, a shared cache (e.g. Redis) is planned in Phase 2 — until then run the gateway as a single replica or accept per-replica cache warmup.
+
 ## Prerequisites
 
 - [Fly CLI](https://fly.io/docs/hands-on/install-flyctl/) installed and authenticated (`fly auth login`)

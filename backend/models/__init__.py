@@ -9,5 +9,19 @@ from .requirement_intent import RequirementIntent
 from .trust_event import TrustEvent
 from .webhook import Webhook
 from .mandate_spend import MandateSpend
+from .session import AuthorizationSession
 
-__all__ = ["Base", "Tenant", "Agent", "Key", "Credential", "StatusList", "AuditEvent", "RequirementIntent", "TrustEvent", "Webhook", "MandateSpend"]
+__all__ = [
+    "Base",
+    "Tenant",
+    "Agent",
+    "Key",
+    "Credential",
+    "StatusList",
+    "AuditEvent",
+    "RequirementIntent",
+    "TrustEvent",
+    "Webhook",
+    "MandateSpend",
+    "AuthorizationSession",
+]

@@ -4,8 +4,9 @@ gateway.trust
 Two-tier trust scoring for per-request gateway use.
 
 Hot path:  in-memory cache with dynamic behavioral penalties (<1 ms).
-Cold path: full ``compute_trust_score()`` would run async in background
-           and refresh the cache (not wired for demo — placeholder hook).
+Cold path: full ``compute_trust_score()`` runs async in a background thread
+           and refreshes the cache base_score + persists a TrustEvent when
+           a backend/DB path is available.
 
 Trust score = base_score - accumulated_behavioral_penalties
 
@@ -18,12 +19,24 @@ A fresh VP presentation partially restores trust (penalty -= 20).
 """
 from __future__ import annotations
 
+import logging
+import os
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
 from gateway.auth import GatewayAuthResult
 from gateway.config import TrustConfig
+
+_logger = logging.getLogger(__name__)
+
+# Cold-path tuning: bound the worker pool so a burst of distinct agents cannot
+# spawn unbounded threads; retry the backend call to survive transient blips.
+_COLD_PATH_MAX_WORKERS = 4
+_COLD_PATH_HTTP_ATTEMPTS = 2
+_COLD_PATH_HTTP_BACKOFF_SECONDS = 0.25
 
 
 @dataclass
@@ -83,6 +96,12 @@ class GatewayTrustEvaluator:
     def __init__(self, config: TrustConfig) -> None:
         self.config = config
         self._cache: dict[str, CachedTrustScore] = {}
+        self._cold_path_inflight: set[str] = set()
+        self._lock = threading.Lock()
+        # Shared bounded pool for cold-path refreshes (replaces per-miss threads).
+        self._cold_path_pool = ThreadPoolExecutor(
+            max_workers=_COLD_PATH_MAX_WORKERS, thread_name_prefix="trust-cold"
+        )
 
     # ------------------------------------------------------------------
     # Public API
@@ -94,14 +113,14 @@ class GatewayTrustEvaluator:
         auth_result: GatewayAuthResult,
         tool_name: Optional[str] = None,
         vp_hash: Optional[str] = None,
+        *,
+        vc_jwt: Optional[str] = None,
+        tenant_id: str = "default",
     ) -> TrustEvaluation:
         """Evaluate trust for a single gateway request.
 
-        Cache miss path: compute base score from auth context (<1 ms).
-        Cache hit path: apply behavioral penalties on top of base score,
-                        so the score degrades dynamically during a session.
-        VP hash detection: if the agent presents a fresh VP, reduce penalty
-                           by 20 and reset volatile signal counters.
+        Cache miss path: compute base score from auth context (<1 ms),
+        then optionally schedule a cold-path full score refresh.
         """
         t0 = time.monotonic()
         now = t0
@@ -109,7 +128,6 @@ class GatewayTrustEvaluator:
         cached = self._cache.get(agent_did)
 
         if cached and (now - cached.computed_at) < self.config.cache_ttl_seconds:
-            # ── Detect fresh VP presentation ──────────────────────────
             if vp_hash and cached.last_vp_hash and vp_hash != cached.last_vp_hash:
                 cached.penalty = max(0, cached.penalty - 20)
                 cached.scope_violations = 0
@@ -117,17 +135,15 @@ class GatewayTrustEvaluator:
             if vp_hash:
                 cached.last_vp_hash = vp_hash
 
-            # ── Record timestamp for velocity tracking ────────────────
             cached.request_timestamps.append(now)
 
-            # ── Compute dynamic penalties ─────────────────────────────
             tool_penalty = self._compute_tool_pattern_penalty(cached, tool_name)
             velocity_penalty = self._compute_velocity_penalty(cached)
             scope_penalty = self._compute_scope_probe_penalty(cached)
 
             cached.penalty += tool_penalty + velocity_penalty + scope_penalty
 
-            dynamic_score = cached.score  # reads the @property
+            dynamic_score = cached.score
             decision = self._decide(dynamic_score)
 
             return TrustEvaluation(
@@ -148,7 +164,6 @@ class GatewayTrustEvaluator:
                 latency_ms=(time.monotonic() - t0) * 1000,
             )
 
-        # ── Cache miss: compute base score ────────────────────────────
         base_factors = self._instant_score(auth_result)
         base_score = sum(base_factors.values())
         entry = CachedTrustScore(
@@ -159,7 +174,17 @@ class GatewayTrustEvaluator:
             request_timestamps=[now],
             last_vp_hash=vp_hash,
         )
-        self._cache[agent_did] = entry
+        with self._lock:
+            self._cache[agent_did] = entry
+
+        if self.config.cold_path_enabled:
+            token = vc_jwt or self._extract_bearer_token(auth_result)
+            if token:
+                self.schedule_cold_path_refresh(
+                    agent_did=agent_did,
+                    vc_jwt=token,
+                    tenant_id=tenant_id,
+                )
 
         decision = self._decide(base_score)
         return TrustEvaluation(
@@ -171,17 +196,137 @@ class GatewayTrustEvaluator:
             latency_ms=(time.monotonic() - t0) * 1000,
         )
 
+    def schedule_cold_path_refresh(
+        self,
+        *,
+        agent_did: str,
+        vc_jwt: str,
+        tenant_id: str = "default",
+    ) -> None:
+        """Fire-and-forget full trust score refresh + TrustEvent persistence."""
+        with self._lock:
+            if agent_did in self._cold_path_inflight:
+                return
+            self._cold_path_inflight.add(agent_did)
+
+        def _run() -> None:
+            try:
+                self._cold_path_refresh(agent_did, vc_jwt, tenant_id)
+            finally:
+                with self._lock:
+                    self._cold_path_inflight.discard(agent_did)
+
+        try:
+            self._cold_path_pool.submit(_run)
+        except RuntimeError:
+            # Pool shut down (e.g. during teardown) — drop the inflight marker.
+            with self._lock:
+                self._cold_path_inflight.discard(agent_did)
+
+    def _cold_path_refresh(self, agent_did: str, vc_jwt: str, tenant_id: str) -> None:
+        """Compute full backend trust score and refresh cache base_score."""
+        score_total: Optional[int] = None
+        factors: dict[str, int] = {}
+        explanation = ""
+
+        try:
+            from core.trust_score import compute_trust_score, record_trust_event
+
+            result = compute_trust_score(vc_jwt, tenant_id)
+            score_total = int(result.total)
+            factors = {k: int(v) for k, v in (result.factors or {}).items()}
+            explanation = result.explanation or ""
+            try:
+                record_trust_event(
+                    tenant_id=tenant_id,
+                    agent_did=agent_did,
+                    event_type="trust.cold_path_refresh",
+                    score_delta=0,
+                    metadata={
+                        "total": score_total,
+                        "factors": factors,
+                        "risk_level": result.risk_level,
+                    },
+                )
+            except Exception as exc:
+                _logger.debug("record_trust_event failed: %s", exc)
+        except Exception as import_exc:
+            _logger.debug("In-process cold path unavailable (%s); trying HTTP", import_exc)
+            backend_url = os.environ.get("BACKEND_URL") or os.environ.get("PRAMANA_BACKEND_URL")
+            if backend_url:
+                # Authenticate the service-to-service call when a key is configured.
+                headers: dict[str, str] = {}
+                api_key = os.environ.get("BACKEND_API_KEY") or os.environ.get("PRAMANA_BACKEND_API_KEY")
+                if api_key:
+                    headers["Authorization"] = f"Bearer {api_key}"
+
+                last_exc: Optional[Exception] = None
+                for attempt in range(_COLD_PATH_HTTP_ATTEMPTS):
+                    try:
+                        import httpx
+
+                        r = httpx.post(
+                            backend_url.rstrip("/") + "/v1/trust/score",
+                            json={"jwt": vc_jwt},
+                            headers=headers,
+                            timeout=5.0,
+                        )
+                        if r.status_code < 400:
+                            data = r.json()
+                            score_total = int(data.get("total", data.get("score", 0)))
+                            raw_factors = data.get("factors") or {}
+                            factors = {k: int(v) for k, v in raw_factors.items()}
+                            explanation = str(data.get("explanation", ""))
+                            break
+                        # 4xx/5xx: retry only on server-side errors
+                        if r.status_code < 500:
+                            break
+                        last_exc = RuntimeError(f"HTTP {r.status_code}")
+                    except Exception as http_exc:
+                        last_exc = http_exc
+                    if attempt + 1 < _COLD_PATH_HTTP_ATTEMPTS:
+                        time.sleep(_COLD_PATH_HTTP_BACKOFF_SECONDS)
+                if score_total is None and last_exc is not None:
+                    _logger.debug("HTTP cold path failed after retries: %s", last_exc)
+
+        if score_total is None:
+            return
+
+        with self._lock:
+            cached = self._cache.get(agent_did)
+            if cached is None:
+                return
+            cached.base_score = max(0, min(100, score_total))
+            if factors:
+                cached.base_factors = {**cached.base_factors, **factors, "cold_path": True}
+            cached.computed_at = time.monotonic()
+        _logger.debug(
+            "Cold-path refresh agent=%s score=%s (%s)",
+            agent_did[:40],
+            score_total,
+            explanation[:80],
+        )
+
+    @staticmethod
+    def _extract_bearer_token(auth_result: GatewayAuthResult) -> Optional[str]:
+        raw = getattr(auth_result, "raw_result", None)
+        if raw is None:
+            return None
+        for attr in ("vc_jwts", "credentials", "vp_jwt", "token"):
+            val = getattr(raw, attr, None)
+            if isinstance(val, list) and val and isinstance(val[0], str):
+                return val[0]
+            if isinstance(val, str) and val:
+                return val
+        return None
+
     def update_from_request(
         self,
         agent_did: str,
         tool_name: Optional[str],
         success: bool,
     ) -> None:
-        """Update behavioral signals from a completed gateway request.
-
-        Called on ALL request outcomes (success and failure), not just
-        successful proxied requests.
-        """
+        """Update behavioral signals from a completed gateway request."""
         cached = self._cache.get(agent_did)
         if cached is None:
             return
@@ -197,14 +342,8 @@ class GatewayTrustEvaluator:
         else:
             cached.failure_count += 1
 
-    def record_scope_violation(
-        self, agent_did: str, tool_name: str
-    ) -> None:
-        """Record a scope violation — called when the scope check blocks a request.
-
-        This is separate from ``update_from_request()`` so that scope probing
-        signals accumulate independently of general failure tracking.
-        """
+    def record_scope_violation(self, agent_did: str, tool_name: str) -> None:
+        """Record a scope violation — called when the scope check blocks a request."""
         cached = self._cache.get(agent_did)
         if cached is None:
             return
@@ -213,26 +352,21 @@ class GatewayTrustEvaluator:
 
     def invalidate(self, agent_did: str) -> None:
         """Evict the cached score for an agent."""
-        self._cache.pop(agent_did, None)
+        with self._lock:
+            self._cache.pop(agent_did, None)
 
-    # ------------------------------------------------------------------
-    # Behavioral signal computation
-    # ------------------------------------------------------------------
+    def close(self) -> None:
+        """Shut down the cold-path worker pool (called on gateway shutdown)."""
+        self._cold_path_pool.shutdown(wait=False)
 
     def _compute_tool_pattern_penalty(
         self, cached: CachedTrustScore, tool_name: Optional[str]
     ) -> int:
-        """Penalty for accessing a tool the agent has never used before.
-
-        Only activates after the agent has established a history of at least
-        3 requests, so the first few requests are not penalised for exploration.
-        """
         if not tool_name or cached.request_count <= 3:
             return 0
         if tool_name in cached.tools_accessed:
             return 0
 
-        # This is a novel tool — record it and apply a graduated penalty
         cached.novel_tools.append(tool_name)
         n = len(cached.novel_tools)
         if n == 1:
@@ -243,14 +377,8 @@ class GatewayTrustEvaluator:
             return 15
 
     def _compute_velocity_penalty(self, cached: CachedTrustScore) -> int:
-        """Penalty for a sudden request-rate spike.
-
-        Measures requests per minute using a 60-second sliding window.
-        No penalty during the first 10 requests (baseline establishment).
-        """
         now = time.monotonic()
         window = 60.0
-        # Prune timestamps outside the window
         recent = [t for t in cached.request_timestamps if now - t < window]
         cached.request_timestamps = recent
 
@@ -267,13 +395,6 @@ class GatewayTrustEvaluator:
         return 0
 
     def _compute_scope_probe_penalty(self, cached: CachedTrustScore) -> int:
-        """Penalty based on accumulated scope violation count.
-
-        Returns the *marginal* penalty for the current violation count, so
-        the caller should accumulate it into ``cached.penalty``.
-        Note: this is re-evaluated each request from the violation count, so
-        it only fires non-zero when violations are freshly detected.
-        """
         v = cached.scope_violations
         if v == 0:
             return 0
@@ -284,19 +405,7 @@ class GatewayTrustEvaluator:
         else:
             return 25
 
-    # ------------------------------------------------------------------
-    # Internal helpers
-    # ------------------------------------------------------------------
-
     def _instant_score(self, auth_result: GatewayAuthResult) -> dict[str, int]:
-        """Compute a lightweight base trust score from auth context alone.
-
-        Four factors, each 0-25, matching the backend's scoring model:
-        - credential_validity: 25 if auth passed, 0 otherwise
-        - delegation_depth:    25 minus 5 per depth level (min 0)
-        - issuer_reputation:   20 if blended (human delegator), 10 neutral
-        - agent_history:       15 (neutral — no DB history on this path)
-        """
         if not auth_result.authenticated:
             return {
                 "credential_validity": 0,

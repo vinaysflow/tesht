@@ -17,6 +17,10 @@ VALID_EVENT_TYPES = [
     "credential.revoked",
     "trust.score_changed",
     "agent.created",
+    "session.created",
+    "session.decision",
+    "session.step_up",
+    "session.revoked",
 ]
 
 

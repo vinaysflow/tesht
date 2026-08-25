@@ -24,6 +24,8 @@ from api.routes.webhooks import router as webhooks_router
 from api.routes.spiffe_bridge import router as spiffe_bridge_router
 from api.routes.compliance import router as compliance_router
 from api.routes.marketplace import router as marketplace_router
+from api.routes.sessions import router as sessions_router
+from api.routes.storefront import router as storefront_router
 from api.routes.static_ui import mount_ui
 from core.settings import settings
 from core.startup import init_db
@@ -149,6 +151,8 @@ app.include_router(webhooks_router)
 app.include_router(spiffe_bridge_router)
 app.include_router(compliance_router)
 app.include_router(marketplace_router)
+app.include_router(sessions_router)
+app.include_router(storefront_router)
 
 
 @app.on_event("startup")

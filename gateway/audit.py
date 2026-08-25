@@ -9,6 +9,7 @@ via an asyncio queue or a dedicated writer task.
 """
 from __future__ import annotations
 
+from collections import deque
 from datetime import datetime, timezone
 from typing import Any, Optional
 
@@ -17,12 +18,17 @@ from gateway.proxy import ProxyResult
 from gateway.scope import ScopeCheckResult
 from gateway.trust import TrustEvaluation
 
+# Cap the in-memory buffer so a long-running gateway does not leak memory.
+# This buffer only backs the /gateway/events demo window; durable history
+# lives in PostgreSQL via PersistentAuditWriter.
+MAX_INMEM_EVENTS = 10_000
+
 
 class GatewayAuditWriter:
-    """In-memory audit event buffer."""
+    """In-memory audit event buffer (bounded ring buffer)."""
 
-    def __init__(self) -> None:
-        self._events: list[dict[str, Any]] = []
+    def __init__(self, max_events: int = MAX_INMEM_EVENTS) -> None:
+        self._events: deque[dict[str, Any]] = deque(maxlen=max_events)
 
     def log_request(
         self,
@@ -73,7 +79,7 @@ class GatewayAuditWriter:
 
     def get_recent_events(self, n: int = 50) -> list[dict[str, Any]]:
         """Return the *n* most recent events."""
-        return self._events[-n:]
+        return list(self._events)[-n:]
 
     def get_events_for_agent(self, agent_did: str) -> list[dict[str, Any]]:
         """Return all events for a given agent DID."""

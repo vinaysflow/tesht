@@ -28,6 +28,7 @@ export default function Page() {
       </p>
 
       <ul>
+        <li><a href="/agentic-commerce"><b>Agentic Commerce</b> (authorize an agent, shop with a trust-gated budget, revoke)</a></li>
         <li><a href="/demo-dashboard"><b>Interactive Demo Dashboard</b> (happy / unhappy / edge path scenarios)</a></li>
         <li><a href="/demo">Guided Demo (drift workflow)</a></li>
         {!isHfSpace && <li><a href="/login">Login (Keycloak, local dev)</a></li>}

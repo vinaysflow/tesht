@@ -958,6 +958,113 @@ class EcosystemGenerator:
 
         print(f"\n[generator] Stats: {json.dumps(stats, indent=2)}")
 
+    def expand_labeled_events(self, target: int = 100_000) -> list[dict[str, Any]]:
+        """Multiply base scenarios into ~target labeled decision events.
+
+        Each event carries {domain, category, expected_decision, expected_reason}
+        for machine-checkable coverage (Phase 1 synthetic v1).
+        """
+        if not self.scenarios:
+            self.generate_all()
+
+        domains = [
+            "identity_credentials",
+            "delegation_chains",
+            "scope_enforcement",
+            "mandates_commerce",
+            "verifiable_presentations",
+            "mcp_gateway",
+            "trust_dynamics",
+            "revocation",
+            "cross_org",
+            "scale_performance",
+            "pack_core",
+        ]
+        category_to_decision = {
+            "happy": "allow",
+            "failure": "block",
+            "edge": "step_up",
+            "security": "block",
+        }
+        decisions = ["allow", "step_up", "block"]
+        # Approximate production mix from load_generator
+        mix_weights = [0.70, 0.10, 0.20]
+
+        events: list[dict[str, Any]] = []
+        base = list(self.scenarios)
+        i = 0
+        while len(events) < target:
+            src = base[i % len(base)] if base else {}
+            i += 1
+            cat = src.get("category", self.rng.choice(["happy", "failure", "edge", "security"]))
+            domain = domains[i % len(domains)]
+            # Prefer scenario-implied decision, else weighted mix
+            expected = category_to_decision.get(cat)
+            if expected is None:
+                expected = self.rng.choices(decisions, weights=mix_weights, k=1)[0]
+            # Inject adversarial / temporal mutations for depth
+            mutation = self.rng.choice([
+                "none", "near_expiry", "expired", "replay", "scope_escalation",
+                "currency_mismatch", "velocity_burst", "shadow_agent", "revoked",
+            ])
+            if mutation == "revoked":
+                expected = "block"
+                cat = "security"
+            elif mutation == "scope_escalation":
+                expected = "block"
+                cat = "security"
+            elif mutation == "velocity_burst" and expected == "allow":
+                expected = self.rng.choice(["allow", "step_up"])
+
+            events.append({
+                "id": f"evt-{len(events)+1:07d}",
+                "domain": domain,
+                "category": cat,
+                "mutation": mutation,
+                "expected_decision": expected,
+                "expected_reason": src.get("expected_reason") or src.get("description") or mutation,
+                "source_scenario": src.get("id"),
+                "org_type": self.rng.choice(
+                    ["enterprise", "financial", "healthcare", "government", "startup"]
+                ),
+            })
+        return events
+
+    def write_coverage_matrix(
+        self,
+        events: list[dict[str, Any]],
+        path: Path,
+    ) -> dict[str, Any]:
+        """Write 11-domain × 4-category coverage matrix + decision distribution."""
+        domains = sorted({e["domain"] for e in events})
+        categories = ["happy", "failure", "edge", "security"]
+        matrix: dict[str, dict[str, int]] = {d: {c: 0 for c in categories} for d in domains}
+        by_decision: dict[str, int] = {}
+        for e in events:
+            d = e.get("domain", "unknown")
+            c = e.get("category", "unknown")
+            if d not in matrix:
+                matrix[d] = {cat: 0 for cat in categories}
+            if c not in matrix[d]:
+                matrix[d][c] = 0
+            matrix[d][c] += 1
+            dec = e.get("expected_decision", "unknown")
+            by_decision[dec] = by_decision.get(dec, 0) + 1
+
+        report = {
+            "generated_at": _now_iso(),
+            "total_events": len(events),
+            "decision_distribution": by_decision,
+            "coverage_matrix": matrix,
+            "domains": domains,
+            "categories": categories,
+        }
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w") as f:
+            json.dump(report, f, indent=2)
+        print(f"[generator] Coverage matrix → {path} ({len(events)} events)")
+        return report
+
 
 # ── CLI ────────────────────────────────────────────────────────────────────────
 
@@ -965,11 +1072,34 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate synthetic Pramana Protocol data")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducibility")
     parser.add_argument("--output", type=str, default=str(DATA_DIR), help="Output directory")
+    parser.add_argument(
+        "--target-events",
+        type=int,
+        default=0,
+        help="If >0, expand labeled decision events to this count (e.g. 100000)",
+    )
+    parser.add_argument(
+        "--coverage-report",
+        type=str,
+        default="",
+        help="Optional path for coverage matrix JSON (default: <output>/coverage_matrix.json)",
+    )
     args = parser.parse_args()
 
-    gen = EcosystemGenerator(seed=args.seed, output_dir=Path(args.output))
+    out = Path(args.output)
+    gen = EcosystemGenerator(seed=args.seed, output_dir=out)
     gen.generate_all()
     gen.save()
+
+    if args.target_events and args.target_events > 0:
+        events = gen.expand_labeled_events(target=args.target_events)
+        events_path = out / "labeled_events.jsonl"
+        with open(events_path, "w") as f:
+            for ev in events:
+                f.write(json.dumps(ev) + "\n")
+        print(f"[generator] Wrote {events_path} ({len(events)} events)")
+        cov_path = Path(args.coverage_report) if args.coverage_report else out / "coverage_matrix.json"
+        gen.write_coverage_matrix(events, cov_path)
 
 
 if __name__ == "__main__":

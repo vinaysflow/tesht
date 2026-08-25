@@ -24,12 +24,20 @@ import hashlib
 import json
 import logging
 import threading
+import time
 import uuid
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
+
+# Bounded in-memory buffer (mirrors gateway.audit); durable history is in PG.
+MAX_INMEM_EVENTS = 10_000
+# Bounded retry for transient PG write failures.
+_PG_WRITE_ATTEMPTS = 3
+_PG_WRITE_BACKOFF_SECONDS = 0.2
 
 _GENESIS_HASH = "0" * 64
 
@@ -86,7 +94,9 @@ class PersistentAuditWriter:
 
         self._database_url = database_url
         self._tenant_id = tenant_id
-        self._events: list[dict[str, Any]] = []
+        self._events: deque[dict[str, Any]] = deque(maxlen=MAX_INMEM_EVENTS)
+        # Observability: count of events that failed to persist to PG after retries.
+        self._write_failures = 0
         # Single-worker executor + lock guarantees serial writes so the hash
         # chain is never forked by concurrent requests.
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="audit-pg")
@@ -192,7 +202,7 @@ class PersistentAuditWriter:
             logger.warning("PersistentAuditWriter: failed to schedule PG write: %s", exc)
 
     def get_recent_events(self, n: int = 50) -> list[dict[str, Any]]:
-        return self._events[-n:]
+        return list(self._events)[-n:]
 
     def get_events_for_agent(self, agent_did: str) -> list[dict[str, Any]]:
         return [e for e in self._events if e.get("agent_did") == agent_did]
@@ -344,7 +354,9 @@ class PersistentAuditWriter:
             # Build payload — all gateway fields go into payload_json
             payload = {k: v for k, v in event.items() if v is not None}
 
-            try:
+            last_exc: Optional[Exception] = None
+            for attempt in range(_PG_WRITE_ATTEMPTS):
+              try:
                 with self._Session() as db:
                     # Fetch the last event with a non-null hash for this tenant.
                     # This keeps the chain consistent even if pre-existing backend events
@@ -401,9 +413,20 @@ class PersistentAuditWriter:
                         prev_hash,
                     )
                     db.commit()
+                return  # write succeeded
+              except Exception as exc:
+                last_exc = exc
+                if attempt + 1 < _PG_WRITE_ATTEMPTS:
+                    time.sleep(_PG_WRITE_BACKOFF_SECONDS)
 
-            except Exception as exc:
-                logger.error("PersistentAuditWriter: PG write failed: %s", exc)
+            # All attempts failed — record for observability (surfaced via
+            # /gateway/audit/verify) rather than losing the write silently.
+            self._write_failures += 1
+            logger.error(
+                "PersistentAuditWriter: PG write failed after %d attempts "
+                "(total_failures=%d): %s",
+                _PG_WRITE_ATTEMPTS, self._write_failures, last_exc,
+            )
 
     def close(self) -> None:
         self._executor.shutdown(wait=False)

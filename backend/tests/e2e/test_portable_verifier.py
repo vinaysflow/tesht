@@ -41,8 +41,8 @@ def test_portable_verifier_no_db(tmp_path):
 
     env = os.environ.copy()
     env['DATABASE_URL'] = f"sqlite:///{db_file}"
-    env['AUTH_JWT_SECRET'] = 'test-secret'
-    env['AUTH_JWT_ISSUER'] = 'tesht-test'
+    env['AUTH_JWT_SECRET'] = os.environ.get('AUTH_JWT_SECRET', 'test-secret')
+    env['AUTH_JWT_ISSUER'] = os.environ.get('AUTH_JWT_ISSUER', 'tesht-test')
     env['TESHT_DOMAIN'] = f"localhost%3A{port}"
     env['TESHT_SCHEME'] = 'http'
 

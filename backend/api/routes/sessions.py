@@ -10,7 +10,7 @@ import hashlib
 import json
 import os
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 
 import jwt as pyjwt
@@ -387,7 +387,7 @@ def create_session(
             except Exception:
                 pass
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         session = AuthorizationSession(
             id=uuid.uuid4(),
             tenant_id=tenant_id,
@@ -471,7 +471,7 @@ def decide_action(
 
     with db_session() as db:
         session = _get_session(db, session_id, tenant_id, for_update=True)
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
 
         if session.status == "revoked":
             decision = DecisionResponse(
@@ -728,7 +728,7 @@ def complete_step_up(
         score = session.trust_score if session.trust_score is not None else 50
         session.trust_score = min(100, score + 20)
         session.status = "active"
-        session.updated_at = datetime.utcnow()
+        session.updated_at = datetime.now(timezone.utc)
         session.proof_bundle = {
             **(session.proof_bundle or {}),
             "step_up_completed_at": session.updated_at.isoformat() + "Z",
@@ -797,7 +797,7 @@ def revoke_session(
                 cascaded = []
 
         session.status = "revoked"
-        session.updated_at = datetime.utcnow()
+        session.updated_at = datetime.now(timezone.utc)
         session.last_decision = {
             "decision": "block",
             "error_code": ERR_REVOKED,

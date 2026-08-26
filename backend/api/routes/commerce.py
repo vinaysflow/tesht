@@ -7,7 +7,6 @@ from typing import Any, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
-from sqlalchemy import func
 from sqlalchemy.exc import IntegrityError
 
 from api.middleware.authz import require_scopes
@@ -481,17 +480,19 @@ def verify_mandate_endpoint(
                             reason="Cart mandate already fulfilled (single-use JTI)",
                         )
 
-                    # Cumulative budget enforcement — lock intent spend rows before summing
+                    # Cumulative budget enforcement — lock intent spend rows before summing.
+                    # Postgres rejects FOR UPDATE on aggregate SELECT, so lock rows then sum.
                     if intent_jti and intent_max > 0:
-                        cumulative = (
-                            db.query(func.sum(MandateSpend.amount))
+                        spend_rows = (
+                            db.query(MandateSpend)
                             .filter(
                                 MandateSpend.intent_jti == intent_jti,
                                 MandateSpend.tenant_id == tenant_id,
                             )
                             .with_for_update()
-                            .scalar()
-                        ) or Decimal(0)
+                            .all()
+                        )
+                        cumulative = sum((row.amount for row in spend_rows), Decimal(0))
                         if Decimal(cart_value) + cumulative > Decimal(intent_max):
                             return MandateVerificationResponse(
                                 verified=False,

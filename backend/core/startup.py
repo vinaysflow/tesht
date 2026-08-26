@@ -71,7 +71,7 @@ def init_db() -> None:
     if not ok:
         if _strict_migrations():
             raise RuntimeError("Database migrations failed (strict mode)")
-        # In Spaces/demo sqlite, a partial Alembic run can leave a broken schema
+        # In demo sqlite, a partial Alembic run can leave a broken schema
         # (create_all won't add missing columns). Prefer wiping the sqlite file and recreating.
         db_url = str(settings.database_url)
         if settings.demo_mode and db_url.startswith("sqlite:////"):

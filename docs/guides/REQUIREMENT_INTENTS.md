@@ -2,10 +2,12 @@
 
 This API is inspired by Stripe’s “Intent” pattern: create a single object representing a trust requirement request, then confirm it to produce a **decision** and an optional **portable proof bundle** (VC JWTs).
 
-### 0) Get a demo token (HF Space)
+### 0) Get a demo token
+
+After `make dev` (API at `http://127.0.0.1:5051`):
 
 ```bash
-BASE=https://aurviaglobal-tesht-demo.hf.space
+BASE=http://127.0.0.1:5051
 TOKEN=$(curl -sSf -X POST $BASE/v1/demo/session -H 'content-type: application/json' -d '{}' | python -c 'import sys, json; print(json.load(sys.stdin)["token"])')
 ```
 

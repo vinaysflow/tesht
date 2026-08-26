@@ -5,13 +5,9 @@ import { getAccessToken } from "../lib/api";
 
 export default function Page() {
   const [hasToken, setHasToken] = useState(false);
-  const [isHfSpace, setIsHfSpace] = useState(false);
 
   useEffect(() => {
     setHasToken(!!getAccessToken());
-    if (typeof window !== "undefined") {
-      setIsHfSpace(window.location.host.endsWith(".hf.space"));
-    }
   }, []);
 
   return (
@@ -34,7 +30,7 @@ export default function Page() {
         <li><a href="/agentic-commerce"><b>Agentic Commerce</b> (authorize an agent, shop with a trust-gated budget, revoke)</a></li>
         <li><a href="/demo-dashboard"><b>Interactive Demo Dashboard</b> (happy / unhappy / edge path scenarios)</a></li>
         <li><a href="/demo">Guided Demo (drift workflow)</a></li>
-        {!isHfSpace && <li><a href="/login">Login (Keycloak, local dev)</a></li>}
+        <li><a href="/login">Login (Keycloak, local dev)</a></li>
         <li><a href="/issue">Issue</a></li>
         <li><a href="/verify">Verify (public)</a></li>
         <li><a href="/revoke">Revoke</a></li>

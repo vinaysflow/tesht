@@ -104,7 +104,7 @@ def _add_ui_trailing_slash_redirects(app: FastAPI) -> None:
         app.add_api_route(path, _redir, methods=["GET", "HEAD"], include_in_schema=False)
 
 def _add_demo_mode_ui_overrides(app: FastAPI) -> None:
-    # In HF demo mode there is no Keycloak. Protect users from the /login page even if
+    # In demo mode there is no Keycloak. Protect users from the /login page even if
     # an older cached UI build still links to it.
     if not settings.demo_mode:
         return

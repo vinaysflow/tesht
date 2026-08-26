@@ -1,23 +1,20 @@
 ### Developer quickstart + feedback (Tesht Demo)
 
-Base URL:
-- https://aurviaglobal-tesht-demo.hf.space
+After `make dev`:
 
-Start here (UI):
-- https://aurviaglobal-tesht-demo.hf.space/demo
+- API: http://127.0.0.1:5051
+- UI: http://127.0.0.1:6080/demo
 
 Docs:
 - One-API (Stripe-like): `docs/guides/REQUIREMENT_INTENTS.md`
-- Reviewer runbook: `docs/guides/HF_REVIEWER_RUNBOOK.md`
+- Demo walkthrough: `docs/guides/DEMO.md`
 
 ---
 
 ## 1) Get a demo token (no login)
 
-IMPORTANT: In Hugging Face discussions, code fences must start at the beginning of the line (no indentation).
-
 ```bash
-BASE=https://aurviaglobal-tesht-demo.hf.space
+BASE=http://127.0.0.1:5051
 TOKEN=$(curl -sSf -X POST "$BASE/v1/demo/session" \
   -H "content-type: application/json" \
   -d '{}' | python -c 'import sys, json; print(json.load(sys.stdin)["token"])')
@@ -78,19 +75,18 @@ curl -sSf "$BASE/v1/requirement_intents/$INTENT_ID" \
 
 ## 3) Guided demo (UI)
 
-- Open: https://aurviaglobal-tesht-demo.hf.space/demo
+- Open: http://127.0.0.1:6080/demo
 - Click **Run Drift Demo**
 - Expected: `verify_before.verified=true` and `verify_after.reason=revoked`
 
 ---
 
-## Feedback (reply in the Community thread)
+## Feedback
+
+Open a GitHub issue: https://github.com/vinaysflow/tesht/issues
 
 Please include:
 - What you expected vs what happened
 - Your browser + OS
 - Timestamp (UTC)
 - Any `request_id` shown in the error message
-
-
-

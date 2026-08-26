@@ -1,5 +1,5 @@
 export function apiBase(): string {
-  // In single-origin deployments (Spaces), browser should call the same origin.
+  // In single-origin deployments the browser should call the same origin.
   // If NEXT_PUBLIC_API_URL is set (local multi-container), use it.
   return process.env.NEXT_PUBLIC_API_URL || "";
 }

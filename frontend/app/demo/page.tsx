@@ -147,11 +147,11 @@ export default function DemoPage() {
       <p style={{ marginTop: 8 }}>
         <b>Give feedback:</b>{" "}
         <a
-          href="https://huggingface.co/spaces/aurviaglobal/tesht-demo/discussions"
+          href="https://github.com/vinaysflow/tesht/issues"
           target="_blank"
           rel="noreferrer"
         >
-          Space Community
+          GitHub issues
         </a>{" "}
         (please include any <code>request_id</code> shown in errors)
       </p>

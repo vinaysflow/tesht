@@ -16,11 +16,6 @@ def _default_database_url() -> str:
     if os.getenv("DATABASE_URL"):
         return os.getenv("DATABASE_URL")  # type: ignore
 
-    # Hugging Face Spaces: prefer persistent SQLite
-    if os.getenv("SPACE_ID") or os.getenv("HF_SPACE") or os.getenv("HF_HOME"):
-        # Default to /tmp to work on all Spaces tiers; users can override to /data via DATABASE_URL.
-        return "sqlite:////tmp/tesht.db"
-
     # Local dev default (docker-compose)
     return "postgresql://tesht:tesht_dev_password@localhost:5432/tesht"
 
@@ -60,8 +55,8 @@ class Settings(BaseSettings):
     auth_jwt_issuer: str = Field(default="tesht", validation_alias="AUTH_JWT_ISSUER")
     tesht_dev_mode: bool = Field(default=False, validation_alias="TESHT_DEV_MODE")
 
-    # Spaces demo mode (per-session demo tokens -> isolated tenants)
-    demo_mode: bool = Field(default=bool(os.getenv("SPACE_ID") or os.getenv("HF_SPACE") or os.getenv("HF_HOME")), validation_alias="DEMO_MODE")
+    # Demo mode (per-session demo tokens -> isolated tenants). Set DEMO_MODE=true explicitly.
+    demo_mode: bool = Field(default=False, validation_alias="DEMO_MODE")
     demo_jwt_secret: str = Field(default="demo-secret-change", validation_alias="DEMO_JWT_SECRET")
     demo_token_ttl_seconds: int = Field(default=3600, validation_alias="DEMO_TOKEN_TTL_SECONDS")
     demo_auto_seed: bool = Field(default=bool(os.getenv("DEMO_AUTO_SEED", "").lower() in ("1", "true", "yes")), validation_alias="DEMO_AUTO_SEED")

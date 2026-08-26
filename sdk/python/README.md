@@ -103,4 +103,3 @@ assert result.valid
 
 - [GitHub](https://github.com/vinaysflow/tesht)
 - [Documentation](https://github.com/vinaysflow/tesht)
-- [Live demo](https://aurviaglobal-tesht-demo.hf.space/demo)

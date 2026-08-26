@@ -10,7 +10,7 @@ from core.settings import settings
 
 
 def verify_access_token(token: str) -> dict[str, Any]:
-    # Spaces demo mode: accept demo token regardless of AUTH_MODE
+    # Demo mode: accept demo token regardless of AUTH_MODE
     if settings.demo_mode:
         try:
             return verify_demo_token(token)

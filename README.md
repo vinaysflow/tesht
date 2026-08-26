@@ -4,11 +4,6 @@
 
 **Portable identity and scoped authorization for AI agents.**
 
-Tesht (from Irish *teist*, testimony) lets an agent carry cryptographic proof of who authorized it, what it may do, and whether that grant is still live — across organizational boundaries. W3C DIDs + verifiable credentials, monotonically narrowing delegation, and instant revocation.
-
-[![Python 81%](https://img.shields.io/badge/python-81%25-blue)](https://github.com/vinaysflow/tesht)
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://aurviaglobal-tesht-demo.hf.space/demo)
-
 -----
 
 ## The Problem
@@ -112,8 +107,6 @@ If this were deployed at enterprise scale, these are the metrics that matter:
 
 **Codebase:** ~10,700 lines Python backend · 33+ passing tests · 29 commits · CI via GitHub Actions
 
-**Live demo:** [aurviaglobal-tesht-demo.hf.space/demo](https://aurviaglobal-tesht-demo.hf.space/demo)
-
 -----
 
 ## Quick Start
@@ -122,9 +115,11 @@ If this were deployed at enterprise scale, these are the metrics that matter:
 
 See [`docs/guides/SESSION_QUICKSTART.md`](docs/guides/SESSION_QUICKSTART.md) for the Stripe-like Session API.
 
-### Live Demo (60 seconds)
+### Guided Demo (60 seconds)
 
-1. Open [the demo](https://aurviaglobal-tesht-demo.hf.space/demo)
+After `make dev`:
+
+1. Open [http://127.0.0.1:6080/demo](http://127.0.0.1:6080/demo)
 1. Click **Run Drift Demo**
 1. Confirm `verify_before.verified=true` and `verify_after.reason=revoked`
 
@@ -181,7 +176,7 @@ tesht/
 ├── scripts/          # Dev tooling, key generation
 ├── infra/keycloak/   # OIDC provider config
 ├── docs/guides/      # API guides, RequirementIntent flow
-├── Dockerfile        # HF Spaces / production container
+├── Dockerfile        # Production / single-container image
 └── docker-compose.yml # Local dev stack
 ```
 

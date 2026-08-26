@@ -8,7 +8,6 @@ from fastapi.staticfiles import StaticFiles
 
 def ui_dist_dir() -> Path:
     # Expected location where a build pipeline copies the frontend export output.
-    # For Spaces Docker, we will copy Next export output here.
     return Path(
         os.getenv(
             "TESHT_UI_DIST",

@@ -28,11 +28,6 @@ export default function LoginPage() {
     return `${window.location.origin}/auth/callback`;
   }, []);
 
-  const isHfSpace = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return window.location.host.endsWith(".hf.space");
-  }, []);
-
   async function login() {
     const verifier = randomVerifier();
     sessionStorage.setItem("pkce_verifier", verifier);
@@ -53,23 +48,8 @@ export default function LoginPage() {
   return (
     <main style={{ maxWidth: 820 }}>
       <h1>Login</h1>
-      {isHfSpace ? (
-        <>
-          <p>This Hugging Face Space runs in demo mode. Keycloak login is disabled here.</p>
-          <p>
-            Use the <a href="/demo">Guided Demo</a> (auto session) or the demo token API:
-          </p>
-          <pre style={{ padding: 12, background: "#f6f6f6", overflowX: "auto", whiteSpace: "pre-wrap" }}>
-{`curl -sSf -X POST ${typeof window !== "undefined" ? window.location.origin : ""}/v1/demo/session \\
-  -H "content-type: application/json" -d '{}'`}
-          </pre>
-        </>
-      ) : (
-        <>
-          <p>OIDC login via Keycloak (PKCE).</p>
-          <button onClick={login}>Login with Keycloak</button>
-        </>
-      )}
+      <p>OIDC login via Keycloak (PKCE).</p>
+      <button onClick={login}>Login with Keycloak</button>
       <p style={{ marginTop: 16 }}>
         <a href="/">Back</a>
       </p>

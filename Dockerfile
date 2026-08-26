@@ -27,7 +27,6 @@ COPY backend ./backend
 COPY --from=frontend /app/out ./backend/static-ui
 
 ENV PYTHONPATH=/app/backend
-ENV HF_SPACE=1
 ENV DEMO_MODE=1
 ENV AUTH_MODE=oidc
 ENV TESHT_SCHEME=http
@@ -35,7 +34,6 @@ ENV DATABASE_URL=sqlite:////tmp/tesht.db
 ENV ENV=dev
 ENV MIGRATIONS_STRICT=0
 
-# Hugging Face Spaces provides $PORT
-EXPOSE 7860
+EXPOSE 8000
 
-CMD ["sh", "-lc", "mkdir -p /data && cd backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-7860}"]
+CMD ["sh", "-lc", "mkdir -p /data && cd backend && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]

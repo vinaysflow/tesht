@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { usePramana, useRequireApiUrl } from "./context.js";
+import { useTesht, useRequireApiUrl } from "./context.js";
 import { apiPost } from "./api.js";
 
 // ---------------------------------------------------------------------------
@@ -22,7 +22,7 @@ export interface UseTrustScoreReturn {
   /**
    * Compute a composite trust score (0–100) for a VC-JWT.
    * Calls POST /v1/trust/score on the backend.
-   * Requires apiUrl set on <PramanaProvider>.
+   * Requires apiUrl set on <TeshtProvider>.
    */
   score: (jwt: string) => Promise<TrustScoreResult>;
   loading: boolean;
@@ -31,7 +31,7 @@ export interface UseTrustScoreReturn {
 
 export function useTrustScore(): UseTrustScoreReturn {
   const apiUrl = useRequireApiUrl();
-  const { authToken } = usePramana();
+  const { authToken } = useTesht();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

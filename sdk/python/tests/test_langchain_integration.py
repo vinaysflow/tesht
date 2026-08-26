@@ -1,7 +1,7 @@
 """
-Tests for pramana.integrations.langchain — LangChain integration.
+Tests for tesht.integrations.langchain — LangChain integration.
 
-PramanaVerifierTool requires langchain-core.  If it is not installed in the
+TeshtVerifierTool requires langchain-core.  If it is not installed in the
 current environment, tests 3 and 4 skip instantiation via BaseTool and
 exercise _run directly on a subclass that bypasses the guard — but the
 guard itself is tested in test 5 via monkeypatching.
@@ -10,13 +10,13 @@ from __future__ import annotations
 
 import pytest
 
-from pramana.credentials import issue_vc
-from pramana.identity import AgentIdentity
-from pramana.integrations.langchain import (
+from tesht.credentials import issue_vc
+from tesht.identity import AgentIdentity
+from tesht.integrations.langchain import (
     HAS_LANGCHAIN,
     LangChainNotInstalled,
-    PramanaAgentContext,
-    PramanaVerifierTool,
+    TeshtAgentContext,
+    TeshtVerifierTool,
 )
 
 
@@ -55,20 +55,20 @@ def sample_vc(issuer: AgentIdentity, subject: AgentIdentity) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Helper: construct PramanaVerifierTool regardless of whether langchain
+# Helper: construct TeshtVerifierTool regardless of whether langchain
 # is installed, so we can test _run logic.
 # ---------------------------------------------------------------------------
 
-def _make_tool() -> PramanaVerifierTool:
+def _make_tool() -> TeshtVerifierTool:
     """
-    Instantiate PramanaVerifierTool, bypassing the HAS_LANGCHAIN guard.
+    Instantiate TeshtVerifierTool, bypassing the HAS_LANGCHAIN guard.
     Works whether or not langchain-core is installed.
     """
-    import pramana.integrations.langchain as lc_mod
+    import tesht.integrations.langchain as lc_mod
     original = lc_mod.HAS_LANGCHAIN
     lc_mod.HAS_LANGCHAIN = True
     try:
-        tool = object.__new__(PramanaVerifierTool)
+        tool = object.__new__(TeshtVerifierTool)
         # Call object.__init__ to avoid BaseTool's __init__ when not installed
         object.__init__(tool)
         return tool
@@ -80,10 +80,10 @@ def _make_tool() -> PramanaVerifierTool:
 # Tests
 # ---------------------------------------------------------------------------
 
-class TestPramanaAgentContext:
+class TestTeshtAgentContext:
     def test_agent_context_system_prompt(self, identity: AgentIdentity, sample_vc: str) -> None:
         """System prompt addition must contain the agent's DID."""
-        ctx = PramanaAgentContext(identity=identity, credentials=[sample_vc])
+        ctx = TeshtAgentContext(identity=identity, credentials=[sample_vc])
         prompt = ctx.get_system_prompt_addition()
         assert identity.did in prompt
 
@@ -94,7 +94,7 @@ class TestPramanaAgentContext:
         verifier: AgentIdentity,
     ) -> None:
         """get_auth_headers must return dict with Authorization: Bearer <jwt>."""
-        ctx = PramanaAgentContext(identity=identity, credentials=[sample_vc])
+        ctx = TeshtAgentContext(identity=identity, credentials=[sample_vc])
         headers = ctx.get_auth_headers(audience=verifier.did)
         assert "Authorization" in headers
         assert headers["Authorization"].startswith("Bearer ")
@@ -103,7 +103,7 @@ class TestPramanaAgentContext:
         assert token.count(".") == 2
 
 
-class TestPramanaVerifierTool:
+class TestTeshtVerifierTool:
     def test_verifier_tool_valid_credential(
         self, issuer: AgentIdentity, subject: AgentIdentity, sample_vc: str
     ) -> None:
@@ -119,9 +119,9 @@ class TestPramanaVerifierTool:
         assert "FAILED" in output
 
     def test_langchain_not_installed_error(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        """Constructing PramanaVerifierTool when HAS_LANGCHAIN=False raises LangChainNotInstalled."""
-        import pramana.integrations.langchain as lc_mod
+        """Constructing TeshtVerifierTool when HAS_LANGCHAIN=False raises LangChainNotInstalled."""
+        import tesht.integrations.langchain as lc_mod
         monkeypatch.setattr(lc_mod, "HAS_LANGCHAIN", False)
 
         with pytest.raises(LangChainNotInstalled):
-            PramanaVerifierTool()
+            TeshtVerifierTool()

@@ -1,6 +1,6 @@
-# Contributing to Pramana Protocol
+# Contributing to Tesht (Pramana)
 
-Thank you for your interest in contributing to Pramana Protocol.
+Thank you for your interest in contributing to Tesht (Pramana).
 
 ## Code of Conduct
 

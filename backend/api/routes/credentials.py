@@ -49,7 +49,7 @@ def issue_credential(
     sl = get_or_create_default_list(tenant_id=tenant_id)
     index = allocate_index(sl.id)
 
-    status_list_url = f"{settings.pramana_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
+    status_list_url = f"{settings.tesht_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
 
     with db_session() as db:
         ensure_tenant(db, tenant_id)

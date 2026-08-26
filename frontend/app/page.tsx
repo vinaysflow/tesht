@@ -16,8 +16,11 @@ export default function Page() {
 
   return (
     <main style={{ maxWidth: 820 }}>
-      <h1>Pramana Protocol</h1>
-      <p>did:web + VC issuance/verification/revocation with signed status lists.</p>
+      <h1>Tesht (Pramana)</h1>
+      <p>
+        Portable identity and scoped authorization for AI agents — did:web + VC
+        issuance, verification, and revocation with signed status lists.
+      </p>
 
       <p>
         <b>Fastest path:</b> <a href="/demo">Guided Demo</a> (one-click flow + isolated demo tenant)

@@ -19,23 +19,23 @@ function ChainBadge({ chainVerify }) {
           : 'bg-red-900/20 border-red-700 text-red-300'}`}>
         <span>{valid ? '🔒' : '⚠'}</span>
         <span>SHA-256 hash chain</span>
-        <span className="text-pramana-muted">|</span>
+        <span className="text-tesht-muted">|</span>
         <span>{count} events</span>
-        <span className="text-pramana-muted">|</span>
+        <span className="text-tesht-muted">|</span>
         <span>PostgreSQL</span>
-        <span className="text-pramana-muted">|</span>
+        <span className="text-tesht-muted">|</span>
         <strong>{valid ? 'VALID' : 'BROKEN'}</strong>
       </div>
     )
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-pramana-border text-xs font-mono text-pramana-muted">
+    <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-tesht-border text-xs font-mono text-tesht-muted">
       <span>🔒</span>
       <span>Hash chain</span>
-      <span className="text-pramana-muted">|</span>
+      <span className="text-tesht-muted">|</span>
       <span>{count} events (in-memory)</span>
-      <span className="text-pramana-muted">|</span>
+      <span className="text-tesht-muted">|</span>
       <span>Start PostgreSQL for persistent SHA-256 chain</span>
     </div>
   )
@@ -51,8 +51,8 @@ function ExpandedDetail({ event }) {
   const reason = event.scope_reason || event.auth_reason
 
   return (
-    <tr className="bg-pramana-dark">
-      <td colSpan={9} className="px-4 py-3 text-xs font-mono text-pramana-muted border-b border-pramana-border">
+    <tr className="bg-tesht-dark">
+      <td colSpan={9} className="px-4 py-3 text-xs font-mono text-tesht-muted border-b border-tesht-border">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
           {/* Identity */}
           <div className="col-span-1 sm:col-span-2">
@@ -62,7 +62,7 @@ function ExpandedDetail({ event }) {
           <div><span className="text-slate-400">agent_name:</span> {event.agent_name || '—'}</div>
           <div><span className="text-slate-400">delegator_did:</span> {shortDid(event.delegator_did, 28) || '—'}</div>
           <div><span className="text-slate-400">delegator_name:</span> <span className="text-slate-200">{dc.name || '—'}</span></div>
-          {dc.email        && <div><span className="text-slate-400">delegator_email:</span> <span className="text-pramana-teal">{dc.email}</span></div>}
+          {dc.email        && <div><span className="text-slate-400">delegator_email:</span> <span className="text-tesht-teal">{dc.email}</span></div>}
           {dc.organization && <div><span className="text-slate-400">delegator_org:</span> {dc.organization}</div>}
           {dc.role         && <div><span className="text-slate-400">delegator_role:</span> {dc.role}</div>}
 
@@ -76,7 +76,7 @@ function ExpandedDetail({ event }) {
               {chainDids && chainDids.length > 0 && (
                 <div className="col-span-1 sm:col-span-2">
                   <span className="text-slate-400">chain_dids:</span>{' '}
-                  <span className="text-pramana-muted">{chainDids.map(d => shortDid(d, 12)).join(' → ')}</span>
+                  <span className="text-tesht-muted">{chainDids.map(d => shortDid(d, 12)).join(' → ')}</span>
                 </div>
               )}
             </>
@@ -145,12 +145,12 @@ function EventRow({ event, idx }) {
   return (
     <>
       <tr
-        className="border-b border-pramana-border/50 hover:bg-pramana-card/50 cursor-pointer"
+        className="border-b border-tesht-border/50 hover:bg-tesht-card/50 cursor-pointer"
         onClick={() => setExpanded(!expanded)}
         title="Click to expand full event detail"
       >
-        <td className="py-2 pr-2 text-pramana-muted">{idx}</td>
-        <td className="py-2 pr-3 text-pramana-muted text-xs font-mono">
+        <td className="py-2 pr-2 text-tesht-muted">{idx}</td>
+        <td className="py-2 pr-3 text-tesht-muted text-xs font-mono">
           {event.timestamp ? new Date(event.timestamp).toLocaleTimeString() : '—'}
         </td>
         <td className="py-2 pr-3 text-slate-300 font-mono text-xs">
@@ -172,7 +172,7 @@ function EventRow({ event, idx }) {
           </span>
         </td>
         <td className="py-2 pr-3 text-blue-300 text-xs font-mono">{fmtMs(event.auth_latency_ms)}</td>
-        <td className="py-2 text-pramana-muted text-xs font-mono">{fmtMs(event.total_latency_ms)}</td>
+        <td className="py-2 text-tesht-muted text-xs font-mono">{fmtMs(event.total_latency_ms)}</td>
       </tr>
       {expanded && <ExpandedDetail event={event} />}
     </>
@@ -194,40 +194,40 @@ function FilterBar({ agentDid, fromTs, toTs, onAgentDidChange, onFromTsChange, o
   }
 
   return (
-    <div className="bg-pramana-card border border-pramana-border rounded-xl p-4 space-y-3">
+    <div className="bg-tesht-card border border-tesht-border rounded-xl p-4 space-y-3">
       <div className="text-xs font-bold text-slate-400 mb-1">Filter Audit Events</div>
       <div className="flex flex-wrap gap-3 items-end">
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-pramana-muted">Agent DID</label>
+          <label className="text-xs text-tesht-muted">Agent DID</label>
           <input
             type="text"
             value={agentDid}
             onChange={e => onAgentDidChange(e.target.value)}
             placeholder="did:key:z6Mk…"
-            className="bg-pramana-dark border border-pramana-border rounded px-2 py-1 text-xs font-mono text-slate-200 w-56 focus:outline-none focus:border-pramana-teal"
+            className="bg-tesht-dark border border-tesht-border rounded px-2 py-1 text-xs font-mono text-slate-200 w-56 focus:outline-none focus:border-tesht-teal"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-pramana-muted">From</label>
+          <label className="text-xs text-tesht-muted">From</label>
           <input
             type="datetime-local"
             value={toLocalInput(fromTs)}
             onChange={e => onFromTsChange(fromLocalInput(e.target.value))}
-            className="bg-pramana-dark border border-pramana-border rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-pramana-teal"
+            className="bg-tesht-dark border border-tesht-border rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-tesht-teal"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-pramana-muted">To</label>
+          <label className="text-xs text-tesht-muted">To</label>
           <input
             type="datetime-local"
             value={toLocalInput(toTs)}
             onChange={e => onToTsChange(fromLocalInput(e.target.value))}
-            className="bg-pramana-dark border border-pramana-border rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-pramana-teal"
+            className="bg-tesht-dark border border-tesht-border rounded px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-tesht-teal"
           />
         </div>
         <button
           onClick={onFilter}
-          className="px-4 py-1.5 bg-pramana-teal rounded text-white text-xs font-bold hover:bg-teal-600 transition-colors"
+          className="px-4 py-1.5 bg-tesht-teal rounded text-white text-xs font-bold hover:bg-teal-600 transition-colors"
         >
           Filter
         </button>
@@ -247,7 +247,7 @@ function ExportButtons({ csvUrl, jsonUrl }) {
           href={csvUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 border border-pramana-teal text-pramana-teal rounded text-xs font-bold hover:bg-pramana-teal/10 transition-colors"
+          className="px-3 py-1.5 border border-tesht-teal text-tesht-teal rounded text-xs font-bold hover:bg-tesht-teal/10 transition-colors"
         >
           ↓ Export CSV
         </a>
@@ -257,7 +257,7 @@ function ExportButtons({ csvUrl, jsonUrl }) {
           href={jsonUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 border border-pramana-border text-slate-300 rounded text-xs font-bold hover:bg-pramana-card transition-colors"
+          className="px-3 py-1.5 border border-tesht-border text-slate-300 rounded text-xs font-bold hover:bg-tesht-card transition-colors"
         >
           ↓ Export JSON
         </a>
@@ -287,7 +287,7 @@ export function AuditTrail({
   }
 
   if (!events.length && !chainVerify) {
-    return <div className="text-pramana-muted text-sm">No audit events yet.</div>
+    return <div className="text-tesht-muted text-sm">No audit events yet.</div>
   }
 
   return (
@@ -314,18 +314,18 @@ export function AuditTrail({
 
       {/* Event count */}
       {events.length > 0 && (
-        <div className="text-xs text-pramana-muted">
+        <div className="text-xs text-tesht-muted">
           Showing {Math.min(events.length, 50)} of {events.length} events — click any row to expand full details
         </div>
       )}
 
       {/* Event table */}
       {events.length > 0 && (
-        <div className="bg-pramana-card border border-pramana-border rounded-xl overflow-hidden">
+        <div className="bg-tesht-card border border-tesht-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="bg-pramana-dark text-pramana-muted border-b border-pramana-border font-mono">
+                <tr className="bg-tesht-dark text-tesht-muted border-b border-tesht-border font-mono">
                   <th className="text-left p-3 pr-2">#</th>
                   <th className="text-left p-3 pr-3">Time</th>
                   <th className="text-left p-3 pr-3">Agent</th>
@@ -345,7 +345,7 @@ export function AuditTrail({
             </table>
           </div>
           {events.length > 50 && (
-            <div className="text-center text-xs text-pramana-muted py-2 border-t border-pramana-border">
+            <div className="text-center text-xs text-tesht-muted py-2 border-t border-tesht-border">
               Showing 50 of {events.length} events — use Export for full dataset
             </div>
           )}
@@ -353,11 +353,11 @@ export function AuditTrail({
       )}
 
       {/* Compliance note */}
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
-        <div className="text-xs text-pramana-muted space-y-1">
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
+        <div className="text-xs text-tesht-muted space-y-1">
           <p className="font-bold text-slate-400">Compliance answer</p>
           <p>Every row above is what your compliance team gets when opposing counsel sends a subpoena: every action the agent took, who authorized it (human identity from the blended VP), what the trust score was, and a cryptographic proof the log is intact.</p>
-          <p className="text-pramana-teal mt-1">Export CSV to attach to your audit response. Hash chain verification proves the log has not been tampered with.</p>
+          <p className="text-tesht-teal mt-1">Export CSV to attach to your audit response. Hash chain verification proves the log has not been tampered with.</p>
         </div>
       </div>
     </div>

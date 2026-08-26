@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import { AgentIdentity } from "@pramana/sdk";
+import { AgentIdentity } from "@tesht/sdk";
 import { useCredential } from "../src/useCredential.js";
 import { makeWrapper } from "./helpers.js";
 

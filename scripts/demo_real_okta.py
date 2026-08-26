@@ -49,8 +49,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import httpx
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.identity import AgentIdentity
 
 # ── Service URLs (must be running) ────────────────────────────────────────────
 BRIDGE_URL = os.environ.get("BRIDGE_URL", "http://127.0.0.1:5053")
@@ -107,7 +107,7 @@ def _check_service(url: str, name: str) -> bool:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Pramana — Real Okta → MCP Gateway demo"
+        description="Tesht — Real Okta → MCP Gateway demo"
     )
     # Auto-derive OKTA_JWKS_URI and OKTA_AUDIENCE
     okta_issuer = os.environ.get("OKTA_ISSUER", "").rstrip("/")
@@ -142,7 +142,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    banner("Pramana — Real Okta → MCP Gateway — Enterprise Demo")
+    banner("Tesht — Real Okta → MCP Gateway — Enterprise Demo")
 
     # ── Pre-flight service checks ─────────────────────────────────────────────
     section("0", "Service Health Checks")
@@ -294,7 +294,7 @@ def main() -> int:
             result = resp.get("result", {})
             data = result.get("_data", {})
             rows = data.get("rows", [])
-            trust_factors_raw = r.headers.get("X-Pramana-Trust-Factors", "{}")
+            trust_factors_raw = r.headers.get("X-Tesht-Trust-Factors", "{}")
             try:
                 trust_factors = json.loads(trust_factors_raw)
             except json.JSONDecodeError:
@@ -359,7 +359,7 @@ def main() -> int:
 
     print(f"\n{BOLD}{GREEN}━━━ Real Okta enterprise demo complete ━━━━━━━━━━━━━━━━━━━━━━━━{RESET}{BOLD}{RESET}")
     print(f"\n  Enterprise user authenticated via real Okta RS256 JWT.")
-    print(f"  Pramana issued a W3C Verifiable Credential binding {claims.get('name', 'the user')}")
+    print(f"  Tesht issued a W3C Verifiable Credential binding {claims.get('name', 'the user')}")
     print(f"  to a DID and delegated to the agent.")
     print(f"  The blended VP was verified by the MCP Gateway with full")
     print(f"  enterprise identity visible in the tamper-evident audit trail.\n")

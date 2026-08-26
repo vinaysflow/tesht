@@ -11,13 +11,13 @@ import pytest
 import jwt as _jwt
 from fastapi.testclient import TestClient
 
-from pramana.credentials import (
+from tesht.credentials import (
     create_blended_presentation,
     issue_vc,
     verify_blended_presentation,
 )
-from pramana.delegation import verify_delegation_chain
-from pramana.identity import AgentIdentity
+from tesht.delegation import verify_delegation_chain
+from tesht.identity import AgentIdentity
 
 
 class TestE2EFullFlow:
@@ -68,7 +68,7 @@ class TestE2EFullFlow:
         )
 
         # 5. Verify blended VP
-        from pramana.identity import resolve_did_key
+        from tesht.identity import resolve_did_key
         result = verify_blended_presentation(
             token=blended_vp,
             expected_audience=gateway_identity.did,
@@ -106,7 +106,7 @@ class TestE2EFullFlow:
             audience=verifier.did,
         )
 
-        from pramana.identity import resolve_did_key
+        from tesht.identity import resolve_did_key
         result = verify_blended_presentation(
             token=blended_vp,
             expected_audience=verifier.did,
@@ -134,7 +134,7 @@ class TestE2EFullFlow:
         now = int(time.time())
         evil_token = _jwt.encode(
             {"iss": "https://evil.attacker.com", "sub": "evil-999",
-             "aud": "pramana", "iat": now, "exp": now + 3600, "name": "Attacker"},
+             "aud": "tesht", "iat": now, "exp": now + 3600, "name": "Attacker"},
             evil_pem, algorithm="RS256",
         )
 

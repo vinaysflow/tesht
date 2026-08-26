@@ -20,8 +20,8 @@ function randomVerifier(): string {
 
 export default function LoginPage() {
   const kcBase = process.env.NEXT_PUBLIC_KEYCLOAK_URL || "http://127.0.0.1:8080";
-  const realm = process.env.NEXT_PUBLIC_KEYCLOAK_REALM || "pramana";
-  const clientId = process.env.NEXT_PUBLIC_KEYCLOAK_CLIENT_ID || "pramana-api";
+  const realm = process.env.NEXT_PUBLIC_KEYCLOAK_REALM || "tesht";
+  const clientId = process.env.NEXT_PUBLIC_KEYCLOAK_CLIENT_ID || "tesht-api";
 
   const redirectUri = useMemo(() => {
     if (typeof window === "undefined") return "";

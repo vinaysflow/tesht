@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — MCP Identity Gateway Demo
+Tesht (Pramana) — MCP Identity Gateway Demo
 =============================================
 
 Fully self-contained: starts the mock MCP server and gateway as
@@ -31,9 +31,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import httpx
 
-from pramana.credentials import create_blended_presentation, create_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, create_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 # ── Terminal colours ──────────────────────────────────────────────────────────
 RESET = "\033[0m"
@@ -374,7 +374,7 @@ def print_audit_trail(base_url: str) -> None:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> int:
-    banner("PRAMANA MCP IDENTITY GATEWAY — Live Demo")
+    banner("TESHT MCP IDENTITY GATEWAY — Live Demo")
     print(f"\n  {DIM}Starting services...{RESET}")
 
     mock_proc = start_server("mock-mcp", "gateway.mock_mcp_server:app", 9100)

@@ -12,7 +12,7 @@ import {
   type IssueDelegationOptions,
   type DelegateFurtherOptions,
   type VerifyDelegationChainOptions,
-} from "@pramana/sdk";
+} from "@tesht/sdk";
 
 export type { Scope, DelegationResult };
 export { ScopeEscalationError };
@@ -55,7 +55,7 @@ export interface UseDelegationReturn {
 }
 
 /**
- * Provides offline delegation chain operations backed by the @pramana/sdk
+ * Provides offline delegation chain operations backed by the @tesht/sdk
  * TypeScript SDK. No server connection required.
  */
 export function useDelegation(): UseDelegationReturn {

@@ -1,4 +1,4 @@
-export { PramanaClient } from "./client.js";
+export { TeshtClient } from "./client.js";
 export { b58Encode, b58Decode } from "./base58.js";
 export { AgentIdentity, resolveDIDKey } from "./identity.js";
 export type { AgentIdentityDict } from "./identity.js";

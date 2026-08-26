@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# demo_full.sh — Full Pramana Protocol demo
+# demo_full.sh — Full Tesht (Pramana) demo
 #
 # Starts the backend, runs 5 sequential demo scenarios, optionally runs
 # the scenario subset from synthetic data, prints a summary matrix, then exits.
@@ -59,11 +59,11 @@ lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
 sleep 1
 
 cd "$BACKEND_DIR"
-DATABASE_URL="sqlite:////tmp/pramana_demo.db" \
+DATABASE_URL="sqlite:////tmp/tesht_demo.db" \
   DEMO_MODE=true \
   DEBUG=true \
   LOG_LEVEL=WARNING \
-  PRAMANA_DOMAIN="localhost%3A$PORT" \
+  TESHT_DOMAIN="localhost%3A$PORT" \
   uvicorn main:app --host 127.0.0.1 --port $PORT --workers 1 &
 BACKEND_PID=$!
 info "Backend PID: $BACKEND_PID"
@@ -107,7 +107,7 @@ else
 import sys
 sys.path.insert(0, '$BACKEND_DIR')
 import jwt, time
-t = jwt.encode({'sub':'demo','tenant_id':'demo-tenant','scopes':['tenant:admin','credentials:issue','credentials:revoke'],'exp':int(time.time())+3600,'iss':'pramana'},'dev-secret-change',algorithm='HS256')
+t = jwt.encode({'sub':'demo','tenant_id':'demo-tenant','scopes':['tenant:admin','credentials:issue','credentials:revoke'],'exp':int(time.time())+3600,'iss':'tesht'},'dev-secret-change',algorithm='HS256')
 print(t)
 " 2>/dev/null || echo "")
   if [ -n "$TOKEN" ]; then
@@ -148,7 +148,7 @@ run_scenario() {
 # Scenario A: Identity
 run_scenario "Identity: create did:key agent" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 a = AgentIdentity.create('alice', method='key')
 assert a.did.startswith('did:key:')
 "
@@ -156,8 +156,8 @@ assert a.did.startswith('did:key:')
 # Scenario B: Credential issuance + verification
 run_scenario "Credentials: issue + verify VC" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.credentials import issue_vc, verify_vc
+from tesht.identity import AgentIdentity
+from tesht.credentials import issue_vc, verify_vc
 a = AgentIdentity.create('issuer', method='key')
 b = AgentIdentity.create('subject', method='key')
 vc = issue_vc(a, b.did, 'TestCredential', claims={'role':'user'}, ttl_seconds=3600)
@@ -168,8 +168,8 @@ assert r.verified, r.reason
 # Scenario C: Delegation chain
 run_scenario "Delegation: 2-hop chain with scope narrowing" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.delegation import issue_delegation, delegate_further, verify_delegation_chain
+from tesht.identity import AgentIdentity
+from tesht.delegation import issue_delegation, delegate_further, verify_delegation_chain
 a = AgentIdentity.create('delegator', method='key')
 b = AgentIdentity.create('intermediate', method='key')
 c = AgentIdentity.create('final', method='key')
@@ -183,8 +183,8 @@ assert r.depth == 2
 # Scenario D: Commerce — intent → cart → verify
 run_scenario "Commerce: intent -> cart -> verify" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.commerce import issue_intent_mandate, issue_cart_mandate, verify_mandate
+from tesht.identity import AgentIdentity
+from tesht.commerce import issue_intent_mandate, issue_cart_mandate, verify_mandate
 buyer = AgentIdentity.create('buyer', method='key')
 pa = AgentIdentity.create('payment-agent', method='key')
 intent_jwt = issue_intent_mandate(buyer, pa.did, {'max_amount':5000,'currency':'USD'}, ttl_seconds=3600)
@@ -196,8 +196,8 @@ assert r.verified, r.reason
 # Scenario E: VP with nonce
 run_scenario "VP: nonce enforcement (replay protection)" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.credentials import issue_vc, create_presentation, verify_presentation
+from tesht.identity import AgentIdentity
+from tesht.credentials import issue_vc, create_presentation, verify_presentation
 a = AgentIdentity.create('issuer', method='key')
 b = AgentIdentity.create('holder', method='key')
 vc = issue_vc(a, b.did, 'TestCredential', claims={'x':1}, ttl_seconds=3600)
@@ -211,9 +211,9 @@ assert not bad.verified
 # Scenario F: did:key resolution via backend
 run_scenario "Backend: did:key resolution" "
 import sys; sys.path.insert(0,'$BACKEND_DIR')
-import os; os.environ.setdefault('DATABASE_URL','sqlite:////tmp/pramana_demo.db')
+import os; os.environ.setdefault('DATABASE_URL','sqlite:////tmp/tesht_demo.db')
 from core.resolver import resolve_did
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 sys.path.insert(0,'$SDK_PYTHON')
 a = AgentIdentity.create('test', method='key')
 doc = resolve_did(a.did)
@@ -223,8 +223,8 @@ assert doc['id'] == a.did
 # Scenario G: Currency mismatch rejection
 run_scenario "Security: currency mismatch rejected" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.commerce import issue_intent_mandate, issue_cart_mandate
+from tesht.identity import AgentIdentity
+from tesht.commerce import issue_intent_mandate, issue_cart_mandate
 b = AgentIdentity.create('buyer2', method='key')
 p = AgentIdentity.create('pa2', method='key')
 intent_jwt = issue_intent_mandate(b, p.did, {'max_amount':5000,'currency':'USD'}, ttl_seconds=3600)
@@ -238,8 +238,8 @@ except ValueError as e:
 # Scenario H: Scope escalation rejected
 run_scenario "Security: scope escalation rejected" "
 import sys; sys.path.insert(0,'$SDK_PYTHON')
-from pramana.identity import AgentIdentity
-from pramana.delegation import issue_delegation, delegate_further, ScopeEscalationError
+from tesht.identity import AgentIdentity
+from tesht.delegation import issue_delegation, delegate_further, ScopeEscalationError
 a = AgentIdentity.create('esc-root', method='key')
 b = AgentIdentity.create('esc-hop1', method='key')
 c = AgentIdentity.create('esc-final', method='key')

@@ -1,4 +1,4 @@
-# Hugging Face Reviewer Runbook (Pramana Demo)
+# Hugging Face Reviewer Runbook (Tesht Demo)
 
 ## 60-second evaluation path
 

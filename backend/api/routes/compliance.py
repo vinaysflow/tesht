@@ -1,4 +1,4 @@
-"""Compliance reporting — maps Pramana controls to SOC2, HIPAA, EU AI Act, ISO 42001."""
+"""Compliance reporting — maps Tesht controls to SOC2, HIPAA, EU AI Act, ISO 42001."""
 from __future__ import annotations
 
 from typing import Any, Optional
@@ -24,7 +24,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "CC6.1",
             "control_name": "Logical Access Controls",
             "description": "Implement controls to prevent unauthorized access to assets.",
-            "pramana_mechanism": "W3C DID + Ed25519 keypair per agent; no shared secrets",
+            "tesht_mechanism": "W3C DID + Ed25519 keypair per agent; no shared secrets",
             "evidence_query": "agent_count",
             "evidence_label": "{n} agents with unique cryptographic identities",
             "status": "automated",
@@ -33,7 +33,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "CC6.2",
             "control_name": "Prior Authorization",
             "description": "Access is authorized before granting to assets.",
-            "pramana_mechanism": "Verifiable Credentials issued by root CAs before any operation",
+            "tesht_mechanism": "Verifiable Credentials issued by root CAs before any operation",
             "evidence_query": "credential_count",
             "evidence_label": "{n} credentials issued with issuer signatures",
             "status": "automated",
@@ -42,7 +42,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "CC6.6",
             "control_name": "Restrict Access Based on Job Responsibility",
             "description": "Access is restricted to authorized individuals.",
-            "pramana_mechanism": "Delegation scope narrowing — child authority ≤ parent authority",
+            "tesht_mechanism": "Delegation scope narrowing — child authority ≤ parent authority",
             "evidence_query": "delegation_count",
             "evidence_label": "{n} delegations with scope-narrowing enforcement",
             "status": "automated",
@@ -51,7 +51,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "CC7.1",
             "control_name": "Detect and Monitor System Components",
             "description": "Detect threats against the system.",
-            "pramana_mechanism": "SHA-256 hash-chained audit log with integrity verification",
+            "tesht_mechanism": "SHA-256 hash-chained audit log with integrity verification",
             "evidence_query": "audit_chain_valid",
             "evidence_label": "Audit chain: {n} events, integrity {status}",
             "status": "automated",
@@ -60,7 +60,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "CC8.1",
             "control_name": "Change Management",
             "description": "Changes to infrastructure are authorized, tested, and approved.",
-            "pramana_mechanism": "Credential revocation via Bitstring Status List; all changes audited",
+            "tesht_mechanism": "Credential revocation via Bitstring Status List; all changes audited",
             "evidence_query": "revoked_count",
             "evidence_label": "{n} credentials revoked with audit records",
             "status": "automated",
@@ -71,7 +71,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "164.312(a)(1)",
             "control_name": "Access Control",
             "description": "Implement technical policies to allow access only to authorized persons.",
-            "pramana_mechanism": "CapabilityCredential per agent with scoped permissions",
+            "tesht_mechanism": "CapabilityCredential per agent with scoped permissions",
             "evidence_query": "credential_count",
             "evidence_label": "{n} agent credentials with scoped access",
             "status": "automated",
@@ -80,7 +80,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "164.312(b)",
             "control_name": "Audit Controls",
             "description": "Implement hardware, software, and procedural audit controls.",
-            "pramana_mechanism": "Tamper-evident audit trail with hash-chain integrity",
+            "tesht_mechanism": "Tamper-evident audit trail with hash-chain integrity",
             "evidence_query": "audit_chain_valid",
             "evidence_label": "Audit chain: {n} events, integrity {status}",
             "status": "automated",
@@ -89,7 +89,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "164.312(c)(1)",
             "control_name": "Integrity Controls",
             "description": "Implement policies to protect PHI from improper alteration.",
-            "pramana_mechanism": "Ed25519 signatures on all credentials; tamper detection on verify",
+            "tesht_mechanism": "Ed25519 signatures on all credentials; tamper detection on verify",
             "evidence_query": "credential_count",
             "evidence_label": "{n} credentials with cryptographic integrity protection",
             "status": "automated",
@@ -98,7 +98,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "164.312(d)",
             "control_name": "Person/Entity Authentication",
             "description": "Implement procedures to verify that a person or entity is who they claim.",
-            "pramana_mechanism": "W3C DID resolution + Ed25519 signature verification on every access",
+            "tesht_mechanism": "W3C DID resolution + Ed25519 signature verification on every access",
             "evidence_query": "agent_count",
             "evidence_label": "{n} agents with verifiable cryptographic identity",
             "status": "automated",
@@ -109,7 +109,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "Art. 6",
             "control_name": "High-Risk AI Classification",
             "description": "AI systems classified as high-risk must meet stringent requirements.",
-            "pramana_mechanism": "ComplianceCredential with risk_level=high, human_oversight_required=True",
+            "tesht_mechanism": "ComplianceCredential with risk_level=high, human_oversight_required=True",
             "evidence_query": "euai_high_risk_count",
             "evidence_label": "{n} agents with EU AI Act high-risk credentials",
             "status": "automated",
@@ -118,7 +118,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "Art. 9",
             "control_name": "Risk Management System",
             "description": "Establish and implement a risk management system.",
-            "pramana_mechanism": "Trust score (0-100) with risk levels: low/medium/high/critical",
+            "tesht_mechanism": "Trust score (0-100) with risk levels: low/medium/high/critical",
             "evidence_query": "trust_event_count",
             "evidence_label": "{n} trust events tracked for behavioral risk management",
             "status": "automated",
@@ -127,7 +127,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "Art. 12",
             "control_name": "Record-Keeping (Logging)",
             "description": "High-risk AI systems shall have logging capabilities.",
-            "pramana_mechanism": "Tamper-evident audit log with SHA-256 hash chain",
+            "tesht_mechanism": "Tamper-evident audit log with SHA-256 hash chain",
             "evidence_query": "audit_chain_valid",
             "evidence_label": "Audit chain: {n} events, integrity {status}",
             "status": "automated",
@@ -136,7 +136,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "Art. 13",
             "control_name": "Transparency",
             "description": "AI systems shall be transparent and provide information.",
-            "pramana_mechanism": "Every credential includes issuer, scope, and expiry in human-readable form",
+            "tesht_mechanism": "Every credential includes issuer, scope, and expiry in human-readable form",
             "evidence_query": "credential_count",
             "evidence_label": "{n} credentials with transparent provenance",
             "status": "automated",
@@ -145,7 +145,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "Art. 52",
             "control_name": "Transparency Obligations (Limited Risk)",
             "description": "Limited-risk AI systems must inform users they are interacting with AI.",
-            "pramana_mechanism": "ComplianceCredential with risk_level=limited, transparency_obligation=True",
+            "tesht_mechanism": "ComplianceCredential with risk_level=limited, transparency_obligation=True",
             "evidence_query": "euai_limited_count",
             "evidence_label": "{n} agents with limited-risk transparency credentials",
             "status": "automated",
@@ -156,7 +156,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "6.1",
             "control_name": "Actions to Address Risks and Opportunities",
             "description": "Determine risks and opportunities for AI management system.",
-            "pramana_mechanism": "Trust scoring + anomaly detection flags agents with risk escalation",
+            "tesht_mechanism": "Trust scoring + anomaly detection flags agents with risk escalation",
             "evidence_query": "trust_event_count",
             "evidence_label": "{n} trust events for risk tracking",
             "status": "automated",
@@ -165,7 +165,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "7.5",
             "control_name": "Documented Information",
             "description": "AI management system documented information.",
-            "pramana_mechanism": "All credentials, delegations, and mandates are cryptographically documented JWTs",
+            "tesht_mechanism": "All credentials, delegations, and mandates are cryptographically documented JWTs",
             "evidence_query": "credential_count",
             "evidence_label": "{n} documented credentials as verifiable JWTs",
             "status": "automated",
@@ -174,7 +174,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "8.4",
             "control_name": "System Lifecycle",
             "description": "AI system lifecycle processes.",
-            "pramana_mechanism": "Full lifecycle: issue → delegate → commerce → revoke with audit trail",
+            "tesht_mechanism": "Full lifecycle: issue → delegate → commerce → revoke with audit trail",
             "evidence_query": "audit_event_count",
             "evidence_label": "{n} lifecycle events in audit trail",
             "status": "automated",
@@ -183,7 +183,7 @@ CONTROL_LIBRARY: dict[str, list[dict[str, Any]]] = {
             "control_id": "9.1",
             "control_name": "Monitoring, Measurement, Analysis",
             "description": "Monitor and measure AI system performance.",
-            "pramana_mechanism": "Behavioral trust scoring with Gaussian-distributed event history",
+            "tesht_mechanism": "Behavioral trust scoring with Gaussian-distributed event history",
             "evidence_query": "trust_event_count",
             "evidence_label": "{n} behavioral events tracked",
             "status": "automated",
@@ -202,7 +202,7 @@ class ControlEvidence(BaseModel):
     control_id: str
     control_name: str
     description: str
-    pramana_mechanism: str
+    tesht_mechanism: str
     evidence_value: str
     status: str
     passing: bool
@@ -240,7 +240,7 @@ def get_compliance_report(
     framework: str = "SOC2",
     auth: dict = Depends(require_scopes(["credentials:verify"])),
 ) -> ComplianceReportResponse:
-    """Generate a compliance report mapping Pramana controls to a framework."""
+    """Generate a compliance report mapping Tesht controls to a framework."""
     if framework not in CONTROL_LIBRARY:
         raise HTTPException(
             status_code=422,
@@ -307,7 +307,7 @@ def get_compliance_report(
             control_id=ctrl["control_id"],
             control_name=ctrl["control_name"],
             description=ctrl["description"],
-            pramana_mechanism=ctrl["pramana_mechanism"],
+            tesht_mechanism=ctrl["tesht_mechanism"],
             evidence_value=evidence_label,
             status=ctrl["status"],
             passing=passing,

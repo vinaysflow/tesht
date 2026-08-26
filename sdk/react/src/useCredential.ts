@@ -11,7 +11,7 @@ import {
   type CreatePresentationOptions,
   type VerifyPresentationOptions,
   type PresentationResult,
-} from "@pramana/sdk";
+} from "@tesht/sdk";
 
 export interface UseCredentialReturn {
   /** Issue a Verifiable Credential JWT. Fully offline (did:key). */
@@ -39,7 +39,7 @@ export interface UseCredentialReturn {
 }
 
 /**
- * Provides offline VC issuance and verification backed by the @pramana/sdk
+ * Provides offline VC issuance and verification backed by the @tesht/sdk
  * TypeScript SDK. No server connection required.
  */
 export function useCredential(): UseCredentialReturn {

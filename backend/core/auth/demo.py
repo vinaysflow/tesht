@@ -8,7 +8,7 @@ import jwt
 
 from core.settings import settings
 
-DEMO_ISSUER = "pramana-demo"
+DEMO_ISSUER = "tesht-demo"
 
 
 def issue_demo_token(*, tenant_id: str, ttl_seconds: int) -> tuple[str, int]:

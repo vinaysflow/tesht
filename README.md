@@ -1,13 +1,13 @@
-# Pramana Protocol
+# Tesht (Pramana)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-**Portable AI Agent Identity Infrastructure**
+**Portable identity and scoped authorization for AI agents.**
 
-W3C DIDs + Verifiable Credentials · Scoped Authorization · Instant Revocation
+Tesht (from Irish *teist*, testimony) lets an agent carry cryptographic proof of who authorized it, what it may do, and whether that grant is still live — across organizational boundaries. W3C DIDs + verifiable credentials, monotonically narrowing delegation, and instant revocation.
 
-[![Python 81%](https://img.shields.io/badge/python-81%25-blue)](https://github.com/vinaysflow/pramana-protocol)
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://aurviaglobal-pramana-demo.hf.space/demo)
+[![Python 81%](https://img.shields.io/badge/python-81%25-blue)](https://github.com/vinaysflow/tesht)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://aurviaglobal-tesht-demo.hf.space/demo)
 
 -----
 
@@ -29,13 +29,13 @@ Cross-organizational agent authorization is the defensible whitespace that propr
 
 **The core architectural insight:** Authorization credentials must be *portable* (travel with the agent), *scoped* (monotonically decreasing authority through delegation chains), and *instantly revocable* (without requiring the verifier to call home to the issuer).
 
-## What Pramana Does
+## What Tesht Does
 
-Pramana is an intent-scoped authorization adapter. It sits between enterprise policy engines (OPA, AWS Cedar) and autonomous agent execution, issuing verifiable, portable credentials that agents carry across trust boundaries.
+Tesht (Pramana) is an intent-scoped authorization adapter. It sits between enterprise policy engines (OPA, AWS Cedar) and autonomous agent execution, issuing verifiable, portable credentials that agents carry across trust boundaries.
 
 ```
 ┌─────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  Enterprise  │────▶│     Pramana       │────▶│   Agent Runtime  │
+│  Enterprise  │────▶│     Tesht       │────▶│   Agent Runtime  │
 │ Policy Engine│     │  VC-JWT Issuance  │     │  (carries creds) │
 │ (OPA/Cedar)  │◀────│  Scope Narrowing  │     │                  │
 └─────────────┘     │  Revocation Check │     └─────────────────┘
@@ -68,7 +68,7 @@ Pramana is an intent-scoped authorization adapter. It sits between enterprise po
 |Revocation mechanism|Bitstring Status List over CRL/OCSP|Privacy-preserving (credential index reveals nothing), no real-time issuer dependency, compact (one bit per credential)                     |
 |DID method          |`did:web` initially                |Lowest adoption barrier — resolves via HTTPS. Bridge to `did:key` for offline/ephemeral agents                                              |
 |Scope enforcement   |Server-side intersection           |Delegation chains are security-critical. Client-side enforcement is a vulnerability, not a feature                                          |
-|Policy integration  |Adapter pattern (OPA/Cedar)        |Enterprises already have policy engines. Pramana doesn’t replace them — it translates their decisions into portable credentials             |
+|Policy integration  |Adapter pattern (OPA/Cedar)        |Enterprises already have policy engines. Tesht doesn’t replace them — it translates their decisions into portable credentials             |
 
 ## What I’d Measure
 
@@ -85,9 +85,9 @@ If this were deployed at enterprise scale, these are the metrics that matter:
 
 ## What I Learned
 
-**1. The real product isn’t the crypto — it’s the developer experience.** Ed25519 signatures and VC-JWT encoding are table stakes. The differentiator is whether a developer can integrate Pramana in an afternoon. The `RequirementIntent` API (create, confirm, retrieve — Stripe-like) exists because of this insight.
+**1. The real product isn’t the crypto — it’s the developer experience.** Ed25519 signatures and VC-JWT encoding are table stakes. The differentiator is whether a developer can integrate Tesht in an afternoon. The `RequirementIntent` API (create, confirm, retrieve — Stripe-like) exists because of this insight.
 
-**2. Cross-org trust is a chicken-and-egg problem.** No one adopts a trust protocol without a second party to trust. The protocol adoption motion (open-source, standards-based) is a distribution strategy, not a philosophy choice. Let’s Encrypt succeeded because browsers already understood X.509 — Pramana succeeds if verifiers already understand VC-JWT.
+**2. Cross-org trust is a chicken-and-egg problem.** No one adopts a trust protocol without a second party to trust. The protocol adoption motion (open-source, standards-based) is a distribution strategy, not a philosophy choice. Let’s Encrypt succeeded because browsers already understood X.509 — Tesht succeeds if verifiers already understand VC-JWT.
 
 **3. Single-tenant is where you build; multi-tenant is where you learn.** The multi-tenant isolation architecture revealed assumptions about key management, audit trail separation, and credential namespace collisions that didn’t surface in single-tenant testing.
 
@@ -112,7 +112,7 @@ If this were deployed at enterprise scale, these are the metrics that matter:
 
 **Codebase:** ~10,700 lines Python backend · 33+ passing tests · 29 commits · CI via GitHub Actions
 
-**Live demo:** [aurviaglobal-pramana-demo.hf.space/demo](https://aurviaglobal-pramana-demo.hf.space/demo)
+**Live demo:** [aurviaglobal-tesht-demo.hf.space/demo](https://aurviaglobal-tesht-demo.hf.space/demo)
 
 -----
 
@@ -124,7 +124,7 @@ See [`docs/guides/SESSION_QUICKSTART.md`](docs/guides/SESSION_QUICKSTART.md) for
 
 ### Live Demo (60 seconds)
 
-1. Open [the demo](https://aurviaglobal-pramana-demo.hf.space/demo)
+1. Open [the demo](https://aurviaglobal-tesht-demo.hf.space/demo)
 1. Click **Run Drift Demo**
 1. Confirm `verify_before.verified=true` and `verify_after.reason=revoked`
 
@@ -142,15 +142,15 @@ GET  /v1/intents/:id          → Retrieve decision + proof bundle
 
 ```bash
 # Clone and start (requires Docker)
-git clone https://github.com/vinaysflow/pramana-protocol.git
-cd pramana-protocol
+git clone https://github.com/vinaysflow/tesht.git
+cd tesht
 cp .env.example .env  # Set API_SECRET_KEY (min 32 chars)
 make dev
 ```
 
 - **UI:** http://127.0.0.1:6080
 - **API:** http://127.0.0.1:5051/health
-- **Keycloak (OIDC):** http://127.0.0.1:8080 (realm: `pramana`)
+- **Keycloak (OIDC):** http://127.0.0.1:8080 (realm: `tesht`)
 
 ### Portable Verifier (No DB Required)
 
@@ -170,7 +170,7 @@ pytest tests/ -v
 ## Repository Structure
 
 ```
-pramana-protocol/
+tesht/
 ├── backend/          # FastAPI backend (~10,700 lines Python)
 │   ├── core/         # DID, VC, crypto, delegation, revocation
 │   ├── api/          # REST endpoints, auth, middleware
@@ -192,8 +192,8 @@ pramana-protocol/
 
 ## License
 
-Pramana Protocol is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for full terms.
+Tesht (Pramana) is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for full terms.
 
-Commercial licenses are available for organizations that wish to use Pramana Protocol in proprietary products without AGPL-3.0 obligations. Contact [vinay@aurviaglobal.com](mailto:vinay@aurviaglobal.com) for commercial licensing inquiries.
+Commercial licenses are available for organizations that wish to use Tesht (Pramana) in proprietary products without AGPL-3.0 obligations. Contact [vinay@aurviaglobal.com](mailto:vinay@aurviaglobal.com) for commercial licensing inquiries.
 
 See [NOTICE](NOTICE) for authorship, copyright, and licensing history.

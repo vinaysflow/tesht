@@ -1,10 +1,10 @@
 """
-pramana.integrations.langchain
+tesht.integrations.langchain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-LangChain integration for Pramana agent identity.
+LangChain integration for Tesht agent identity.
 
 ``langchain-core`` is an OPTIONAL dependency.  This module imports it
-conditionally so that the rest of the Pramana SDK works even when
+conditionally so that the rest of the Tesht SDK works even when
 LangChain is not installed.
 """
 from __future__ import annotations
@@ -13,8 +13,8 @@ from typing import Any, Optional
 
 import jwt as pyjwt
 
-from pramana.credentials import create_presentation, create_blended_presentation, verify_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_presentation, create_blended_presentation, verify_vc
+from tesht.identity import AgentIdentity
 
 # ---------------------------------------------------------------------------
 # Optional langchain-core import
@@ -41,11 +41,11 @@ class LangChainNotInstalled(ImportError):
 
 
 # ---------------------------------------------------------------------------
-# PramanaAgentContext — no LangChain dependency
+# TeshtAgentContext — no LangChain dependency
 # ---------------------------------------------------------------------------
 
-class PramanaAgentContext:
-    """Provides Pramana identity context to a LangChain (or any) agent."""
+class TeshtAgentContext:
+    """Provides Tesht identity context to a LangChain (or any) agent."""
 
     def __init__(
         self,
@@ -150,10 +150,10 @@ class PramanaAgentContext:
 
 
 # ---------------------------------------------------------------------------
-# PramanaVerifierTool — requires langchain-core
+# TeshtVerifierTool — requires langchain-core
 # ---------------------------------------------------------------------------
 
-class PramanaVerifierTool(BaseTool):  # type: ignore[misc]
+class TeshtVerifierTool(BaseTool):  # type: ignore[misc]
     """LangChain tool for verifying AI agent credentials."""
 
     name: str = "verify_agent_credential"

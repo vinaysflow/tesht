@@ -1,17 +1,17 @@
 /**
- * Shared test wrapper: wraps a component in <PramanaProvider>.
+ * Shared test wrapper: wraps a component in <TeshtProvider>.
  */
 import React, { type ReactNode } from "react";
-import { PramanaProvider } from "../src/context.js";
+import { TeshtProvider } from "../src/context.js";
 
 export function makeWrapper(
   props: { apiUrl?: string; authToken?: string } = {},
 ) {
   return function Wrapper({ children }: { children: ReactNode }) {
     return (
-      <PramanaProvider apiUrl={props.apiUrl} authToken={props.authToken}>
+      <TeshtProvider apiUrl={props.apiUrl} authToken={props.authToken}>
         {children}
-      </PramanaProvider>
+      </TeshtProvider>
     );
   };
 }

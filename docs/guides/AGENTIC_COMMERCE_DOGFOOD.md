@@ -2,7 +2,7 @@
 
 A real, end-to-end product surface for **agentic commerce**: a human authorizes a
 shopping agent with a budget + merchant allowlist, the agent shops a mock
-storefront, and **every purchase is gated** by the Pramana authorization Session
+storefront, and **every purchase is gated** by the Tesht authorization Session
 composed with AP2 mandates:
 
 ```
@@ -72,6 +72,6 @@ step-up.
 
 ## Production note
 
-Set `PRAMANA_ENV=production` (+ Postgres `DATABASE_URL`) to run the same flow with
+Set `TESHT_ENV=production` (+ Postgres `DATABASE_URL`) to run the same flow with
 production-safe defaults (fail-closed status checks, durable audit, unscored
 sessions → step-up). See [`DEPLOYMENT.md`](DEPLOYMENT.md).

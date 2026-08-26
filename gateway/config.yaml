@@ -1,5 +1,5 @@
 # Production profile:
-#   Set PRAMANA_ENV=production (or GATEWAY_ENV=production) to flip safe defaults:
+#   Set TESHT_ENV=production (or GATEWAY_ENV=production) to flip safe defaults:
 #     - auth.fail_closed          -> true  (status-list errors revoke)
 #     - Postgres audit            -> required (startup fails without DATABASE_URL)
 #     - trust.cold_path_enabled   -> true
@@ -14,7 +14,7 @@ auth:
   require_delegation: true
   require_delegator_identity: true
   # Left unset so the environment profile governs it: dev -> fail-open (resilient
-  # demos), production (PRAMANA_ENV=production) -> fail-closed. Uncomment to pin
+  # demos), production (TESHT_ENV=production) -> fail-closed. Uncomment to pin
   # explicitly, or override at runtime with GATEWAY_FAIL_CLOSED=0/1. When closed,
   # status-list fetch errors treat the credential as revoked after a bounded retry.
   # fail_closed: false

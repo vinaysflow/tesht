@@ -79,9 +79,9 @@ def dispatch_webhook_event(
                     content=body_bytes,
                     headers={
                         "Content-Type": "application/json",
-                        "X-Pramana-Signature": signature,
-                        "X-Pramana-Event": event_type,
-                        "X-Pramana-Delivery-Id": delivery_id,
+                        "X-Tesht-Signature": signature,
+                        "X-Tesht-Event": event_type,
+                        "X-Tesht-Delivery-Id": delivery_id,
                     },
                 )
             results.append({

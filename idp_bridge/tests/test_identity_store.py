@@ -5,7 +5,7 @@ import pytest
 
 from idp_bridge.identity_store import HumanIdentityStore
 
-ISSUER = "https://mock-idp.pramana.local"
+ISSUER = "https://mock-idp.tesht.local"
 
 
 class TestHumanIdentityStore:

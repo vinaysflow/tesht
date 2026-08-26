@@ -13,7 +13,7 @@ STATUS_ISSUER_NAME = "__status_list_issuer__"
 
 def status_issuer_did() -> str:
     # Keep issuer DID stable and simple: did:web:<domain>
-    return f"did:web:{settings.pramana_domain}"
+    return f"did:web:{settings.tesht_domain}"
 
 
 def ensure_status_issuer() -> tuple[Agent, Key]:

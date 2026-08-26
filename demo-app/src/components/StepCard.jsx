@@ -19,13 +19,13 @@ export function ProgressBar({ currentStep, totalSteps = 9 }) {
           <div key={n} className="flex items-center">
             <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono
               ${done   ? 'bg-emerald-900 text-emerald-300' : ''}
-              ${active ? 'bg-pramana-teal text-white animate-pulse' : ''}
-              ${pending ? 'bg-pramana-card text-pramana-muted' : ''}`}>
+              ${active ? 'bg-tesht-teal text-white animate-pulse' : ''}
+              ${pending ? 'bg-tesht-card text-tesht-muted' : ''}`}>
               <span className="font-bold">{n}</span>
               <span className="hidden sm:inline">{ACT_LABELS[n]}</span>
               {done && <span>✓</span>}
             </div>
-            {n < totalSteps && <div className="w-3 h-px bg-pramana-border mx-0.5" />}
+            {n < totalSteps && <div className="w-3 h-px bg-tesht-border mx-0.5" />}
           </div>
         )
       })}

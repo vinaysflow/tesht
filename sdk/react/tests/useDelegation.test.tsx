@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
-import { AgentIdentity } from "@pramana/sdk";
+import { AgentIdentity } from "@tesht/sdk";
 import { useDelegation, ScopeEscalationError } from "../src/useDelegation.js";
 import { makeWrapper } from "./helpers.js";
 

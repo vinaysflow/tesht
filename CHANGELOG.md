@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Pramana Protocol will be documented in this file.
+All notable changes to Tesht (Pramana) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Name:** Rebranded from Pramana Protocol to Tesht (Pramana). Irish *teist*
+  (testimony), spelled Tesht. Python package `tesht`, npm `@tesht/sdk` /
+  `@tesht/react`, env `TESHT_*`, headers `X-Tesht-*`.
 - **License:** Relicensed from MIT License to AGPL-3.0 (effective 2026-05-23).
   All versions released before this date retain their MIT-licensed status
   under the terms of the MIT License granted at that time. Commercial

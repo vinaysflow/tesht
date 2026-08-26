@@ -2,19 +2,19 @@
 
 This module implements the SPIFFE-to-VC bridge:
 
-    SPIFFE SVID (JWT) → Pramana-issued VC with application-layer authority
+    SPIFFE SVID (JWT) → Tesht-issued VC with application-layer authority
 
 Workflow:
     1. Client presents a SPIFFE SVID (JWT format).
     2. Bridge verifies the SVID signature against a trust bundle (or demo key).
-    3. Bridge creates or links a Pramana Agent with the SPIFFE ID stored.
+    3. Bridge creates or links a Tesht Agent with the SPIFFE ID stored.
     4. Bridge issues a W3C VC attesting the workload identity.
     5. Agent can now use the VC for delegation/commerce flows.
 
 Endpoints:
     POST /v1/identity/attest     — SVID → VC
     GET  /v1/identity/{did}/spiffe — Return SPIFFE binding for an agent DID
-    GET  /v1/identity/spiffe/{spiffe_id} — Return Pramana agent for a SPIFFE ID
+    GET  /v1/identity/spiffe/{spiffe_id} — Return Tesht agent for a SPIFFE ID
 """
 from __future__ import annotations
 
@@ -230,12 +230,12 @@ def attest_workload(
     req: AttestRequest,
     auth: dict = Depends(require_scopes(["credentials:issue"])),
 ) -> AttestResponse:
-    """Bridge endpoint: verify a SPIFFE SVID and issue a Pramana W3C VC.
+    """Bridge endpoint: verify a SPIFFE SVID and issue a Tesht W3C VC.
 
     The agent receives a VC attesting its workload identity, which it can
-    then use for delegation and commerce flows with Pramana's authorization layer.
+    then use for delegation and commerce flows with Tesht's authorization layer.
 
-    This is the key bridge: SPIFFE proves who the agent is → Pramana proves
+    This is the key bridge: SPIFFE proves who the agent is → Tesht proves
     what it is allowed to do.
     """
     tenant_id = auth.get("tenant_id", "default")
@@ -260,7 +260,7 @@ def attest_workload(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 
-    # 4. Get or create Pramana agent
+    # 4. Get or create Tesht agent
     agent_name = req.agent_name or f"workload{workload_path.replace('/', '-')}"
     try:
         agent, key, was_created = _get_or_create_agent(tenant_id, spiffe_id, agent_name)
@@ -271,7 +271,7 @@ def attest_workload(
     sl = get_or_create_default_list(tenant_id=tenant_id)
     index = allocate_index(sl.id)
     status_list_url = (
-        f"{settings.pramana_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
+        f"{settings.tesht_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
     )
 
     scope = req.initial_scope or {}
@@ -328,7 +328,7 @@ def get_spiffe_binding(
     did: str,
     auth: dict = Depends(require_scopes(["credentials:verify"])),
 ) -> SpiffeBindingResponse:
-    """Return the SPIFFE binding for a Pramana agent DID."""
+    """Return the SPIFFE binding for a Tesht agent DID."""
     tenant_id = auth.get("tenant_id", "default")
     with db_session() as db:
         agent = db.query(Agent).filter(
@@ -360,7 +360,7 @@ def get_agent_by_spiffe(
     spiffe_id: str,
     auth: dict = Depends(require_scopes(["credentials:verify"])),
 ) -> SpiffeBindingResponse:
-    """Return the Pramana agent registered for a given SPIFFE ID."""
+    """Return the Tesht agent registered for a given SPIFFE ID."""
     tenant_id = auth.get("tenant_id", "default")
     # Reconstruct the full spiffe:// URI from path parameter
     full_spiffe = f"spiffe://{spiffe_id}"

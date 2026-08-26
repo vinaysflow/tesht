@@ -137,7 +137,7 @@ def _create_unscored_session(client, authz_headers, name):
 
 def test_unscored_session_allows_in_development(client, authz_headers, monkeypatch):
     """No scored credential + development => demo-friendly allow (unchanged)."""
-    monkeypatch.setenv("PRAMANA_ENV", "development")
+    monkeypatch.setenv("TESHT_ENV", "development")
     monkeypatch.setenv("GATEWAY_ENV", "")
     session_id = _create_unscored_session(client, authz_headers, "dev-unscored-bot")
     resp = client.post(
@@ -151,7 +151,7 @@ def test_unscored_session_allows_in_development(client, authz_headers, monkeypat
 
 def test_unscored_session_failsafe_stepup_in_production(client, authz_headers, monkeypatch):
     """No scored credential + production => fail-safe step-up, never silent allow."""
-    monkeypatch.setenv("PRAMANA_ENV", "production")
+    monkeypatch.setenv("TESHT_ENV", "production")
     monkeypatch.setenv("GATEWAY_ENV", "")
     session_id = _create_unscored_session(client, authz_headers, "prod-unscored-bot")
     resp = client.post(
@@ -200,7 +200,7 @@ def _purchase(client, authz_headers, session_id, amount, merchant=None):
 
 def test_commerce_cumulative_budget_depletes_and_blocks(client, authz_headers, monkeypatch):
     """Multiple purchases deplete a shared budget; the one that would exceed is blocked."""
-    monkeypatch.setenv("PRAMANA_ENV", "development")
+    monkeypatch.setenv("TESHT_ENV", "development")
     monkeypatch.setenv("GATEWAY_ENV", "")
     session_id = _create_commerce_session(client, authz_headers, "commerce-bot", max_amount=10000)
 
@@ -224,7 +224,7 @@ def test_commerce_cumulative_budget_depletes_and_blocks(client, authz_headers, m
 
 def test_commerce_merchant_allowlist_blocks_unlisted(client, authz_headers, monkeypatch):
     """Purchases at a merchant outside the scope allowlist are blocked."""
-    monkeypatch.setenv("PRAMANA_ENV", "development")
+    monkeypatch.setenv("TESHT_ENV", "development")
     monkeypatch.setenv("GATEWAY_ENV", "")
     session_id = _create_commerce_session(
         client, authz_headers, "merchant-bot", max_amount=50000, merchants=["nike-store"]
@@ -242,7 +242,7 @@ def test_commerce_merchant_allowlist_blocks_unlisted(client, authz_headers, monk
 
 def test_commerce_spend_recorded_in_ledger(client, authz_headers, monkeypatch):
     """Allowed purchases are recorded and visible via the AP2 spend endpoint."""
-    monkeypatch.setenv("PRAMANA_ENV", "development")
+    monkeypatch.setenv("TESHT_ENV", "development")
     monkeypatch.setenv("GATEWAY_ENV", "")
     session_id = _create_commerce_session(client, authz_headers, "ledger-bot", max_amount=100000)
 

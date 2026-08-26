@@ -1,10 +1,10 @@
-### Developer quickstart + feedback (Pramana Demo)
+### Developer quickstart + feedback (Tesht Demo)
 
 Base URL:
-- https://aurviaglobal-pramana-demo.hf.space
+- https://aurviaglobal-tesht-demo.hf.space
 
 Start here (UI):
-- https://aurviaglobal-pramana-demo.hf.space/demo
+- https://aurviaglobal-tesht-demo.hf.space/demo
 
 Docs:
 - One-API (Stripe-like): `docs/guides/REQUIREMENT_INTENTS.md`
@@ -17,7 +17,7 @@ Docs:
 IMPORTANT: In Hugging Face discussions, code fences must start at the beginning of the line (no indentation).
 
 ```bash
-BASE=https://aurviaglobal-pramana-demo.hf.space
+BASE=https://aurviaglobal-tesht-demo.hf.space
 TOKEN=$(curl -sSf -X POST "$BASE/v1/demo/session" \
   -H "content-type: application/json" \
   -d '{}' | python -c 'import sys, json; print(json.load(sys.stdin)["token"])')
@@ -78,7 +78,7 @@ curl -sSf "$BASE/v1/requirement_intents/$INTENT_ID" \
 
 ## 3) Guided demo (UI)
 
-- Open: https://aurviaglobal-pramana-demo.hf.space/demo
+- Open: https://aurviaglobal-tesht-demo.hf.space/demo
 - Click **Run Drift Demo**
 - Expected: `verify_before.verified=true` and `verify_after.reason=revoked`
 

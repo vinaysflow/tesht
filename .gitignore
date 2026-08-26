@@ -19,6 +19,7 @@ build/
 node_modules/
 .next/
 out/
+*.tsbuildinfo
 .turbo/
 *.log
 npm-debug.log*
@@ -81,8 +82,8 @@ sdk/dist/
 .pnp/
 .pnp.js
 
-# Runtime outputs from Pramana scripts
-pramana_audit_export.csv
+# Runtime outputs from Tesht scripts
+tesht_audit_export.csv
 *.audit_export.csv
 reports/
 

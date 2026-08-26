@@ -3,14 +3,14 @@ import { shortDid } from '../utils/format.js'
 function Side({ title, items }) {
   return (
     <div className="flex-1 min-w-0">
-      <h4 className="text-xs font-bold text-pramana-teal mb-3">{title}</h4>
+      <h4 className="text-xs font-bold text-tesht-teal mb-3">{title}</h4>
       <div className="space-y-1.5">
         {items.map(({ icon, text, sub }, i) => (
           <div key={i} className="flex items-start gap-1.5 text-xs font-mono">
             <span className={icon === '✓' ? 'text-emerald-400' : 'text-red-400'}>{icon}</span>
             <div>
               <div className="text-slate-200">{text}</div>
-              {sub && <div className="text-pramana-muted">{sub}</div>}
+              {sub && <div className="text-tesht-muted">{sub}</div>}
             </div>
           </div>
         ))}
@@ -46,19 +46,19 @@ export function IsolationView({ vpToken, serverEntry }) {
 
   return (
     <div className="space-y-4">
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <Side title="🤖 AGENT SIDE" items={agentSide} />
 
           <div className="flex sm:flex-col items-center justify-center gap-2 px-4">
-            <div className="hidden sm:block w-px h-full min-h-[100px] bg-pramana-border" />
-            <div className="sm:hidden h-px w-full bg-pramana-border" />
-            <div className="bg-pramana-teal/20 border border-pramana-teal rounded-full px-3 py-2 text-center whitespace-nowrap">
-              <div className="text-xs font-bold text-pramana-teal">🔐 Gateway</div>
-              <div className="text-xs text-pramana-muted">Boundary</div>
+            <div className="hidden sm:block w-px h-full min-h-[100px] bg-tesht-border" />
+            <div className="sm:hidden h-px w-full bg-tesht-border" />
+            <div className="bg-tesht-teal/20 border border-tesht-teal rounded-full px-3 py-2 text-center whitespace-nowrap">
+              <div className="text-xs font-bold text-tesht-teal">🔐 Gateway</div>
+              <div className="text-xs text-tesht-muted">Boundary</div>
             </div>
-            <div className="hidden sm:block w-px h-full min-h-[100px] bg-pramana-border" />
-            <div className="sm:hidden h-px w-full bg-pramana-border" />
+            <div className="hidden sm:block w-px h-full min-h-[100px] bg-tesht-border" />
+            <div className="sm:hidden h-px w-full bg-tesht-border" />
           </div>
 
           <Side title="🖥 MCP SERVER SIDE" items={serverSide} />

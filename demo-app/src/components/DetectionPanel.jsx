@@ -33,17 +33,17 @@ function AlertCard({ alert }) {
         </div>
       </div>
       {alert.description && (
-        <p className="text-xs text-pramana-muted mt-2">{alert.description}</p>
+        <p className="text-xs text-tesht-muted mt-2">{alert.description}</p>
       )}
       {alert.evidence && (
-        <div className="mt-2 space-y-0.5 text-xs font-mono text-pramana-muted">
+        <div className="mt-2 space-y-0.5 text-xs font-mono text-tesht-muted">
           {Object.entries(alert.evidence).slice(0, 4).map(([k, v]) => (
             <div key={k}><span className="text-slate-400">{k}:</span> {String(v).slice(0, 60)}</div>
           ))}
         </div>
       )}
       {alert.action && (
-        <div className="mt-2 text-xs text-pramana-teal">→ Recommended: {alert.action}</div>
+        <div className="mt-2 text-xs text-tesht-teal">→ Recommended: {alert.action}</div>
       )}
     </div>
   )
@@ -156,21 +156,21 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
       {/* Metrics row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { label: 'Known Agents',    val: knownCount,              color: 'text-pramana-teal' },
+          { label: 'Known Agents',    val: knownCount,              color: 'text-tesht-teal' },
           { label: 'Shadow Attempts', val: shadowCount,             color: 'text-red-400' },
           { label: 'Alerts',          val: alerts.length,           color: 'text-yellow-400' },
           { label: 'Avg Trust',       val: `${Math.round(fleet.avg_trust || 0)}/100`, color: 'text-blue-400' },
         ].map(({ label, val, color }) => (
-          <div key={label} className="bg-pramana-card border border-pramana-border rounded-xl p-3 text-center">
+          <div key={label} className="bg-tesht-card border border-tesht-border rounded-xl p-3 text-center">
             <div className={`text-2xl font-bold font-mono ${color}`}>{val}</div>
-            <div className="text-xs text-pramana-muted mt-1">{label}</div>
+            <div className="text-xs text-tesht-muted mt-1">{label}</div>
           </div>
         ))}
       </div>
 
       {/* Shadow attack category breakdown */}
       {hasCategories && (
-        <div className="bg-pramana-card border border-red-800/40 rounded-xl p-4">
+        <div className="bg-tesht-card border border-red-800/40 rounded-xl p-4">
           <h3 className="text-sm font-bold text-red-400 mb-3">🚨 Shadow Attack Categories</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {categoryDefs.map(({ key, label, icon, desc }) => {
@@ -190,7 +190,7 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
                   <div className="text-2xl font-mono font-bold mb-1" style={{ color }}>
                     {count} attempt{count !== 1 ? 's' : ''}
                   </div>
-                  <div className="text-xs text-pramana-muted">{desc}</div>
+                  <div className="text-xs text-tesht-muted">{desc}</div>
                 </div>
               )
             })}
@@ -208,7 +208,7 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
                 <SeverityBadge severity={item.severity} />
                 <div>
                   <div className="text-sm font-bold text-slate-100">{item.label}</div>
-                  {item.detail && <div className="text-xs text-pramana-muted mt-0.5">{item.detail}</div>}
+                  {item.detail && <div className="text-xs text-tesht-muted mt-0.5">{item.detail}</div>}
                 </div>
               </div>
             ))}
@@ -219,7 +219,7 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
       {/* Charts row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {(knownCount + shadowCount) > 0 && (
-          <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+          <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
             <h3 className="text-sm font-bold text-slate-400 mb-3">Verified vs Shadow</h3>
             <ResponsiveContainer width="100%" height={140}>
               <PieChart>
@@ -230,14 +230,14 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
               </PieChart>
             </ResponsiveContainer>
             <div className="flex justify-center gap-4 text-xs">
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-pramana-teal" />Verified</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-tesht-teal" />Verified</span>
               <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400" />Shadow</span>
             </div>
           </div>
         )}
 
         {barData.some(d => d.value > 0) && (
-          <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+          <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
             <h3 className="text-sm font-bold text-slate-400 mb-3">Risk Distribution</h3>
             <ResponsiveContainer width="100%" height={140}>
               <BarChart data={barData} layout="vertical">
@@ -261,7 +261,7 @@ export function DetectionPanel({ alerts = [], fleet = {}, inventory = {}, shadow
       )}
 
       {alerts.length === 0 && !hasCategories && (
-        <div className="bg-pramana-card border border-pramana-border rounded-xl p-4 text-center text-pramana-muted text-sm">
+        <div className="bg-tesht-card border border-tesht-border rounded-xl p-4 text-center text-tesht-muted text-sm">
           No active alerts
         </div>
       )}

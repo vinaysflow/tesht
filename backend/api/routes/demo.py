@@ -35,7 +35,7 @@ def demo_session(resp: Response):
         inc("demo_session_created_total", 1)
 
     resp.set_cookie(
-        key='pramana_demo_session',
+        key='tesht_demo_session',
         value=session_id,
         httponly=True,
         secure=False,

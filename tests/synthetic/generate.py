@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EcosystemGenerator — modular, reproducible synthetic data for Pramana Protocol.
+EcosystemGenerator — modular, reproducible synthetic data for Tesht (Pramana).
 
 Target: 500+ agents, 1000+ credentials, 200+ chains, 100+ mandates, 150+ scenarios.
 All scenarios have expected outcomes (happy, failure, edge, security).
@@ -20,19 +20,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-# Add sdk/python to path for pramana imports
+# Add sdk/python to path for tesht imports
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "sdk" / "python"))
 
-from pramana.credentials import issue_vc, verify_vc
-from pramana.delegation import (
+from tesht.credentials import issue_vc, verify_vc
+from tesht.delegation import (
     ScopeEscalationError,
     delegate_further,
     intersect_scopes,
     issue_delegation,
     verify_delegation_chain,
 )
-from pramana.identity import AgentIdentity
-from pramana.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
+from tesht.identity import AgentIdentity
+from tesht.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
 
 import jwt as pyjwt
 
@@ -489,7 +489,7 @@ class EcosystemGenerator:
 
     def generate_vp_scenarios(self) -> None:
         """VP nonce, audience, replay protection scenarios."""
-        from pramana.credentials import create_presentation, verify_presentation
+        from tesht.credentials import create_presentation, verify_presentation
 
         agents_list = list(self.agents.values())
         if len(agents_list) < 2:
@@ -1069,7 +1069,7 @@ class EcosystemGenerator:
 # ── CLI ────────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate synthetic Pramana Protocol data")
+    parser = argparse.ArgumentParser(description="Generate synthetic Tesht (Pramana) data")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed for reproducibility")
     parser.add_argument("--output", type=str, default=str(DATA_DIR), help="Output directory")
     parser.add_argument(

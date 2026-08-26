@@ -13,8 +13,8 @@ import React, {
 // Context shape
 // ---------------------------------------------------------------------------
 
-export interface PramanaContextValue {
-  /** Base URL of the Pramana backend API (e.g. "http://localhost:8000").
+export interface TeshtContextValue {
+  /** Base URL of the Tesht backend API (e.g. "http://localhost:8000").
    *  When null, server-connected hooks will throw on use. */
   apiUrl: string | null;
   /** Current bearer token for authenticated API requests. */
@@ -23,7 +23,7 @@ export interface PramanaContextValue {
   setAuthToken: (token: string | null) => void;
 }
 
-const PramanaContext = createContext<PramanaContextValue>({
+const TeshtContext = createContext<TeshtContextValue>({
   apiUrl: null,
   authToken: null,
   setAuthToken: () => undefined,
@@ -33,7 +33,7 @@ const PramanaContext = createContext<PramanaContextValue>({
 // Provider
 // ---------------------------------------------------------------------------
 
-export interface PramanaProviderProps {
+export interface TeshtProviderProps {
   children: ReactNode;
   /** Optional. Base URL of the backend API. Enables server-connected hooks. */
   apiUrl?: string | null;
@@ -41,42 +41,42 @@ export interface PramanaProviderProps {
   authToken?: string | null;
 }
 
-export function PramanaProvider({
+export function TeshtProvider({
   children,
   apiUrl = null,
   authToken: initialToken = null,
-}: PramanaProviderProps): React.JSX.Element {
+}: TeshtProviderProps): React.JSX.Element {
   const [authToken, setAuthTokenState] = useState<string | null>(initialToken);
 
   const setAuthToken = useCallback((token: string | null) => {
     setAuthTokenState(token);
   }, []);
 
-  const value = useMemo<PramanaContextValue>(
+  const value = useMemo<TeshtContextValue>(
     () => ({ apiUrl: apiUrl ?? null, authToken, setAuthToken }),
     [apiUrl, authToken, setAuthToken],
   );
 
   return (
-    <PramanaContext.Provider value={value}>{children}</PramanaContext.Provider>
+    <TeshtContext.Provider value={value}>{children}</TeshtContext.Provider>
   );
 }
 
 // ---------------------------------------------------------------------------
-// Hook: usePramana (internal — access raw context)
+// Hook: useTesht (internal — access raw context)
 // ---------------------------------------------------------------------------
 
-export function usePramana(): PramanaContextValue {
-  return useContext(PramanaContext);
+export function useTesht(): TeshtContextValue {
+  return useContext(TeshtContext);
 }
 
 /** Asserts that apiUrl is configured; throws a clear message otherwise. */
 export function useRequireApiUrl(): string {
-  const { apiUrl } = usePramana();
+  const { apiUrl } = useTesht();
   if (!apiUrl) {
     throw new Error(
-      "[PramanaProvider] apiUrl is required for server-connected hooks. " +
-        "Pass apiUrl prop to <PramanaProvider>.",
+      "[TeshtProvider] apiUrl is required for server-connected hooks. " +
+        "Pass apiUrl prop to <TeshtProvider>.",
     );
   }
   return apiUrl;

@@ -94,9 +94,9 @@ def test_postgres_enforcement():
 
     env_overrides = {
         "ENV": "production",
-        "DATABASE_URL": "sqlite:////tmp/pramana_test.db",
+        "DATABASE_URL": "sqlite:////tmp/tesht_test.db",
         "AUTH_JWT_SECRET": "test-secret",
-        "AUTH_JWT_ISSUER": "pramana-test",
+        "AUTH_JWT_ISSUER": "tesht-test",
     }
 
     original_env = {k: os.environ.get(k) for k in env_overrides}

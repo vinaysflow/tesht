@@ -24,11 +24,11 @@ BACKEND = Path(__file__).resolve().parents[1] / "backend"
 sys.path.insert(0, str(BACKEND))
 
 # Configure a clean, isolated dev environment BEFORE importing app modules.
-_db = os.path.join(tempfile.mkdtemp(prefix="pramana_dogfood_"), "commerce.db")
+_db = os.path.join(tempfile.mkdtemp(prefix="tesht_dogfood_"), "commerce.db")
 os.environ["DATABASE_URL"] = f"sqlite:///{_db}"
 os.environ.setdefault("AUTH_JWT_SECRET", "dogfood-secret")
-os.environ.setdefault("AUTH_JWT_ISSUER", "pramana-dogfood")
-os.environ["PRAMANA_ENV"] = "development"
+os.environ.setdefault("AUTH_JWT_ISSUER", "tesht-dogfood")
+os.environ["TESHT_ENV"] = "development"
 os.environ["GATEWAY_ENV"] = ""
 
 from fastapi.testclient import TestClient  # noqa: E402

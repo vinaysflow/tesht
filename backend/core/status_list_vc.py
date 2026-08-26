@@ -24,8 +24,8 @@ def _now() -> int:
 
 
 def status_list_url(status_list_id: uuid.UUID) -> str:
-    domain = unquote(settings.pramana_domain)
-    return f"{settings.pramana_scheme}://{domain}/v1/status/{status_list_id}"
+    domain = unquote(settings.tesht_domain)
+    return f"{settings.tesht_scheme}://{domain}/v1/status/{status_list_id}"
 
 
 def issue_status_list_vc_jwt(status_list_id: uuid.UUID) -> tuple[str, dict[str, Any]]:
@@ -120,7 +120,7 @@ def is_local_status_list_url(url: str) -> bool:
     try:
         u = urlparse(url)
         hostport = u.netloc
-        local_hostport = unquote(settings.pramana_domain)
+        local_hostport = unquote(settings.tesht_domain)
         return hostport == local_hostport and u.path.startswith('/v1/status/')
     except Exception:
         return False

@@ -5,7 +5,7 @@ This API is inspired by Stripe’s “Intent” pattern: create a single object 
 ### 0) Get a demo token (HF Space)
 
 ```bash
-BASE=https://aurviaglobal-pramana-demo.hf.space
+BASE=https://aurviaglobal-tesht-demo.hf.space
 TOKEN=$(curl -sSf -X POST $BASE/v1/demo/session -H 'content-type: application/json' -d '{}' | python -c 'import sys, json; print(json.load(sys.stdin)["token"])')
 ```
 

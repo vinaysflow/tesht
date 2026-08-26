@@ -1,17 +1,19 @@
-# Pramana SDK — Portable AI Agent Identity
+# Tesht (Pramana) SDK — Portable AI Agent Identity
 
 Give your AI agent a verifiable identity in 3 lines of code. W3C DIDs + Verifiable Credentials. No server needed.
+
+Tesht (from Irish *teist*, testimony) is portable identity and scoped authorization for AI agents.
 
 ## Install
 
 ```bash
-pip install aurvia-pramana
+pip install tesht
 ```
 
 ## Quickstart
 
 ```python
-from pramana import AgentIdentity, issue_vc, verify_vc
+from tesht import AgentIdentity, issue_vc, verify_vc
 
 # Create an agent identity (offline — no server needed)
 agent = AgentIdentity.create("my-shopping-bot")
@@ -32,7 +34,7 @@ assert result.verified == True
 
 ## What is this?
 
-Pramana implements portable AI agent identity using W3C standards.
+Tesht (Pramana) implements portable AI agent identity using W3C standards.
 Every AI agent gets a DID (Decentralized Identifier) and can
 issue/receive Verifiable Credentials — cryptographic proof of
 identity, capabilities, and delegation authority.
@@ -51,7 +53,7 @@ Works with: LangChain, CrewAI, MCP, A2A protocol, any agent framework.
 ## Delegation example
 
 ```python
-from pramana import AgentIdentity, issue_delegation, delegate_further, verify_delegation_chain
+from tesht import AgentIdentity, issue_delegation, delegate_further, verify_delegation_chain
 
 root = AgentIdentity.create("root-agent")
 worker = AgentIdentity.create("worker-agent")
@@ -72,7 +74,7 @@ print(result.scope)  # {"actions": ["pay"], "max_amount": 100}
 ## Verifiable Presentation example
 
 ```python
-from pramana import AgentIdentity, issue_vc, create_presentation, verify_presentation
+from tesht import AgentIdentity, issue_vc, create_presentation, verify_presentation
 
 issuer = AgentIdentity.create("issuer")
 holder = AgentIdentity.create("holder")
@@ -99,6 +101,6 @@ assert result.valid
 
 ## Links
 
-- [GitHub](https://github.com/vinaysflow/pramana-protocol)
-- [Documentation](https://pramana.dev/docs)
-- [Live demo](https://aurviaglobal-pramana-demo.hf.space/demo)
+- [GitHub](https://github.com/vinaysflow/tesht)
+- [Documentation](https://github.com/vinaysflow/tesht)
+- [Live demo](https://aurviaglobal-tesht-demo.hf.space/demo)

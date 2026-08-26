@@ -1,4 +1,4 @@
-# Quickstart — Pramana Protocol SDK (Python)
+# Quickstart — Tesht (Pramana) SDK (Python)
 
 Get up and running in five minutes. No server required.
 
@@ -10,17 +10,17 @@ Get up and running in five minutes. No server required.
 ## 1. Clone and install the SDK
 
 ```bash
-git clone https://github.com/vinaysflow/pramana-protocol.git
-cd pramana-protocol
+git clone https://github.com/vinaysflow/tesht.git
+cd tesht
 pip install -e sdk/python
 ```
 
 ## 2. Create an agent identity
 
-Every agent in the Pramana Protocol starts with a self-sovereign identity backed by an Ed25519 keypair.
+Every Tesht agent starts with a self-sovereign identity backed by an Ed25519 keypair.
 
 ```python
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 
 alice = AgentIdentity.create("alice")
 print(alice.did)   # did:key:z6Mk…
@@ -31,7 +31,7 @@ print(alice.did)   # did:key:z6Mk…
 ## 3. Issue and verify a credential
 
 ```python
-from pramana.credentials import issue_vc, verify_vc
+from tesht.credentials import issue_vc, verify_vc
 
 issuer = AgentIdentity.create("my-org")
 subject = AgentIdentity.create("employee-bob")
@@ -55,7 +55,7 @@ print(result.claims)         # {'role': 'engineer', 'department': 'platform'}
 ## 4. Delegate authority to an agent
 
 ```python
-from pramana.delegation import issue_delegation, verify_delegation_chain
+from tesht.delegation import issue_delegation, verify_delegation_chain
 
 user = AgentIdentity.create("alice")
 agent = AgentIdentity.create("alice-shopping-agent")

@@ -3,7 +3,7 @@ import {
   AgentIdentity,
   resolveDIDKey,
   type AgentIdentityDict,
-} from "@pramana/sdk";
+} from "@tesht/sdk";
 
 export interface UseIdentityReturn {
   /** Create a new agent identity with a fresh Ed25519 keypair. */
@@ -15,7 +15,7 @@ export interface UseIdentityReturn {
 }
 
 /**
- * Provides offline identity operations backed by the @pramana/sdk TypeScript SDK.
+ * Provides offline identity operations backed by the @tesht/sdk TypeScript SDK.
  * No server connection required — all crypto runs in the browser.
  */
 export function useIdentity(): UseIdentityReturn {

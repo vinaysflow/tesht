@@ -31,7 +31,7 @@ class TestGatewayAuth:
         self, bot, delegation, gateway_identity
     ):
         b, _ = bot
-        from pramana.credentials import create_presentation
+        from tesht.credentials import create_presentation
         vp_no_delegator = create_presentation(
             holder=b, credentials=[delegation],
             audience=gateway_identity.did,

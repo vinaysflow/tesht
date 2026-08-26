@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Enterprise IdP Bridge Demo
+Tesht (Pramana) — Enterprise IdP Bridge Demo
 ==============================================
 
 Fully self-contained: starts mock OIDC provider, IdP bridge, MCP gateway,
@@ -39,10 +39,10 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import httpx
 
-from pramana.credentials import create_blended_presentation
-from pramana.identity import AgentIdentity
-from pramana.credentials import issue_vc
-from pramana.delegation import issue_delegation
+from tesht.credentials import create_blended_presentation
+from tesht.identity import AgentIdentity
+from tesht.credentials import issue_vc
+from tesht.delegation import issue_delegation
 
 # ── Terminal colours ──────────────────────────────────────────────────────────
 RESET = "\033[0m"
@@ -138,9 +138,9 @@ def _write_demo_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Acme Corp Okta (Mock)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": "http://127.0.0.1:9200/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -153,9 +153,9 @@ def _write_demo_config() -> str:
             },
             "bigbank_okta": {
                 "name": "BigBank Financial (Mock Okta)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": "http://127.0.0.1:9200/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -241,7 +241,7 @@ def run_scenario_1(bridge_url: str, gateway_url: str) -> bool:
     # We need an AgentCredential for ShoppingBot too
     bridge_identity_did = httpx.get(f"{bridge_url}/health", timeout=5).json()["bridge_did"]
 
-    from pramana.identity import resolve_did_key
+    from tesht.identity import resolve_did_key
     # We need a mock issuer for the agent VC — use the bridge
     # For demo: create a simple agent VC self-issued
     agent_vc = issue_vc(
@@ -392,7 +392,7 @@ def run_scenario_3(bridge_url: str) -> bool:
         {
             "iss": "https://evil.attacker.com",
             "sub": "evil-sub-999",
-            "aud": "pramana",
+            "aud": "tesht",
             "iat": now, "exp": now + 3600,
             "name": "Evil Attacker",
         },
@@ -422,7 +422,7 @@ def run_scenario_3(bridge_url: str) -> bool:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> int:
-    banner("PRAMANA ENTERPRISE IDP BRIDGE — Live Demo")
+    banner("TESHT ENTERPRISE IDP BRIDGE — Live Demo")
     print(f"\n  {DIM}Starting services...{RESET}")
 
     cfg_path = _write_demo_config()
@@ -476,7 +476,7 @@ def main() -> int:
 
         print(f"\n  {GREEN}{BOLD}All 3 scenarios passed.{RESET}")
         print(f"\n  {DIM}Key insight: Enterprise users never manage cryptographic keys.")
-        print(f"  One OIDC token → Pramana DID + enterprise VC → agent delegation.")
+        print(f"  One OIDC token → Tesht DID + enterprise VC → agent delegation.")
         print(f"  The gateway sees WHO authorised the agent (name, email, org, role).")
         print(f"  Full audit trail: Alice Johnson (alice@acmecorp.com via Okta) → ALLOWED.{RESET}\n")
         return 0

@@ -1,5 +1,5 @@
 """
-pramana.integrations.mcp
+tesht.integrations.mcp
 ~~~~~~~~~~~~~~~~~~~~~~~~
 MCP (Model Context Protocol) authentication middleware.
 
@@ -12,14 +12,14 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from pramana.credentials import (
+from tesht.credentials import (
     PresentationResult,
     VerificationResult,
     create_presentation,
     verify_presentation,
 )
-from pramana.delegation import DelegationResult, verify_delegation_chain
-from pramana.identity import AgentIdentity
+from tesht.delegation import DelegationResult, verify_delegation_chain
+from tesht.identity import AgentIdentity
 
 
 # ---------------------------------------------------------------------------
@@ -84,7 +84,7 @@ class MCPAuthResult:
 # Core auth class
 # ---------------------------------------------------------------------------
 
-class PramanaMCPAuth:
+class TeshtMCPAuth:
     """MCP authentication helper — usable as middleware or standalone."""
 
     def __init__(self, config: MCPAuthConfig) -> None:
@@ -320,13 +320,13 @@ class PramanaMCPAuth:
 # FastAPI middleware factory
 # ---------------------------------------------------------------------------
 
-def mcp_auth_middleware(auth: PramanaMCPAuth) -> Callable:
+def mcp_auth_middleware(auth: TeshtMCPAuth) -> Callable:
     """
     Return a FastAPI dependency that verifies MCP request credentials.
 
     Usage::
 
-        auth = PramanaMCPAuth(config)
+        auth = TeshtMCPAuth(config)
 
         @app.post("/mcp/tool/invoke")
         def invoke_tool(

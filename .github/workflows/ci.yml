@@ -95,20 +95,20 @@ jobs:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_USER: pramana
-          POSTGRES_PASSWORD: pramana_ci
-          POSTGRES_DB: pramana_test
+          POSTGRES_USER: tesht
+          POSTGRES_PASSWORD: tesht_ci
+          POSTGRES_DB: tesht_test
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U pramana"
+          --health-cmd "pg_isready -U tesht"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
     env:
-      PRAMANA_TEST_DATABASE_URL: postgresql://pramana:pramana_ci@localhost:5432/pramana_test
+      TESHT_TEST_DATABASE_URL: postgresql://tesht:tesht_ci@localhost:5432/tesht_test
       AUTH_JWT_SECRET: ci-test-secret
-      AUTH_JWT_ISSUER: pramana-test
+      AUTH_JWT_ISSUER: tesht-test
     steps:
       - uses: actions/checkout@v4
 
@@ -124,7 +124,7 @@ jobs:
       - name: Run migrations
         working-directory: backend
         run: |
-          DATABASE_URL=$PRAMANA_TEST_DATABASE_URL \
+          DATABASE_URL=$TESHT_TEST_DATABASE_URL \
           python -m alembic upgrade head
 
       - name: Run backend tests

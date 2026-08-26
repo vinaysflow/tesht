@@ -49,13 +49,13 @@ export function DemoRunner({ state, currentStep, stepLogs, results, errorMsg, on
             onClick={onRun}
             className="shimmer-border p-px rounded-xl"
           >
-            <div className="bg-pramana-dark hover:bg-pramana-card rounded-[11px] px-6 py-3 font-bold text-sm transition-colors">
+            <div className="bg-tesht-dark hover:bg-tesht-card rounded-[11px] px-6 py-3 font-bold text-sm transition-colors">
               ▶ Run One-Click Demo
             </div>
           </button>
         )}
         {isRunning && (
-          <div className="flex items-center gap-2 text-pramana-teal text-sm">
+          <div className="flex items-center gap-2 text-tesht-teal text-sm">
             <span className="animate-spin">⟳</span>
             <span>Running demo… Act {currentStep} of 9</span>
           </div>
@@ -63,7 +63,7 @@ export function DemoRunner({ state, currentStep, stepLogs, results, errorMsg, on
         {(isComplete || state === 'error') && (
           <button
             onClick={onReset}
-            className="border border-pramana-border px-4 py-2 rounded-xl text-sm hover:bg-pramana-card transition-colors"
+            className="border border-tesht-border px-4 py-2 rounded-xl text-sm hover:bg-tesht-card transition-colors"
           >
             ↺ Reset
           </button>
@@ -88,8 +88,8 @@ export function DemoRunner({ state, currentStep, stepLogs, results, errorMsg, on
 
       {/* Step logs */}
       {(isRunning || isComplete) && stepLogs.length > 0 && (
-        <div className="bg-pramana-card border border-pramana-border rounded-xl p-4 max-h-64 overflow-y-auto">
-          <div className="text-xs font-bold text-pramana-muted mb-2">Demo Log</div>
+        <div className="bg-tesht-card border border-tesht-border rounded-xl p-4 max-h-64 overflow-y-auto">
+          <div className="text-xs font-bold text-tesht-muted mb-2">Demo Log</div>
           {stepLogs.map((log, i) => (
             <StepCard key={i} step={log} index={i} />
           ))}
@@ -100,15 +100,15 @@ export function DemoRunner({ state, currentStep, stepLogs, results, errorMsg, on
       {isComplete && (
         <div>
           {/* Tab bar */}
-          <div className="flex gap-1 flex-wrap mb-4 border-b border-pramana-border pb-2">
+          <div className="flex gap-1 flex-wrap mb-4 border-b border-tesht-border pb-2">
             {TABS.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-3 py-1.5 rounded-t text-xs font-mono transition-colors
                   ${currentTab === tab.id
-                    ? 'bg-pramana-teal text-white'
-                    : 'text-pramana-muted hover:text-slate-200 hover:bg-pramana-card'}`}
+                    ? 'bg-tesht-teal text-white'
+                    : 'text-tesht-muted hover:text-slate-200 hover:bg-tesht-card'}`}
               >
                 {tab.label}
               </button>

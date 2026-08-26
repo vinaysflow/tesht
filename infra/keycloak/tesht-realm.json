@@ -1,10 +1,10 @@
 {
-  "realm": "pramana",
+  "realm": "tesht",
   "enabled": true,
-  "displayName": "Pramana",
+  "displayName": "Tesht (Pramana)",
   "clients": [
     {
-      "clientId": "pramana-api",
+      "clientId": "tesht-api",
       "enabled": true,
       "protocol": "openid-connect",
       "publicClient": true,

@@ -2,7 +2,7 @@ from core.crypto import decrypt_text, encrypt_text
 
 
 def test_encrypt_decrypt_roundtrip():
-    msg = "hello-pramana"
+    msg = "hello-tesht"
     ct = encrypt_text(msg)
     assert isinstance(ct, str)
     assert ct != msg

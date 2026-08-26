@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from pramana.credentials import issue_vc, verify_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import issue_vc, verify_vc
+from tesht.identity import AgentIdentity
 
 
 # ---------------------------------------------------------------------------

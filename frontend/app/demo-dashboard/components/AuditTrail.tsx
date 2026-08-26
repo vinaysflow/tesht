@@ -84,7 +84,7 @@ export function AuditTrail({
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "pramana-audit.jsonl";
+      a.download = "tesht-audit.jsonl";
       a.click();
       URL.revokeObjectURL(url);
     } catch { /* ignore */ }

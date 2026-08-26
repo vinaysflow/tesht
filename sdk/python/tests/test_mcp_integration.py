@@ -1,5 +1,5 @@
 """
-Tests for pramana.integrations.mcp — MCP authentication middleware.
+Tests for tesht.integrations.mcp — MCP authentication middleware.
 
 All 8 tests follow the spec exactly:
   1. test_create_and_verify_auth_roundtrip
@@ -13,10 +13,10 @@ All 8 tests follow the spec exactly:
 """
 import pytest
 
-from pramana.credentials import issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
-from pramana.integrations.mcp import MCPAuthConfig, MCPAuthResult, PramanaMCPAuth
+from tesht.credentials import issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
+from tesht.integrations.mcp import MCPAuthConfig, MCPAuthResult, TeshtMCPAuth
 
 
 # ---------------------------------------------------------------------------
@@ -59,14 +59,14 @@ class TestMCPAuthRoundtrip:
         vc = _make_vc(client_identity, client_identity.did)
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[vc],
             audience=server_identity.did,
         )
 
         server_config = MCPAuthConfig(identity=server_identity)
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is True
@@ -77,7 +77,7 @@ class TestMCPAuthRoundtrip:
 class TestMissingOrMalformedHeader:
     def test_missing_auth_header(self, server_identity: AgentIdentity) -> None:
         """Empty headers dict → authenticated=False, reason contains 'Missing Authorization'."""
-        auth = PramanaMCPAuth(MCPAuthConfig(identity=server_identity))
+        auth = TeshtMCPAuth(MCPAuthConfig(identity=server_identity))
         result = auth.verify_request({})
 
         assert result.authenticated is False
@@ -86,7 +86,7 @@ class TestMissingOrMalformedHeader:
 
     def test_invalid_scheme(self, server_identity: AgentIdentity) -> None:
         """Basic scheme → authenticated=False, reason contains 'scheme'."""
-        auth = PramanaMCPAuth(MCPAuthConfig(identity=server_identity))
+        auth = TeshtMCPAuth(MCPAuthConfig(identity=server_identity))
         result = auth.verify_request({"Authorization": "Basic abc123"})
 
         assert result.authenticated is False
@@ -108,7 +108,7 @@ class TestIssuerTrust:
         vc = _make_vc(issuer_identity, client_identity.did)
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[vc],
             audience=server_identity.did,
@@ -118,7 +118,7 @@ class TestIssuerTrust:
             identity=server_identity,
             trusted_issuers=["did:key:zTRUSTED"],  # issuer_identity.did not in this list
         )
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is False
@@ -135,7 +135,7 @@ class TestIssuerTrust:
         vc = _make_vc(issuer_identity, client_identity.did)
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[vc],
             audience=server_identity.did,
@@ -145,7 +145,7 @@ class TestIssuerTrust:
             identity=server_identity,
             trusted_issuers=[issuer_identity.did],
         )
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is True
@@ -160,7 +160,7 @@ class TestIssuerTrust:
         vc = _make_vc(random_issuer, client_identity.did)
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[vc],
             audience=server_identity.did,
@@ -168,7 +168,7 @@ class TestIssuerTrust:
 
         # trusted_issuers not set → empty list → all issuers pass
         server_config = MCPAuthConfig(identity=server_identity)
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is True
@@ -187,7 +187,7 @@ class TestCredentialTypeRequirement:
         vc = _make_vc(client_identity, client_identity.did, credential_type="AgentCredential")
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[vc],
             audience=server_identity.did,
@@ -197,7 +197,7 @@ class TestCredentialTypeRequirement:
             identity=server_identity,
             required_credential_types=["AdminCredential"],
         )
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is False
@@ -224,7 +224,7 @@ class TestDelegationRequirement:
         )
 
         client_config = MCPAuthConfig(identity=client_identity)
-        client_auth = PramanaMCPAuth(client_config)
+        client_auth = TeshtMCPAuth(client_config)
         headers = client_auth.create_auth_headers(
             credentials=[delegation_vc],
             audience=server_identity.did,
@@ -234,7 +234,7 @@ class TestDelegationRequirement:
             identity=server_identity,
             require_delegation=True,
         )
-        server_auth = PramanaMCPAuth(server_config)
+        server_auth = TeshtMCPAuth(server_config)
         result = server_auth.verify_request(headers)
 
         assert result.authenticated is True

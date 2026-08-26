@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { usePramana, useRequireApiUrl } from "./context.js";
+import { useTesht, useRequireApiUrl } from "./context.js";
 import { apiPost } from "./api.js";
 
 // ---------------------------------------------------------------------------
@@ -88,12 +88,12 @@ export interface UseMandateReturn {
 }
 
 /**
- * Provides AP2 mandate operations via the Pramana backend.
- * Requires apiUrl set on <PramanaProvider>.
+ * Provides AP2 mandate operations via the Tesht backend.
+ * Requires apiUrl set on <TeshtProvider>.
  */
 export function useMandate(): UseMandateReturn {
   const apiUrl = useRequireApiUrl();
-  const { authToken } = usePramana();
+  const { authToken } = useTesht();
 
   const createIntent = useCallback(
     (body: IntentPayload) =>

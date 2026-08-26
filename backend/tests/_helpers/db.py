@@ -27,7 +27,7 @@ def ensure_test_database(database_url: str) -> str:
 
     # connect to postgres maintenance DB
     u = urlparse(database_url)
-    maint_db = os.getenv("PRAMANA_PG_MAINT_DB", "postgres")
+    maint_db = os.getenv("TESHT_PG_MAINT_DB", "postgres")
     maint_url = database_url[: -(len((u.path or "").lstrip("/"))) ] + maint_db
 
     try:

@@ -1,19 +1,19 @@
 """
-Tests for pramana.integrations.a2a — A2A Agent Card integration.
+Tests for tesht.integrations.a2a — A2A Agent Card integration.
 
 6 tests matching the spec:
-  1. test_extend_card_adds_pramana_section
+  1. test_extend_card_adds_tesht_section
   2. test_extend_card_preserves_existing
   3. test_extend_card_adds_security_scheme
   4. test_verify_card_did_key
-  5. test_verify_card_missing_pramana
+  5. test_verify_card_missing_tesht
   6. test_task_token_structure
 """
 import jwt as pyjwt
 import pytest
 
-from pramana.identity import AgentIdentity
-from pramana.integrations.a2a import (
+from tesht.identity import AgentIdentity
+from tesht.integrations.a2a import (
     AgentCardVerification,
     create_a2a_task_token,
     extend_agent_card,
@@ -53,12 +53,12 @@ def identity() -> AgentIdentity:
 # ---------------------------------------------------------------------------
 
 
-def test_extend_card_adds_pramana_section(identity: AgentIdentity) -> None:
-    """Card has 'pramana' with did, kid, credentialTypes."""
+def test_extend_card_adds_tesht_section(identity: AgentIdentity) -> None:
+    """Card has 'tesht' with did, kid, credentialTypes."""
     extended = extend_agent_card(SAMPLE_CARD, identity)
 
-    assert "pramana" in extended
-    p = extended["pramana"]
+    assert "tesht" in extended
+    p = extended["tesht"]
     assert p["did"] == identity.did
     assert p["kid"] == identity.kid
     assert isinstance(p["credentialTypes"], list)
@@ -74,7 +74,7 @@ def test_extend_card_preserves_existing(identity: AgentIdentity) -> None:
     extended = extend_agent_card(SAMPLE_CARD, identity)
 
     # Original dict untouched
-    assert "pramana" not in SAMPLE_CARD
+    assert "tesht" not in SAMPLE_CARD
     assert SAMPLE_CARD["name"] == original_name
     assert len(SAMPLE_CARD["skills"]) == original_skills_count
 
@@ -85,13 +85,13 @@ def test_extend_card_preserves_existing(identity: AgentIdentity) -> None:
 
 
 def test_extend_card_adds_security_scheme(identity: AgentIdentity) -> None:
-    """securitySchemes has 'pramana-vp' entry with correct shape."""
+    """securitySchemes has 'tesht-vp' entry with correct shape."""
     extended = extend_agent_card(SAMPLE_CARD, identity)
 
     schemes = extended["securitySchemes"]
-    assert "pramana-vp" in schemes
+    assert "tesht-vp" in schemes
 
-    vp_scheme = schemes["pramana-vp"]
+    vp_scheme = schemes["tesht-vp"]
     assert vp_scheme["type"] == "http"
     assert vp_scheme["scheme"] == "bearer"
     assert "description" in vp_scheme
@@ -110,12 +110,12 @@ def test_verify_card_did_key(identity: AgentIdentity) -> None:
     assert result.reason is None
 
 
-def test_verify_card_missing_pramana() -> None:
-    """Card without 'pramana' section fails with appropriate reason."""
+def test_verify_card_missing_tesht() -> None:
+    """Card without 'tesht' section fails with appropriate reason."""
     result = verify_agent_card_identity(SAMPLE_CARD)
 
     assert result.verified is False
-    assert result.reason == "No pramana section"
+    assert result.reason == "No tesht section"
 
 
 def test_task_token_structure(identity: AgentIdentity) -> None:

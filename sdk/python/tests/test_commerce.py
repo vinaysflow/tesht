@@ -8,8 +8,8 @@ import time
 import pytest
 import jwt as pyjwt
 
-from pramana.identity import AgentIdentity
-from pramana.commerce import (
+from tesht.identity import AgentIdentity
+from tesht.commerce import (
     issue_intent_mandate,
     issue_cart_mandate,
     verify_mandate,

@@ -3,21 +3,21 @@ import { StatusBadge } from './StatusBadge.jsx'
 
 function ChainNode({ icon, name, subtitle, did, badge, color = 'teal' }) {
   const borderColor =
-    color === 'teal'   ? 'border-pramana-teal' :
+    color === 'teal'   ? 'border-tesht-teal' :
     color === 'purple' ? 'border-purple-500'   :
     color === 'blue'   ? 'border-blue-500'     : 'border-slate-500'
 
   return (
-    <div className={`border ${borderColor} rounded-xl p-4 bg-pramana-card text-sm w-full max-w-xs`}>
+    <div className={`border ${borderColor} rounded-xl p-4 bg-tesht-card text-sm w-full max-w-xs`}>
       <div className="flex items-center gap-2 mb-1">
         <span className="text-xl">{icon}</span>
         <span className="font-bold text-slate-100">{name}</span>
       </div>
-      {subtitle && <div className="text-xs text-pramana-muted ml-7">{subtitle}</div>}
-      {did     && <div className="text-xs text-pramana-muted font-mono ml-7 mt-1">{shortDid(did, 20)}</div>}
+      {subtitle && <div className="text-xs text-tesht-muted ml-7">{subtitle}</div>}
+      {did     && <div className="text-xs text-tesht-muted font-mono ml-7 mt-1">{shortDid(did, 20)}</div>}
       {badge   && (
         <div className="mt-2 ml-7">
-          <span className="text-xs bg-pramana-teal/20 text-pramana-teal px-2 py-0.5 rounded border border-pramana-teal/40">
+          <span className="text-xs bg-tesht-teal/20 text-tesht-teal px-2 py-0.5 rounded border border-tesht-teal/40">
             {badge}
           </span>
         </div>
@@ -29,16 +29,16 @@ function ChainNode({ icon, name, subtitle, did, badge, color = 'teal' }) {
 function ChainEdge({ scope, narrowed }) {
   return (
     <div className="flex flex-col items-center my-2">
-      <div className="w-px h-4 bg-pramana-border" />
-      <div className={`border rounded px-3 py-1 text-xs bg-pramana-dark max-w-xs text-center
-        ${narrowed ? 'border-amber-600/60' : 'border-pramana-border'}`}>
+      <div className="w-px h-4 bg-tesht-border" />
+      <div className={`border rounded px-3 py-1 text-xs bg-tesht-dark max-w-xs text-center
+        ${narrowed ? 'border-amber-600/60' : 'border-tesht-border'}`}>
         <div className={`font-bold mb-0.5 ${narrowed ? 'text-amber-300' : 'text-slate-300'}`}>
           {narrowed ? '⬇ Narrowed scope' : 'Delegated scope'}
         </div>
-        <div className="text-pramana-muted">{formatScope(scope)}</div>
+        <div className="text-tesht-muted">{formatScope(scope)}</div>
       </div>
-      <div className="w-px h-4 bg-pramana-border" />
-      <div className="text-pramana-border text-lg">↓</div>
+      <div className="w-px h-4 bg-tesht-border" />
+      <div className="text-tesht-border text-lg">↓</div>
     </div>
   )
 }
@@ -57,12 +57,12 @@ function ResultCard({ result, label, icon }) {
         <span className="text-sm font-bold text-slate-100">{label}</span>
         <StatusBadge decision={result.decision} />
         {typeof result.trustScore !== 'undefined' && (
-          <span className="text-xs font-mono text-pramana-muted ml-auto">
+          <span className="text-xs font-mono text-tesht-muted ml-auto">
             trust: <span className="text-slate-200">{result.trustScore}</span>
           </span>
         )}
       </div>
-      <div className="text-xs font-mono space-y-1 text-pramana-muted">
+      <div className="text-xs font-mono space-y-1 text-tesht-muted">
         <div><span className="text-slate-400">tool:</span> {result.tool}</div>
         {result.requiredAction && (
           <div><span className="text-slate-400">required action:</span>{' '}
@@ -84,7 +84,7 @@ function ResultCard({ result, label, icon }) {
 
 export function MultiHopView({ chain = [], inScopeResult, outOfScopeResult }) {
   if (!chain.length) {
-    return <div className="text-pramana-muted text-sm">No multi-hop delegation data yet.</div>
+    return <div className="text-tesht-muted text-sm">No multi-hop delegation data yet.</div>
   }
 
   const nodeColors = ['teal', 'blue', 'purple', 'slate']
@@ -129,7 +129,7 @@ export function MultiHopView({ chain = [], inScopeResult, outOfScopeResult }) {
       </div>
 
       {/* Chain verification */}
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
         <h3 className="text-sm font-bold text-slate-400 mb-2">Chain Verification</h3>
         <div className="space-y-1 text-xs font-mono">
           {[
@@ -142,7 +142,7 @@ export function MultiHopView({ chain = [], inScopeResult, outOfScopeResult }) {
             <div key={label} className="flex items-center gap-2">
               <span className="text-emerald-400">✓</span>
               <span className="text-slate-300 w-40">{label}</span>
-              <span className="text-pramana-muted">{note}</span>
+              <span className="text-tesht-muted">{note}</span>
             </div>
           ))}
         </div>
@@ -164,9 +164,9 @@ export function MultiHopView({ chain = [], inScopeResult, outOfScopeResult }) {
       </div>
 
       {/* Explanation card */}
-      <div className="bg-pramana-card border border-amber-700/40 rounded-xl p-4">
+      <div className="bg-tesht-card border border-amber-700/40 rounded-xl p-4">
         <h3 className="text-sm font-bold text-amber-400 mb-2">What happened</h3>
-        <div className="text-xs text-pramana-muted space-y-1">
+        <div className="text-xs text-tesht-muted space-y-1">
           <p>Alice authorized <strong className="text-slate-200">read_data + write_data</strong> for DataAnalyst with a $50,000 limit.</p>
           <p>DataAnalyst sub-delegated to KYBReviewer with <strong className="text-slate-200">read_data only</strong> and a $10,000 limit — scope narrowing enforced.</p>
           <p>KYBReviewer's <strong className="text-emerald-400">in-scope request</strong> (query_database → read_data) was allowed.</p>

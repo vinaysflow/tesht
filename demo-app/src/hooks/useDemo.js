@@ -50,7 +50,7 @@ function sleep(ms) {
 
 function parseTrustFactors(headers) {
   try {
-    const raw = headers['x-pramana-trust-factors']
+    const raw = headers['x-tesht-trust-factors']
     return raw ? JSON.parse(raw) : {}
   } catch { return {} }
 }

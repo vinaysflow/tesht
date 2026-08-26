@@ -1,7 +1,7 @@
 """
 gateway.sqlite_mcp_server
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-Real SQLite-backed MCP server for the Pramana demo.
+Real SQLite-backed MCP server for the Tesht demo.
 
 Replaces the canned-response mock_mcp_server.py with a server that executes
 actual SQL queries against a SQLite database containing realistic product and
@@ -41,7 +41,7 @@ from fastapi.responses import JSONResponse
 # Database path
 # ---------------------------------------------------------------------------
 
-DB_PATH = os.environ.get("MCP_DB_PATH", "/tmp/pramana_mcp_demo.db")
+DB_PATH = os.environ.get("MCP_DB_PATH", "/tmp/tesht_mcp_demo.db")
 
 _ALLOWED_TABLES = {"products", "orders"}
 
@@ -254,9 +254,9 @@ async def lifespan(application: FastAPI):
     yield
 
 
-app = FastAPI(title="Pramana SQLite MCP Server", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="Tesht SQLite MCP Server", version="0.1.0", lifespan=lifespan)
 
-if os.getenv("PRAMANA_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
+if os.getenv("TESHT_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -288,7 +288,7 @@ async def mcp_endpoint(request: Request) -> JSONResponse:
             "result": {
                 "protocolVersion": "2024-11-05",
                 "serverInfo": {
-                    "name": "Pramana SQLite MCP",
+                    "name": "Tesht SQLite MCP",
                     "version": "0.1.0",
                     "description": "Real SQLite database with product catalog and order data",
                 },

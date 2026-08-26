@@ -7,8 +7,8 @@ import httpx
 
 
 @dataclass
-class PramanaClient:
-    """HTTP client for the Pramana Protocol server API.
+class TeshtClient:
+    """HTTP client for the Tesht (Pramana) server API.
 
     Supports classic credential APIs plus the Session authorization runtime:
     Session / Decision / Mandate.

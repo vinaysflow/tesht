@@ -1,6 +1,6 @@
 ## Test harness (project root)
 
-This folder provides repeatable commands for running the Pramana test suites.
+This folder provides repeatable commands for running the Tesht test suites.
 
 ### Local (venv) backend tests
 

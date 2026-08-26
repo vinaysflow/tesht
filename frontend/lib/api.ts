@@ -6,15 +6,15 @@ export function apiBase(): string {
 
 export function getAccessToken(): string | null {
   if (typeof window === "undefined") return null;
-  return window.localStorage.getItem("pramana_access_token");
+  return window.localStorage.getItem("tesht_access_token");
 }
 
 export function setAccessToken(token: string) {
-  window.localStorage.setItem("pramana_access_token", token);
+  window.localStorage.setItem("tesht_access_token", token);
 }
 
 export function clearAccessToken() {
-  window.localStorage.removeItem("pramana_access_token");
+  window.localStorage.removeItem("tesht_access_token");
 }
 
 function authHeaders(): Record<string, string> {

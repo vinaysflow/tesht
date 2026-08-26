@@ -13,9 +13,9 @@ import httpx
 import pytest
 import uvicorn
 
-from pramana.credentials import create_blended_presentation, create_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, create_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 
 # ---------------------------------------------------------------------------

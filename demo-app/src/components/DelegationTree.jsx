@@ -1,19 +1,19 @@
 import { shortDid, formatScope } from '../utils/format.js'
 
 function Node({ icon, name, subtitle, did, badge, color = 'teal' }) {
-  const borderColor = color === 'teal' ? 'border-pramana-teal' :
+  const borderColor = color === 'teal' ? 'border-tesht-teal' :
                       color === 'purple' ? 'border-purple-500' : 'border-blue-500'
   return (
-    <div className={`border ${borderColor} rounded-xl p-4 bg-pramana-card text-sm w-full max-w-xs`}>
+    <div className={`border ${borderColor} rounded-xl p-4 bg-tesht-card text-sm w-full max-w-xs`}>
       <div className="flex items-center gap-2 mb-1">
         <span className="text-xl">{icon}</span>
         <span className="font-bold text-slate-100">{name}</span>
       </div>
-      {subtitle && <div className="text-xs text-pramana-muted ml-7">{subtitle}</div>}
-      {did && <div className="text-xs text-pramana-muted font-mono ml-7 mt-1">{shortDid(did, 20)}</div>}
+      {subtitle && <div className="text-xs text-tesht-muted ml-7">{subtitle}</div>}
+      {did && <div className="text-xs text-tesht-muted font-mono ml-7 mt-1">{shortDid(did, 20)}</div>}
       {badge && (
         <div className="mt-2 ml-7">
-          <span className="text-xs bg-pramana-teal/20 text-pramana-teal px-2 py-0.5 rounded border border-pramana-teal/40">
+          <span className="text-xs bg-tesht-teal/20 text-tesht-teal px-2 py-0.5 rounded border border-tesht-teal/40">
             {badge}
           </span>
         </div>
@@ -25,20 +25,20 @@ function Node({ icon, name, subtitle, did, badge, color = 'teal' }) {
 function Edge({ scope }) {
   return (
     <div className="flex flex-col items-center my-2">
-      <div className="w-px h-4 bg-pramana-border" />
-      <div className="border border-pramana-border rounded px-3 py-1 text-xs text-pramana-muted bg-pramana-dark max-w-xs text-center">
+      <div className="w-px h-4 bg-tesht-border" />
+      <div className="border border-tesht-border rounded px-3 py-1 text-xs text-tesht-muted bg-tesht-dark max-w-xs text-center">
         <div className="font-bold text-slate-300 mb-0.5">Delegated scope</div>
         <div>{formatScope(scope)}</div>
       </div>
-      <div className="w-px h-4 bg-pramana-border" />
-      <div className="text-pramana-border text-lg">↓</div>
+      <div className="w-px h-4 bg-tesht-border" />
+      <div className="text-tesht-border text-lg">↓</div>
     </div>
   )
 }
 
 export function DelegationTree({ delegationChain, delegatorClaims, agentDid }) {
   if (!delegatorClaims && !delegationChain?.length) {
-    return <div className="text-pramana-muted text-sm">No delegation data yet.</div>
+    return <div className="text-tesht-muted text-sm">No delegation data yet.</div>
   }
 
   const claims  = delegatorClaims || {}
@@ -72,7 +72,7 @@ export function DelegationTree({ delegationChain, delegatorClaims, agentDid }) {
       </div>
 
       {/* Verification status */}
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
         <h3 className="text-sm font-bold text-slate-400 mb-2">Chain Verification</h3>
         <div className="space-y-1 text-xs font-mono">
           {[
@@ -85,7 +85,7 @@ export function DelegationTree({ delegationChain, delegatorClaims, agentDid }) {
             <div key={label} className="flex items-center gap-2">
               <span className="text-emerald-400">✓</span>
               <span className="text-slate-300 w-36">{label}</span>
-              <span className="text-pramana-muted">{note}</span>
+              <span className="text-tesht-muted">{note}</span>
             </div>
           ))}
         </div>

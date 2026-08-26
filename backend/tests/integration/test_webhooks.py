@@ -197,14 +197,14 @@ def test_dispatch_on_revocation(client, webhook_authz_headers):
     # Check any call had the right event header
     for call in mock_client_instance.post.call_args_list:
         hdrs = call.kwargs.get("headers") or {}
-        if hdrs.get("X-Pramana-Event") == "credential.revoked":
+        if hdrs.get("X-Tesht-Event") == "credential.revoked":
             break
     else:
-        raise AssertionError("No call had X-Pramana-Event: credential.revoked")
+        raise AssertionError("No call had X-Tesht-Event: credential.revoked")
 
 
 def test_webhook_signature_valid(client, webhook_authz_headers):
-    """X-Pramana-Signature header must match HMAC-SHA256(body, secret)."""
+    """X-Tesht-Signature header must match HMAC-SHA256(body, secret)."""
     webhook_secret = "signature-verify-secret-abcdef"
     _create_webhook(
         client, webhook_authz_headers,
@@ -241,7 +241,7 @@ def test_webhook_signature_valid(client, webhook_authz_headers):
     expected_sig = "sha256=" + hmac.new(
         webhook_secret.encode("utf-8"), body_bytes, hashlib.sha256
     ).hexdigest()
-    assert captured["headers"]["X-Pramana-Signature"] == expected_sig
+    assert captured["headers"]["X-Tesht-Signature"] == expected_sig
 
 
 def test_dispatch_timeout_doesnt_block(client, webhook_authz_headers):

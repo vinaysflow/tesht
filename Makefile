@@ -12,7 +12,7 @@ down:
 dev: up
 	@echo "UI:  http://127.0.0.1:6080"
 	@echo "API: http://127.0.0.1:5051/health"
-	@echo "KC:  http://127.0.0.1:8080 (realm: pramana, user: demo-user/demo)"
+	@echo "KC:  http://127.0.0.1:8080 (realm: tesht, user: demo-user/demo)"
 
 # Backend tests (assumes backend/.venv exists)
 

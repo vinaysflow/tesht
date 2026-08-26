@@ -192,7 +192,7 @@ def _factor_delegation_depth(payload: dict[str, Any]) -> tuple[int, str]:
     vc = payload.get("vc") or {}
     cs = vc.get("credentialSubject") or {}
 
-    # Explicit depth field set by sdk/python/pramana/delegation.py
+    # Explicit depth field set by sdk/python/tesht/delegation.py
     depth = cs.get("depth")
     if depth is not None:
         try:

@@ -16,7 +16,7 @@ import uuid
 import jwt as pyjwt
 import pytest
 
-from pramana.credentials import (
+from tesht.credentials import (
     BlendedIdentityResult,
     PresentationResult,
     create_blended_presentation,
@@ -25,13 +25,13 @@ from pramana.credentials import (
     verify_blended_presentation,
     verify_presentation,
 )
-from pramana.delegation import (
+from tesht.delegation import (
     delegate_further,
     issue_delegation,
     verify_delegation_chain,
 )
-from pramana.identity import AgentIdentity
-from pramana.integrations.mcp import MCPAuthConfig, MCPAuthResult, PramanaMCPAuth
+from tesht.identity import AgentIdentity
+from tesht.integrations.mcp import MCPAuthConfig, MCPAuthResult, TeshtMCPAuth
 
 
 # ---------------------------------------------------------------------------
@@ -459,7 +459,7 @@ class TestVerifyBlendedPresentation:
         )
 
         # delegate_further must raise ScopeEscalationError at issuance time
-        from pramana.delegation import ScopeEscalationError
+        from tesht.delegation import ScopeEscalationError
         with pytest.raises(ScopeEscalationError):
             delegate_further(
                 holder=bot,
@@ -541,7 +541,7 @@ class TestMCPDelegatorClassification:
         server_identity: AgentIdentity,
         extra_creds: list[str] | None = None,
     ) -> dict[str, str]:
-        from pramana.credentials import create_presentation as _cp
+        from tesht.credentials import create_presentation as _cp
         creds = [delegation_jwt]
         if delegator_identity_jwt:
             creds.append(delegator_identity_jwt)
@@ -557,7 +557,7 @@ class TestMCPDelegatorClassification:
         bot, agent_vc = agent
         headers = self._make_blended_headers(bot, delegation, org_vc, server, [agent_vc])
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             require_delegation=True,
         ))
@@ -577,7 +577,7 @@ class TestMCPDelegatorClassification:
         bot, _ = agent
         headers = self._make_blended_headers(bot, delegation, None, server)
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             require_delegation=True,
         ))
@@ -596,7 +596,7 @@ class TestMCPDelegatorClassification:
         bot, _ = agent
         headers = self._make_blended_headers(bot, delegation, None, server)
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             require_delegation=True,
             require_delegator_identity=True,
@@ -613,7 +613,7 @@ class TestMCPDelegatorClassification:
         bot, _ = agent
         headers = self._make_blended_headers(bot, delegation, org_vc, server)
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             require_delegation=True,
             require_delegator_identity=True,
@@ -632,7 +632,7 @@ class TestMCPDelegatorClassification:
         bot, _ = agent
         headers = self._make_blended_headers(bot, delegation, org_vc, server)
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             require_delegation=True,
             require_delegator_identity=True,
@@ -653,7 +653,7 @@ class TestMCPDelegatorClassification:
             claims={"agentName": "bot"},
         )
 
-        from pramana.credentials import create_presentation as _cp
+        from tesht.credentials import create_presentation as _cp
         vp = _cp(holder=bot, credentials=[web_vc], audience=server.did)
         headers = {"Authorization": f"Bearer {vp}"}
 
@@ -662,7 +662,7 @@ class TestMCPDelegatorClassification:
                 return web_issuer.did_document
             raise ValueError(f"Unknown DID: {did}")
 
-        auth = PramanaMCPAuth(MCPAuthConfig(
+        auth = TeshtMCPAuth(MCPAuthConfig(
             identity=server,
             resolver=resolver,
         ))
@@ -679,11 +679,11 @@ class TestMCPDelegatorClassification:
             credential_type="AgentCredential",
             claims={"agentName": "bot"},
         )
-        from pramana.credentials import create_presentation as _cp
+        from tesht.credentials import create_presentation as _cp
         vp = _cp(holder=bot, credentials=[web_vc], audience=server.did)
         headers = {"Authorization": f"Bearer {vp}"}
 
-        auth = PramanaMCPAuth(MCPAuthConfig(identity=server))  # no resolver
+        auth = TeshtMCPAuth(MCPAuthConfig(identity=server))  # no resolver
         result = auth.verify_request(headers)
         assert result.authenticated is False
 
@@ -691,11 +691,11 @@ class TestMCPDelegatorClassification:
         """Existing test pattern still works: simple VC, no delegation."""
         bot, _ = agent
         vc = issue_vc(issuer=idp, subject_did=bot.did, credential_type="AgentCredential")
-        from pramana.credentials import create_presentation as _cp
+        from tesht.credentials import create_presentation as _cp
         vp = _cp(holder=bot, credentials=[vc], audience=server.did)
         headers = {"Authorization": f"Bearer {vp}"}
 
-        auth = PramanaMCPAuth(MCPAuthConfig(identity=server))
+        auth = TeshtMCPAuth(MCPAuthConfig(identity=server))
         result = auth.verify_request(headers)
 
         assert result.authenticated is True
@@ -718,8 +718,8 @@ class TestLangChainBlendedHeaders:
         alice, org_vc = human
         bot, agent_vc = agent
 
-        from pramana.integrations.langchain import PramanaAgentContext
-        ctx = PramanaAgentContext(identity=bot, credentials=[agent_vc])
+        from tesht.integrations.langchain import TeshtAgentContext
+        ctx = TeshtAgentContext(identity=bot, credentials=[agent_vc])
         headers = ctx.get_blended_auth_headers(
             audience=server.did,
             delegation_jwt=delegation,
@@ -738,8 +738,8 @@ class TestLangChainBlendedHeaders:
         self, human, agent, delegation
     ):
         bot, agent_vc = agent
-        from pramana.integrations.langchain import PramanaAgentContext
-        ctx = PramanaAgentContext(identity=bot, credentials=[agent_vc, delegation])
+        from tesht.integrations.langchain import TeshtAgentContext
+        ctx = TeshtAgentContext(identity=bot, credentials=[agent_vc, delegation])
         prompt = ctx.get_system_prompt_addition()
         assert "blended" in prompt.lower() or "delegation" in prompt.lower()
 
@@ -747,7 +747,7 @@ class TestLangChainBlendedHeaders:
         self, agent
     ):
         bot, agent_vc = agent
-        from pramana.integrations.langchain import PramanaAgentContext
-        ctx = PramanaAgentContext(identity=bot, credentials=[agent_vc])
+        from tesht.integrations.langchain import TeshtAgentContext
+        ctx = TeshtAgentContext(identity=bot, credentials=[agent_vc])
         prompt = ctx.get_system_prompt_addition()
         assert "blended" not in prompt.lower() or "get_blended_auth_headers" not in prompt

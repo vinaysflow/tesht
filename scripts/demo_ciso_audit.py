@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — CISO Audit Query Demo
+Tesht (Pramana) — CISO Audit Query Demo
 =========================================
 
 Demonstrates subpoena-ready compliance output:
@@ -32,8 +32,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 import httpx
 import yaml
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.identity import AgentIdentity
 
 # ── Ports ─────────────────────────────────────────────────────────────────────
 OIDC_PORT = 9200
@@ -111,9 +111,9 @@ def _write_bridge_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Acme Corp Okta (Mock)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -220,9 +220,9 @@ def _check_postgres(host: str = "127.0.0.1", port: int = 5432) -> bool:
 
 
 def _make_database_url(host: str = "127.0.0.1", port: int = 5432) -> str:
-    user = os.environ.get("POSTGRES_USER", "pramana")
-    password = os.environ.get("POSTGRES_PASSWORD", "pramana_dev_password")
-    db = os.environ.get("POSTGRES_DB", "pramana")
+    user = os.environ.get("POSTGRES_USER", "tesht")
+    password = os.environ.get("POSTGRES_PASSWORD", "tesht_dev_password")
+    db = os.environ.get("POSTGRES_DB", "tesht")
     return f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
 
@@ -230,12 +230,12 @@ def _make_database_url(host: str = "127.0.0.1", port: int = 5432) -> str:
 
 def main() -> int:
     import argparse
-    parser = argparse.ArgumentParser(description="Pramana CISO Audit Demo")
+    parser = argparse.ArgumentParser(description="Tesht CISO Audit Demo")
     parser.add_argument("--skip-startup", action="store_true",
                         help="Skip service startup (assume services already running)")
     args = parser.parse_args()
 
-    banner("PRAMANA PROTOCOL — CISO Audit Query Demo")
+    banner("TESHT PROTOCOL — CISO Audit Query Demo")
     print(f"  {DIM}\"If opposing counsel sends a subpoena, can you respond?\"{RESET}")
     print(f"  {DIM}This demo answers yes — with cryptographic proof.{RESET}\n")
 
@@ -528,7 +528,7 @@ def main() -> int:
             )
             r.raise_for_status()
 
-            export_path = PROJECT_ROOT / "pramana_audit_export.csv"
+            export_path = PROJECT_ROOT / "tesht_audit_export.csv"
             export_path.write_bytes(r.content)
             csv_lines = r.text.strip().splitlines()
             row_count = max(0, len(csv_lines) - 1)  # subtract header
@@ -549,7 +549,7 @@ def main() -> int:
             # ── Final statement ───────────────────────────────────────────────
             w = 70
             print(f"\n{BOLD}╔{'═' * w}╗{RESET}")
-            print(f"{BOLD}║  {'PRAMANA PROTOCOL — CISO Audit Query Complete':<{w - 2}}║{RESET}")
+            print(f"{BOLD}║  {'TESHT PROTOCOL — CISO Audit Query Complete':<{w - 2}}║{RESET}")
             print(f"{BOLD}╠{'═' * w}╣{RESET}")
             summary_lines = [
                 f"Agent:          ComplianceBot  ({compliance_bot.did[:40]}…)",

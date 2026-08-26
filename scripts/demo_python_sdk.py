@@ -1,6 +1,6 @@
-from pramana import PramanaClient
+from tesht import TeshtClient
 
-c = PramanaClient("http://localhost:8000")
+c = TeshtClient("http://localhost:8000")
 
 agent = c.create_agent("issuer-1")
 print("AGENT", agent)

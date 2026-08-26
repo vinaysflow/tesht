@@ -1,7 +1,7 @@
 """
 idp_bridge.app
 ~~~~~~~~~~~~~~
-Pramana Enterprise IdP Bridge — FastAPI application.
+Tesht Enterprise IdP Bridge — FastAPI application.
 
 Converts enterprise OIDC tokens into W3C Verifiable Credentials and
 optional DelegationCredentials, ready for use in Blended Identity VPs.
@@ -36,9 +36,9 @@ from pydantic import BaseModel, Field
 
 import asyncio
 
-from pramana.credentials import create_blended_presentation, create_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, create_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 from idp_bridge.config import load_idp_config
 from idp_bridge.identity_store import HumanIdentityStore
@@ -180,7 +180,7 @@ async def lifespan(application: FastAPI):
     application.state.validator = MultiIssuerOIDCValidator(registry)
     application.state.identity_store = HumanIdentityStore()
     # The bridge itself is the VC issuer — equivalent to the platform IdP agent
-    application.state.bridge_identity = AgentIdentity.create("pramana-idp-bridge")
+    application.state.bridge_identity = AgentIdentity.create("tesht-idp-bridge")
 
     # In-memory BitstringStatusList for revocation tracking
     application.state.status_list = InMemoryStatusList()
@@ -191,12 +191,12 @@ async def lifespan(application: FastAPI):
 
 
 app = FastAPI(
-    title="Pramana Enterprise IdP Bridge",
+    title="Tesht Enterprise IdP Bridge",
     version="0.1.0",
     lifespan=lifespan,
 )
 
-if os.getenv("PRAMANA_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
+if os.getenv("TESHT_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],

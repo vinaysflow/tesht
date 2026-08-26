@@ -1,6 +1,6 @@
 # MCP Integration Guide
 
-Pramana Protocol provides a drop-in authentication layer for [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers. Agents authenticate by presenting a cryptographically signed Verifiable Presentation (VP) instead of API keys or OAuth tokens.
+Tesht (Pramana) provides a drop-in authentication layer for [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers. Agents authenticate by presenting a cryptographically signed Verifiable Presentation (VP) instead of API keys or OAuth tokens.
 
 ## How it works
 
@@ -20,7 +20,7 @@ Agent                           MCP Server
 ## Installation
 
 ```bash
-pip install -e sdk/python   # includes pramana.integrations.mcp
+pip install -e sdk/python   # includes tesht.integrations.mcp
 ```
 
 ## Server-side setup
@@ -28,13 +28,13 @@ pip install -e sdk/python   # includes pramana.integrations.mcp
 ### 1. Create the server identity and configure auth
 
 ```python
-from pramana.identity import AgentIdentity
-from pramana.integrations.mcp import MCPAuthConfig, PramanaMCPAuth
+from tesht.identity import AgentIdentity
+from tesht.integrations.mcp import MCPAuthConfig, TeshtMCPAuth
 
 # Server identity — its DID becomes the VP audience
 server = AgentIdentity.create("my-mcp-server", method="key")
 
-auth = PramanaMCPAuth(
+auth = TeshtMCPAuth(
     MCPAuthConfig(
         identity=server,
 
@@ -81,7 +81,7 @@ else:
 
 ```python
 from fastapi import FastAPI, Depends
-from pramana.integrations.mcp import mcp_auth_middleware
+from tesht.integrations.mcp import mcp_auth_middleware
 
 app = FastAPI()
 require_auth = mcp_auth_middleware(auth)
@@ -98,7 +98,7 @@ async def execute_tool(auth_ctx=Depends(require_auth)):
 An authorised issuer must issue an `MCPAccessCredential` to the agent. The issuer's DID must be in the server's `trusted_issuers` list.
 
 ```python
-from pramana.credentials import issue_vc
+from tesht.credentials import issue_vc
 
 issuer = AgentIdentity.create("my-org-issuer")
 agent  = AgentIdentity.create("my-agent")
@@ -115,7 +115,7 @@ access_vc = issue_vc(
 ### 2. Create a VP for each request
 
 ```python
-from pramana.credentials import create_presentation
+from tesht.credentials import create_presentation
 
 vp_jwt = create_presentation(
     holder=agent,
@@ -132,7 +132,7 @@ headers = {"Authorization": f"Bearer {vp_jwt}"}
 If the server requires `require_delegation=True`, include a delegation JWT in the credentials list:
 
 ```python
-from pramana.delegation import issue_delegation
+from tesht.delegation import issue_delegation
 
 delegation_jwt = issue_delegation(
     delegator=user,

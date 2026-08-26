@@ -33,7 +33,7 @@ export interface ScenarioDef {
   subtitle: string;
   /** One-line business framing: why a buyer should care */
   businessContext: string;
-  /** What goes wrong without Pramana — the risk being mitigated */
+  /** What goes wrong without Tesht — the risk being mitigated */
   riskWithout: string;
   /** Plain-English summary shown after scenario completes */
   whatJustHappened: string;
@@ -42,8 +42,8 @@ export interface ScenarioDef {
   flowNodes: FlowNode[];
   flowEdges: FlowEdge[];
   steps: StepDef[];
-  /** Side-by-side comparison: without vs. with Pramana */
-  comparisonRows?: { label: string; without: string; withPramana: string }[];
+  /** Side-by-side comparison: without vs. with Tesht */
+  comparisonRows?: { label: string; without: string; withTesht: string }[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -85,7 +85,7 @@ const scenarioIdentityCredentials: ScenarioDef = {
   title: "Agent Identity + Credentials",
   subtitle: "Prove who your AI agent is — with cryptographic certainty",
   businessContext:
-    "When your AI agent contacts a supplier, partner, or customer, they need to know it's really your agent — not an impersonator. This scenario shows how Pramana gives every agent a verifiable digital identity.",
+    "When your AI agent contacts a supplier, partner, or customer, they need to know it's really your agent — not an impersonator. This scenario shows how Tesht gives every agent a verifiable digital identity.",
   riskWithout:
     "Without verifiable identity, anyone can spin up a bot claiming to be your company's agent. There's no way for partners to distinguish a legitimate request from a spoofed one. API keys can be leaked; shared secrets can be stolen.",
   whatJustHappened:
@@ -97,10 +97,10 @@ const scenarioIdentityCredentials: ScenarioDef = {
     "Composite trust scoring",
   ],
   comparisonRows: [
-    { label: "Agent identity", without: "API key / shared secret", withPramana: "W3C DID + Ed25519 keypair" },
-    { label: "Verification", without: "Server call to issuer required", withPramana: "Local signature check (< 50ms)" },
-    { label: "Tamper detection", without: "None — JSON is editable", withPramana: "Ed25519 signature invalidation" },
-    { label: "Trust assessment", without: "Binary (valid / invalid)", withPramana: "0–100 composite score with history" },
+    { label: "Agent identity", without: "API key / shared secret", withTesht: "W3C DID + Ed25519 keypair" },
+    { label: "Verification", without: "Server call to issuer required", withTesht: "Local signature check (< 50ms)" },
+    { label: "Tamper detection", without: "None — JSON is editable", withTesht: "Ed25519 signature invalidation" },
+    { label: "Trust assessment", without: "Binary (valid / invalid)", withTesht: "0–100 composite score with history" },
   ],
   flowNodes: [
     { name: "Your Organization", role: "Issuer" },
@@ -183,7 +183,7 @@ const scenarioIdentityCredentials: ScenarioDef = {
       id: "trust-score",
       title: "Compute Trust Score",
       plainEnglish:
-        "Beyond just valid/invalid, Pramana computes a 0–100 trust score considering credential validity, issuer reputation, agent history, and delegation depth. This lets partners make risk-adjusted decisions automatically.",
+        "Beyond just valid/invalid, Tesht computes a 0–100 trust score considering credential validity, issuer reputation, agent history, and delegation depth. This lets partners make risk-adjusted decisions automatically.",
       technicalDetail:
         "Evaluates four factors: credential validity, issuer reputation, agent history, delegation depth. Returns composite score with risk level.",
       controlLabel: "Trust scoring",
@@ -209,7 +209,7 @@ const scenarioDelegation: ScenarioDef = {
   title: "Authority Delegation",
   subtitle: "Safely delegate authority from managers to agents with automatic limits",
   businessContext:
-    "In large organizations, authority flows downward: a VP authorizes a manager, who authorizes an AI agent. Pramana tracks this chain cryptographically — so you always know who authorized what, and revoking a manager's access automatically revokes all their agents' access.",
+    "In large organizations, authority flows downward: a VP authorizes a manager, who authorizes an AI agent. Tesht tracks this chain cryptographically — so you always know who authorized what, and revoking a manager's access automatically revokes all their agents' access.",
   riskWithout:
     "Without delegation chains, there's no way to trace who gave an AI agent its permissions. When an employee leaves, you can't automatically revoke all the agents they authorized. Sub-delegation is invisible — agents can silently pass their authority to others.",
   whatJustHappened:
@@ -221,9 +221,9 @@ const scenarioDelegation: ScenarioDef = {
     "Delegation registry tracking",
   ],
   comparisonRows: [
-    { label: "Authority tracking", without: "Manual spreadsheet / RBAC config", withPramana: "Cryptographic delegation chain" },
-    { label: "Scope narrowing", without: "Hope sub-agents respect limits", withPramana: "Enforced: child scope ≤ parent scope" },
-    { label: "Cascade revocation", without: "Manual agent-by-agent cleanup", withPramana: "One operation revokes entire tree" },
+    { label: "Authority tracking", without: "Manual spreadsheet / RBAC config", withTesht: "Cryptographic delegation chain" },
+    { label: "Scope narrowing", without: "Hope sub-agents respect limits", withTesht: "Enforced: child scope ≤ parent scope" },
+    { label: "Cascade revocation", without: "Manual agent-by-agent cleanup", withTesht: "One operation revokes entire tree" },
   ],
   flowNodes: [
     { name: "Alice (VP)", role: "Delegator" },
@@ -334,7 +334,7 @@ const scenarioCommerce: ScenarioDef = {
   title: "AI Commerce (AP2 Mandates)",
   subtitle: "Your AI agent shops within a budget you control — with cryptographic proof",
   businessContext:
-    "Your AI agent needs to make purchases on your behalf — but you need hard limits. Pramana's two-layer mandate system (Intent + Cart) ensures the agent can never spend more than you authorized, and every purchase creates an auditable paper trail.",
+    "Your AI agent needs to make purchases on your behalf — but you need hard limits. Tesht's two-layer mandate system (Intent + Cart) ensures the agent can never spend more than you authorized, and every purchase creates an auditable paper trail.",
   riskWithout:
     "Without cryptographic mandates, a compromised AI agent could make unlimited purchases. API-key-based auth doesn't enforce budgets. There's no way for merchants to verify the agent's spending authority without calling your backend.",
   whatJustHappened:
@@ -346,10 +346,10 @@ const scenarioCommerce: ScenarioDef = {
     "Spend ledger (anti-double-spend)",
   ],
   comparisonRows: [
-    { label: "Budget enforcement", without: "Custom code in each service", withPramana: "Protocol-level (Intent + Cart)" },
-    { label: "Double-spend prevention", without: "Database locks / custom logic", withPramana: "Single-use JTI + spend ledger" },
-    { label: "Merchant verification", without: "Trust the API key caller", withPramana: "Cryptographic mandate proof" },
-    { label: "Spend tracking", without: "Build your own ledger", withPramana: "Built-in cumulative tracking" },
+    { label: "Budget enforcement", without: "Custom code in each service", withTesht: "Protocol-level (Intent + Cart)" },
+    { label: "Double-spend prevention", without: "Database locks / custom logic", withTesht: "Single-use JTI + spend ledger" },
+    { label: "Merchant verification", without: "Trust the API key caller", withTesht: "Cryptographic mandate proof" },
+    { label: "Spend tracking", without: "Build your own ledger", withTesht: "Built-in cumulative tracking" },
   ],
   flowNodes: [
     { name: "You", role: "Delegator" },
@@ -497,9 +497,9 @@ const scenarioRevocation: ScenarioDef = {
     "Same JWT, different result",
   ],
   comparisonRows: [
-    { label: "Revocation speed", without: "Wait for TTL expiry (hours/days)", withPramana: "Instant bit flip — zero delay" },
-    { label: "Mechanism", without: "Token blacklist or CRL download", withPramana: "Bitstring Status List (W3C spec)" },
-    { label: "Verifier overhead", without: "Poll revocation server per request", withPramana: "Check single bit in status list" },
+    { label: "Revocation speed", without: "Wait for TTL expiry (hours/days)", withTesht: "Instant bit flip — zero delay" },
+    { label: "Mechanism", without: "Token blacklist or CRL download", withTesht: "Bitstring Status List (W3C spec)" },
+    { label: "Verifier overhead", without: "Poll revocation server per request", withTesht: "Check single bit in status list" },
   ],
   flowNodes: [
     { name: "Your Organization", role: "Issuer" },
@@ -611,9 +611,9 @@ const scenarioFullE2E: ScenarioDef = {
   title: "Full Lifecycle (One Click)",
   subtitle: "Complete agent lifecycle: create, authorize, verify, revoke, audit — in one call",
   businessContext:
-    "See the entire Pramana security lifecycle in a single API call. This is the 'elevator pitch' scenario — it demonstrates every control in sequence and proves the audit trail is tamper-evident.",
+    "See the entire Tesht security lifecycle in a single API call. This is the 'elevator pitch' scenario — it demonstrates every control in sequence and proves the audit trail is tamper-evident.",
   riskWithout:
-    "Most identity systems can issue credentials but can't prove they were revoked correctly, or that the audit log wasn't modified after the fact. Pramana chains every event cryptographically.",
+    "Most identity systems can issue credentials but can't prove they were revoked correctly, or that the audit log wasn't modified after the fact. Tesht chains every event cryptographically.",
   whatJustHappened:
     "In one API call: two agents were created, a credential was issued and verified (valid), then revoked and verified again (rejected). Every operation was recorded in a tamper-evident audit log with SHA-256 hash chaining. The audit chain was independently verified — no events were modified.",
   controlsProven: [
@@ -623,9 +623,9 @@ const scenarioFullE2E: ScenarioDef = {
     "Hash chain integrity verification",
   ],
   comparisonRows: [
-    { label: "Audit integrity", without: "Database logs (editable by admin)", withPramana: "SHA-256 hash-chained events" },
-    { label: "Lifecycle visibility", without: "Scattered across services", withPramana: "Single API, full chain" },
-    { label: "Compliance proof", without: "Manual log review", withPramana: "Mathematical integrity verification" },
+    { label: "Audit integrity", without: "Database logs (editable by admin)", withTesht: "SHA-256 hash-chained events" },
+    { label: "Lifecycle visibility", without: "Scattered across services", withTesht: "Single API, full chain" },
+    { label: "Compliance proof", without: "Manual log review", withTesht: "Mathematical integrity verification" },
   ],
   flowNodes: [
     { name: "Your Organization", role: "Issuer" },
@@ -702,23 +702,23 @@ const scenarioCurrencyMismatch: ScenarioDef = {
   title: "Currency Mismatch Blocked",
   subtitle: "Agent tries to pay in EUR against a USD budget — system blocks it",
   businessContext:
-    "A compromised or misconfigured AI agent tries to exploit a currency mismatch — authorizing a purchase in EUR against a USD budget to bypass spending limits. Pramana catches this at the protocol level.",
+    "A compromised or misconfigured AI agent tries to exploit a currency mismatch — authorizing a purchase in EUR against a USD budget to bypass spending limits. Tesht catches this at the protocol level.",
   riskWithout:
     "Without currency matching, an agent authorized for $100 USD could submit a cart for 100 EUR (worth ~$110) or exploit exchange rate differences. Simple amount checks don't catch cross-currency tricks.",
   whatJustHappened:
-    "The agent was authorized to spend in USD but tried to submit a cart in EUR. Pramana rejected this at cart issuance time — before the cart ever reached a merchant. Cross-currency exploitation is blocked at the protocol level.",
+    "The agent was authorized to spend in USD but tried to submit a cart in EUR. Tesht rejected this at cart issuance time — before the cart ever reached a merchant. Cross-currency exploitation is blocked at the protocol level.",
   controlsProven: [
     "Currency matching enforcement",
     "Pre-merchant rejection",
     "Protocol-level fraud prevention",
   ],
   comparisonRows: [
-    { label: "Currency validation", without: "Application-level check (if any)", withPramana: "Protocol-level enforcement at issuance" },
-    { label: "Exploit window", without: "Until someone notices the discrepancy", withPramana: "Rejected at cart creation time" },
+    { label: "Currency validation", without: "Application-level check (if any)", withTesht: "Protocol-level enforcement at issuance" },
+    { label: "Exploit window", without: "Until someone notices the discrepancy", withTesht: "Rejected at cart creation time" },
   ],
   flowNodes: [
     { name: "Agent", role: "Agent" },
-    { name: "Pramana", role: "Verifier" },
+    { name: "Tesht", role: "Verifier" },
   ],
   flowEdges: [
     { label: "EUR cart vs USD budget", highlight: false },
@@ -756,7 +756,7 @@ const scenarioCurrencyMismatch: ScenarioDef = {
       id: "curr-cart-eur",
       title: "Agent Submits Cart in EUR — BLOCKED",
       plainEnglish:
-        "The agent tries to create a cart priced in Euros against a US Dollar budget. Pramana rejects this immediately — the currencies don't match. A malicious agent can't exploit exchange rates or currency confusion.",
+        "The agent tries to create a cart priced in Euros against a US Dollar budget. Tesht rejects this immediately — the currencies don't match. A malicious agent can't exploit exchange rates or currency confusion.",
       technicalDetail:
         "Cart with EUR totals against a USD intent. Backend enforces currency matching — returns 422.",
       controlLabel: "Currency mismatch prevention",
@@ -791,23 +791,23 @@ const scenarioBudgetExceeded: ScenarioDef = {
   title: "Over-Budget Blocked",
   subtitle: "Agent tries to buy a $999 item with a $120 budget — caught immediately",
   businessContext:
-    "Your AI agent finds an expensive item that exceeds its budget. In legacy systems, the purchase might go through and you'd only find out on the credit card statement. Pramana catches it before the merchant ever sees the request.",
+    "Your AI agent finds an expensive item that exceeds its budget. In legacy systems, the purchase might go through and you'd only find out on the credit card statement. Tesht catches it before the merchant ever sees the request.",
   riskWithout:
     "Without enforced budgets, a compromised agent could make arbitrarily large purchases. API-key-based auth provides access control but not spending limits. You'd need to build custom budget logic — and hope it doesn't have bugs.",
   whatJustHappened:
-    "The agent was authorized for $120 but tried to buy a $999 item. Pramana rejected this at cart creation time — the overspend was caught 5 steps before the merchant would process payment. The budget limit is enforced cryptographically, not by policy.",
+    "The agent was authorized for $120 but tried to buy a $999 item. Tesht rejected this at cart creation time — the overspend was caught 5 steps before the merchant would process payment. The budget limit is enforced cryptographically, not by policy.",
   controlsProven: [
     "Budget enforcement at issuance",
     "Pre-merchant rejection",
     "Cryptographic spending caps",
   ],
   comparisonRows: [
-    { label: "Overspend detection", without: "Credit card statement (days later)", withPramana: "Rejected before merchant sees it" },
-    { label: "Enforcement point", without: "After payment processing", withPramana: "At cart creation (5 steps earlier)" },
+    { label: "Overspend detection", without: "Credit card statement (days later)", withTesht: "Rejected before merchant sees it" },
+    { label: "Enforcement point", without: "After payment processing", withTesht: "At cart creation (5 steps earlier)" },
   ],
   flowNodes: [
     { name: "Agent", role: "Agent" },
-    { name: "Pramana", role: "Verifier" },
+    { name: "Tesht", role: "Verifier" },
   ],
   flowEdges: [
     { label: "$999 > $120 budget", highlight: false },
@@ -845,7 +845,7 @@ const scenarioBudgetExceeded: ScenarioDef = {
       id: "budget-cart-over",
       title: "Agent Tries $999 Purchase — BLOCKED",
       plainEnglish:
-        "The agent submits a $999 cart against a $120 budget. Pramana rejects this at the protocol level — the amount exceeds the authorized budget. The merchant never even sees the request.",
+        "The agent submits a $999 cart against a $120 budget. Tesht rejects this at the protocol level — the amount exceeds the authorized budget. The merchant never even sees the request.",
       technicalDetail:
         "Cart total (99900 cents) exceeds intent max_amount (12000 cents). Backend returns 422.",
       controlLabel: "Overspend prevention",
@@ -880,11 +880,11 @@ const scenarioReplay: ScenarioDef = {
   title: "Replay Attack Blocked",
   subtitle: "Agent's purchase receipt can't be used twice — single-use enforcement",
   businessContext:
-    "After an AI agent makes a legitimate purchase, an attacker (or the agent itself) tries to use the same authorization again to get a second item for free. Pramana's single-use JTI enforcement prevents this.",
+    "After an AI agent makes a legitimate purchase, an attacker (or the agent itself) tries to use the same authorization again to get a second item for free. Tesht's single-use JTI enforcement prevents this.",
   riskWithout:
     "Without replay protection, a valid purchase authorization could be re-submitted indefinitely. The merchant would fulfill the same order multiple times. This is a classic 'double-spend' attack.",
   whatJustHappened:
-    "The agent made a legitimate $20 purchase, then attempted to re-use the same authorization. Pramana's spend ledger caught the replay — the JTI (unique transaction ID) was already recorded. The second attempt was rejected, preventing a double-spend.",
+    "The agent made a legitimate $20 purchase, then attempted to re-use the same authorization. Tesht's spend ledger caught the replay — the JTI (unique transaction ID) was already recorded. The second attempt was rejected, preventing a double-spend.",
   controlsProven: [
     "Single-use JTI enforcement",
     "Spend ledger tracking",
@@ -892,8 +892,8 @@ const scenarioReplay: ScenarioDef = {
     "Replay attack detection",
   ],
   comparisonRows: [
-    { label: "Replay protection", without: "Nonce / timestamp (if implemented)", withPramana: "Single-use JTI + spend ledger" },
-    { label: "Detection speed", without: "Post-hoc reconciliation", withPramana: "Instant on second verification" },
+    { label: "Replay protection", without: "Nonce / timestamp (if implemented)", withTesht: "Single-use JTI + spend ledger" },
+    { label: "Detection speed", without: "Post-hoc reconciliation", withTesht: "Instant on second verification" },
   ],
   flowNodes: [
     { name: "Agent", role: "Agent" },
@@ -977,7 +977,7 @@ const scenarioReplay: ScenarioDef = {
       id: "replay-verify-second",
       title: "Second Use — Replay BLOCKED",
       plainEnglish:
-        "The same authorization is presented again — simulating a replay attack. Pramana recognizes the transaction ID has already been used and rejects it. No double-spend possible.",
+        "The same authorization is presented again — simulating a replay attack. Tesht recognizes the transaction ID has already been used and rejects it. No double-spend possible.",
       technicalDetail:
         "Same JWT re-submitted. JTI already in MandateSpend ledger — rejected to prevent double-spend.",
       controlLabel: "Replay prevention",
@@ -1010,19 +1010,19 @@ const scenarioScopeEscalation: ScenarioDef = {
   title: "Scope Escalation Blocked",
   subtitle: "Agent can't claim more authority than it was granted — even if it tries",
   businessContext:
-    "A malicious or buggy AI agent tries to escalate its own permissions — granting itself $9,999 authority when it was only given $100. Pramana's delegation chain verification catches this, preventing unauthorized privilege escalation.",
+    "A malicious or buggy AI agent tries to escalate its own permissions — granting itself $9,999 authority when it was only given $100. Tesht's delegation chain verification catches this, preventing unauthorized privilege escalation.",
   riskWithout:
     "Without scope enforcement, a delegated agent could create sub-delegations with higher limits than its own. In traditional RBAC, role escalation is one of the most common security failures.",
   whatJustHappened:
-    "Alice gave Bob $100 of purchasing authority. The system issued a credential — but any attempt to verify a delegation chain where the child scope exceeds the parent's would be rejected by the SDK's scope narrowing enforcement. Pramana ensures authority can only narrow, never widen.",
+    "Alice gave Bob $100 of purchasing authority. The system issued a credential — but any attempt to verify a delegation chain where the child scope exceeds the parent's would be rejected by the SDK's scope narrowing enforcement. Tesht ensures authority can only narrow, never widen.",
   controlsProven: [
     "Scope narrowing enforcement",
     "Privilege escalation prevention",
     "Delegation depth limits",
   ],
   comparisonRows: [
-    { label: "Privilege escalation", without: "RBAC misconfiguration risk", withPramana: "Cryptographic scope narrowing — child ≤ parent" },
-    { label: "Depth limits", without: "No sub-delegation tracking", withPramana: "maxDelegationDepth enforced per credential" },
+    { label: "Privilege escalation", without: "RBAC misconfiguration risk", withTesht: "Cryptographic scope narrowing — child ≤ parent" },
+    { label: "Depth limits", without: "No sub-delegation tracking", withTesht: "maxDelegationDepth enforced per credential" },
   ],
   flowNodes: [
     { name: "Alice ($100)", role: "Delegator" },
@@ -1111,7 +1111,7 @@ const scenarioExpired: ScenarioDef = {
   title: "Time-Based Expiry",
   subtitle: "Credential valid now, rejected in 4 seconds — TTL enforcement",
   businessContext:
-    "Some authorizations should be short-lived — a one-time access grant, a temporary session, a time-boxed task. Pramana credentials carry an expiration timestamp that is checked on every verification, with no server involvement.",
+    "Some authorizations should be short-lived — a one-time access grant, a temporary session, a time-boxed task. Tesht credentials carry an expiration timestamp that is checked on every verification, with no server involvement.",
   riskWithout:
     "Without expiry enforcement, credentials issued for 'just this meeting' or 'just this transaction' remain valid forever. Shared tokens are particularly dangerous — they accumulate risk over time.",
   whatJustHappened:
@@ -1122,8 +1122,8 @@ const scenarioExpired: ScenarioDef = {
     "No server state required",
   ],
   comparisonRows: [
-    { label: "Expiry enforcement", without: "Server-side session management", withPramana: "Self-enforcing exp claim in JWT" },
-    { label: "Server dependency", without: "Required for every check", withPramana: "None — fully offline verification" },
+    { label: "Expiry enforcement", without: "Server-side session management", withTesht: "Self-enforcing exp claim in JWT" },
+    { label: "Server dependency", without: "Required for every check", withTesht: "None — fully offline verification" },
   ],
   flowNodes: [
     { name: "Issuer", role: "Issuer" },
@@ -1223,7 +1223,7 @@ const scenarioTampered: ScenarioDef = {
   title: "Tamper Detection",
   subtitle: "Modifying any field in the credential is caught instantly",
   businessContext:
-    "An attacker intercepts a credential and modifies it — changing the agent's role, clearance level, or spending limit. Pramana's cryptographic signatures make any modification detectable.",
+    "An attacker intercepts a credential and modifies it — changing the agent's role, clearance level, or spending limit. Tesht's cryptographic signatures make any modification detectable.",
   riskWithout:
     "Without cryptographic signatures, credentials are just JSON — anyone can edit them. Even HMAC-signed tokens can be forged if the shared secret is compromised. Ed25519 signatures use asymmetric keys, so only the issuer can sign.",
   whatJustHappened:
@@ -1234,8 +1234,8 @@ const scenarioTampered: ScenarioDef = {
     "Payload integrity enforcement",
   ],
   comparisonRows: [
-    { label: "Forgery detection", without: "HMAC with shared secret (key leakage risk)", withPramana: "Ed25519 asymmetric signatures" },
-    { label: "Key compromise impact", without: "Full system compromise if secret leaks", withPramana: "Only issuer's credentials affected" },
+    { label: "Forgery detection", without: "HMAC with shared secret (key leakage risk)", withTesht: "Ed25519 asymmetric signatures" },
+    { label: "Key compromise impact", without: "Full system compromise if secret leaks", withTesht: "Only issuer's credentials affected" },
   ],
   flowNodes: [
     { name: "Issuer", role: "Issuer" },
@@ -1312,9 +1312,9 @@ const scenarioCascade: ScenarioDef = {
   title: "Cascade Revocation",
   subtitle: "Revoke a manager and all their agents lose access — automatically",
   businessContext:
-    "When a manager leaves or is compromised, every agent they authorized must be instantly deactivated. Pramana's cascade revocation does this in one operation — no matter how deep the delegation chain goes.",
+    "When a manager leaves or is compromised, every agent they authorized must be instantly deactivated. Tesht's cascade revocation does this in one operation — no matter how deep the delegation chain goes.",
   riskWithout:
-    "Without cascade revocation, revoking a manager's access requires manually finding and revoking each agent they authorized — and each agent those agents authorized. In large organizations, this can take days. Pramana does it atomically.",
+    "Without cascade revocation, revoking a manager's access requires manually finding and revoking each agent they authorized — and each agent those agents authorized. In large organizations, this can take days. Tesht does it atomically.",
   whatJustHappened:
     "A delegation tree was created: Root → Child 1, Child 2, and Grandchild. Then the root was revoked with cascade=true. All 4 delegations were revoked atomically in a single operation — the entire authority tree was dismantled instantly.",
   controlsProven: [
@@ -1324,8 +1324,8 @@ const scenarioCascade: ScenarioDef = {
     "Depth-limited propagation (max 15)",
   ],
   comparisonRows: [
-    { label: "Offboarding speed", without: "Days — manual revocation of each agent", withPramana: "Seconds — recursive cascade" },
-    { label: "Completeness", without: "Hope you found all delegated agents", withPramana: "Guaranteed tree traversal" },
+    { label: "Offboarding speed", without: "Days — manual revocation of each agent", withTesht: "Seconds — recursive cascade" },
+    { label: "Completeness", without: "Hope you found all delegated agents", withTesht: "Guaranteed tree traversal" },
   ],
   flowNodes: [
     { name: "Root (Manager)", role: "Delegator" },
@@ -1412,7 +1412,7 @@ const scenarioCascade: ScenarioDef = {
       id: "casc-revoke",
       title: "Revoke Root — All Agents Lose Access",
       plainEnglish:
-        "The manager's root delegation is revoked with cascade=true. Pramana recursively finds every agent and sub-agent in the tree and revokes them all atomically. One operation, complete cleanup.",
+        "The manager's root delegation is revoked with cascade=true. Tesht recursively finds every agent and sub-agent in the tree and revokes them all atomically. One operation, complete cleanup.",
       technicalDetail:
         "Revokes root with cascade=true. Backend recursively finds all children and grandchildren (max depth 15) and revokes atomically.",
       controlLabel: "Cascade revocation",
@@ -1441,9 +1441,9 @@ const scenarioAuditChain: ScenarioDef = {
   title: "Audit Chain Integrity",
   subtitle: "Prove to regulators that no audit records were modified — ever",
   businessContext:
-    "Regulators and auditors need proof that your AI agent activity logs haven't been tampered with. Pramana hash-chains every audit event — like a mini blockchain — so any modification to past records is immediately detectable.",
+    "Regulators and auditors need proof that your AI agent activity logs haven't been tampered with. Tesht hash-chains every audit event — like a mini blockchain — so any modification to past records is immediately detectable.",
   riskWithout:
-    "Standard database logs can be silently edited. Even with backups, proving the log wasn't modified between creation and audit is extremely difficult. Pramana's hash chain provides mathematical proof of log integrity.",
+    "Standard database logs can be silently edited. Even with backups, proving the log wasn't modified between creation and audit is extremely difficult. Tesht's hash chain provides mathematical proof of log integrity.",
   whatJustHappened:
     "Multiple operations were executed, each generating a hash-chained audit event. The verification endpoint walked the entire chain, re-computing each hash and checking it against the stored value. Every link checked out — mathematical proof that zero events were modified.",
   controlsProven: [
@@ -1453,9 +1453,9 @@ const scenarioAuditChain: ScenarioDef = {
     "JSONL export for independent verification",
   ],
   comparisonRows: [
-    { label: "Log integrity proof", without: "Trust the database admin", withPramana: "SHA-256 hash chain verification" },
-    { label: "Audit evidence", without: "Screenshots / database dumps", withPramana: "JSONL export with hash chain" },
-    { label: "Tamper detection", without: "Diff against backup (maybe)", withPramana: "Mathematical proof per event" },
+    { label: "Log integrity proof", without: "Trust the database admin", withTesht: "SHA-256 hash chain verification" },
+    { label: "Audit evidence", without: "Screenshots / database dumps", withTesht: "JSONL export with hash chain" },
+    { label: "Tamper detection", without: "Diff against backup (maybe)", withTesht: "Mathematical proof per event" },
   ],
   flowNodes: [
     { name: "Operations", role: "Issuer" },
@@ -1538,13 +1538,13 @@ const scenarioCumulativeBudget: ScenarioDef = {
     "Multi-cart overspend prevention",
   ],
   comparisonRows: [
-    { label: "Budget check scope", without: "Per-cart only", withPramana: "Cumulative across all carts" },
-    { label: "Concurrent safety", without: "Race condition risk", withPramana: "FOR UPDATE serialization" },
-    { label: "Detection timing", without: "Reconciliation later", withPramana: "Instant on second cart" },
+    { label: "Budget check scope", without: "Per-cart only", withTesht: "Cumulative across all carts" },
+    { label: "Concurrent safety", without: "Race condition risk", withTesht: "FOR UPDATE serialization" },
+    { label: "Detection timing", without: "Reconciliation later", withTesht: "Instant on second cart" },
   ],
   flowNodes: [
     { name: "Agent", role: "Agent" },
-    { name: "Pramana", role: "Verifier" },
+    { name: "Tesht", role: "Verifier" },
     { name: "Spend Ledger", role: "Issuer" },
   ],
   flowEdges: [
@@ -1630,7 +1630,7 @@ const scenarioCumulativeBudget: ScenarioDef = {
       id: "cumbudget-verify2",
       title: "Verify Second Cart — BLOCKED (Over Budget)",
       plainEnglish:
-        "The second $30 cart is rejected. Cumulative spend ($30 + $30 = $60) would exceed the $50 intent limit. Pramana checks the running total, not just this cart in isolation.",
+        "The second $30 cart is rejected. Cumulative spend ($30 + $30 = $60) would exceed the $50 intent limit. Tesht checks the running total, not just this cart in isolation.",
       technicalDetail:
         "MandateSpend.sum(amount) WHERE intent_jti = X is queried WITH FOR UPDATE. $30 + $30 = $60 > $50. Returns verified=false: Budget exhausted.",
       controlLabel: "Cumulative budget block",

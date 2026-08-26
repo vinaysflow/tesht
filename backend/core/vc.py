@@ -16,7 +16,7 @@ from core.db import db_session
 from models import Agent, Key
 
 # Algorithms accepted for VC/SVID verification.
-# EdDSA = Pramana-issued VCs; RS256/ES256/ES384 = SPIFFE SVIDs and external JWTs.
+# EdDSA = Tesht-issued VCs; RS256/ES256/ES384 = SPIFFE SVIDs and external JWTs.
 _SUPPORTED_ALGORITHMS = ["EdDSA", "RS256", "PS256", "ES256", "ES384", "ES512"]
 
 

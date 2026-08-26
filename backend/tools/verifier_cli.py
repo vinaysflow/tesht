@@ -145,7 +145,7 @@ def verify_vc(token: str, *, timeout: float) -> VerifyResult:
 
 
 def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(description='Pramana portable VC verifier (no DB)')
+    ap = argparse.ArgumentParser(description='Tesht portable VC verifier (no DB)')
     ap.add_argument('--jwt', dest='jwt', help='VC JWT (EdDSA)', required=False)
     ap.add_argument('--timeout', dest='timeout', type=float, default=10.0)
     args = ap.parse_args(argv)

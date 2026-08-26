@@ -12,8 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN useradd -m -u 1000 pramana && chown -R pramana:pramana /app
-USER pramana
+RUN useradd -m -u 1000 tesht && chown -R tesht:tesht /app
+USER tesht
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Multi-Agent Supply Chain Demo
+Tesht (Pramana) — Multi-Agent Supply Chain Demo
 
 Demonstrates:
   • Cross-organisation credential issuance (Acme CA → Acme Supplier)
@@ -17,9 +17,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk" / "python"))
 
-from pramana.credentials import issue_vc, verify_vc
-from pramana.delegation import issue_delegation, delegate_further, verify_delegation_chain
-from pramana.identity import AgentIdentity
+from tesht.credentials import issue_vc, verify_vc
+from tesht.delegation import issue_delegation, delegate_further, verify_delegation_chain
+from tesht.identity import AgentIdentity
 
 PASS = "✅"
 FAIL = "❌"
@@ -27,7 +27,7 @@ FAIL = "❌"
 
 def main() -> int:
     errors: list[str] = []
-    print("\n🏭  Pramana Protocol — Multi-Agent Supply Chain Demo\n" + "─" * 56)
+    print("\n🏭  Tesht (Pramana) — Multi-Agent Supply Chain Demo\n" + "─" * 56)
 
     # ── 1. Identities ──────────────────────────────────────────────────────
     print("\nStep 1 │ Creating identities …")

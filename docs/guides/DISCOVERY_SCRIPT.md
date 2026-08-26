@@ -9,7 +9,7 @@ Target: **3–5 MSSP / SecOps** conversations + **2–3 EU AI Act / AI governanc
 
 1. Confirm whether buyers put agents **in the live action path** today (or next 90 days).
 2. Learn who owns budget (CISO / AI platform / compliance / fraud).
-3. Map their pain to Pramana’s Session runtime: handoff → decide → step_up → revoke.
+3. Map their pain to Tesht’s Session runtime: handoff → decide → step_up → revoke.
 4. Decide Phase 2 pack: `secops_actions` **or** `eu_ai_act_evidence` (evidence-driven).
 
 ## Qualification (any vertical)

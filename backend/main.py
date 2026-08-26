@@ -31,8 +31,11 @@ from core.settings import settings
 from core.startup import init_db
 
 app = FastAPI(
-    title="Pramana Protocol API",
-    description="Portable AI Agent Identity using W3C Standards",
+    title="Tesht (Pramana) API",
+    description=(
+        "Portable identity and scoped authorization for AI agents. "
+        "W3C DIDs, verifiable credentials, narrowing delegation, instant revocation."
+    ),
     version="0.1.0",
 )
 
@@ -183,9 +186,9 @@ async def ready():
             # writable?
             try:
                 # works on sqlite and postgres
-                conn.execute(_text("CREATE TABLE IF NOT EXISTS _pramana_readycheck (id INTEGER PRIMARY KEY)"))
-                conn.execute(_text("INSERT INTO _pramana_readycheck(id) VALUES (1)"))
-                conn.execute(_text("DELETE FROM _pramana_readycheck WHERE id=1"))
+                conn.execute(_text("CREATE TABLE IF NOT EXISTS _tesht_readycheck (id INTEGER PRIMARY KEY)"))
+                conn.execute(_text("INSERT INTO _tesht_readycheck(id) VALUES (1)"))
+                conn.execute(_text("DELETE FROM _tesht_readycheck WHERE id=1"))
             except Exception as e:
                 return {"ready": False, "error": f"db not writable: {e}"}
 
@@ -197,9 +200,9 @@ async def ready():
 @app.get("/api")
 async def api_root():
     return {
-        "name": "Pramana Protocol",
+        "name": "Tesht (Pramana)",
         "version": "0.1.0",
-        "description": "Portable AI Agent Identity",
+        "description": "Portable identity and scoped authorization for AI agents",
         "standards": [
             "W3C DID Core 1.0",
             "W3C VC 2.0",

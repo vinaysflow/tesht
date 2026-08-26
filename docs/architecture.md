@@ -1,12 +1,12 @@
-# Architecture — Pramana Protocol
+# Architecture — Tesht (Pramana)
 
 ## Overview
 
-Pramana Protocol provides portable, cryptographically verifiable identities for AI agents. It is built on open W3C standards: Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), and Verifiable Presentations (VPs).
+Tesht (Pramana) provides portable, cryptographically verifiable identities for AI agents. It is built on open W3C standards: Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), and Verifiable Presentations (VPs).
 
 ```mermaid
 flowchart TB
-    subgraph sdk [Python SDK — pramana]
+    subgraph sdk [Python SDK — tesht]
         identity[AgentIdentity]
         credentials[Credentials]
         delegation[Delegation]
@@ -41,7 +41,7 @@ flowchart TB
 
 ## DID Methods
 
-Pramana supports two DID methods with different trust models:
+Tesht supports two DID methods with different trust models:
 
 ```mermaid
 flowchart LR
@@ -148,7 +148,7 @@ sequenceDiagram
 
     Client->>Client: create_presentation(vc_jwts, audience=server.did)
     Client->>Server: HTTP request\nAuthorization: Bearer <VP-JWT>
-    Server->>Server: PramanaMCPAuth.verify_request(headers)
+    Server->>Server: TeshtMCPAuth.verify_request(headers)
     Server->>Server: verify_presentation(vp_jwt)
     Server->>Server: check trusted_issuers, required_credential_types
     Server-->>Client: MCPAuthResult(authenticated=True/False)
@@ -157,9 +157,9 @@ sequenceDiagram
 ## Repository Layout
 
 ```
-pramana-protocol/
+tesht/
 ├── sdk/
-│   ├── python/pramana/        ← Python SDK (no server dependency)
+│   ├── python/tesht/        ← Python SDK (no server dependency)
 │   │   ├── identity.py
 │   │   ├── credentials.py
 │   │   ├── delegation.py

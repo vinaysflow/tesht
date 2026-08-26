@@ -12,12 +12,12 @@ BACKEND_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_DIR))
 
 # IMPORTANT: tests import `core.*` at module-import time.
-DEFAULT_SQLITE_FILE = os.getenv("PRAMANA_TEST_SQLITE_FILE", "/tmp/pramana_pytest.db")
-DEFAULT_TEST_DB_URL = os.getenv("PRAMANA_TEST_DATABASE_URL") or f"sqlite:///{DEFAULT_SQLITE_FILE}"
+DEFAULT_SQLITE_FILE = os.getenv("TESHT_TEST_SQLITE_FILE", "/tmp/tesht_pytest.db")
+DEFAULT_TEST_DB_URL = os.getenv("TESHT_TEST_DATABASE_URL") or f"sqlite:///{DEFAULT_SQLITE_FILE}"
 os.environ.setdefault("DATABASE_URL", DEFAULT_TEST_DB_URL)
 os.environ.setdefault("AUTH_JWT_SECRET", "test-secret")
-os.environ.setdefault("AUTH_JWT_ISSUER", "pramana-test")
-os.environ.setdefault("PRAMANA_DEV_MODE", "false")
+os.environ.setdefault("AUTH_JWT_ISSUER", "tesht-test")
+os.environ.setdefault("TESHT_DEV_MODE", "false")
 
 
 def _purge_modules():

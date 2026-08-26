@@ -4,7 +4,7 @@
 
 ```bash
 # from the repo root after cloning
-cd Pramana-protocol
+cd Tesht-protocol
 cp .env.example .env
 python3 scripts/set_env_secret.py
 ```
@@ -18,7 +18,7 @@ make dev
 - UI: `http://127.0.0.1:6080`
 - API health: `http://127.0.0.1:5051/health`
 - API ready: `http://127.0.0.1:5051/ready`
-- Keycloak: `http://127.0.0.1:8080` (realm `pramana`)
+- Keycloak: `http://127.0.0.1:8080` (realm `tesht`)
 
 ### 3) Login
 

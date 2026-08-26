@@ -24,11 +24,11 @@ Usage:
   python scripts/demo_mega.py --okta-token "$TOKEN"
 
   # Save to file for reuse:
-  python scripts/get_okta_token.py --save /tmp/pramana_okta_token.txt
+  python scripts/get_okta_token.py --save /tmp/tesht_okta_token.txt
 
 Output:
   Prints the id_token to stdout (and optionally saves to a file).
-  The token is also saved to /tmp/pramana_okta_token.txt by default.
+  The token is also saved to /tmp/tesht_okta_token.txt by default.
 
 PKCE flow used (RFC 7636) — no client secret required for SPA/native apps.
 If OKTA_CLIENT_SECRET is set, Basic auth is used in the token exchange.
@@ -54,7 +54,7 @@ except ImportError:
     print("Error: httpx is required. Install with: pip install httpx", file=sys.stderr)
     sys.exit(1)
 
-DEFAULT_TOKEN_PATH = "/tmp/pramana_okta_token.txt"
+DEFAULT_TOKEN_PATH = "/tmp/tesht_okta_token.txt"
 REDIRECT_URI = "http://localhost:8888/callback"
 SCOPES = "openid profile email"
 

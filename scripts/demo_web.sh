@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# demo_web.sh — Start all Pramana demo services + React dev server
+# demo_web.sh — Start all Tesht demo services + React dev server
 #
 # Usage:
 #   ./scripts/demo_web.sh
@@ -12,7 +12,7 @@
 #   - MCP Gateway          :5052  (uses PostgreSQL audit if available)
 #   - Vite React dev server :5174
 #
-# All Python services run with PRAMANA_CORS_ENABLED=true so the React app
+# All Python services run with TESHT_CORS_ENABLED=true so the React app
 # can make cross-origin API calls.
 #
 # If PostgreSQL is running on :5432, the gateway automatically enables
@@ -37,16 +37,16 @@ fail() { echo -e "  ${RED}✗${RESET} $*"; }
 warn() { echo -e "  ${YELLOW}⚠${RESET} $*"; }
 
 # ── Config path (temp file, same as demo_mega.py) ─────────────────────────────
-CFG_FILE=$(mktemp /tmp/pramana_demo_config_XXXXXX.yaml)
+CFG_FILE=$(mktemp /tmp/tesht_demo_config_XXXXXX.yaml)
 
 # Base config — always include the mock IdP
 cat > "$CFG_FILE" <<'YAML'
 providers:
   mock_idp:
     name: "Acme Corp Okta (Mock)"
-    issuer: "https://mock-idp.pramana.local"
+    issuer: "https://mock-idp.tesht.local"
     jwks_uri: "http://127.0.0.1:9200/.well-known/jwks.json"
-    audience: "pramana"
+    audience: "tesht"
     claim_mapping:
       name: name
       email: email
@@ -114,20 +114,20 @@ start_service() {
   if [ ${#extra_env[@]} -gt 0 ]; then
     env \
       PYTHONPATH="$PYTHONPATH" \
-      PRAMANA_CORS_ENABLED=true \
+      TESHT_CORS_ENABLED=true \
       "${extra_env[@]}" \
       python3 -m uvicorn "$module" \
         --host 127.0.0.1 --port "$port" \
         --log-level error \
-      > "/tmp/pramana_${name}.log" 2>&1 &
+      > "/tmp/tesht_${name}.log" 2>&1 &
   else
     env \
       PYTHONPATH="$PYTHONPATH" \
-      PRAMANA_CORS_ENABLED=true \
+      TESHT_CORS_ENABLED=true \
       python3 -m uvicorn "$module" \
         --host 127.0.0.1 --port "$port" \
         --log-level error \
-      > "/tmp/pramana_${name}.log" 2>&1 &
+      > "/tmp/tesht_${name}.log" 2>&1 &
   fi
   local pid=$!
   PIDS+=("$pid")
@@ -145,21 +145,21 @@ wait_healthy() {
     fi
     sleep 0.3
   done
-  fail "$label failed to start (check /tmp/pramana_${label// /_}.log)"
+  fail "$label failed to start (check /tmp/tesht_${label// /_}.log)"
   return 1
 }
 
 echo ""
-echo -e "${BOLD}${CYAN}━━━ Pramana Protocol — Web Demo Startup ━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${BOLD}${CYAN}━━━ Tesht (Pramana) — Web Demo Startup ━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
 log "Project root: $PROJECT_ROOT"
 
 # ── Detect PostgreSQL ─────────────────────────────────────────────────────────
 PG_DATABASE_URL=""
 if nc -z 127.0.0.1 5432 2>/dev/null; then
-  PG_USER="${POSTGRES_USER:-pramana}"
-  PG_PASS="${POSTGRES_PASSWORD:-pramana_dev_password}"
-  PG_DB="${POSTGRES_DB:-pramana}"
+  PG_USER="${POSTGRES_USER:-tesht}"
+  PG_PASS="${POSTGRES_PASSWORD:-tesht_dev_password}"
+  PG_DB="${POSTGRES_DB:-tesht}"
   PG_DATABASE_URL="postgresql://${PG_USER}:${PG_PASS}@127.0.0.1:5432/${PG_DB}"
   ok "PostgreSQL detected on :5432 — enabling persistent hash-chained audit"
 else
@@ -167,7 +167,7 @@ else
   warn "Run 'docker compose up postgres -d' to enable persistent audit"
 fi
 
-log "Starting Python services with PRAMANA_CORS_ENABLED=true…"
+log "Starting Python services with TESHT_CORS_ENABLED=true…"
 echo ""
 
 # ── Start Python services ─────────────────────────────────────────────────────

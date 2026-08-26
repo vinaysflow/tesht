@@ -42,7 +42,7 @@ function buildDemoSvid(spiffeId: string): string {
   const payload = btoa(JSON.stringify({
     iss: spiffeId,
     sub: spiffeId,
-    aud: ["pramana.local"],
+    aud: ["tesht.local"],
     exp: now + 3600,
     iat: now,
     spiffe: true,
@@ -104,7 +104,7 @@ export function IdentityBridgeTab() {
             <h2 className="text-lg font-bold">SPIFFE Identity Bridge</h2>
             <p className="text-blue-100 text-sm mt-1">
               Turn infrastructure workload identity into application-layer authority.
-              SPIFFE proves <em>who</em> the agent is — Pramana proves <em>what</em> it can do.
+              SPIFFE proves <em>who</em> the agent is — Tesht proves <em>what</em> it can do.
             </p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export function IdentityBridgeTab() {
         </div>
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
           <div className="bg-red-50 border border-red-100 rounded-xl p-3">
-            <p className="font-semibold text-red-700 mb-1">Without Pramana</p>
+            <p className="font-semibold text-red-700 mb-1">Without Tesht</p>
             <ul className="text-red-600 space-y-0.5">
               <li>• SPIFFE proves identity — but not what agent can do</li>
               <li>• No delegation chain verification</li>
@@ -145,7 +145,7 @@ export function IdentityBridgeTab() {
             </ul>
           </div>
           <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-3">
-            <p className="font-semibold text-emerald-700 mb-1">With Pramana Bridge</p>
+            <p className="font-semibold text-emerald-700 mb-1">With Tesht Bridge</p>
             <ul className="text-emerald-600 space-y-0.5">
               <li>• Infrastructure identity + application authority</li>
               <li>• Scope-narrowing delegation chains enforced server-side</li>
@@ -203,8 +203,8 @@ export function IdentityBridgeTab() {
           </h3>
           <p className="text-xs text-gray-500 mb-4">
             Send the SPIFFE SVID to <code className="bg-gray-100 px-1 rounded">POST /v1/identity/attest</code>.
-            Pramana will verify the SVID, locate the agent&apos;s registered DID, and issue a
-            W3C WorkloadAttestationCredential binding the SPIFFE ID to Pramana authority.
+            Tesht will verify the SVID, locate the agent&apos;s registered DID, and issue a
+            W3C WorkloadAttestationCredential binding the SPIFFE ID to Tesht authority.
           </p>
           <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 font-mono text-xs text-gray-600 mb-4 overflow-x-auto">
             <p className="text-gray-400 mb-1">// Request body</p>
@@ -246,7 +246,7 @@ export function IdentityBridgeTab() {
               <div>
                 <p className="font-bold text-emerald-800 text-sm">Workload Attested Successfully</p>
                 <p className="text-xs text-emerald-600">
-                  {result.agent_created ? "New Pramana agent created and linked to SPIFFE ID" : "Existing agent linked — attestation refreshed"}
+                  {result.agent_created ? "New Tesht agent created and linked to SPIFFE ID" : "Existing agent linked — attestation refreshed"}
                 </p>
               </div>
             </div>
@@ -255,7 +255,7 @@ export function IdentityBridgeTab() {
                 { label: "SPIFFE ID", value: result.spiffe_id },
                 { label: "Trust Domain", value: result.trust_domain },
                 { label: "Workload Path", value: result.workload_path },
-                { label: "Pramana DID", value: result.agent_did.slice(0, 40) + "…" },
+                { label: "Tesht DID", value: result.agent_did.slice(0, 40) + "…" },
                 { label: "VC ID", value: result.vc_id },
                 { label: "Agent Created", value: result.agent_created ? "Yes (new)" : "No (existing)" },
               ].map((f) => (
@@ -272,9 +272,9 @@ export function IdentityBridgeTab() {
             <h3 className="text-sm font-bold text-gray-800 mb-2">What Just Happened</h3>
             <ol className="text-xs text-gray-600 space-y-2">
               {[
-                `Pramana received a SPIFFE SVID with sub = "${result.spiffe_id}"`,
+                `Tesht received a SPIFFE SVID with sub = "${result.spiffe_id}"`,
                 "The SVID was decoded and the SPIFFE ID was extracted and validated",
-                `The agent with spiffe_id = "${result.spiffe_id}" was located in the Pramana registry (bridge-mode resolution via DB)`,
+                `The agent with spiffe_id = "${result.spiffe_id}" was located in the Tesht registry (bridge-mode resolution via DB)`,
                 "A W3C WorkloadAttestationCredential was issued using the agent's Ed25519 keypair",
                 "The VC was signed, stored, and can now be presented for delegation + commerce operations",
                 "An audit event was written: identity.workload.attested",
@@ -299,8 +299,8 @@ export function IdentityBridgeTab() {
               </button>
             </div>
             <p className="text-xs text-gray-500 mb-3">
-              This W3C VC binds the SPIFFE workload identity to Pramana authority.
-              It can be presented to any Pramana-enabled service to prove the agent&apos;s
+              This W3C VC binds the SPIFFE workload identity to Tesht authority.
+              It can be presented to any Tesht-enabled service to prove the agent&apos;s
               infrastructure attestation and trigger delegation/commerce authorization.
             </p>
             {expandVc && (
@@ -318,7 +318,7 @@ export function IdentityBridgeTab() {
                 "SPIFFE workload identity resolution",
                 "Ed25519 signature binding",
                 "W3C VC issuance (WorkloadAttestationCredential)",
-                "SPIFFE ID → Pramana DID bridge",
+                "SPIFFE ID → Tesht DID bridge",
                 "Idempotent attestation (safe to call repeatedly)",
                 "Tamper-evident audit trail (identity.workload.attested)",
               ].map((c) => (

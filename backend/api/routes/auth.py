@@ -17,7 +17,7 @@ class DevTokenRequest(BaseModel):
 
 @router.post("/dev-token")
 def dev_token(req: DevTokenRequest):
-    if not settings.pramana_dev_mode:
+    if not settings.tesht_dev_mode:
         raise HTTPException(status_code=404, detail="Not found")
 
     token = issue_admin_token(scopes=req.scopes, subject=req.subject, ttl_seconds=req.ttl_seconds)

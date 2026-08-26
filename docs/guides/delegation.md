@@ -1,6 +1,6 @@
 # Delegation Chains Guide
 
-Pramana Protocol implements W3C Verifiable Credential-based delegation. A user can delegate authority to an AI agent, that agent can further sub-delegate with narrowed scope, and any verifier can traverse the entire chain to confirm provenance.
+Tesht (Pramana) implements W3C Verifiable Credential-based delegation. A user can delegate authority to an AI agent, that agent can further sub-delegate with narrowed scope, and any verifier can traverse the entire chain to confirm provenance.
 
 ## Core concepts
 
@@ -30,8 +30,8 @@ You can include custom fields — they will be preserved and included in `effect
 ## Issuing a root delegation
 
 ```python
-from pramana.identity import AgentIdentity
-from pramana.delegation import issue_delegation
+from tesht.identity import AgentIdentity
+from tesht.delegation import issue_delegation
 
 user  = AgentIdentity.create("alice")
 agent = AgentIdentity.create("alice-shopping-agent")
@@ -55,7 +55,7 @@ delegation_jwt = issue_delegation(
 A delegate can pass part of their authority to another agent, but only within their own scope:
 
 ```python
-from pramana.delegation import delegate_further
+from tesht.delegation import delegate_further
 
 sub_agent = AgentIdentity.create("specialist-sub-agent")
 
@@ -82,7 +82,7 @@ sub_delegation_jwt = delegate_further(
 - `categories` contains a category not in the parent
 
 ```python
-from pramana.delegation import ScopeEscalationError
+from tesht.delegation import ScopeEscalationError
 
 try:
     delegate_further(
@@ -124,7 +124,7 @@ delegate_further(holder=agent2, parent_delegation_jwt=d1_jwt,
 `verify_delegation_chain` recursively verifies every link in the chain:
 
 ```python
-from pramana.delegation import verify_delegation_chain
+from tesht.delegation import verify_delegation_chain
 
 result = verify_delegation_chain(
     sub_delegation_jwt,

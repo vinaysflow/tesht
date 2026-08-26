@@ -137,7 +137,7 @@ describe("AgentIdentity serialization", () => {
 describe("AgentIdentity signing", () => {
   it("sign/verify round-trip succeeds", async () => {
     const identity = await AgentIdentity.create("test");
-    const msg = new TextEncoder().encode("Pramana Protocol");
+    const msg = new TextEncoder().encode("Tesht (Pramana)");
     const sig = await identity.sign(msg);
     expect(await identity.verify(msg, sig)).toBe(true);
   });

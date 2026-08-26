@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# scripts/deploy.sh — Deploy Pramana Protocol to Fly.io with pre-flight migrations.
+# scripts/deploy.sh — Deploy Tesht (Pramana) to Fly.io with pre-flight migrations.
 # Usage: ./scripts/deploy.sh [--app <app-name>]
 set -euo pipefail
 
-APP="${FLY_APP:-pramana-protocol}"
+APP="${FLY_APP:-tesht}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

@@ -13,8 +13,8 @@ import time
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
-from pramana.identity import AgentIdentity, resolve_did_key
-from pramana.integrations.mcp import MCPAuthConfig, MCPAuthResult, PramanaMCPAuth
+from tesht.identity import AgentIdentity, resolve_did_key
+from tesht.integrations.mcp import MCPAuthConfig, MCPAuthResult, TeshtMCPAuth
 
 from gateway.config import AuthSettings, GatewayConfig
 
@@ -79,7 +79,7 @@ class GatewayAuth:
         status_checker: Optional[Callable[[str, int], bool]] = None,
     ) -> None:
         self.gateway_identity = gateway_identity or AgentIdentity.create(
-            "pramana-mcp-gateway"
+            "tesht-mcp-gateway"
         )
         mcp_config = build_mcp_auth_config(
             self.gateway_identity,
@@ -87,7 +87,7 @@ class GatewayAuth:
             resolver=resolver,
             status_checker=status_checker,
         )
-        self.mcp_auth = PramanaMCPAuth(mcp_config)
+        self.mcp_auth = TeshtMCPAuth(mcp_config)
 
     def authenticate(self, authorization: str) -> GatewayAuthResult:
         """Verify the blended VP from the Authorization header value.

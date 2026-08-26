@@ -4,7 +4,7 @@
  * Agentic Commerce — end-to-end dogfood surface.
  *
  * A human authorizes a shopping agent with a budget + merchant allowlist
- * (creates a Pramana authorization Session), then the agent "shops" a mock
+ * (creates a Tesht authorization Session), then the agent "shops" a mock
  * storefront. Every purchase runs through the Session decide path composed
  * with AP2 mandates: scope + trust + cumulative budget + merchant allowlist.
  * Trust drops trigger a step-up modal; the human can revoke at any time.
@@ -339,7 +339,7 @@ export default function AgenticCommercePage() {
           <div className="bg-white rounded-lg border border-gray-200 p-6 max-w-2xl">
             <h2 className="font-semibold mb-1">1 · Authorize a shopping agent</h2>
             <p className="text-sm text-gray-500 mb-4">
-              You (the human) delegate a budget to an agent. This creates a Pramana authorization
+              You (the human) delegate a budget to an agent. This creates a Tesht authorization
               session with the <code className="text-xs">core + commerce</code> packs.
             </p>
 

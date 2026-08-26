@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Continuous Trust Demo
+Tesht (Pramana) — Continuous Trust Demo
 =========================================
 
 Fully self-contained: starts the mock MCP server and gateway as subprocesses,
@@ -34,9 +34,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import httpx
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 # ── Terminal colours ──────────────────────────────────────────────────────────
 RESET = "\033[0m"
@@ -252,7 +252,7 @@ def print_trust_chart(scores: list[tuple[int, str, str]]) -> None:
 # ── Main demo ─────────────────────────────────────────────────────────────────
 
 def main() -> int:
-    banner("PRAMANA CONTINUOUS TRUST — Live Trust Score Timeline")
+    banner("TESHT CONTINUOUS TRUST — Live Trust Score Timeline")
     print(f"\n  {DIM}Starting gateway and mock MCP server...{RESET}")
 
     mock_proc = start_server("gateway.mock_mcp_server:app", 9100)
@@ -403,7 +403,7 @@ def main() -> int:
     Fresh VP Re-auth:         Penalty recovery  → {GREEN}+20{RESET} on new VP
 
   {DIM}Competitors do binary allow/deny.{RESET}
-  {BOLD}Pramana does continuous, graduated trust with behavioral recovery.{RESET}
+  {BOLD}Tesht does continuous, graduated trust with behavioral recovery.{RESET}
 """)
 
         return 0

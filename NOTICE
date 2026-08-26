@@ -1,9 +1,9 @@
-Pramana Protocol
+Tesht (Pramana)
 ================
 
 Copyright (c) 2024-2026 Aurvia Global
 
-Pramana Protocol is licensed under the GNU Affero General Public License
+Tesht (Pramana) is licensed under the GNU Affero General Public License
 v3.0 (AGPL-3.0). See LICENSE for full terms.
 
 
@@ -23,9 +23,9 @@ Tripathi.
 Commercial Licensing
 --------------------
 
-Pramana Protocol is available under AGPL-3.0 for open-source use.
+Tesht (Pramana) is available under AGPL-3.0 for open-source use.
 Commercial licenses are available for organizations that wish to use
-Pramana Protocol in proprietary products without AGPL-3.0 obligations.
+Tesht (Pramana) in proprietary products without AGPL-3.0 obligations.
 
 For commercial licensing inquiries, contact:
   Aurvia Global
@@ -46,4 +46,5 @@ Licensing History
 Trademarks
 ----------
 
-"Pramana" and "Pramana Protocol" are trademarks of Aurvia Global.
+"Tesht" is a trademark of Aurvia Global. This project was previously
+known as Pramana Protocol.

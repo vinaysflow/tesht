@@ -29,20 +29,20 @@ TS_DIST = SDK_TYPESCRIPT / "dist"
 
 sys.path.insert(0, str(SDK_PYTHON))
 
-from pramana.credentials import (
+from tesht.credentials import (
     create_presentation,
     issue_vc,
     verify_presentation,
     verify_vc,
 )
-from pramana.delegation import (
+from tesht.delegation import (
     ScopeEscalationError,
     delegate_further,
     intersect_scopes,
     issue_delegation,
     verify_delegation_chain,
 )
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 
 
 # ── TS SDK subprocess helper ──────────────────────────────────────────────────
@@ -67,7 +67,7 @@ def _ts_call(script: str) -> dict[str, Any]:
     """)
 
     # Write script to temp file
-    tmp = Path("/tmp/_pramana_interop_test.mjs")
+    tmp = Path("/tmp/_tesht_interop_test.mjs")
     tmp.write_text(wrapper)
 
     try:

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# demo_ambient.sh — Pramana Protocol: AI-Powered Security Incident Demo
+# demo_ambient.sh — Tesht (Pramana): AI-Powered Security Incident Demo
 #
 # Narrative: Ambient.ai detects a physical threat. An AI agent is issued a
 # time-bounded, scoped credential to dispatch alerts to ServiceNow and PagerDuty.
@@ -9,13 +9,13 @@
 # Maps to checklist:
 #   detect threat → issue credential → verify (PASS) → revoke → verify (FAIL)
 #
-# Requires backend running: DATABASE_URL=sqlite:////tmp/pramana_demo.db DEMO_MODE=true uvicorn main:app
+# Requires backend running: DATABASE_URL=sqlite:////tmp/tesht_demo.db DEMO_MODE=true uvicorn main:app
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 API_BASE="${API_BASE:-http://127.0.0.1:5051}"
 AUTH_JWT_SECRET="${AUTH_JWT_SECRET:-dev-secret-change}"
-AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-pramana}"
+AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-tesht}"
 FMT="$REPO_ROOT/scripts/lib/format_output.py"
 
 # ── Colours ───────────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ alert() { echo -e "  ${BOLD}${RED}⚠  $1${NC}"; }
 TOKEN=$(python3 - <<PY
 import os, time, jwt
 payload = {
-    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'pramana'),
+    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'tesht'),
     "sub":    "secops-admin",
     "tenant": "ambient-ai-secops",
     "iat":    int(time.time()),
@@ -53,7 +53,7 @@ HDR_AUTH=( -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json"
 
 echo ""
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════════════${NC}"
-echo -e "${BOLD}${YELLOW}  PRAMANA PROTOCOL — AI SECURITY INCIDENT DEMO${NC}"
+echo -e "${BOLD}${YELLOW}  TESHT PROTOCOL — AI SECURITY INCIDENT DEMO${NC}"
 echo -e "${BOLD}${YELLOW}  Ambient.ai Detection · Scoped Credential · Dispatch · Revoke${NC}"
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════════════${NC}"
 info "API: $API_BASE  |  Tenant: ambient-ai-secops"
@@ -67,7 +67,7 @@ echo -e "  ${DIM}Confidence:  94.7% (multi-camera correlation)${NC}"
 echo -e "  ${DIM}Timestamp:   $(python3 -c 'from datetime import datetime,timezone; print(datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))')${NC}"
 echo -e "  ${DIM}Policy:      HIGH threat → auto-issue dispatch credential${NC}"
 echo ""
-note "Pramana is called to issue a time-bounded, scoped authorization..."
+note "Tesht is called to issue a time-bounded, scoped authorization..."
 
 # ── [2/6] Create the two agents ───────────────────────────────────────────────
 step "2/6" "Provisioning agents (threat detector + incident responder)..."
@@ -183,7 +183,7 @@ echo -e "  ${BOLD}${GREEN}SECURITY INCIDENT DEMO COMPLETE ✓${NC}"
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════════════${NC}"
 echo ""
 echo -e "  ${BOLD}What just happened:${NC}"
-echo -e "  ${DIM}1. Ambient.ai detected a threat; Pramana issued a scoped credential${NC}"
+echo -e "  ${DIM}1. Ambient.ai detected a threat; Tesht issued a scoped credential${NC}"
 echo -e "  ${DIM}2. Credential scope: dispatch_security_alert → servicenow, pagerduty ONLY${NC}"
 echo -e "  ${DIM}3. Incident responder verified authorization before acting${NC}"
 echo -e "  ${DIM}4. Alert dispatched (credential was valid at time of action)${NC}"

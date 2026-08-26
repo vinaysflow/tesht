@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from pramana.identity import (
+from tesht.identity import (
     AgentIdentity,
     _b58_decode,
     _b58_encode,

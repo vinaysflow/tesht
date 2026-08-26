@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Full Lifecycle Mega-Demo
+Tesht (Pramana) — Full Lifecycle Mega-Demo
 ============================================
 
 A single self-contained script demonstrating all 5 improvements in sequence:
@@ -36,9 +36,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 import httpx
 import yaml
 
-from pramana.credentials import create_blended_presentation, create_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, create_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 from scripts.demo_explainer import (
     decode_and_display_vp,
@@ -138,9 +138,9 @@ def _write_demo_config() -> str:
     providers: dict = {
         "mock_idp": {
             "name": "Acme Corp Okta (Mock)",
-            "issuer": "https://mock-idp.pramana.local",
+            "issuer": "https://mock-idp.tesht.local",
             "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-            "audience": "pramana",
+            "audience": "tesht",
             "claim_mapping": {
                 "name": "name",
                 "email": "email",
@@ -519,7 +519,7 @@ def act4_continuous_trust(
                             arguments={"sql": "SELECT COUNT(*) as total FROM products"})
     if status == 401 and "step" in str(resp).lower():
         step("GW", "query_database → Trust too low → STEP-UP required")
-        info("GW", "Response", "401  X-Pramana-StepUp: re-present-vp")
+        info("GW", "Response", "401  X-Tesht-StepUp: re-present-vp")
     elif status == 200:
         # Trust may still be above threshold (depends on exact score)
         trust_events = client.get(f"{GW_URL}/gateway/events?n=5", timeout=5.0).json()
@@ -776,7 +776,7 @@ def act6_fleet_dashboard(client: httpx.Client, timeline_events: Optional[list] =
     # Print dashboard
     w = 70
     print(f"\n{BOLD}╔{'═' * w}╗{RESET}")
-    print(f"{BOLD}║  {'PRAMANA PROTOCOL — Full Lifecycle Demo Complete':<{w - 2}}║{RESET}")
+    print(f"{BOLD}║  {'TESHT PROTOCOL — Full Lifecycle Demo Complete':<{w - 2}}║{RESET}")
     print(f"{BOLD}╠{'═' * w}╣{RESET}")
     cap_rows = [
         ("IDENTITY  ", "Enterprise OIDC (Okta) → W3C Verifiable Credential"),
@@ -836,8 +836,8 @@ def act6_fleet_dashboard(client: httpx.Client, timeline_events: Optional[list] =
     # Differentiators
     taglines = [
         "All on W3C open standards. No vendor lock-in.",
-        "Aembit does binary allow/deny. Pramana does continuous, graduated trust.",
-        "$285M went to NHI detection. Pramana prevents AND detects.",
+        "Aembit does binary allow/deny. Tesht does continuous, graduated trust.",
+        "$285M went to NHI detection. Tesht prevents AND detects.",
     ]
     for t in taglines:
         print(f"{BOLD}║{RESET}  {DIM}{t:<{w - 2}}{RESET}{BOLD}║{RESET}")
@@ -892,9 +892,9 @@ def _check_postgres(host: str = "127.0.0.1", port: int = 5432) -> bool:
 
 
 def _make_database_url(host: str = "127.0.0.1", port: int = 5432) -> str:
-    user = os.environ.get("POSTGRES_USER", "pramana")
-    password = os.environ.get("POSTGRES_PASSWORD", "pramana_dev_password")
-    db = os.environ.get("POSTGRES_DB", "pramana")
+    user = os.environ.get("POSTGRES_USER", "tesht")
+    password = os.environ.get("POSTGRES_PASSWORD", "tesht_dev_password")
+    db = os.environ.get("POSTGRES_DB", "tesht")
     return f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
 
@@ -904,7 +904,7 @@ def main() -> int:
     global EXPLAIN
 
     parser = argparse.ArgumentParser(
-        description="Pramana Protocol — Full Lifecycle Mega-Demo"
+        description="Tesht (Pramana) — Full Lifecycle Mega-Demo"
     )
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
@@ -955,7 +955,7 @@ def main() -> int:
         else:
             okta_token = args.okta_token.strip()
 
-    banner("PRAMANA PROTOCOL — Full Lifecycle Mega-Demo")
+    banner("TESHT PROTOCOL — Full Lifecycle Mega-Demo")
     if EXPLAIN:
         print(f"  {DIM}Explain mode ON — showing VP decode, trust breakdowns, and timeline{RESET}")
     else:

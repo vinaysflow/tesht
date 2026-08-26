@@ -12,7 +12,7 @@ def test_issue_vc_jwt_contains_required_claims(client, authz_headers):
 
     sl = get_or_create_default_list()
     idx = allocate_index(sl.id)
-    status_list_url = f"{settings.pramana_scheme}://127.0.0.1:8000/v1/status/{sl.id}"
+    status_list_url = f"{settings.tesht_scheme}://127.0.0.1:8000/v1/status/{sl.id}"
 
     token, jti, iat, exp = issue_vc_jwt(
         issuer_agent_id=uuid.UUID(issuer['id']),

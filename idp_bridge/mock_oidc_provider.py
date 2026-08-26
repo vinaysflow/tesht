@@ -25,8 +25,8 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-ISSUER = "https://mock-idp.pramana.local"
-AUDIENCE = "pramana"
+ISSUER = "https://mock-idp.tesht.local"
+AUDIENCE = "tesht"
 
 # ---------------------------------------------------------------------------
 # Pre-configured demo users matching the synthetic data population
@@ -104,7 +104,7 @@ def _build_jwk() -> dict[str, Any]:
 
 app = FastAPI(title="Mock OIDC Provider", version="1.0.0")
 
-if os.getenv("PRAMANA_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
+if os.getenv("TESHT_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],

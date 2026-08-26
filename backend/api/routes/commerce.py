@@ -106,7 +106,7 @@ def _issue_mandate(
     sl = get_or_create_default_list(tenant_id=tenant_id)
     index = allocate_index(sl.id)
     status_list_url = (
-        f"{settings.pramana_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
+        f"{settings.tesht_scheme}://{did_core.domain_decoded()}/v1/status/{sl.id}"
     )
 
     token, jti, iat, exp = issue_vc_jwt(

@@ -9,7 +9,7 @@ interface ControlEvidence {
   control_id: string;
   control_name: string;
   description: string;
-  pramana_mechanism: string;
+  tesht_mechanism: string;
   evidence_value: string;
   status: string;
   passing: boolean;
@@ -72,7 +72,7 @@ export function ComplianceTab() {
           <div>
             <h2 className="text-lg font-bold">Compliance Scorecard</h2>
             <p className="text-blue-100 text-sm mt-1">
-              Every Pramana control maps to a compliance framework requirement.
+              Every Tesht control maps to a compliance framework requirement.
               All evidence is generated automatically from live system data.
             </p>
           </div>
@@ -160,8 +160,8 @@ export function ComplianceTab() {
                     <p className="text-xs text-gray-500 mt-1">{ctrl.description}</p>
                     <div className="mt-2 flex flex-col gap-1">
                       <div className="flex items-start gap-1.5">
-                        <span className="text-xs text-indigo-600 font-medium flex-shrink-0">Pramana:</span>
-                        <span className="text-xs text-gray-600">{ctrl.pramana_mechanism}</span>
+                        <span className="text-xs text-indigo-600 font-medium flex-shrink-0">Tesht:</span>
+                        <span className="text-xs text-gray-600">{ctrl.tesht_mechanism}</span>
                       </div>
                       <div className="flex items-start gap-1.5">
                         <span className="text-xs text-emerald-600 font-medium flex-shrink-0">Evidence:</span>

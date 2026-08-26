@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# demo_cross_org.sh — Pramana Protocol: Two-Tenant Cross-Org Verification Demo
+# demo_cross_org.sh — Tesht (Pramana): Two-Tenant Cross-Org Verification Demo
 #
 # Demonstrates:
 #   1. Tenant A (Walmart) creates an issuer agent and issues a VC
@@ -10,13 +10,13 @@
 # This is the key insight Scott Meyer needs to see:
 #   "Cryptographic trust without shared infrastructure"
 #
-# Requires backend running: DATABASE_URL=sqlite:////tmp/pramana_demo.db DEMO_MODE=true uvicorn main:app
+# Requires backend running: DATABASE_URL=sqlite:////tmp/tesht_demo.db DEMO_MODE=true uvicorn main:app
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 API_BASE="${API_BASE:-http://127.0.0.1:5051}"
 AUTH_JWT_SECRET="${AUTH_JWT_SECRET:-dev-secret-change}"
-AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-pramana}"
+AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-tesht}"
 FMT="$REPO_ROOT/scripts/lib/format_output.py"
 
 # ── Colours ───────────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ note()  { echo -e "  ${DIM}$1${NC}"; }
 TOKEN_A=$(python3 - <<PY
 import os, time, jwt
 payload = {
-    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'pramana'),
+    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'tesht'),
     "sub":    "walmart-admin",
     "tenant": "walmart",
     "iat":    int(time.time()),
@@ -52,7 +52,7 @@ PY
 TOKEN_B=$(python3 - <<PY
 import os, time, jwt
 payload = {
-    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'pramana'),
+    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'tesht'),
     "sub":    "supplier-admin",
     "tenant": "supplier-corp",
     "iat":    int(time.time()),
@@ -68,7 +68,7 @@ HDR_B=( -H "Authorization: Bearer $TOKEN_B" -H "Content-Type: application/json" 
 
 echo ""
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════════${NC}"
-echo -e "${BOLD}${YELLOW}  PRAMANA PROTOCOL — CROSS-ORG VERIFICATION DEMO${NC}"
+echo -e "${BOLD}${YELLOW}  TESHT PROTOCOL — CROSS-ORG VERIFICATION DEMO${NC}"
 echo -e "${BOLD}${YELLOW}  Two tenants. One issuer. Zero shared infrastructure.${NC}"
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════════${NC}"
 info "API: $API_BASE"

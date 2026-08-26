@@ -1,17 +1,19 @@
-# Pramana SDK — Portable AI Agent Identity
+# Tesht (Pramana) SDK — Portable AI Agent Identity
 
 Give your AI agent a verifiable identity in 3 lines of code. W3C DIDs + Verifiable Credentials. No server needed.
+
+Tesht (from Irish *teist*, testimony) is portable identity and scoped authorization for AI agents.
 
 ## Install
 
 ```bash
-npm install @pramana/sdk
+npm install @tesht/sdk
 ```
 
 ## Quickstart
 
 ```typescript
-import { AgentIdentity, issueVC, verifyVC } from "@pramana/sdk";
+import { AgentIdentity, issueVC, verifyVC } from "@tesht/sdk";
 
 // Create an agent identity (offline — no server needed)
 const agent = await AgentIdentity.create("my-shopping-bot");
@@ -30,7 +32,7 @@ console.log(result.valid); // true
 
 ## What is this?
 
-Pramana implements portable AI agent identity using W3C standards.
+Tesht implements portable AI agent identity using W3C standards.
 Every AI agent gets a DID (Decentralized Identifier) and can
 issue/receive Verifiable Credentials — cryptographic proof of
 identity, capabilities, and delegation authority.
@@ -54,7 +56,7 @@ import {
   issueDelegation,
   delegateFurther,
   verifyDelegationChain,
-} from "@pramana/sdk";
+} from "@tesht/sdk";
 
 const root = await AgentIdentity.create("root-agent");
 const worker = await AgentIdentity.create("worker-agent");
@@ -86,7 +88,7 @@ import {
   issueVC,
   createPresentation,
   verifyPresentation,
-} from "@pramana/sdk";
+} from "@tesht/sdk";
 
 const issuer = await AgentIdentity.create("issuer");
 const holder = await AgentIdentity.create("holder");
@@ -122,6 +124,6 @@ All functions are `async`. `AgentIdentity` uses static async factory methods.
 
 ## Links
 
-- [GitHub](https://github.com/vinaysflow/pramana-protocol)
-- [Documentation](https://pramana.dev/docs)
-- [Live demo](https://aurviaglobal-pramana-demo.hf.space/demo)
+- [GitHub](https://github.com/vinaysflow/tesht)
+- [Documentation](https://github.com/vinaysflow/tesht)
+- [Live demo](https://aurviaglobal-tesht-demo.hf.space/demo)

@@ -15,7 +15,7 @@ def test_boot_on_empty_sqlite(tmp_path):
         db_file = tmp_path / 'empty.db'
         os.environ['DATABASE_URL'] = f"sqlite:///{db_file}"
         os.environ['AUTH_JWT_SECRET'] = 'test-secret'
-        os.environ['AUTH_JWT_ISSUER'] = 'pramana-test'
+        os.environ['AUTH_JWT_ISSUER'] = 'tesht-test'
 
         # Force reload of backend modules for this isolated boot
         for name in list(sys.modules.keys()):

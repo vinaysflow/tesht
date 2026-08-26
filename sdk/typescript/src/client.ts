@@ -1,5 +1,5 @@
-/** HTTP client for the Pramana Protocol server API. */
-export class PramanaClient {
+/** HTTP client for the Tesht (Pramana) server API. */
+export class TeshtClient {
   baseUrl: string;
   token?: string;
 

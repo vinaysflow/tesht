@@ -7,8 +7,8 @@ import { StatusBadge } from './StatusBadge.jsx'
 function RequestRow({ req, idx, phase }) {
   const isBlocked = req.decision && req.decision.startsWith('blocked')
   return (
-    <tr className="border-b border-pramana-border/50">
-      <td className="py-2 pr-3 text-pramana-muted text-xs font-mono">{idx}</td>
+    <tr className="border-b border-tesht-border/50">
+      <td className="py-2 pr-3 text-tesht-muted text-xs font-mono">{idx}</td>
       <td className="py-2 pr-3 text-slate-200 text-xs font-mono">{req.tool}</td>
       <td className="py-2 pr-3"><StatusBadge decision={req.decision} /></td>
       <td className="py-2 pr-3 text-xs font-mono">
@@ -29,7 +29,7 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
   const hasData = preRevocation.length > 0 || postRevocation.length > 0
 
   if (!hasData) {
-    return <div className="text-pramana-muted text-sm">No revocation data yet.</div>
+    return <div className="text-tesht-muted text-sm">No revocation data yet.</div>
   }
 
   // Build chart data — pre + revocation marker + post
@@ -57,10 +57,10 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
     if (!active || !payload?.length) return null
     const d = payload[0].payload
     return (
-      <div className="bg-pramana-card border border-pramana-border rounded p-2 text-xs font-mono">
+      <div className="bg-tesht-card border border-tesht-border rounded p-2 text-xs font-mono">
         <div className="font-bold mb-1">{d.label}</div>
         <div>Phase: <span className={d.phase === 'pre' ? 'text-emerald-400' : 'text-red-400'}>{d.phase}</span></div>
-        <div>Score: <span className="text-pramana-teal">{d.score}</span></div>
+        <div>Score: <span className="text-tesht-teal">{d.score}</span></div>
         <div>Decision: <StatusBadge decision={d.decision} /></div>
       </div>
     )
@@ -69,8 +69,8 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
   return (
     <div className="space-y-4">
       {/* Trust chart with revocation reference line */}
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
-        <h3 className="text-sm font-bold text-pramana-teal mb-4">Trust Score — Revocation Boundary</h3>
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
+        <h3 className="text-sm font-bold text-tesht-teal mb-4">Trust Score — Revocation Boundary</h3>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={chartData} margin={{ top: 10, right: 20, bottom: 5, left: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -108,7 +108,7 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
         </h3>
         <table className="w-full text-xs">
           <thead>
-            <tr className="text-pramana-muted border-b border-pramana-border font-mono">
+            <tr className="text-tesht-muted border-b border-tesht-border font-mono">
               <th className="text-left pb-2 pr-3">#</th>
               <th className="text-left pb-2 pr-3">Tool</th>
               <th className="text-left pb-2 pr-3">Decision</th>
@@ -129,12 +129,12 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
         <div className="text-lg font-bold text-red-300 mb-1">CREDENTIAL REVOKED</div>
         <div className="text-xs text-red-400 mb-3">Security team revoked the delegation credential — one API call</div>
         {credentialId && (
-          <div className="text-xs font-mono text-pramana-muted bg-pramana-dark rounded px-3 py-1 inline-block">
+          <div className="text-xs font-mono text-tesht-muted bg-tesht-dark rounded px-3 py-1 inline-block">
             jti: {credentialId.slice(0, 36)}…
           </div>
         )}
         {revokedTime && (
-          <div className="text-xs text-pramana-muted mt-2">Revoked at {revokedTime}</div>
+          <div className="text-xs text-tesht-muted mt-2">Revoked at {revokedTime}</div>
         )}
         <div className="mt-3 text-xs text-red-300">
           Enforcement: <strong>instant</strong> — gateway checks BitstringStatusList on next request
@@ -148,7 +148,7 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
         </h3>
         <table className="w-full text-xs">
           <thead>
-            <tr className="text-pramana-muted border-b border-pramana-border font-mono">
+            <tr className="text-tesht-muted border-b border-tesht-border font-mono">
               <th className="text-left pb-2 pr-3">#</th>
               <th className="text-left pb-2 pr-3">Tool</th>
               <th className="text-left pb-2 pr-3">Decision</th>
@@ -165,9 +165,9 @@ export function RevocationView({ preRevocation = [], credentialId, postRevocatio
       </div>
 
       {/* Summary */}
-      <div className="bg-pramana-card border border-pramana-border rounded-xl p-4">
+      <div className="bg-tesht-card border border-tesht-border rounded-xl p-4">
         <h3 className="text-sm font-bold text-slate-400 mb-2">How it works</h3>
-        <div className="text-xs text-pramana-muted space-y-1">
+        <div className="text-xs text-tesht-muted space-y-1">
           <p>1. The delegation VC was issued with a <strong className="text-slate-200">BitstringStatusListEntry</strong> pointing to the bridge's status list.</p>
           <p>2. On revocation, <strong className="text-red-300">one bit was flipped</strong> in the bridge's in-memory bitstring — no TTL expiry required.</p>
           <p>3. On the next request, the gateway fetched the status list and found the bit set → <strong className="text-red-300">VP verification failed: revoked</strong>.</p>

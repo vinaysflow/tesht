@@ -1,5 +1,5 @@
 """
-pramana.commerce
+tesht.commerce
 ~~~~~~~~~~~~~~~~
 AP2-compatible mandate issuance and verification.
 
@@ -24,8 +24,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Callable, Optional
 
-from pramana.credentials import issue_vc, verify_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import issue_vc, verify_vc
+from tesht.identity import AgentIdentity
 
 
 # ---------------------------------------------------------------------------

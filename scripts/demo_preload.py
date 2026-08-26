@@ -2,7 +2,7 @@
 """
 scripts/demo_preload.py
 ~~~~~~~~~~~~~~~~~~~~~~~
-Pre-populate the Pramana gateway with realistic traffic data then run all
+Pre-populate the Tesht gateway with realistic traffic data then run all
 4 demo scenarios on top, leaving services running for the React demo app.
 
 Flow:
@@ -89,9 +89,9 @@ def _write_bridge_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Acme Corp Okta (Mock)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -113,7 +113,7 @@ def _write_bridge_config() -> str:
 def start_server(module: str, port: int, extra_env: Optional[dict] = None) -> subprocess.Popen:
     env = os.environ.copy()
     env["PYTHONPATH"] = f"{PROJECT_ROOT / 'sdk' / 'python'}:{PROJECT_ROOT}"
-    env["PRAMANA_CORS_ENABLED"] = "true"
+    env["TESHT_CORS_ENABLED"] = "true"
     if extra_env:
         env.update(extra_env)
     return subprocess.Popen(
@@ -236,7 +236,7 @@ def _run_script(script: str, extra_args: list[str] | None = None) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Pre-populate Pramana gateway with 500+ events then run all 4 demo scenarios"
+        description="Pre-populate Tesht gateway with 500+ events then run all 4 demo scenarios"
     )
     parser.add_argument(
         "--skip-startup", action="store_true",
@@ -256,7 +256,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    _banner("Pramana Protocol — Pre-load Script")
+    _banner("Tesht (Pramana) — Pre-load Script")
     print(f"  Target pre-load events:  {args.events}")
     print(f"  Duration cap:            {args.duration}s")
     print(f"  Skip service startup:    {args.skip_startup}")

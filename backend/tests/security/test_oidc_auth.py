@@ -58,8 +58,8 @@ def test_oidc_mode_enforces_token_and_scopes(tmp_path):
         os.environ["DATABASE_URL"] = f"sqlite:///{db_file}"
 
         os.environ["AUTH_MODE"] = "oidc"
-        os.environ["OIDC_ISSUER"] = "https://example-issuer/realms/pramana"
-        os.environ["OIDC_AUDIENCE"] = "pramana-api"
+        os.environ["OIDC_ISSUER"] = "https://example-issuer/realms/tesht"
+        os.environ["OIDC_AUDIENCE"] = "tesht-api"
         os.environ["OIDC_JWKS_JSON"] = __import__("json").dumps(jwks)
 
         # Reload backend

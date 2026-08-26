@@ -56,7 +56,7 @@ def create_agent(req: CreateAgentRequest, auth: dict = Depends(require_scopes(["
         db.refresh(agent)
 
     doc = did_core.build_did_document(did=did, kid=kid, public_jwk=public_jwk)
-    did_url = f"{settings.pramana_scheme}://{did_core.domain_decoded()}/agents/{agent_id}/did.json"
+    did_url = f"{settings.tesht_scheme}://{did_core.domain_decoded()}/agents/{agent_id}/did.json"
 
     return CreateAgentResponse(
         id=agent.id,

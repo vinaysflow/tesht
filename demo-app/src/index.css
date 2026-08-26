@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-pramana-dark text-slate-100 font-mono;
+  @apply bg-tesht-dark text-slate-100 font-mono;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { @apply bg-pramana-dark; }
-::-webkit-scrollbar-thumb { @apply bg-pramana-border rounded-full; }
+::-webkit-scrollbar-track { @apply bg-tesht-dark; }
+::-webkit-scrollbar-thumb { @apply bg-tesht-border rounded-full; }
 
 /* Animated gradient border for the run button */
 @keyframes shimmer {

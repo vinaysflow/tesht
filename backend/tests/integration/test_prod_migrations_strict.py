@@ -19,7 +19,7 @@ def test_prod_requires_migrations(tmp_path):
 
         # minimal auth settings to import app
         os.environ['AUTH_JWT_SECRET'] = 'test-secret'
-        os.environ['AUTH_JWT_ISSUER'] = 'pramana-test'
+        os.environ['AUTH_JWT_ISSUER'] = 'tesht-test'
 
         for name in list(sys.modules.keys()):
             if name == 'main' or name.startswith('core.') or name == 'core' or name.startswith('models.') or name == 'models' or name.startswith('api.') or name == 'api':

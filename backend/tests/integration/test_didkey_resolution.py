@@ -15,8 +15,8 @@ sys.path.insert(0, str(SDK_PYTHON))
 
 def test_backend_verifies_didkey_credential(client):
     """A did:key credential issued offline with the Python SDK verifies via the backend API."""
-    from pramana.identity import AgentIdentity
-    from pramana.credentials import issue_vc
+    from tesht.identity import AgentIdentity
+    from tesht.credentials import issue_vc
 
     issuer = AgentIdentity.create("test-issuer", method="key")
     subject = AgentIdentity.create("test-subject", method="key")
@@ -40,8 +40,8 @@ def test_backend_rejects_tampered_didkey_credential(client):
     import base64
     import json
 
-    from pramana.identity import AgentIdentity
-    from pramana.credentials import issue_vc
+    from tesht.identity import AgentIdentity
+    from tesht.credentials import issue_vc
 
     issuer = AgentIdentity.create("tamper-issuer", method="key")
     subject = AgentIdentity.create("tamper-subject", method="key")
@@ -66,7 +66,7 @@ def test_backend_rejects_tampered_didkey_credential(client):
 
 def test_didkey_resolver_produces_valid_doc(client):
     """Direct unit test: _resolve_did_key returns a valid DID document."""
-    from pramana.identity import AgentIdentity
+    from tesht.identity import AgentIdentity
     from core.resolver import _resolve_did_key
 
     a = AgentIdentity.create("resolver-test", method="key")

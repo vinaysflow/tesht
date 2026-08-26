@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Pramana Protocol, please
+If you discover a security vulnerability in Tesht (Pramana), please
 report it responsibly by emailing **vinay@aurviaglobal.com** with the
 subject line: `SECURITY: <brief description>`.
 
@@ -38,7 +38,7 @@ The following are NOT considered security vulnerabilities:
 
 ## Supported Versions
 
-Only the latest minor version of Pramana Protocol receives security
+Only the latest minor version of Tesht (Pramana) receives security
 updates. Earlier versions may be patched on a case-by-case basis.
 
 ## Contact

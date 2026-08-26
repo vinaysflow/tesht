@@ -11,7 +11,7 @@ def ui_dist_dir() -> Path:
     # For Spaces Docker, we will copy Next export output here.
     return Path(
         os.getenv(
-            "PRAMANA_UI_DIST",
+            "TESHT_UI_DIST",
             os.path.join(os.path.dirname(__file__), "..", "..", "static-ui"),
         )
     ).resolve()

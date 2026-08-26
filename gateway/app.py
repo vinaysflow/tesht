@@ -1,7 +1,7 @@
 """
 gateway.app
 ~~~~~~~~~~~~
-Pramana MCP Identity Gateway — FastAPI application.
+Tesht MCP Identity Gateway — FastAPI application.
 
 Eight-step per-request pipeline:
   1. Validate upstream server name
@@ -158,7 +158,7 @@ async def lifespan(application: FastAPI):
     else:
         if require_pg:
             raise RuntimeError(
-                "Durable audit required (PRAMANA_ENV=production or "
+                "Durable audit required (TESHT_ENV=production or "
                 "GATEWAY_REQUIRE_PG_AUDIT=1) but DATABASE_URL is not set"
             )
         application.state.audit = GatewayAuditWriter()
@@ -177,18 +177,18 @@ async def lifespan(application: FastAPI):
 
 
 app = FastAPI(
-    title="Pramana MCP Identity Gateway",
+    title="Tesht MCP Identity Gateway",
     version="0.1.0",
     lifespan=lifespan,
 )
 
-if os.getenv("PRAMANA_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
+if os.getenv("TESHT_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
         allow_methods=["*"],
         allow_headers=["*"],
-        expose_headers=["X-Pramana-Trust-Factors", "X-Pramana-StepUp"],
+        expose_headers=["X-Tesht-Trust-Factors", "X-Tesht-StepUp"],
     )
 
 
@@ -321,7 +321,7 @@ async def proxy_mcp(server_name: str, request: Request) -> Response:
                 jsonrpc.id, -32004,
                 f"Trust score too low ({trust_eval.score}): {trust_eval.explanation}",
             ),
-            headers={"X-Pramana-Trust-Factors": json.dumps(trust_eval.factors)},
+            headers={"X-Tesht-Trust-Factors": json.dumps(trust_eval.factors)},
         )
 
     if trust_eval.decision == "step_up":
@@ -340,8 +340,8 @@ async def proxy_mcp(server_name: str, request: Request) -> Response:
                 jsonrpc.id, -32005, "Step-up authentication required",
             ),
             headers={
-                "X-Pramana-StepUp": "re-present-vp",
-                "X-Pramana-Trust-Factors": json.dumps(trust_eval.factors),
+                "X-Tesht-StepUp": "re-present-vp",
+                "X-Tesht-Trust-Factors": json.dumps(trust_eval.factors),
             },
         )
 
@@ -377,7 +377,7 @@ async def proxy_mcp(server_name: str, request: Request) -> Response:
         content=proxy_result.body,
         status_code=proxy_result.status_code,
         media_type="application/json",
-        headers={"X-Pramana-Trust-Factors": json.dumps(trust_eval.factors)},
+        headers={"X-Tesht-Trust-Factors": json.dumps(trust_eval.factors)},
     )
 
 
@@ -498,7 +498,7 @@ async def events_export(
         return Response(
             content=csv_bytes,
             media_type="text/csv",
-            headers={"Content-Disposition": 'attachment; filename="pramana_audit_export.csv"'},
+            headers={"Content-Disposition": 'attachment; filename="tesht_audit_export.csv"'},
         )
 
     # JSON export
@@ -506,7 +506,7 @@ async def events_export(
     return Response(
         content=json_bytes,
         media_type="application/json",
-        headers={"Content-Disposition": 'attachment; filename="pramana_audit_export.json"'},
+        headers={"Content-Disposition": 'attachment; filename="tesht_audit_export.json"'},
     )
 
 

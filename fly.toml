@@ -1,7 +1,7 @@
-# Fly.io configuration for Pramana Protocol
+# Fly.io configuration for Tesht (Pramana)
 # https://fly.io/docs/reference/configuration/
 
-app = "pramana-protocol"
+app = "tesht"
 primary_region = "iad"
 
 [build]
@@ -19,7 +19,7 @@ primary_region = "iad"
 #   API_SECRET_KEY
 #   AUTH_JWT_SECRET
 #   DATABASE_URL          (set automatically by postgres attach)
-#   PRAMANA_DOMAIN
+#   TESHT_DOMAIN
 #   ALLOWED_ORIGINS
 
 [[services]]

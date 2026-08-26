@@ -1,7 +1,7 @@
 """
 tests/fixtures/synthetic_data.py
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Deterministic synthetic data generator for Pramana Protocol testing.
+Deterministic synthetic data generator for Tesht (Pramana) testing.
 
 Produces 55 identities, 67+ credentials, 32 delegation chains, 27 VPs,
 16 MCP auth scenarios, trust baselines, commerce mandates, and 200+ audit
@@ -39,19 +39,19 @@ _repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..",
 if _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
-from pramana.identity import (
+from tesht.identity import (
     AgentIdentity,
     _b64url,
     _pub_key_to_did_key,
 )
-from pramana.credentials import issue_vc, create_presentation, verify_vc, verify_presentation
-from pramana.delegation import (
+from tesht.credentials import issue_vc, create_presentation, verify_vc, verify_presentation
+from tesht.delegation import (
     issue_delegation,
     delegate_further,
     verify_delegation_chain,
     ScopeEscalationError,
 )
-from pramana.commerce import issue_intent_mandate, issue_cart_mandate
+from tesht.commerce import issue_intent_mandate, issue_cart_mandate
 
 
 # ---------------------------------------------------------------------------
@@ -134,7 +134,7 @@ class SyntheticDataSet:
 
 class SyntheticDataGenerator:
     """
-    Deterministic synthetic data generator for the Pramana Protocol.
+    Deterministic synthetic data generator for Tesht (Pramana).
 
     All identities derive their private keys from SHA-256(seed + id_string),
     making every JWT, DID, and credential byte-identical across runs with the
@@ -152,7 +152,7 @@ class SyntheticDataGenerator:
     def _derive_identity(self, id_string: str, name: str) -> AgentIdentity:
         """Create an AgentIdentity with a deterministic Ed25519 private key."""
         key_bytes = hashlib.sha256(
-            f"pramana-fixture-{self.seed}-{id_string}".encode()
+            f"tesht-fixture-{self.seed}-{id_string}".encode()
         ).digest()
         priv = Ed25519PrivateKey.from_private_bytes(key_bytes)
         pub = priv.public_key()
@@ -1219,7 +1219,7 @@ class SyntheticDataGenerator:
                 humans["H01"].org_role_vc_jwt,
             ],
             audience=services["S08"].did,
-            nonce="pramana-test-nonce-vp15",
+            nonce="tesht-test-nonce-vp15",
         )
 
         # --- VP error cases ---
@@ -1633,7 +1633,7 @@ class SyntheticDataGenerator:
                 "required_credential_types": ["DelegationCredential"],
                 "require_delegation": True,
                 "audience_did": services["S08"].did,
-                "expected_nonce": "pramana-test-nonce-vp15",
+                "expected_nonce": "tesht-test-nonce-vp15",
             },
             vp_jwt=blended_vps["VP15"],
             expected_authenticated=True,
@@ -2378,7 +2378,7 @@ class SyntheticDataGenerator:
     def print_summary(data: SyntheticDataSet) -> None:
         """Print a human-readable summary table."""
         print("\n" + "=" * 60)
-        print("  Pramana Synthetic Data Generator — Summary")
+        print("  Tesht Synthetic Data Generator — Summary")
         print("=" * 60)
         rows = [
             ("Humans",              len(data.humans)),

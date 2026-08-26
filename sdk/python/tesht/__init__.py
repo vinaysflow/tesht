@@ -1,6 +1,6 @@
-from pramana.client import PramanaClient
-from pramana.identity import AgentIdentity, resolve_did_key
-from pramana.credentials import (
+from tesht.client import TeshtClient
+from tesht.identity import AgentIdentity, resolve_did_key
+from tesht.credentials import (
     issue_vc,
     verify_vc,
     create_presentation,
@@ -11,14 +11,14 @@ from pramana.credentials import (
     VerificationResult,
     PresentationResult,
 )
-from pramana.delegation import (
+from tesht.delegation import (
     issue_delegation,
     delegate_further,
     verify_delegation_chain,
     ScopeEscalationError,
     DelegationResult,
 )
-from pramana.commerce import (
+from tesht.commerce import (
     issue_intent_mandate,
     issue_cart_mandate,
     verify_mandate,
@@ -28,7 +28,7 @@ from pramana.commerce import (
 __version__ = "0.3.0"
 
 __all__ = [
-    "PramanaClient",
+    "TeshtClient",
     "AgentIdentity",
     "resolve_did_key",
     "issue_vc",

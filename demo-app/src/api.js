@@ -1,5 +1,5 @@
 /**
- * Pramana Demo API Client
+ * Tesht Demo API Client
  * Calls all four demo services: Mock OIDC, IdP Bridge, Gateway, Mock MCP.
  */
 

@@ -2,7 +2,7 @@
 """
 scripts/lib/format_output.py
 ─────────────────────────────
-Shared formatted output helper for Pramana demo scripts.
+Shared formatted output helper for Tesht demo scripts.
 
 Usage from bash (pipe JSON via stdin):
     echo "$CREDENTIAL_JSON" | python3 scripts/lib/format_output.py issued

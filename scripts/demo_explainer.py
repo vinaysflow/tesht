@@ -1,7 +1,7 @@
 """
 scripts.demo_explainer
 ~~~~~~~~~~~~~~~~~~~~~~
-Explainability display functions for the Pramana Protocol mega-demo.
+Explainability display functions for the Tesht (Pramana) mega-demo.
 
 Each function receives parsed data (dicts, lists, strings) and prints a
 formatted, ANSI-coloured block to stdout.  They are purely additive —

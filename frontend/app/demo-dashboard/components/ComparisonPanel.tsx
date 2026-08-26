@@ -3,7 +3,7 @@
 export interface ComparisonRow {
   label: string;
   without: string;
-  withPramana: string;
+  withTesht: string;
 }
 
 interface ComparisonPanelProps {
@@ -25,10 +25,10 @@ export function ComparisonPanel({ rows }: ComparisonPanelProps) {
             <span className="text-xs font-semibold text-gray-500">Capability</span>
           </div>
           <div className="px-4 py-3 bg-red-50 border-l border-gray-200">
-            <span className="text-xs font-semibold text-red-600">Without Pramana</span>
+            <span className="text-xs font-semibold text-red-600">Without Tesht</span>
           </div>
           <div className="px-4 py-3 bg-emerald-50 border-l border-gray-200">
-            <span className="text-xs font-semibold text-emerald-700">With Pramana</span>
+            <span className="text-xs font-semibold text-emerald-700">With Tesht</span>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function ComparisonPanel({ rows }: ComparisonPanelProps) {
             <div className="px-4 py-3 border-l border-gray-100 bg-emerald-50/30">
               <div className="flex items-start gap-1.5">
                 <span className="flex-shrink-0 text-emerald-500 text-xs mt-0.5">✓</span>
-                <span className="text-xs text-emerald-800 font-medium leading-relaxed">{row.withPramana}</span>
+                <span className="text-xs text-emerald-800 font-medium leading-relaxed">{row.withTesht}</span>
               </div>
             </div>
           </div>

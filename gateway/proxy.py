@@ -49,7 +49,7 @@ class MCPProxy:
     ) -> ProxyResult:
         """Forward a JSON-RPC request to the named upstream server.
 
-        Injects the gateway's own credentials and Pramana context headers.
+        Injects the gateway's own credentials and Tesht context headers.
         The agent's original Authorization header is NOT forwarded.
         """
         srv = self.servers.get(server_name)
@@ -64,8 +64,8 @@ class MCPProxy:
 
         headers: dict[str, str] = {
             "Content-Type": "application/json",
-            "X-Pramana-Agent-DID": gateway_context.get("agent_did", ""),
-            "X-Pramana-Delegator": gateway_context.get("delegator_did", ""),
+            "X-Tesht-Agent-DID": gateway_context.get("agent_did", ""),
+            "X-Tesht-Delegator": gateway_context.get("delegator_did", ""),
         }
         self._inject_credential(srv, headers)
 

@@ -76,7 +76,7 @@ const PATHS: { id: DemoPath; label: string; tagline: string; description: string
     id: "happy",
     label: "Happy Path",
     tagline: "Everything works as expected",
-    description: "Credentials issued, verified, commerce authorized, chains intact. See Pramana protect your agents through the normal workflow.",
+    description: "Credentials issued, verified, commerce authorized, chains intact. See Tesht protect your agents through the normal workflow.",
     color: "border-emerald-400",
     activeBg: "bg-emerald-50 border-emerald-400",
     dot: "bg-emerald-500",
@@ -85,7 +85,7 @@ const PATHS: { id: DemoPath; label: string; tagline: string; description: string
     id: "unhappy",
     label: "Unhappy Path",
     tagline: "Attacks and misuse are blocked",
-    description: "Currency mismatch, over-budget, replay attacks, scope escalation — watch Pramana reject every one at the protocol level.",
+    description: "Currency mismatch, over-budget, replay attacks, scope escalation — watch Tesht reject every one at the protocol level.",
     color: "border-red-300",
     activeBg: "bg-red-50 border-red-400",
     dot: "bg-red-500",
@@ -187,7 +187,7 @@ export default function DemoDashboardPage() {
               P
             </div>
             <div>
-              <h1 className="text-base font-bold text-gray-900">Pramana Protocol</h1>
+              <h1 className="text-base font-bold text-gray-900">Tesht (Pramana)</h1>
               <p className="text-xs text-gray-500">Interactive Security Demo — see every control in action</p>
             </div>
           </div>
@@ -230,7 +230,7 @@ export default function DemoDashboardPage() {
       {state.sessionStatus === "error" && state.sessionError && (
         <div className="max-w-7xl mx-auto px-6 mt-4">
           <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 text-sm text-red-700">
-            <p className="font-semibold">Unable to connect to Pramana backend</p>
+            <p className="font-semibold">Unable to connect to Tesht backend</p>
             <p className="mt-1 font-mono text-xs">{state.sessionError}</p>
             <p className="mt-2 text-xs text-red-600">Make sure the backend is running on port 5051. Check the terminal for errors.</p>
           </div>
@@ -242,7 +242,7 @@ export default function DemoDashboardPage() {
         {/* Hero */}
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900">
-            See How Pramana Protects Your AI Agents
+            See How Tesht Protects Your AI Agents
           </h2>
           <p className="text-gray-500 mt-2 text-sm leading-relaxed">
             Run real scenarios against a live backend. Each scenario demonstrates a specific security control —
@@ -376,13 +376,13 @@ export default function DemoDashboardPage() {
         {state.sessionStatus === "init" && (
           <div className="py-24 text-center text-gray-400">
             <div className="w-8 h-8 border-2 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-sm">Connecting to Pramana backend...</p>
+            <p className="text-sm">Connecting to Tesht backend...</p>
           </div>
         )}
 
         {/* Footer */}
         <div className="pt-6 border-t border-gray-200 text-xs text-gray-400 flex flex-wrap items-center justify-between gap-3">
-          <span>Pramana Protocol — W3C DIDs + Verifiable Credentials + AP2 Commerce for AI Agents</span>
+          <span>Tesht (Pramana) — W3C DIDs + Verifiable Credentials + AP2 Commerce for AI Agents</span>
           <div className="flex items-center gap-4">
             <a href="/demo" className="hover:text-gray-600 transition-colors">Legacy Demo</a>
             <a href="/audit" className="hover:text-gray-600 transition-colors">Audit Log</a>

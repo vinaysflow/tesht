@@ -1,7 +1,7 @@
 """
 gateway.config
 ~~~~~~~~~~~~~~
-Configuration loading for the Pramana MCP Identity Gateway.
+Configuration loading for the Tesht MCP Identity Gateway.
 
 Declarative settings (trust thresholds, upstream servers, auth flags) are loaded
 from YAML.  Runtime-only fields like ``resolver`` and ``status_checker`` are
@@ -28,11 +28,11 @@ def _env(name: str) -> Optional[str]:
 def is_production() -> bool:
     """True when running under a production profile.
 
-    Controlled by ``PRAMANA_ENV`` (or ``GATEWAY_ENV``); ``production``/``prod``
+    Controlled by ``TESHT_ENV`` (or ``GATEWAY_ENV``); ``production``/``prod``
     enable production-safe defaults (fail-closed, Postgres audit required,
     cold-path enabled). Defaults to development so demos are unaffected.
     """
-    val = (_env("PRAMANA_ENV") or _env("GATEWAY_ENV") or "development").lower()
+    val = (_env("TESHT_ENV") or _env("GATEWAY_ENV") or "development").lower()
     return val in {"production", "prod"}
 
 
@@ -88,7 +88,7 @@ class GatewayConfig:
     upstream_servers: dict[str, UpstreamServer] = field(default_factory=dict)
     trust: TrustConfig = field(default_factory=TrustConfig)
     auth: AuthSettings = field(default_factory=AuthSettings)
-    # Resolved from PRAMANA_ENV/GATEWAY_ENV at load time. When True, defaults
+    # Resolved from TESHT_ENV/GATEWAY_ENV at load time. When True, defaults
     # flip to production-safe (fail-closed, PG audit required, cold-path on).
     production: bool = False
 

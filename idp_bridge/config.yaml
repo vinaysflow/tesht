@@ -1,9 +1,9 @@
 providers:
   mock_idp:
     name: "Mock IdP (Demo)"
-    issuer: "https://mock-idp.pramana.local"
+    issuer: "https://mock-idp.tesht.local"
     jwks_uri: "http://localhost:9200/.well-known/jwks.json"
-    audience: "pramana"
+    audience: "tesht"
     claim_mapping:
       name: "name"
       email: "email"
@@ -60,7 +60,7 @@ providers:
     name: "Google Workspace"
     issuer: "https://accounts.google.com"
     jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
-    audience: "pramana"
+    audience: "tesht"
     claim_mapping:
       name: "name"
       email: "email"
@@ -73,7 +73,7 @@ providers:
     name: "Microsoft Entra ID"
     issuer: "https://login.microsoftonline.com/common/v2.0"
     jwks_uri: "https://login.microsoftonline.com/common/discovery/v2.0/keys"
-    audience: "pramana"
+    audience: "tesht"
     claim_mapping:
       name: "name"
       email: "preferred_username"

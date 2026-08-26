@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — MCP Authentication Demo
+Tesht (Pramana) — MCP Authentication Demo
 
 Demonstrates:
-  • MCP server configured with Pramana identity-based auth
+  • MCP server configured with Tesht identity-based auth
   • Authorized agent presents a Verifiable Presentation — access granted
   • Unauthorized agent presents a self-signed VP — access denied
 
@@ -16,9 +16,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk" / "python"))
 
-from pramana.credentials import create_presentation, issue_vc
-from pramana.identity import AgentIdentity
-from pramana.integrations.mcp import MCPAuthConfig, PramanaMCPAuth
+from tesht.credentials import create_presentation, issue_vc
+from tesht.identity import AgentIdentity
+from tesht.integrations.mcp import MCPAuthConfig, TeshtMCPAuth
 
 PASS = "✅"
 FAIL = "❌"
@@ -26,7 +26,7 @@ FAIL = "❌"
 
 def main() -> int:
     errors: list[str] = []
-    print("\n🔐  Pramana Protocol — MCP Authentication Demo\n" + "─" * 50)
+    print("\n🔐  Tesht (Pramana) — MCP Authentication Demo\n" + "─" * 50)
 
     # ── 1. Identities ──────────────────────────────────────────────────────
     print("\nStep 1 │ Creating identities …")
@@ -54,7 +54,7 @@ def main() -> int:
 
     # ── 3. Configure MCP auth middleware ───────────────────────────────────
     print("\nStep 3 │ Configuring MCP auth middleware …")
-    auth = PramanaMCPAuth(
+    auth = TeshtMCPAuth(
         MCPAuthConfig(
             identity=mcp_server,
             trusted_issuers=[mcp_server.did],

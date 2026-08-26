@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        pramana: {
+        tesht: {
           teal:  '#0D9488',
           dark:  '#0F172A',
           card:  '#1E293B',

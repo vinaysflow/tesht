@@ -5,8 +5,8 @@ import time
 
 import pytest
 
-from pramana.identity import AgentIdentity
-from pramana.delegation import (
+from tesht.identity import AgentIdentity
+from tesht.delegation import (
     ScopeEscalationError,
     DelegationResult,
     validate_scope_narrowing,

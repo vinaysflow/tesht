@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# demo.sh — Pramana Protocol core demo
+# demo.sh — Tesht (Pramana) core demo
 # Create DID → Issue scoped VC → Verify → Revoke → Verify (fails)
-# Requires backend running: DATABASE_URL=sqlite:////tmp/pramana_demo.db DEMO_MODE=true uvicorn main:app
+# Requires backend running: DATABASE_URL=sqlite:////tmp/tesht_demo.db DEMO_MODE=true uvicorn main:app
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 API_BASE="${API_BASE:-http://127.0.0.1:5051}"
 AUTH_JWT_SECRET="${AUTH_JWT_SECRET:-dev-secret-change}"
-AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-pramana}"
+AUTH_JWT_ISSUER="${AUTH_JWT_ISSUER:-tesht}"
 FMT="$REPO_ROOT/scripts/lib/format_output.py"
 
 # ── Colours ───────────────────────────────────────────────────────────────────
@@ -27,7 +27,7 @@ info()  { echo -e "  ${YELLOW}→${NC} $1"; }
 TOKEN=$(python3 - <<PY
 import os, time, jwt
 payload = {
-    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'pramana'),
+    "iss":    os.environ.get('AUTH_JWT_ISSUER', 'tesht'),
     "sub":    "demo",
     "tenant": "walmart",
     "iat":    int(time.time()),
@@ -42,7 +42,7 @@ HDR_AUTH=( -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json"
 
 echo ""
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════${NC}"
-echo -e "${BOLD}${YELLOW}  PRAMANA PROTOCOL — CORE DEMO${NC}"
+echo -e "${BOLD}${YELLOW}  TESHT PROTOCOL — CORE DEMO${NC}"
 echo -e "${BOLD}${YELLOW}  Create DID · Issue VC · Verify · Revoke · Verify (fails)${NC}"
 echo -e "${BOLD}${YELLOW}══════════════════════════════════════════════════════${NC}"
 info "API: $API_BASE  |  Tenant: walmart"

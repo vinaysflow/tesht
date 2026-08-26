@@ -5,8 +5,8 @@ import pytest
 
 import jwt as _jwt
 
-from pramana.credentials import verify_vc
-from pramana.identity import resolve_did_key
+from tesht.credentials import verify_vc
+from tesht.identity import resolve_did_key
 
 
 class TestHealth:
@@ -80,7 +80,7 @@ class TestAttest:
         now = int(time.time())
         evil_token = _jwt.encode(
             {"iss": "https://evil.attacker.com", "sub": "evil-001",
-             "aud": "pramana", "iat": now, "exp": now + 3600},
+             "aud": "tesht", "iat": now, "exp": now + 3600},
             evil_pem, algorithm="RS256",
         )
         r = fresh_app.post("/attest", json={"oidc_token": evil_token})
@@ -101,7 +101,7 @@ class TestAttest:
 
 class TestBind:
     def test_bind_returns_both_vcs(self, fresh_app, alice_token):
-        from pramana.identity import AgentIdentity
+        from tesht.identity import AgentIdentity
         agent = AgentIdentity.create("test-agent")
         r = fresh_app.post("/bind", json={
             "oidc_token": alice_token,
@@ -115,7 +115,7 @@ class TestBind:
         assert data["agent_did"] == agent.did
 
     def test_bind_delegation_scope_matches_request(self, fresh_app, alice_token):
-        from pramana.identity import AgentIdentity
+        from tesht.identity import AgentIdentity
         agent = AgentIdentity.create("scope-test-agent")
         scope = {"actions": ["read_data", "write_data"], "max_amount": 5000, "currency": "USD"}
         r = fresh_app.post("/bind", json={
@@ -129,7 +129,7 @@ class TestBind:
         assert data["effective_scope"]["max_amount"] == 5000
 
     def test_bind_with_invalid_token_returns_401(self, fresh_app):
-        from pramana.identity import AgentIdentity
+        from tesht.identity import AgentIdentity
         agent = AgentIdentity.create("bind-invalid-agent")
         r = fresh_app.post("/bind", json={
             "oidc_token": "not.a.valid.jwt.at.all",
@@ -138,7 +138,7 @@ class TestBind:
         assert r.status_code == 401
 
     def test_bind_delegation_signed_by_human_did(self, fresh_app, alice_token):
-        from pramana.identity import AgentIdentity
+        from tesht.identity import AgentIdentity
         agent = AgentIdentity.create("delegation-sig-test")
         r = fresh_app.post("/bind", json={
             "oidc_token": alice_token,

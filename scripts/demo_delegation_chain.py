@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Multi-Hop Delegation Chain Demo
+Tesht (Pramana) — Multi-Hop Delegation Chain Demo
 ====================================================
 
 Shows 2-hop delegation (Alice → Agent A → Agent B) through the MCP Gateway
@@ -40,9 +40,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 import httpx
 import yaml
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.delegation import delegate_further, issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.delegation import delegate_further, issue_delegation
+from tesht.identity import AgentIdentity
 
 # ── Ports ─────────────────────────────────────────────────────────────────────
 OIDC_PORT = 9200
@@ -153,9 +153,9 @@ def _write_demo_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Acme Corp Okta (Mock)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -600,12 +600,12 @@ def _last_trust(events: list[dict]) -> Optional[int]:
 
 def main() -> None:
     import argparse
-    parser = argparse.ArgumentParser(description="Pramana Multi-Hop Delegation Demo")
+    parser = argparse.ArgumentParser(description="Tesht Multi-Hop Delegation Demo")
     parser.add_argument("--skip-startup", action="store_true",
                         help="Skip service startup (assume services already running)")
     args = parser.parse_args()
 
-    banner("Pramana Protocol — Multi-Hop Delegation Chain Demo")
+    banner("Tesht (Pramana) — Multi-Hop Delegation Chain Demo")
     print(f"  {DIM}2-hop chain: Alice → DataAnalyst (Agent A) → KYBReviewer (Agent B){RESET}")
     print(f"  {DIM}Shows: scope narrowing, violation detection, trust degradation, audit visibility{RESET}")
 
@@ -623,7 +623,7 @@ def main() -> None:
 
             bridge_proc = start_server(
                 "idp_bridge.app:app", BRIDGE_PORT,
-                extra_env={"IDP_BRIDGE_CONFIG": config_path, "PRAMANA_CORS_ENABLED": "1"},
+                extra_env={"IDP_BRIDGE_CONFIG": config_path, "TESHT_CORS_ENABLED": "1"},
             )
             procs.append(bridge_proc)
 
@@ -633,7 +633,7 @@ def main() -> None:
             gw_proc = start_server(
                 "gateway.app:app", GW_PORT,
                 extra_env={
-                    "PRAMANA_CORS_ENABLED": "1",
+                    "TESHT_CORS_ENABLED": "1",
                     "PYTHONPATH": f"{PROJECT_ROOT / 'sdk' / 'python'}:{PROJECT_ROOT}",
                 },
             )

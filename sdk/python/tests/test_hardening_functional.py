@@ -11,8 +11,8 @@ import time
 
 import pytest
 
-from pramana.credentials import create_presentation, issue_vc, verify_presentation, verify_vc
-from pramana.delegation import (
+from tesht.credentials import create_presentation, issue_vc, verify_presentation, verify_vc
+from tesht.delegation import (
     ScopeEscalationError,
     delegate_further,
     intersect_scopes,
@@ -20,7 +20,7 @@ from pramana.delegation import (
     validate_scope_narrowing,
     verify_delegation_chain,
 )
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 
 
 # ── Fixtures ──────────────────────────────────────────────────────────────────
@@ -130,7 +130,7 @@ class TestParentBoundTTL:
 class TestCurrencyMismatch:
     def test_issue_cart_currency_mismatch_raises(self, alice, bob):
         """issue_cart_mandate raises ValueError when cart currency != intent currency."""
-        from pramana.commerce import issue_cart_mandate, issue_intent_mandate
+        from tesht.commerce import issue_cart_mandate, issue_intent_mandate
 
         intent = issue_intent_mandate(
             alice, bob.did,
@@ -148,7 +148,7 @@ class TestCurrencyMismatch:
 
     def test_verify_mandate_currency_mismatch(self, alice, bob):
         """verify_mandate returns verified=False for currency mismatch (when crafted manually)."""
-        from pramana.commerce import issue_intent_mandate, verify_mandate
+        from tesht.commerce import issue_intent_mandate, verify_mandate
 
         intent = issue_intent_mandate(
             alice, bob.did,

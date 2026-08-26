@@ -3,51 +3,51 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: pramana-db
+    container_name: tesht-db
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-pramana}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pramana_dev_password}
-      POSTGRES_DB: ${POSTGRES_DB:-pramana}
+      POSTGRES_USER: ${POSTGRES_USER:-tesht}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tesht_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-tesht}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pramana"]
+      test: ["CMD-SHELL", "pg_isready -U tesht"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   keycloak:
     image: quay.io/keycloak/keycloak:25.0.6
-    container_name: pramana-keycloak
+    container_name: tesht-keycloak
     environment:
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
     ports:
       - "8080:8080"
     volumes:
-      - ./infra/keycloak/pramana-realm.json:/opt/keycloak/data/import/pramana-realm.json:ro
+      - ./infra/keycloak/tesht-realm.json:/opt/keycloak/data/import/tesht-realm.json:ro
     command: ["start-dev", "--http-port=8080", "--import-realm"]
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: pramana-backend
+    container_name: tesht-backend
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-pramana}:${POSTGRES_PASSWORD:-pramana_dev_password}@postgres:5432/${POSTGRES_DB:-pramana}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-tesht}:${POSTGRES_PASSWORD:-tesht_dev_password}@postgres:5432/${POSTGRES_DB:-tesht}
       API_SECRET_KEY: ${API_SECRET_KEY}
-      PRAMANA_DOMAIN: ${PRAMANA_DOMAIN:-localhost%3A5000}
-      PRAMANA_SCHEME: ${PRAMANA_SCHEME:-http}
+      TESHT_DOMAIN: ${TESHT_DOMAIN:-localhost%3A5000}
+      TESHT_SCHEME: ${TESHT_SCHEME:-http}
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:5051}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       AUTH_MODE: ${AUTH_MODE:-oidc}
       DEMO_MODE: ${DEMO_MODE:-false}
-      OIDC_ISSUER: ${OIDC_ISSUER:-http://keycloak:8080/realms/pramana}
-      OIDC_AUDIENCE: ${OIDC_AUDIENCE:-pramana-api}
-      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-pramana-api}
-      OIDC_JWKS_URL: ${OIDC_JWKS_URL:-http://keycloak:8080/realms/pramana/protocol/openid-connect/certs}
+      OIDC_ISSUER: ${OIDC_ISSUER:-http://keycloak:8080/realms/tesht}
+      OIDC_AUDIENCE: ${OIDC_AUDIENCE:-tesht-api}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-tesht-api}
+      OIDC_JWKS_URL: ${OIDC_JWKS_URL:-http://keycloak:8080/realms/tesht/protocol/openid-connect/certs}
     ports:
       - "5051:8000"
     depends_on:
@@ -61,7 +61,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: pramana-frontend
+    container_name: tesht-frontend
     environment:
       NEXT_PUBLIC_API_URL: http://127.0.0.1:5051
     ports:
@@ -78,7 +78,7 @@ services:
     build:
       context: .
       dockerfile: gateway/Dockerfile.mock
-    container_name: pramana-mock-mcp
+    container_name: tesht-mock-mcp
     ports:
       - "9100:9100"
 
@@ -86,15 +86,15 @@ services:
     build:
       context: .
       dockerfile: gateway/Dockerfile.sqlite-mcp
-    container_name: pramana-sqlite-mcp
+    container_name: tesht-sqlite-mcp
     ports:
       - "9102:9102"
 
-  pramana-gateway:
+  tesht-gateway:
     build:
       context: .
       dockerfile: gateway/Dockerfile
-    container_name: pramana-gateway
+    container_name: tesht-gateway
     ports:
       - "5052:5052"
     depends_on:
@@ -109,21 +109,21 @@ services:
     environment:
       GATEWAY_CONFIG: /app/gateway/config.yaml
       PYTHONPATH: /app/sdk/python:/app
-      DATABASE_URL: postgresql://${POSTGRES_USER:-pramana}:${POSTGRES_PASSWORD:-pramana_dev_password}@postgres:5432/${POSTGRES_DB:-pramana}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-tesht}:${POSTGRES_PASSWORD:-tesht_dev_password}@postgres:5432/${POSTGRES_DB:-tesht}
 
   mock-oidc-provider:
     build:
       context: .
       dockerfile: idp_bridge/Dockerfile.mock-oidc
-    container_name: pramana-mock-oidc
+    container_name: tesht-mock-oidc
     ports:
       - "9200:9200"
 
-  pramana-idp-bridge:
+  tesht-idp-bridge:
     build:
       context: .
       dockerfile: idp_bridge/Dockerfile
-    container_name: pramana-idp-bridge
+    container_name: tesht-idp-bridge
     ports:
       - "5053:5053"
     depends_on:

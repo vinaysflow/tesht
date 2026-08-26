@@ -9,10 +9,10 @@ from typing import TYPE_CHECKING, Any, Callable, Optional
 import jwt as pyjwt
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
-from pramana.identity import AgentIdentity, resolve_did_key, _b58_decode
+from tesht.identity import AgentIdentity, resolve_did_key, _b58_decode
 
 if TYPE_CHECKING:
-    from pramana.delegation import DelegationResult
+    from tesht.delegation import DelegationResult
 
 
 # ---------------------------------------------------------------------------
@@ -630,7 +630,7 @@ def verify_blended_presentation(
     - blended=True when both delegation and delegator identity VCs are present
     """
     # Lazy import to avoid circular dependency (delegation imports credentials)
-    from pramana.delegation import verify_delegation_chain as _verify_chain
+    from tesht.delegation import verify_delegation_chain as _verify_chain
 
     def _bfail(reason: str, pres: Optional[PresentationResult] = None) -> BlendedIdentityResult:
         return BlendedIdentityResult(

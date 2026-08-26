@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Blended Identity Demo
+Tesht (Pramana) — Blended Identity Demo
 =========================================
 
 Demonstrates VP-Based Blended Identity: every agent request carries BOTH the
@@ -8,7 +8,7 @@ agent's own identity AND the human delegator's identity as a single W3C
 Verifiable Presentation — cryptographically bound, fully portable.
 
 Competitor approach (Aembit): proprietary composite identity fused at runtime.
-Pramana approach: W3C VP-JWT bundling multiple VC-JWTs → portable + open.
+Tesht approach: W3C VP-JWT bundling multiple VC-JWTs → portable + open.
 
 Steps:
   1  Create 4 identities  (Alice, ShoppingAgent, MCP Server, Acme Corp IdP)
@@ -27,14 +27,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk" / "python"))
 
-from pramana.credentials import (
+from tesht.credentials import (
     create_blended_presentation,
     issue_vc,
     verify_blended_presentation,
 )
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
-from pramana.integrations.mcp import MCPAuthConfig, PramanaMCPAuth
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
+from tesht.integrations.mcp import MCPAuthConfig, TeshtMCPAuth
 
 # ── Terminal colours ──────────────────────────────────────────────────────────
 RESET  = "\033[0m"
@@ -85,7 +85,7 @@ def box(lines: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
 
-    banner("Pramana Protocol — Blended Identity Demo")
+    banner("Tesht (Pramana) — Blended Identity Demo")
     print(f"\n  {DIM}W3C VP-JWTs bundle human + agent identity into one portable token.{RESET}")
 
     # ── Step 1: Create identities ─────────────────────────────────────────────
@@ -216,7 +216,7 @@ def main() -> int:
         ])
 
         # Verify MCP auth path with require_delegator_identity=True
-        server_auth = PramanaMCPAuth(MCPAuthConfig(
+        server_auth = TeshtMCPAuth(MCPAuthConfig(
             identity=mcp_server,
             require_delegation=True,
             require_delegator_identity=True,
@@ -225,24 +225,24 @@ def main() -> int:
         headers = {"Authorization": f"Bearer {blended_vp}"}
         mcp_result = server_auth.verify_request(headers)
         if mcp_result.authenticated:
-            ok(f"PramanaMCPAuth  — authenticated={mcp_result.authenticated}  blended={mcp_result.blended}")
+            ok(f"TeshtMCPAuth  — authenticated={mcp_result.authenticated}  blended={mcp_result.blended}")
             info("  MCP delegator_did",    (mcp_result.delegator_did or "")[:52] + "…")
             info("  MCP delegator type",   mcp_result.delegator_credential_type or "—")
         else:
-            fail(f"PramanaMCPAuth unexpectedly failed: {mcp_result.reason}")
+            fail(f"TeshtMCPAuth unexpectedly failed: {mcp_result.reason}")
             errors.append(f"Step 5 MCP auth failed: {mcp_result.reason}")
 
     # ── Step 6: Rejection demo ────────────────────────────────────────────────
     section(6, "Rejection demo — delegation without delegator identity VC …")
 
     # Build a VP with delegation only (no Alice OrgRoleVC)
-    from pramana.credentials import create_presentation as _create_vp
+    from tesht.credentials import create_presentation as _create_vp
     delegation_only_vp = _create_vp(
         holder=shopping_agent,
         credentials=[delegation_jwt],
         audience=mcp_server.did,
     )
-    strict_auth = PramanaMCPAuth(MCPAuthConfig(
+    strict_auth = TeshtMCPAuth(MCPAuthConfig(
         identity=mcp_server,
         require_delegation=True,
         require_delegator_identity=True,
@@ -257,7 +257,7 @@ def main() -> int:
         errors.append("Step 6: delegation-only VP should have been rejected")
 
     # Also show that credential type filter works
-    type_filter_auth = PramanaMCPAuth(MCPAuthConfig(
+    type_filter_auth = TeshtMCPAuth(MCPAuthConfig(
         identity=mcp_server,
         require_delegation=True,
         require_delegator_identity=True,

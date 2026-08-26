@@ -2,7 +2,7 @@
 """
 scripts/load_generator.py
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-Production-scale load generator for the Pramana MCP Identity Gateway.
+Production-scale load generator for the Tesht MCP Identity Gateway.
 
 Exercises the full synthetic dataset through the real gateway with:
   - 5 concurrent org coroutines (Acme, Globex, Initech, Umbrella, Tyrell)
@@ -46,9 +46,9 @@ import httpx
 import jwt as pyjwt
 import yaml
 
-from pramana.credentials import create_blended_presentation, create_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, create_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 # ---------------------------------------------------------------------------
 # Ports
@@ -104,9 +104,9 @@ def _write_load_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Mock IdP (load test)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -128,7 +128,7 @@ def _write_load_config() -> str:
 def start_server(module: str, port: int, extra_env: Optional[dict] = None) -> subprocess.Popen:
     env = os.environ.copy()
     env["PYTHONPATH"] = f"{PROJECT_ROOT / 'sdk' / 'python'}:{PROJECT_ROOT}"
-    env["PRAMANA_CORS_ENABLED"] = "true"
+    env["TESHT_CORS_ENABLED"] = "true"
     if extra_env:
         env.update(extra_env)
     return subprocess.Popen(
@@ -577,8 +577,8 @@ def _classify_decision(status: int, response_headers: dict) -> str:
         return "blocked_auth"
     if status == 403:
         # Step-up vs scope block: gateway returns 403 for both,
-        # but step-up carries X-Pramana-StepUp header
-        if response_headers.get("x-pramana-stepup"):
+        # but step-up carries X-Tesht-StepUp header
+        if response_headers.get("x-tesht-stepup"):
             return "step_up"
         return "blocked_scope"
     if status == 0:
@@ -589,7 +589,7 @@ def _classify_decision(status: int, response_headers: dict) -> str:
 def _get_latencies(headers: dict) -> tuple[float, float]:
     """Extract auth_latency_ms and total_latency_ms from response headers or return 0."""
     try:
-        factors_raw = headers.get("x-pramana-trust-factors", "{}")
+        factors_raw = headers.get("x-tesht-trust-factors", "{}")
         factors = json.loads(factors_raw) if factors_raw else {}
         auth_ms  = float(factors.get("auth_latency_ms", 0))
         total_ms = float(factors.get("total_latency_ms", 0))
@@ -601,7 +601,7 @@ def _get_latencies(headers: dict) -> tuple[float, float]:
 def _get_trust_score(headers: dict) -> Optional[float]:
     """Extract trust score from response headers."""
     try:
-        factors_raw = headers.get("x-pramana-trust-factors", "{}")
+        factors_raw = headers.get("x-tesht-trust-factors", "{}")
         factors = json.loads(factors_raw) if factors_raw else {}
         return float(factors["score"]) if "score" in factors else None
     except Exception:
@@ -966,7 +966,7 @@ def _write_markdown_report(report: dict[str, Any], path: Path) -> None:
         return f"{round(n / total_decisions * 100, 1):.1f}%"
 
     lines = [
-        "# Pramana Load Test Report",
+        "# Tesht Load Test Report",
         f"",
         f"Generated: {report['generated_at']}",
         f"",
@@ -1138,7 +1138,7 @@ async def _run_load_test(args: argparse.Namespace) -> int:
             cfg_path = _write_load_config()
             bridge_env = {
                 "IDP_BRIDGE_CONFIG": cfg_path,
-                "PRAMANA_CORS_ENABLED": "true",
+                "TESHT_CORS_ENABLED": "true",
             }
             gw_env: dict[str, str] = {}
             db_url = os.environ.get("DATABASE_URL", "")
@@ -1455,7 +1455,7 @@ async def _run_load_test(args: argparse.Namespace) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Pramana production load generator — exercises full synthetic dataset through gateway"
+        description="Tesht production load generator — exercises full synthetic dataset through gateway"
     )
     parser.add_argument(
         "--events", type=int, default=600,
@@ -1475,7 +1475,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    _banner("Pramana Protocol — Production Load Generator")
+    _banner("Tesht (Pramana) — Production Load Generator")
     print(f"  Target events: {args.events}")
     print(f"  Duration cap:  {args.duration}s")
     print(f"  Skip startup:  {args.skip_startup}")

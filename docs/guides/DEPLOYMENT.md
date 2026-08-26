@@ -1,18 +1,18 @@
 # Deployment Guide
 
-This guide covers deploying Pramana Protocol to [Fly.io](https://fly.io) with a managed PostgreSQL database.
+This guide covers deploying Tesht (Pramana) to [Fly.io](https://fly.io) with a managed PostgreSQL database.
 
-## Production profile (`PRAMANA_ENV=production`)
+## Production profile (`TESHT_ENV=production`)
 
-Pramana ships with demo-safe defaults so the local demo "just works". For any real deployment set a single switch to flip every component to production-safe behavior:
+Tesht ships with demo-safe defaults so the local demo "just works". For any real deployment set a single switch to flip every component to production-safe behavior:
 
 ```bash
 # Backend and gateway both honor this. (The backend also accepts ENV=production.)
-PRAMANA_ENV=production
+TESHT_ENV=production
 DATABASE_URL=postgresql://...   # required in production
 ```
 
-What `PRAMANA_ENV=production` changes:
+What `TESHT_ENV=production` changes:
 
 | Area | Development default | Production default | Runtime override |
 |------|---------------------|--------------------|------------------|
@@ -22,7 +22,7 @@ What `PRAMANA_ENV=production` changes:
 | Session decide, no scored credential | allow | step-up (fail-safe) | — |
 
 Related env vars:
-- `BACKEND_URL` / `PRAMANA_BACKEND_URL` + `BACKEND_API_KEY` — let the gateway cold-path call the backend trust API authenticated.
+- `BACKEND_URL` / `TESHT_BACKEND_URL` + `BACKEND_API_KEY` — let the gateway cold-path call the backend trust API authenticated.
 - Explicit values in `gateway/config.yaml` always win over the profile default; runtime env vars (`GATEWAY_FAIL_CLOSED`, `GATEWAY_REQUIRE_PG_AUDIT`) win over both.
 
 Known limitation (documented, not yet closed): the gateway trust cache is per-process. It is thread-safe within a single process and durably persists cold-path scores to Postgres, but is **not** shared across multiple replicas. For multi-replica HA, a shared cache (e.g. Redis) is planned in Phase 2 — until then run the gateway as a single replica or accept per-replica cache warmup.
@@ -38,8 +38,8 @@ Known limitation (documented, not yet closed): the gateway trust cache is per-pr
 Clone the repo and navigate to the root:
 
 ```bash
-git clone https://github.com/vinaysflow/pramana-protocol.git
-cd pramana-protocol
+git clone https://github.com/vinaysflow/tesht.git
+cd tesht
 ```
 
 If this is a first-time deploy, run:
@@ -48,18 +48,18 @@ If this is a first-time deploy, run:
 fly launch --copy-config --no-deploy
 ```
 
-This reads `fly.toml` and creates the app without deploying. Accept the generated app name or supply `--name pramana-protocol`.
+This reads `fly.toml` and creates the app without deploying. Accept the generated app name or supply `--name tesht`.
 
 ## 2. Create and Attach a PostgreSQL Database
 
 ```bash
 fly postgres create \
-  --name pramana-db \
+  --name tesht-db \
   --region iad \
   --vm-size shared-cpu-1x \
   --volume-size 10
 
-fly postgres attach --app pramana-protocol pramana-db
+fly postgres attach --app tesht tesht-db
 ```
 
 `attach` automatically sets the `DATABASE_URL` secret on your app.
@@ -72,12 +72,12 @@ API_SECRET=$(python3 -c "import secrets; print(secrets.token_urlsafe(32))")
 JWT_SECRET=$(python3 -c "import secrets; print(secrets.token_urlsafe(32))")
 
 fly secrets set \
-  --app pramana-protocol \
+  --app tesht \
   API_SECRET_KEY="$API_SECRET" \
   AUTH_JWT_SECRET="$JWT_SECRET" \
-  PRAMANA_DOMAIN="pramana-protocol.fly.dev" \
-  PRAMANA_SCHEME="https" \
-  ALLOWED_ORIGINS="https://pramana-protocol.fly.dev" \
+  TESHT_DOMAIN="tesht.fly.dev" \
+  TESHT_SCHEME="https" \
+  ALLOWED_ORIGINS="https://tesht.fly.dev" \
   AUTH_MODE="hs256"
 ```
 
@@ -85,11 +85,11 @@ For OIDC (Keycloak / Auth0 / Okta) deployments also set:
 
 ```bash
 fly secrets set \
-  --app pramana-protocol \
+  --app tesht \
   AUTH_MODE="oidc" \
-  OIDC_ISSUER="https://your-idp/realms/pramana" \
-  OIDC_AUDIENCE="pramana-api" \
-  OIDC_JWKS_URL="https://your-idp/realms/pramana/protocol/openid-connect/certs"
+  OIDC_ISSUER="https://your-idp/realms/tesht" \
+  OIDC_AUDIENCE="tesht-api" \
+  OIDC_JWKS_URL="https://your-idp/realms/tesht/protocol/openid-connect/certs"
 ```
 
 ## 4. Deploy
@@ -116,10 +116,10 @@ fly deploy --strategy rolling
 
 ```bash
 # Health endpoint (returns 200 {"status":"healthy"})
-curl https://pramana-protocol.fly.dev/health
+curl https://tesht.fly.dev/health
 
 # Readiness endpoint (checks DB connectivity + migrations)
-curl https://pramana-protocol.fly.dev/ready
+curl https://tesht.fly.dev/ready
 ```
 
 Expected `/ready` response when healthy:
@@ -149,31 +149,31 @@ Set any of these via `fly secrets set` or `fly env set` as appropriate.
 ### View logs
 
 ```bash
-fly logs --app pramana-protocol
+fly logs --app tesht
 ```
 
 ### Scale horizontally
 
 ```bash
-fly scale count 2 --app pramana-protocol
+fly scale count 2 --app tesht
 ```
 
 ### Scale vertically
 
 ```bash
-fly scale vm shared-cpu-2x --app pramana-protocol
+fly scale vm shared-cpu-2x --app tesht
 ```
 
 ### View machine status
 
 ```bash
-fly status --app pramana-protocol
+fly status --app tesht
 ```
 
 ### Roll back a deploy
 
 ```bash
-fly releases --app pramana-protocol   # list releases
+fly releases --app tesht   # list releases
 fly deploy --image <previous-image>   # redeploy a specific image
 ```
 
@@ -185,7 +185,7 @@ If you need to force re-fetching of external DID documents (e.g., after a key ro
 # Obtain an admin token first
 TOKEN=$(cd backend && .venv/bin/python3 scripts/mint_token.py)
 
-curl -X POST https://pramana-protocol.fly.dev/v1/admin/cache/flush \
+curl -X POST https://tesht.fly.dev/v1/admin/cache/flush \
   -H "Authorization: Bearer $TOKEN"
 ```
 

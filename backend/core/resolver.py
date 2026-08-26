@@ -140,10 +140,10 @@ def did_web_to_url(did: str) -> str:
     path_segments = [unquote(p) for p in parts[3:]]
 
     if not path_segments:
-        return f"{settings.pramana_scheme}://{domain}/.well-known/did.json"
+        return f"{settings.tesht_scheme}://{domain}/.well-known/did.json"
 
     path = "/".join(path_segments)
-    return f"{settings.pramana_scheme}://{domain}/{path}/did.json"
+    return f"{settings.tesht_scheme}://{domain}/{path}/did.json"
 
 
 def _resolve_local_did(did: str) -> dict[str, Any] | None:
@@ -156,7 +156,7 @@ def _resolve_local_did(did: str) -> dict[str, Any] | None:
         return None
 
     did_domain = parts[2]
-    if did_domain != settings.pramana_domain:
+    if did_domain != settings.tesht_domain:
         return None
 
     with db_session() as db:
@@ -226,7 +226,7 @@ def resolve_did(did: str) -> dict[str, Any]:
         doc = _resolve_spiffe_id(did)
         if doc is not None:
             return doc
-        raise ValueError(f"SPIFFE ID not found in Pramana registry: {did!r}")
+        raise ValueError(f"SPIFFE ID not found in Tesht registry: {did!r}")
 
     # did:key is pure computation — no cache needed, always consistent
     if did.startswith("did:key:"):

@@ -171,7 +171,7 @@ export function ScenarioRunner({ scenario }: ScenarioRunnerProps) {
               <p className="text-sm text-blue-900 leading-relaxed">{scenario.businessContext}</p>
             </div>
             <div className="px-4 py-3.5 bg-amber-50 border border-amber-100 rounded-xl">
-              <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-1.5">Risk without Pramana</p>
+              <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-1.5">Risk without Tesht</p>
               <p className="text-sm text-amber-900 leading-relaxed">{scenario.riskWithout}</p>
             </div>
           </div>

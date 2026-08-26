@@ -147,8 +147,8 @@ export function RiskDashboardTab() {
               </div>
             </div>
             <div className="mt-4 bg-blue-50 border border-blue-100 rounded-xl p-3 text-xs text-blue-700">
-              <strong>How Pramana reduces premiums:</strong> Every verifiable agent identity with a trust score
-              above 80 qualifies for the insurable tier. Deploying Pramana shifts agents from uninsurable ($0.5×
+              <strong>How Tesht reduces premiums:</strong> Every verifiable agent identity with a trust score
+              above 80 qualifies for the insurable tier. Deploying Tesht shifts agents from uninsurable ($0.5×
               multiplier) to insurable rates by providing cryptographic proof of identity and behavior.
             </div>
           </div>

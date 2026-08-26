@@ -49,8 +49,8 @@ DEFAULT_UNSCORED_TRUST_PROD = STEP_UP_THRESHOLD  # -> step_up
 
 
 def _is_production() -> bool:
-    """Unified production switch: PRAMANA_ENV/GATEWAY_ENV or backend ENV."""
-    env = (os.environ.get("PRAMANA_ENV") or os.environ.get("GATEWAY_ENV") or "").strip().lower()
+    """Unified production switch: TESHT_ENV/GATEWAY_ENV or backend ENV."""
+    env = (os.environ.get("TESHT_ENV") or os.environ.get("GATEWAY_ENV") or "").strip().lower()
     if env in {"production", "prod"}:
         return True
     return str(getattr(settings, "env", "dev")).strip().lower() == "production"

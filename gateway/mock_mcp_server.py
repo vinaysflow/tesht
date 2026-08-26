@@ -21,7 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Mock MCP Server", version="1.0.0")
 
-if os.getenv("PRAMANA_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
+if os.getenv("TESHT_CORS_ENABLED", "").lower() in ("1", "true", "yes"):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -45,8 +45,8 @@ async def handle_mcp(request: Request):
         "auth_header": auth[:30] + "..." if len(auth) > 30 else auth,
         "api_key_present": api_key != "none",
         "api_key_value": api_key[:12] + "***" if api_key != "none" else "none",
-        "agent_did": request.headers.get("x-pramana-agent-did", "unknown"),
-        "delegator": request.headers.get("x-pramana-delegator", "unknown"),
+        "agent_did": request.headers.get("x-tesht-agent-did", "unknown"),
+        "delegator": request.headers.get("x-tesht-delegator", "unknown"),
     })
 
     method = body.get("method", "")

@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from fastapi.testclient import TestClient
 
-from pramana.identity import AgentIdentity
+from tesht.identity import AgentIdentity
 
 from idp_bridge.config import IdPRegistryConfig, TrustedIdP
 from idp_bridge.identity_store import HumanIdentityStore
@@ -21,14 +21,14 @@ from idp_bridge.validator import MultiIssuerOIDCValidator
 
 _PRIVATE_KEY = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 _PUBLIC_KEY = _PRIVATE_KEY.public_key()
-_ISSUER = "https://mock-idp.pramana.local"
+_ISSUER = "https://mock-idp.tesht.local"
 
 
 def make_id_token(
     user_data: dict[str, Any],
     sub: str,
     issuer: str = _ISSUER,
-    audience: str = "pramana",
+    audience: str = "tesht",
     exp_offset: int = 3600,
 ) -> str:
     now = int(time.time())
@@ -70,8 +70,8 @@ def mock_idp_registry() -> IdPRegistryConfig:
     provider = TrustedIdP(
         name="Mock IdP",
         issuer=_ISSUER,
-        jwks_uri="https://mock-idp.pramana.local/.well-known/jwks.json",
-        audience="pramana",
+        jwks_uri="https://mock-idp.tesht.local/.well-known/jwks.json",
+        audience="tesht",
         claim_mapping={
             "name": "name",
             "email": "email",

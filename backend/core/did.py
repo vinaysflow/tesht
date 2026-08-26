@@ -48,11 +48,11 @@ def _b64url(data: bytes) -> str:
 
 
 def domain_decoded() -> str:
-    return unquote(settings.pramana_domain)
+    return unquote(settings.tesht_domain)
 
 
 def create_did(agent_id: uuid.UUID) -> str:
-    return f"did:web:{settings.pramana_domain}:agents:{agent_id}"
+    return f"did:web:{settings.tesht_domain}:agents:{agent_id}"
 
 
 def generate_ed25519_keypair() -> tuple[str, dict[str, Any], str]:

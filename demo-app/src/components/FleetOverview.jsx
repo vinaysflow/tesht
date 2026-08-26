@@ -42,13 +42,13 @@ function StatCard({ label, value, sub, accent = false }) {
   return (
     <div className={`flex flex-col gap-1 px-4 py-3 rounded-xl border
       ${accent
-        ? 'bg-pramana-teal/10 border-pramana-teal/40'
-        : 'bg-pramana-card border-pramana-border'}`}>
-      <div className="text-xs text-pramana-muted">{label}</div>
-      <div className={`text-xl font-bold ${accent ? 'text-pramana-teal' : 'text-slate-100'}`}>
+        ? 'bg-tesht-teal/10 border-tesht-teal/40'
+        : 'bg-tesht-card border-tesht-border'}`}>
+      <div className="text-xs text-tesht-muted">{label}</div>
+      <div className={`text-xl font-bold ${accent ? 'text-tesht-teal' : 'text-slate-100'}`}>
         {value ?? '—'}
       </div>
-      {sub && <div className="text-xs text-pramana-muted">{sub}</div>}
+      {sub && <div className="text-xs text-tesht-muted">{sub}</div>}
     </div>
   )
 }
@@ -56,7 +56,7 @@ function StatCard({ label, value, sub, accent = false }) {
 function ChainBadge({ chainVerify }) {
   if (!chainVerify) {
     return (
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-pramana-border text-xs text-pramana-muted">
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-tesht-border text-xs text-tesht-muted">
         <span>🔒</span>
         <span>Hash chain — waiting for events…</span>
       </div>
@@ -86,7 +86,7 @@ function ChainBadge({ chainVerify }) {
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-pramana-border text-xs font-mono text-pramana-muted">
+    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-tesht-border text-xs font-mono text-tesht-muted">
       <span>🔒</span>
       <span>Hash chain (in-memory)</span>
       <span className="opacity-40">|</span>
@@ -134,14 +134,14 @@ function EventRow({ event, idx }) {
   const trust = event.trust_score ?? event.score ?? null
 
   return (
-    <tr className={`border-b border-pramana-border/40 ${idx % 2 === 0 ? '' : 'bg-white/[0.02]'}`}>
-      <td className="px-2 py-1.5 text-[10px] text-pramana-muted font-mono whitespace-nowrap">
+    <tr className={`border-b border-tesht-border/40 ${idx % 2 === 0 ? '' : 'bg-white/[0.02]'}`}>
+      <td className="px-2 py-1.5 text-[10px] text-tesht-muted font-mono whitespace-nowrap">
         {fmtTime(event.timestamp || event.created_at)}
       </td>
       <td className="px-2 py-1.5 text-xs text-slate-300 max-w-[140px] truncate" title={event.agent_did}>
         {agentLabel}
       </td>
-      <td className="px-2 py-1.5 text-xs font-mono text-pramana-teal/80 max-w-[120px] truncate">
+      <td className="px-2 py-1.5 text-xs font-mono text-tesht-teal/80 max-w-[120px] truncate">
         {tool}
       </td>
       <td className={`px-2 py-1.5 text-xs font-mono text-right ${trustColor(trust)}`}>
@@ -192,16 +192,16 @@ export function FleetOverview({ events = [], detections = {}, chainVerify, inven
     : null
 
   return (
-    <div className="mb-6 rounded-xl border border-pramana-border bg-pramana-card/60">
+    <div className="mb-6 rounded-xl border border-tesht-border bg-tesht-card/60">
       {/* Header bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-pramana-border">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-tesht-border">
         <div className="flex items-center gap-3">
           <span className="text-sm font-bold text-slate-200">Fleet Overview</span>
           {loading && (
-            <span className="text-xs text-pramana-muted animate-pulse">Fetching…</span>
+            <span className="text-xs text-tesht-muted animate-pulse">Fetching…</span>
           )}
           {!loading && lastUpdStr && (
-            <span className="text-[10px] text-pramana-muted">Updated {lastUpdStr}</span>
+            <span className="text-[10px] text-tesht-muted">Updated {lastUpdStr}</span>
           )}
           {critCount > 0 && (
             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-900 text-red-300 border border-red-700">
@@ -211,7 +211,7 @@ export function FleetOverview({ events = [], detections = {}, chainVerify, inven
         </div>
         <button
           onClick={() => setCollapsed(c => !c)}
-          className="text-xs text-pramana-muted hover:text-slate-300 transition-colors px-2 py-1"
+          className="text-xs text-tesht-muted hover:text-slate-300 transition-colors px-2 py-1"
         >
           {collapsed ? 'Expand ▾' : 'Collapse ▴'}
         </button>
@@ -221,13 +221,13 @@ export function FleetOverview({ events = [], detections = {}, chainVerify, inven
         <div className="p-4 space-y-4">
           {/* No data state */}
           {noData && !loading && (
-            <div className="text-center py-6 text-pramana-muted text-sm">
+            <div className="text-center py-6 text-tesht-muted text-sm">
               <div className="text-2xl mb-2">📊</div>
               <div>No events yet.</div>
               <div className="text-xs mt-1">
                 Run the preload script or click "Run Demo" to populate the fleet.
               </div>
-              <code className="text-xs bg-pramana-dark px-2 py-0.5 rounded mt-2 inline-block font-mono">
+              <code className="text-xs bg-tesht-dark px-2 py-0.5 rounded mt-2 inline-block font-mono">
                 PYTHONPATH=".:sdk/python" python3 scripts/demo_preload.py
               </code>
             </div>
@@ -292,15 +292,15 @@ export function FleetOverview({ events = [], detections = {}, chainVerify, inven
               <div className="text-xs font-semibold text-slate-400 mb-2">
                 Recent Events — {events.length} loaded (most recent 20 shown)
               </div>
-              <div className="overflow-x-auto rounded-lg border border-pramana-border">
+              <div className="overflow-x-auto rounded-lg border border-tesht-border">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-pramana-border bg-pramana-dark/60">
-                      <th className="px-2 py-1.5 text-left text-[10px] text-pramana-muted font-semibold">Time</th>
-                      <th className="px-2 py-1.5 text-left text-[10px] text-pramana-muted font-semibold">Agent</th>
-                      <th className="px-2 py-1.5 text-left text-[10px] text-pramana-muted font-semibold">Tool</th>
-                      <th className="px-2 py-1.5 text-right text-[10px] text-pramana-muted font-semibold">Trust</th>
-                      <th className="px-2 py-1.5 text-left text-[10px] text-pramana-muted font-semibold">Decision</th>
+                    <tr className="border-b border-tesht-border bg-tesht-dark/60">
+                      <th className="px-2 py-1.5 text-left text-[10px] text-tesht-muted font-semibold">Time</th>
+                      <th className="px-2 py-1.5 text-left text-[10px] text-tesht-muted font-semibold">Agent</th>
+                      <th className="px-2 py-1.5 text-left text-[10px] text-tesht-muted font-semibold">Tool</th>
+                      <th className="px-2 py-1.5 text-right text-[10px] text-tesht-muted font-semibold">Trust</th>
+                      <th className="px-2 py-1.5 text-left text-[10px] text-tesht-muted font-semibold">Decision</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -311,7 +311,7 @@ export function FleetOverview({ events = [], detections = {}, chainVerify, inven
                 </table>
               </div>
               {events.length > 20 && (
-                <div className="text-[10px] text-pramana-muted mt-1 text-right">
+                <div className="text-[10px] text-tesht-muted mt-1 text-right">
                   Showing 20 of {events.length} — see Audit Trail tab for full history
                 </div>
               )}

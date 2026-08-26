@@ -252,11 +252,11 @@ class GatewayTrustEvaluator:
                 _logger.debug("record_trust_event failed: %s", exc)
         except Exception as import_exc:
             _logger.debug("In-process cold path unavailable (%s); trying HTTP", import_exc)
-            backend_url = os.environ.get("BACKEND_URL") or os.environ.get("PRAMANA_BACKEND_URL")
+            backend_url = os.environ.get("BACKEND_URL") or os.environ.get("TESHT_BACKEND_URL")
             if backend_url:
                 # Authenticate the service-to-service call when a key is configured.
                 headers: dict[str, str] = {}
-                api_key = os.environ.get("BACKEND_API_KEY") or os.environ.get("PRAMANA_BACKEND_API_KEY")
+                api_key = os.environ.get("BACKEND_API_KEY") or os.environ.get("TESHT_BACKEND_API_KEY")
                 if api_key:
                     headers["Authorization"] = f"Bearer {api_key}"
 

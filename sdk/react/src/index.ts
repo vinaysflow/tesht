@@ -1,29 +1,29 @@
 // ---------------------------------------------------------------------------
-// @pramana/react — React SDK Wrapper
+// @tesht/react — React SDK Wrapper
 //
 // Offline hooks (no server needed):
 //   useIdentity   — create/restore AgentIdentity, resolve did:key
 //   useCredential — issue/verify VCs and Verifiable Presentations
 //   useDelegation — issue/verify delegation chains, scope narrowing
 //
-// Server-connected hooks (require <PramanaProvider apiUrl="...">):
+// Server-connected hooks (require <TeshtProvider apiUrl="...">):
 //   useTrustScore — POST /v1/trust/score
 //   useAuditLog   — GET  /v1/audit
 //   useMandate    — POST /v1/commerce/mandates/{intent,cart,verify}
 //   useSession    — Session runtime: create / decide / step_up / revoke
 //
 // Provider:
-//   PramanaProvider  — context root; accepts apiUrl + authToken props
-//   usePramana       — access raw context
+//   TeshtProvider  — context root; accepts apiUrl + authToken props
+//   useTesht       — access raw context
 // ---------------------------------------------------------------------------
 
 // Context / Provider
 export {
-  PramanaProvider,
-  usePramana,
+  TeshtProvider,
+  useTesht,
   useRequireApiUrl,
-  type PramanaContextValue,
-  type PramanaProviderProps,
+  type TeshtContextValue,
+  type TeshtProviderProps,
 } from "./context.js";
 
 // Offline hooks
@@ -78,4 +78,4 @@ export type {
   IssueDelegationOptions,
   DelegateFurtherOptions,
   VerifyDelegationChainOptions,
-} from "@pramana/sdk";
+} from "@tesht/sdk";

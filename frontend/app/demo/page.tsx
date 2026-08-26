@@ -147,7 +147,7 @@ export default function DemoPage() {
       <p style={{ marginTop: 8 }}>
         <b>Give feedback:</b>{" "}
         <a
-          href="https://huggingface.co/spaces/aurviaglobal/pramana-demo/discussions"
+          href="https://huggingface.co/spaces/aurviaglobal/tesht-demo/discussions"
           target="_blank"
           rel="noreferrer"
         >

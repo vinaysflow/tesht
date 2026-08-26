@@ -1,9 +1,9 @@
 """
-pramana.integrations.a2a
+tesht.integrations.a2a
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Google A2A (Agent-to-Agent) protocol integration.
 
-Extends A2A Agent Cards with Pramana verifiable identity and provides
+Extends A2A Agent Cards with Tesht verifiable identity and provides
 helpers for card verification and task-level authentication tokens.
 """
 from __future__ import annotations
@@ -15,7 +15,7 @@ from typing import Any, Callable, Optional
 
 import jwt as pyjwt
 
-from pramana.identity import AgentIdentity, resolve_did_key
+from tesht.identity import AgentIdentity, resolve_did_key
 
 
 # ---------------------------------------------------------------------------
@@ -24,7 +24,7 @@ from pramana.identity import AgentIdentity, resolve_did_key
 
 @dataclass
 class AgentCardVerification:
-    """Result of verifying the Pramana identity embedded in an A2A Agent Card."""
+    """Result of verifying the Tesht identity embedded in an A2A Agent Card."""
 
     verified: bool
     did: str
@@ -41,9 +41,9 @@ def extend_agent_card(
     credential_types: Optional[list[str]] = None,
 ) -> dict[str, Any]:
     """
-    Return a deep copy of *card* enriched with Pramana identity metadata.
+    Return a deep copy of *card* enriched with Tesht identity metadata.
 
-    Adds a ``"pramana"`` section and a ``"pramana-vp"`` security scheme
+    Adds a ``"tesht"`` section and a ``"tesht-vp"`` security scheme
     without mutating the original dict.
     """
     extended = copy.deepcopy(card)
@@ -52,7 +52,7 @@ def extend_agent_card(
     if identity.method == "web" and identity._domain:
         verification_endpoint = f"https://{identity._domain}/.well-known/did.json"
 
-    extended["pramana"] = {
+    extended["tesht"] = {
         "did": identity.did,
         "kid": identity.kid,
         "verificationEndpoint": verification_endpoint,
@@ -61,10 +61,10 @@ def extend_agent_card(
     }
 
     schemes = extended.setdefault("securitySchemes", {})
-    schemes["pramana-vp"] = {
+    schemes["tesht-vp"] = {
         "type": "http",
         "scheme": "bearer",
-        "description": "Pramana Verifiable Presentation JWT",
+        "description": "Tesht Verifiable Presentation JWT",
     }
 
     return extended
@@ -79,16 +79,16 @@ def verify_agent_card_identity(
     resolver: Optional[Callable[[str], dict[str, Any]]] = None,
 ) -> AgentCardVerification:
     """
-    Verify the Pramana identity advertised in an A2A Agent Card.
+    Verify the Tesht identity advertised in an A2A Agent Card.
 
     For ``did:key`` DIDs the verification is fully offline.  For other
     methods a *resolver* callback must be supplied.
     """
-    pramana_section = card.get("pramana")
-    if not pramana_section or not isinstance(pramana_section, dict):
-        return AgentCardVerification(verified=False, did="", reason="No pramana section")
+    tesht_section = card.get("tesht")
+    if not tesht_section or not isinstance(tesht_section, dict):
+        return AgentCardVerification(verified=False, did="", reason="No tesht section")
 
-    did = pramana_section.get("did", "")
+    did = tesht_section.get("did", "")
     if not did or not did.startswith("did:"):
         return AgentCardVerification(verified=False, did=did, reason=f"Invalid DID: '{did}'")
 

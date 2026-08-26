@@ -4,7 +4,7 @@
  */
 import { useCallback, useState } from "react";
 import { apiGet, apiPost } from "./api.js";
-import { usePramana } from "./context.js";
+import { useTesht } from "./context.js";
 
 export type SessionRecord = {
   id: string;
@@ -28,7 +28,7 @@ export type DecisionRecord = {
 };
 
 export function useSession() {
-  const { apiUrl, authToken } = usePramana();
+  const { apiUrl, authToken } = useTesht();
   const [session, setSession] = useState<SessionRecord | null>(null);
   const [lastDecision, setLastDecision] = useState<DecisionRecord | null>(null);
   const [loading, setLoading] = useState(false);

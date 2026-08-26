@@ -1,11 +1,11 @@
 [project]
-name = "aurvia-pramana"
+name = "tesht"
 version = "0.3.0"
-description = "Zero-Trust AI Agent Identity — W3C DIDs, Verifiable Credentials, and AP2 Commerce for autonomous agents"
+description = "Tesht (Pramana) — portable identity and scoped authorization for AI agents (W3C DIDs, VCs, AP2)"
 readme = "README.md"
 license = { text = "AGPL-3.0-only" }
 requires-python = ">=3.9"
-authors = [{ name = "Pramana Protocol" }]
+authors = [{ name = "Tesht (Pramana)" }]
 keywords = ["ai-agents", "did", "verifiable-credentials", "zero-trust", "identity", "spiffe"]
 classifiers = [
     "License :: OSI Approved :: GNU Affero General Public License v3",
@@ -25,12 +25,15 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/vinaysflow/pramana-protocol"
-Documentation = "https://pramana.dev/docs"
-Repository = "https://github.com/vinaysflow/pramana-protocol"
+Homepage = "https://github.com/vinaysflow/tesht"
+Documentation = "https://github.com/vinaysflow/tesht"
+Repository = "https://github.com/vinaysflow/tesht"
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-asyncio", "httpx"]
+
+[tool.setuptools.packages.find]
+include = ["tesht*"]
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]

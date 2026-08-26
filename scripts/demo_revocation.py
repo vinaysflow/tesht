@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Mid-Session Revocation Demo
+Tesht (Pramana) — Mid-Session Revocation Demo
 ================================================
 
 Shows BitstringStatusList revocation wired end-to-end through the MCP Gateway:
@@ -35,8 +35,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 import httpx
 import yaml
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.identity import AgentIdentity
 
 # ── Ports ─────────────────────────────────────────────────────────────────────
 OIDC_PORT = 9200
@@ -136,9 +136,9 @@ def _write_demo_config() -> str:
         "providers": {
             "mock_idp": {
                 "name": "Acme Corp Okta (Mock)",
-                "issuer": "https://mock-idp.pramana.local",
+                "issuer": "https://mock-idp.tesht.local",
                 "jwks_uri": f"http://127.0.0.1:{OIDC_PORT}/.well-known/jwks.json",
-                "audience": "pramana",
+                "audience": "tesht",
                 "claim_mapping": {
                     "name": "name",
                     "email": "email",
@@ -251,13 +251,13 @@ def _get_all_recent_events(client: httpx.Client, n: int = 20) -> list[dict]:
 
 def main() -> None:
     import argparse
-    parser = argparse.ArgumentParser(description="Pramana Mid-Session Revocation Demo")
+    parser = argparse.ArgumentParser(description="Tesht Mid-Session Revocation Demo")
     parser.add_argument("--skip-startup", action="store_true",
                         help="Skip service startup (assume services already running)")
     cli = parser.parse_args()
     skip_startup = cli.skip_startup
 
-    banner("Pramana Protocol — Mid-Session Revocation Demo")
+    banner("Tesht (Pramana) — Mid-Session Revocation Demo")
     print(f"  {DIM}Demonstrates: credential revoked → next request immediately rejected{RESET}")
     print(f"  {DIM}Zero latency between revocation and enforcement{RESET}")
 
@@ -277,7 +277,7 @@ def main() -> None:
                 "idp_bridge.app:app", BRIDGE_PORT,
                 extra_env={
                     "IDP_BRIDGE_CONFIG": config_path,
-                    "PRAMANA_CORS_ENABLED": "1",
+                    "TESHT_CORS_ENABLED": "1",
                     "BRIDGE_PORT": str(BRIDGE_PORT),
                     "BRIDGE_STATUS_LIST_URL": f"http://127.0.0.1:{BRIDGE_PORT}/bridge/status-list",
                 },
@@ -289,7 +289,7 @@ def main() -> None:
 
             gw_proc = start_server(
                 "gateway.app:app", GW_PORT,
-                extra_env={"PRAMANA_CORS_ENABLED": "1"},
+                extra_env={"TESHT_CORS_ENABLED": "1"},
             )
             procs.append(gw_proc)
         else:

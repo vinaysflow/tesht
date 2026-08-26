@@ -10,8 +10,8 @@ import time
 import pytest
 import jwt as pyjwt
 
-from pramana.identity import AgentIdentity, resolve_did_key
-from pramana.credentials import (
+from tesht.identity import AgentIdentity, resolve_did_key
+from tesht.credentials import (
     issue_vc,
     verify_vc,
     create_presentation,

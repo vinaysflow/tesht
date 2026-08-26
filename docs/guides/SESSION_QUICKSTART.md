@@ -1,6 +1,6 @@
 # Session API Quickstart (< 15 minutes)
 
-Pramana's authorization runtime: **handoff → tool call (decide) → step_up → revoke**.
+Tesht's authorization runtime: **handoff → tool call (decide) → step_up → revoke**.
 
 ## Prerequisites
 
@@ -85,9 +85,9 @@ Further actions return `error_code: revoked`.
 ## Python SDK
 
 ```python
-from pramana.client import PramanaClient
+from tesht.client import TeshtClient
 
-client = PramanaClient(base_url="http://127.0.0.1:5051", token=TOKEN)
+client = TeshtClient(base_url="http://127.0.0.1:5051", token=TOKEN)
 session = client.create_session(
     agent_did=AGENT_DID,
     human_did="did:example:alice",

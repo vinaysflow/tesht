@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Detection Engine Demo
+Tesht (Pramana) — Detection Engine Demo
 =========================================
 
 Fully self-contained: starts the mock MCP server and gateway as subprocesses,
@@ -35,9 +35,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import httpx
 
-from pramana.credentials import create_blended_presentation, issue_vc
-from pramana.delegation import issue_delegation
-from pramana.identity import AgentIdentity
+from tesht.credentials import create_blended_presentation, issue_vc
+from tesht.delegation import issue_delegation
+from tesht.identity import AgentIdentity
 
 # ── Terminal colours ──────────────────────────────────────────────────────────
 RESET = "\033[0m"
@@ -390,7 +390,7 @@ def phase4_fleet_summary(client: httpx.Client) -> None:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    banner("PRAMANA DETECTION ENGINE — Live Demo")
+    banner("TESHT DETECTION ENGINE — Live Demo")
     print(f"\n{DIM}Starting services…{RESET}")
 
     mcp_proc = start_server("gateway.mock_mcp_server:app", MCP_PORT)

@@ -72,15 +72,15 @@ def test_cold_path_pool_is_bounded():
 
 
 def test_is_production_env_switch():
-    with patch.dict(os.environ, {"PRAMANA_ENV": "production"}, clear=False):
+    with patch.dict(os.environ, {"TESHT_ENV": "production"}, clear=False):
         assert is_production() is True
-    with patch.dict(os.environ, {"PRAMANA_ENV": "development", "GATEWAY_ENV": ""}, clear=False):
+    with patch.dict(os.environ, {"TESHT_ENV": "development", "GATEWAY_ENV": ""}, clear=False):
         assert is_production() is False
 
 
 def test_production_profile_flips_fail_closed():
-    """With PRAMANA_ENV=production and no explicit YAML value, fail_closed flips true."""
-    with patch.dict(os.environ, {"PRAMANA_ENV": "production", "GATEWAY_ENV": ""}, clear=False):
+    """With TESHT_ENV=production and no explicit YAML value, fail_closed flips true."""
+    with patch.dict(os.environ, {"TESHT_ENV": "production", "GATEWAY_ENV": ""}, clear=False):
         cfg = load_config(_CONFIG_PATH)
         assert cfg.production is True
         assert cfg.auth.fail_closed is True
@@ -88,7 +88,7 @@ def test_production_profile_flips_fail_closed():
 
 
 def test_development_profile_is_fail_open():
-    with patch.dict(os.environ, {"PRAMANA_ENV": "development", "GATEWAY_ENV": ""}, clear=False):
+    with patch.dict(os.environ, {"TESHT_ENV": "development", "GATEWAY_ENV": ""}, clear=False):
         cfg = load_config(_CONFIG_PATH)
         assert cfg.production is False
         assert cfg.auth.fail_closed is False

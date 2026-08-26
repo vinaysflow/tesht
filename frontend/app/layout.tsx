@@ -1,8 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Pramana Protocol",
-  description: "Portable AI Agent Identity using W3C Standards",
+  title: "Tesht (Pramana)",
+  description:
+    "Portable identity and scoped authorization for AI agents. W3C DIDs, verifiable credentials, instant revocation.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

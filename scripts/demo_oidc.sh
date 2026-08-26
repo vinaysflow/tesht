@@ -3,8 +3,8 @@ set -euo pipefail
 
 API_BASE="${API_BASE:-http://127.0.0.1:5051}"
 KC_BASE="${KC_BASE:-http://127.0.0.1:8080}"
-REALM="${KC_REALM:-pramana}"
-CLIENT_ID="${KC_CLIENT_ID:-pramana-api}"
+REALM="${KC_REALM:-tesht}"
+CLIENT_ID="${KC_CLIENT_ID:-tesht-api}"
 USERNAME="${KC_USERNAME:-demo-user}"
 PASSWORD="${KC_PASSWORD:-demo}"
 

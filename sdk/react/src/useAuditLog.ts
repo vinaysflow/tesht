@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { usePramana, useRequireApiUrl } from "./context.js";
+import { useTesht, useRequireApiUrl } from "./context.js";
 import { apiGet } from "./api.js";
 
 // ---------------------------------------------------------------------------
@@ -50,11 +50,11 @@ export interface UseAuditLogReturn {
 /**
  * Fetches the audit event log from POST /v1/audit.
  * Automatically fetches on mount; call refresh() to re-fetch.
- * Requires apiUrl set on <PramanaProvider>.
+ * Requires apiUrl set on <TeshtProvider>.
  */
 export function useAuditLog(opts: AuditLogOptions = {}): UseAuditLogReturn {
   const apiUrl = useRequireApiUrl();
-  const { authToken } = usePramana();
+  const { authToken } = useTesht();
 
   const [events, setEvents] = useState<AuditEvent[]>([]);
   const [loading, setLoading] = useState(false);

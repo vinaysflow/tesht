@@ -1,5 +1,5 @@
 """
-Comprehensive E2E tests for the Pramana synthetic agent ecosystem.
+Comprehensive E2E tests for the Tesht synthetic agent ecosystem.
 
 Tests 1-12: SDK-level (no server required).
 Tests 13-16: Server-level (FastAPI TestClient).
@@ -33,15 +33,15 @@ for p in (str(SDK_PATH), str(BACKEND_PATH)):
 # ---------------------------------------------------------------------------
 # SDK imports
 # ---------------------------------------------------------------------------
-from pramana.credentials import issue_vc, verify_vc
-from pramana.delegation import (
+from tesht.credentials import issue_vc, verify_vc
+from tesht.delegation import (
     ScopeEscalationError,
     delegate_further,
     issue_delegation,
     verify_delegation_chain,
 )
-from pramana.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
-from pramana.identity import AgentIdentity
+from tesht.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
+from tesht.identity import AgentIdentity
 
 # ---------------------------------------------------------------------------
 # Data directory
@@ -146,10 +146,10 @@ def _purge_backend_modules() -> None:
 @pytest.fixture(scope="session")
 def backend_app():
     """Start a fresh FastAPI app with an in-memory SQLite database."""
-    os.environ.setdefault("DATABASE_URL", "sqlite:////tmp/pramana_e2e_ecosystem.db")
+    os.environ.setdefault("DATABASE_URL", "sqlite:////tmp/tesht_e2e_ecosystem.db")
     os.environ.setdefault("AUTH_JWT_SECRET", "test-secret-e2e")
-    os.environ.setdefault("AUTH_JWT_ISSUER", "pramana-test")
-    os.environ.setdefault("PRAMANA_DEV_MODE", "false")
+    os.environ.setdefault("AUTH_JWT_ISSUER", "tesht-test")
+    os.environ.setdefault("TESHT_DEV_MODE", "false")
     os.environ.setdefault(
         "ALLOWED_ORIGINS",
         "http://127.0.0.1:8000,http://localhost:8000",

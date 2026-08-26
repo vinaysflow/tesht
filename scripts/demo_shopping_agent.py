@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pramana Protocol — Shopping Agent Demo
+Tesht (Pramana) — Shopping Agent Demo
 
 Demonstrates:
   • User creates a shopping agent and delegates purchase authority
@@ -18,9 +18,9 @@ from pathlib import Path
 # Locate SDK relative to this script (repo root / sdk / python)
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk" / "python"))
 
-from pramana.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
-from pramana.delegation import issue_delegation, verify_delegation_chain
-from pramana.identity import AgentIdentity
+from tesht.commerce import issue_cart_mandate, issue_intent_mandate, verify_mandate
+from tesht.delegation import issue_delegation, verify_delegation_chain
+from tesht.identity import AgentIdentity
 
 PASS = "✅"
 FAIL = "❌"
@@ -28,7 +28,7 @@ FAIL = "❌"
 
 def main() -> int:
     errors: list[str] = []
-    print("\n🛍️  Pramana Protocol — Shopping Agent Demo\n" + "─" * 48)
+    print("\n🛍️  Tesht (Pramana) — Shopping Agent Demo\n" + "─" * 48)
 
     # ── 1. Identities ──────────────────────────────────────────────────────
     print("\nStep 1 │ Creating identities …")

@@ -19,10 +19,10 @@ def _default_database_url() -> str:
     # Hugging Face Spaces: prefer persistent SQLite
     if os.getenv("SPACE_ID") or os.getenv("HF_SPACE") or os.getenv("HF_HOME"):
         # Default to /tmp to work on all Spaces tiers; users can override to /data via DATABASE_URL.
-        return "sqlite:////tmp/pramana.db"
+        return "sqlite:////tmp/tesht.db"
 
     # Local dev default (docker-compose)
-    return "postgresql://pramana:pramana_dev_password@localhost:5432/pramana"
+    return "postgresql://tesht:tesht_dev_password@localhost:5432/tesht"
 
 
 class Settings(BaseSettings):
@@ -35,8 +35,8 @@ class Settings(BaseSettings):
     api_port: int = Field(default=8000, validation_alias="API_PORT")
 
     # did:web method expects percent-encoding for ':' in ports (e.g. localhost%3A8000)
-    pramana_domain: str = Field(default="localhost%3A8000", validation_alias="PRAMANA_DOMAIN")
-    pramana_scheme: str = Field(default="http", validation_alias="PRAMANA_SCHEME")
+    tesht_domain: str = Field(default="localhost%3A8000", validation_alias="TESHT_DOMAIN")
+    tesht_scheme: str = Field(default="http", validation_alias="TESHT_SCHEME")
 
     allowed_origins_raw: str = Field(
         default="http://127.0.0.1:6080,http://localhost:6080,http://127.0.0.1:8000,http://localhost:8000",
@@ -57,8 +57,8 @@ class Settings(BaseSettings):
     oidc_jwks_json: str = Field(default="", validation_alias="OIDC_JWKS_JSON")
     oidc_client_id: str = Field(default="", validation_alias="OIDC_CLIENT_ID")
     auth_jwt_secret: str = Field(default="dev-secret-change", validation_alias="AUTH_JWT_SECRET")
-    auth_jwt_issuer: str = Field(default="pramana", validation_alias="AUTH_JWT_ISSUER")
-    pramana_dev_mode: bool = Field(default=False, validation_alias="PRAMANA_DEV_MODE")
+    auth_jwt_issuer: str = Field(default="tesht", validation_alias="AUTH_JWT_ISSUER")
+    tesht_dev_mode: bool = Field(default=False, validation_alias="TESHT_DEV_MODE")
 
     # Spaces demo mode (per-session demo tokens -> isolated tenants)
     demo_mode: bool = Field(default=bool(os.getenv("SPACE_ID") or os.getenv("HF_SPACE") or os.getenv("HF_HOME")), validation_alias="DEMO_MODE")

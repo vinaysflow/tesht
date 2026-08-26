@@ -1,6 +1,6 @@
 # AP2 Commerce Guide — Agent Payment Protocol
 
-Pramana implements AP2 (Agent Payment Protocol), a two-layer mandate system that lets AI agents initiate purchases on behalf of users with cryptographic proof of authorization.
+Tesht implements AP2 (Agent Payment Protocol), a two-layer mandate system that lets AI agents initiate purchases on behalf of users with cryptographic proof of authorization.
 
 ## Two-layer mandate model
 
@@ -28,8 +28,8 @@ All monetary amounts are **integers in the smallest currency unit** (cents for U
 ## Issuing an intent mandate
 
 ```python
-from pramana.identity import AgentIdentity
-from pramana.commerce import issue_intent_mandate
+from tesht.identity import AgentIdentity
+from tesht.commerce import issue_intent_mandate
 
 user  = AgentIdentity.create("alice")
 agent = AgentIdentity.create("alice-shopping-agent")
@@ -63,7 +63,7 @@ intent_jwt = issue_intent_mandate(
 ## Issuing a cart mandate
 
 ```python
-from pramana.commerce import issue_cart_mandate
+from tesht.commerce import issue_cart_mandate
 
 cart_jwt = issue_cart_mandate(
     delegator=agent,
@@ -111,7 +111,7 @@ The merchant verifies that:
 3. Amounts are consistent
 
 ```python
-from pramana.commerce import verify_mandate
+from tesht.commerce import verify_mandate
 
 result = verify_mandate(cart_jwt)
 
@@ -139,8 +139,8 @@ print(result.scope)          # intent scope dict
 The complete trust chain from user to merchant:
 
 ```python
-from pramana.delegation import issue_delegation, verify_delegation_chain
-from pramana.commerce import issue_intent_mandate, issue_cart_mandate, verify_mandate
+from tesht.delegation import issue_delegation, verify_delegation_chain
+from tesht.commerce import issue_intent_mandate, issue_cart_mandate, verify_mandate
 
 user  = AgentIdentity.create("alice")
 agent = AgentIdentity.create("agent")

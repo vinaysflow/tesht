@@ -3,7 +3,7 @@ from __future__ import annotations
 import base64
 import time
 import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Callable, Optional
 
 import jwt as pyjwt

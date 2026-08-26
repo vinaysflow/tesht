@@ -5,7 +5,6 @@ import uuid
 from fastapi import APIRouter, HTTPException
 
 from core.db import db_session
-from core.settings import settings
 from core.did import build_did_document_multi
 from models import Agent, Key
 from core.status_issuer import status_issuer_did

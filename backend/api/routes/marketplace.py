@@ -1,11 +1,10 @@
 """Agent Marketplace — verified merchant agents with transaction history."""
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from sqlalchemy import func
 
 from api.middleware.authz import require_scopes
 from core.db import db_session

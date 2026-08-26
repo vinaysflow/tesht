@@ -13,7 +13,6 @@ import pytest
 from tesht.credentials import issue_vc
 from tesht.identity import AgentIdentity
 from tesht.integrations.langchain import (
-    HAS_LANGCHAIN,
     LangChainNotInstalled,
     TeshtAgentContext,
     TeshtVerifierTool,

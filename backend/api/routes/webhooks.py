@@ -179,8 +179,6 @@ def test_webhook(
         )
         if webhook is None:
             raise HTTPException(status_code=404, detail="Webhook not found")
-        wh_url = webhook.url
-        wh_secret = webhook.secret
         wh_events = webhook.events or []
 
     test_event = wh_events[0] if wh_events else "credential.issued"

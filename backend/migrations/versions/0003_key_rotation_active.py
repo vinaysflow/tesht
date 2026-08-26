@@ -22,9 +22,9 @@ def upgrade() -> None:
     if is_sqlite:
         # SQLite requires batch mode; keep default to avoid rebuild-on-drop-default.
         with op.batch_alter_table("keys") as batch:
-            batch.add_column(sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.text("1")))
+            batch.add_column(sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.true()))
     else:
-        op.add_column("keys", sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.text("1")))
+        op.add_column("keys", sa.Column("active", sa.Boolean(), nullable=False, server_default=sa.true()))
         op.alter_column("keys", "active", server_default=None)
 
 

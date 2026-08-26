@@ -104,7 +104,10 @@ def _resolve_did_key(did: str) -> dict[str, Any]:
         raise ValueError(f"Invalid public key length: expected 32 bytes, got {len(pub_bytes)}")
 
     pub = Ed25519PublicKey.from_public_bytes(pub_bytes)
-    b64u = lambda b: base64.urlsafe_b64encode(b).rstrip(b"=").decode("ascii")
+
+    def b64u(b: bytes) -> str:
+        return base64.urlsafe_b64encode(b).rstrip(b"=").decode("ascii")
+
     pub_raw = pub.public_bytes_raw()
 
     vm_id = f"{did}#{multibase_value}"

@@ -11,13 +11,12 @@ import time
 
 import pytest
 
-from tesht.credentials import create_presentation, issue_vc, verify_presentation, verify_vc
+from tesht.credentials import create_presentation, issue_vc, verify_presentation
 from tesht.delegation import (
     ScopeEscalationError,
     delegate_further,
     intersect_scopes,
     issue_delegation,
-    validate_scope_narrowing,
     verify_delegation_chain,
 )
 from tesht.identity import AgentIdentity

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import hashlib
 import hmac
-import json
 import uuid
 from unittest.mock import MagicMock, patch
 
@@ -190,10 +189,11 @@ def test_dispatch_on_revocation(client, webhook_authz_headers):
     # There may be other webhooks registered from previous tests in the session DB,
     # so we assert that at least one call targets our specific webhook URL.
     assert mock_client_instance.post.called, "dispatch_webhook_event was never called"
-    calls_by_url = {
-        call.args[0] if call.args else call.kwargs.get("url"): call
+    called_urls = {
+        call.args[0] if call.args else call.kwargs.get("url")
         for call in mock_client_instance.post.call_args_list
     }
+    assert "https://hooks.example.com/revocation" in called_urls
     # Check any call had the right event header
     for call in mock_client_instance.post.call_args_list:
         hdrs = call.kwargs.get("headers") or {}

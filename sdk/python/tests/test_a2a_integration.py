@@ -14,7 +14,6 @@ import pytest
 
 from tesht.identity import AgentIdentity
 from tesht.integrations.a2a import (
-    AgentCardVerification,
     create_a2a_task_token,
     extend_agent_card,
     verify_agent_card_identity,

@@ -108,7 +108,7 @@ def test_audit_export_jsonl(client):
     assert r.status_code == 200
     assert "application/x-ndjson" in r.headers.get("content-type", "")
 
-    lines = [l for l in r.text.strip().split("\n") if l.strip()]
+    lines = [line for line in r.text.strip().split("\n") if line.strip()]
     assert len(lines) >= 2
 
     for line in lines:

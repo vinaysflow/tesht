@@ -1,4 +1,3 @@
-import uuid
 
 from core.status_list import get_or_create_default_list, allocate_index, is_revoked, set_revoked
 

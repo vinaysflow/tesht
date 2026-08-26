@@ -125,7 +125,8 @@ def test_spend_ledger_tracks_fulfillments(client, authz_headers):
     )
 
     # Extract intent JTI from JWT
-    import base64, json
+    import base64
+    import json
     parts = intent_jwt.split(".")
     padded = parts[1] + "=" * ((4 - len(parts[1]) % 4) % 4)
     intent_jti = json.loads(base64.urlsafe_b64decode(padded)).get("jti", "")

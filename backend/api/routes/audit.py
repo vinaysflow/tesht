@@ -6,8 +6,8 @@ from datetime import datetime
 from typing import Optional
 
 from fastapi import APIRouter, Depends, Response
-from pydantic import BaseModel, Field
-from sqlalchemy import asc, desc, select
+from pydantic import BaseModel
+from sqlalchemy import select
 
 from core.audit import verify_chain
 from core.db import db_session

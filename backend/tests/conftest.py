@@ -19,6 +19,8 @@ os.environ.setdefault("AUTH_JWT_SECRET", "test-secret")
 os.environ.setdefault("AUTH_JWT_ISSUER", "tesht-test")
 os.environ.setdefault("TESHT_DEV_MODE", "false")
 
+import core.auth.jwt_auth as jwt_auth
+
 
 def _purge_modules():
     for name in list(sys.modules.keys()):
@@ -84,7 +86,6 @@ def client(app):
     with TestClient(app) as c:
         yield c
 
-import core.auth.jwt_auth as jwt_auth
 
 @pytest.fixture()
 def authz_headers():

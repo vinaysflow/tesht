@@ -1,7 +1,7 @@
 """Compliance reporting — maps Tesht controls to SOC2, HIPAA, EU AI Act, ISO 42001."""
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
@@ -252,7 +252,7 @@ def get_compliance_report(
     # Gather evidence metrics
     from sqlalchemy import func, text as sqla_text
     from core.status_list import is_revoked
-    from models import TrustEvent, MandateSpend
+    from models import TrustEvent
 
     with db_session() as db:
         agent_count = db.query(func.count(Agent.id)).filter(Agent.tenant_id == tenant_id).scalar() or 0

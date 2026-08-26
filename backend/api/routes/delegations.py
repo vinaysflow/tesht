@@ -1,14 +1,10 @@
 from __future__ import annotations
 
-import base64
-import json
-import uuid
 from datetime import datetime, timezone
 from typing import Any, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel
-from sqlalchemy import select, update
 
 from api.middleware.authz import require_scopes
 from core.audit import write_audit
@@ -42,7 +38,7 @@ class RevokeRequest(BaseModel):
 
 def _get_delegation_registry_table():
     """Lazy import to avoid circular deps at module load."""
-    from sqlalchemy import Table, MetaData, String, Integer, DateTime
+    from sqlalchemy import MetaData
     from core.db import engine
     meta = MetaData()
     meta.reflect(bind=engine, only=["delegation_registry"])
@@ -227,7 +223,7 @@ def _validate_scope_narrowing(parent_scope: dict[str, Any], child_scope: dict[st
     p_selectors = {(s.get("type"), s.get("value")) for s in parent_scope.get("attestation_selectors", [])}
     c_selectors = {(s.get("type"), s.get("value")) for s in child_scope.get("attestation_selectors", [])}
     if p_selectors and c_selectors and not c_selectors.issubset(p_selectors):
-        return f"Scope escalation on 'attestation_selectors': child selectors not subset of parent"
+        return "Scope escalation on 'attestation_selectors': child selectors not subset of parent"
 
     return None
 

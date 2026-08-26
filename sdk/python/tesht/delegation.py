@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Callable, Optional
 
 from tesht.credentials import issue_vc, verify_vc
@@ -211,7 +211,8 @@ def delegate_further(
     now = int(_time.time())
     # Decode exp directly from parent jwt without verification (payload attr may not exist)
     parent_exp: Optional[int] = None
-    import base64 as _b64, json as _json
+    import base64 as _b64
+    import json as _json
     parts = parent_delegation_jwt.split(".")
     if len(parts) == 3:
         padded = parts[1] + "=" * ((4 - len(parts[1]) % 4) % 4)

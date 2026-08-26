@@ -4,7 +4,6 @@ Uses did:key identities throughout — no server dependency.
 """
 from __future__ import annotations
 
-import time
 import pytest
 import jwt as pyjwt
 
@@ -13,7 +12,6 @@ from tesht.commerce import (
     issue_intent_mandate,
     issue_cart_mandate,
     verify_mandate,
-    MandateVerification,
 )
 
 

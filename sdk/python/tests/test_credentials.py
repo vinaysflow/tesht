@@ -10,14 +10,12 @@ import time
 import pytest
 import jwt as pyjwt
 
-from tesht.identity import AgentIdentity, resolve_did_key
+from tesht.identity import AgentIdentity
 from tesht.credentials import (
     issue_vc,
     verify_vc,
     create_presentation,
     verify_presentation,
-    VerificationResult,
-    PresentationResult,
 )
 
 

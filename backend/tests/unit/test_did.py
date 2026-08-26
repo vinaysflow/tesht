@@ -1,4 +1,3 @@
-import re
 
 from core import did as did_core
 

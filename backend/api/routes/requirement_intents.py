@@ -16,7 +16,7 @@ from core.crypto import encrypt_text
 from core.db import db_session
 from core.resolver import resolve_did
 from core.settings import settings
-from core.status_list import allocate_index, get_or_create_default_list, set_revoked
+from core.status_list import allocate_index, get_or_create_default_list
 from core.status_list_vc import (
     is_local_status_list_url,
     issue_status_list_vc_jwt,

@@ -1,4 +1,3 @@
-import pytest
 
 import core.auth.jwt_auth as jwt_auth
 

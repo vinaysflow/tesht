@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import logging
-import math
 import random
 import uuid
 from dataclasses import dataclass
@@ -19,7 +18,7 @@ from core.settings import settings
 from core.status_list import get_or_create_default_list, allocate_index, set_revoked
 from core.tenancy import ensure_tenant
 from core.vc import issue_vc_jwt
-from models import Agent, AuditEvent, Credential, Key, MandateSpend, TrustEvent
+from models import Agent, Credential, Key, MandateSpend, TrustEvent
 
 logger = logging.getLogger(__name__)
 

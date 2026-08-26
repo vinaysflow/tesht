@@ -5,15 +5,13 @@ from typing import Any, Optional
 from urllib.parse import unquote
 
 import jwt as pyjwt
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
+from fastapi import APIRouter, BackgroundTasks, Depends
 from pydantic import BaseModel, Field
-from sqlalchemy import func
 
 from api.middleware.authz import require_scopes
 from core.audit import write_audit
 from core.db import db_session
 from core.trust_score import (
-    TrustScore,
     compute_trust_score,
     get_agent_trust_profile,
     record_trust_event,

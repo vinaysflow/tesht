@@ -17,21 +17,17 @@ import jwt as pyjwt
 import pytest
 
 from tesht.credentials import (
-    BlendedIdentityResult,
-    PresentationResult,
     create_blended_presentation,
     create_presentation,
     issue_vc,
     verify_blended_presentation,
-    verify_presentation,
 )
 from tesht.delegation import (
     delegate_further,
     issue_delegation,
-    verify_delegation_chain,
 )
 from tesht.identity import AgentIdentity
-from tesht.integrations.mcp import MCPAuthConfig, MCPAuthResult, TeshtMCPAuth
+from tesht.integrations.mcp import MCPAuthConfig, TeshtMCPAuth
 
 
 # ---------------------------------------------------------------------------

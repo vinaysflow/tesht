@@ -84,9 +84,9 @@ describe("issueDelegation", () => {
     const delegate = await AgentIdentity.create("delegate");
     const jwt = await issueDelegation(root, delegate.did, { actions: ["read", "write"] });
     const payload = JSON.parse(atob(jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")));
-    expect(payload.del.depth).toBe(0);
-    expect(payload.del.scope.actions).toEqual(["read", "write"]);
-    expect(payload.del.parentJti).toBeNull();
+    expect(payload.vc.credentialSubject.delegationDepth).toBe(0);
+    expect(payload.vc.credentialSubject.delegationScope.actions).toEqual(["read", "write"]);
+    expect(payload.vc.credentialSubject.parentDelegation).toBeUndefined();
   });
 
   it("iss and sub are set correctly", async () => {

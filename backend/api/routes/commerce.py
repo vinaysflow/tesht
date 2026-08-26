@@ -1,12 +1,10 @@
 from __future__ import annotations
 
-import time
 import uuid
 from datetime import datetime
 from decimal import Decimal
 from typing import Any, Optional
 
-import jwt as pyjwt
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import func
@@ -404,7 +402,8 @@ def verify_mandate_endpoint(
         intent_jti: str = ""
         if raw_intent_mandate and "." in raw_intent_mandate:
             try:
-                import base64 as _b64, json as _json
+                import base64 as _b64
+                import json as _json
                 _parts = raw_intent_mandate.split(".")
                 _padded = _parts[1] + "=" * ((4 - len(_parts[1]) % 4) % 4)
                 intent_jti = _json.loads(_b64.urlsafe_b64decode(_padded)).get("jti", "")

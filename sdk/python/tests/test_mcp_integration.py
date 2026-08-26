@@ -16,7 +16,7 @@ import pytest
 from tesht.credentials import issue_vc
 from tesht.delegation import issue_delegation
 from tesht.identity import AgentIdentity
-from tesht.integrations.mcp import MCPAuthConfig, MCPAuthResult, TeshtMCPAuth
+from tesht.integrations.mcp import MCPAuthConfig, TeshtMCPAuth
 
 
 # ---------------------------------------------------------------------------

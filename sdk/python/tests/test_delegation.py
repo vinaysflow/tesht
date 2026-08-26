@@ -8,7 +8,6 @@ import pytest
 from tesht.identity import AgentIdentity
 from tesht.delegation import (
     ScopeEscalationError,
-    DelegationResult,
     validate_scope_narrowing,
     intersect_scopes,
     issue_delegation,

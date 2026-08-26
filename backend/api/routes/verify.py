@@ -48,7 +48,6 @@ def verify(req: VerifyRequest):
         result = verify_vc_jwt(token=req.jwt, resolve_did_document=resolve_did, status_check=status_check)
 
         jti = str(result["payload"].get("jti", ""))
-        exp = result["payload"].get("exp")
 
         write_audit(
             tenant_id="public",

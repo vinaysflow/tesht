@@ -337,12 +337,6 @@ def mcp_auth_middleware(auth: TeshtMCPAuth) -> Callable:
                 raise HTTPException(status_code=401, detail=agent_ctx.reason)
             # agent_ctx.agent_did is the verified agent DID
     """
-    # Import inside function to keep FastAPI optional at import time.
-    try:
-        from fastapi import Request  # type: ignore[import]
-    except ImportError:
-        Request = None  # type: ignore[misc,assignment]
-
     async def _dependency(request: Any) -> MCPAuthResult:  # type: ignore[return]
         # Accept both FastAPI Request objects and plain dicts (for testing).
         if hasattr(request, "headers"):
@@ -365,8 +359,6 @@ def _find_delegation_jwt(vp_jwt: str, matching_cr: VerificationResult) -> Option
     We decode the VP's ``vp.verifiableCredential`` list and find the JWT
     whose ``jti`` or ``sub`` matches the verified VerificationResult.
     """
-    import base64 as _b64
-    import json as _json
 
     try:
         # Decode VP payload without signature check (already verified above)

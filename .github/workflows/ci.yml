@@ -161,8 +161,8 @@ jobs:
         working-directory: sdk/python
         run: pip install -e ".[dev]"
 
-      - name: Generate synthetic data
-        run: python tests/synthetic/generate.py
+      - name: Refresh e2e fixture JWTs
+        run: python tests/synthetic/refresh_jwts.py
 
       - name: Run E2E tests
         run: |

@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "synthetic" / "data"
-GENERATE_SCRIPT = Path(__file__).resolve().parents[1] / "synthetic" / "generate.py"
+REFRESH_SCRIPT = Path(__file__).resolve().parents[1] / "synthetic" / "refresh_jwts.py"
 
 
 def _data_is_fresh() -> bool:
@@ -38,8 +38,16 @@ def _data_is_fresh() -> bool:
             jwt_str = cred.get("jwt")
             if not jwt_str or cred.get("tampered") or cred.get("immature"):
                 continue
-            if cred.get("ttl_seconds") == 1:
-                continue  # intentionally expired
+            if cred.get("ttl_seconds") == 1 or cred.get("expired"):
+                continue
+            # These issuers were never stored in ecosystem.json, so refresh
+            # leaves their JWTs as-is (already expired / future / revoked).
+            if cred.get("issuer_name") in {
+                "expired-issuer",
+                "revoked-issuer",
+                "future-issuer",
+            }:
+                continue
             try:
                 payload = pyjwt.decode(jwt_str, options={"verify_signature": False})
                 exp = payload.get("exp")
@@ -55,14 +63,18 @@ def _data_is_fresh() -> bool:
 
 @pytest.fixture(scope="session", autouse=True)
 def ensure_fresh_synthetic_data():
-    """Regenerate synthetic data if JWTs are expired or close to expiring."""
+    """Re-sign hand-crafted e2e JWTs if they are expired or close to expiring.
+
+    Do not run generate.py here: it overwrites the fixture set these tests
+    expect (mandate ids, expected_results.json, named agents).
+    """
     if not _data_is_fresh():
         result = subprocess.run(
-            [sys.executable, str(GENERATE_SCRIPT)],
+            [sys.executable, str(REFRESH_SCRIPT)],
             capture_output=True,
             text=True,
         )
         if result.returncode != 0:
             pytest.fail(
-                f"generate.py failed:\n{result.stdout}\n{result.stderr}"
+                f"refresh_jwts.py failed:\n{result.stdout}\n{result.stderr}"
             )
